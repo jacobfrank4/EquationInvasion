@@ -1,5 +1,6 @@
 package project.equationinvasion;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -25,6 +26,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button button;
     private int streak;
 
+    /**
+     * Declarations for audio functionality
+     * -Matt
+     */
+    static private MediaPlayer BGM;
+    private MediaPlayer SE;
+    static private int playing = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +49,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fifth = (ImageView) findViewById(R.id.imageView5);
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(this);
+
+        /**
+         * Instantiating the background music.
+         * -Matt
+         */
+        backgroundMusic();
+
+
+
+
+
     }
 
     /** Called when the user clicks the Send button */
@@ -57,22 +77,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void goToPlay(View view) {
         Intent intent = new Intent(this, Play.class);
         startActivity(intent);
+        btnNoise();
     }
 
     //Called when player clicks the High Scores button
     public void goToHighScores(View view) {
         Intent intent = new Intent(this, HighScores.class);
         startActivity(intent);
+        btnNoise();
     }
 
     //Called when player clicks the credits button
     public void goToCredits(View view) {
         Intent intent = new Intent(this, Credits.class);
         startActivity(intent);
+        btnNoise();
+    }
+
+    //Method that plays button noise.
+    public void btnNoise(){
+        SE = MediaPlayer.create(MainActivity.this,R.raw.btn1sound);
+        SE.start();
+    }
+
+    /*
+        This method crates the background music, and limits it to one
+        copy so that it doesn't recreate itself
+        when switching pages.
+     */
+    public void backgroundMusic(){
+        if (playing == 0)
+        {
+            BGM = MediaPlayer.create(MainActivity.this, R.raw.bgm1);
+            BGM.setLooping(true);
+            BGM.start();
+        }
+        if (BGM.isPlaying())
+        {
+            playing = 1;
+        }
+
     }
 
     @Override
     public void onClick(View v) {
+
         if (v.getId() == button.getId()) {
 
 
@@ -96,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     second.setImageResource(R.drawable.streakpipon);
                 case 1:
                     first.setImageResource(R.drawable.streakpipon);
+
                     break;
                 default:
                     first.setImageResource(R.drawable.streakpipoff);
@@ -103,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     third.setImageResource(R.drawable.streakpipoff);
                     fourth.setImageResource(R.drawable.streakpipoff);
                     fifth.setImageResource(R.drawable.streakpipoff);
+
             }
             if (streak < 5) {
                 streak++;
@@ -110,5 +161,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 streak = 0;
             }
         }
+
     }
 }
