@@ -70,22 +70,22 @@ public class Play extends ActionBarActivity implements View.OnClickListener {
     }
 
     public void add(int a, int b) {
-        int expected = a + b;
+        int correct = a + b;
         askQuestion(a + " + " + b + " = ");
     }
 
     public void subtract(int a, int b) {
-        int expected = a - b;
+        int correct = a - b;
         askQuestion(a + " - " + b + " = ");
     }
 
     public void divide(int a, int b) {
-        int expected = a / b;
+        int correct = a / b;
         askQuestion(a + " / " + b + " = ");
     }
 
     public void multiply( int a, int b) {
-        int expected = a * b;
+        int correct = a * b;
         askQuestion(a + " * " + b + " = ");
     }
 
