@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     static private MediaPlayer BGM;
     private MediaPlayer SE;
-    static private int playing = 0;
+    static private boolean playing = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         when switching pages.
      */
     public void backgroundMusic(){
-        if (playing == 0)
+        if (!playing)
         {
             BGM = MediaPlayer.create(MainActivity.this, R.raw.bgm1);
             BGM.setLooping(true);
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (BGM.isPlaying())
         {
-            playing = 1;
+            playing = true;
         }
 
     }
