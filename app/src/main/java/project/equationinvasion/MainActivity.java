@@ -6,8 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.content.Intent;
 
@@ -29,29 +29,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
         /**
          * Instantiating everything for streak counter
          * -John
          */
-        first = (ImageView)findViewById(R.id.imageView);
-        second = (ImageView)findViewById(R.id.imageView2);
-        third = (ImageView)findViewById(R.id.imageView3);
-        fourth = (ImageView)findViewById(R.id.imageView4);
-        fifth = (ImageView)findViewById(R.id.imageView5);
-        button = (Button)findViewById(R.id.button);
+        first = (ImageView) findViewById(R.id.imageView);
+        second = (ImageView) findViewById(R.id.imageView2);
+        third = (ImageView) findViewById(R.id.imageView3);
+        fourth = (ImageView) findViewById(R.id.imageView4);
+        fifth = (ImageView) findViewById(R.id.imageView5);
+        button = (Button) findViewById(R.id.button);
         button.setOnClickListener(this);
     }
 
     /** Called when the user clicks the Send button */
     /**
-    public void sendMessage(View view) {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.edit_message);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-    }
+     * public void sendMessage(View view) {
+     * Intent intent = new Intent(this, DisplayMessageActivity.class);
+     * EditText editText = (EditText) findViewById(R.id.edit_message);
+     * String message = editText.getText().toString();
+     * intent.putExtra(EXTRA_MESSAGE, message);
+     * startActivity(intent);
+     * }
      */
 
     //Called when player clicks the Play button
@@ -70,9 +69,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void goToCredits(View view) {
         Intent intent = new Intent(this, Credits.class);
         startActivity(intent);
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == button.getId()) {
+
+
             /**
              * Switch statement utilizes fall-through to keep pips highlighted depending on the value
              * of streak. There's a break to prevent it falling into the default case.
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              *
              * -John
              */
-            switch(streak) {
+            switch (streak) {
                 case 5:
                     fifth.setImageResource(R.drawable.streakpipon);
                 case 4:
@@ -108,6 +111,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-
-
 }
