@@ -77,18 +77,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void goToPlay(View view) {
         Intent intent = new Intent(this, Play.class);
         startActivity(intent);
+        btnNoise();
     }
 
     //Called when player clicks the High Scores button
     public void goToHighScores(View view) {
         Intent intent = new Intent(this, HighScores.class);
         startActivity(intent);
+        btnNoise();
     }
 
     //Called when player clicks the credits button
     public void goToCredits(View view) {
         Intent intent = new Intent(this, Credits.class);
         startActivity(intent);
+        btnNoise();
     }
 
     //Method that plays button noise.
