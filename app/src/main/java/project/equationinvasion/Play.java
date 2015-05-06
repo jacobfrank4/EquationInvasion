@@ -209,22 +209,22 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     public void add(int a, int b) {
         int expected = a + b;
-        askQuestion(a + " + " + b + " = ");
+        askQuestion(a + " + " + b );
     }
 
     public void subtract(int a, int b) {
         int expected = a - b;
-        askQuestion(a + " - " + b + " = ");
+        askQuestion(a + " - " + b );
     }
 
     public void divide(int a, int b) {
         int expected = a / b;
-        askQuestion(a + " / " + b + " = ");
+        askQuestion(a + " / " + b);
     }
 
     public void multiply( int a, int b) {
         int expected = a * b;
-        askQuestion(a + " * " + b + " = ");
+        askQuestion(a + " * " + b);
     }
 
     private void askQuestion(final String question) {
@@ -241,20 +241,74 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         Random gen = new Random();
 
         int wrong;
-        int displayed;
+        int displayed = 0;
         int choice = gen.nextInt(2) + 1;  // True or False Decision
 
-        if (choice == 2) {
-            int variable = gen.nextInt(3) + 1;
-            int a = gen.nextInt(2) + 1;
+        if (answer >= -10 && answer <= 10) {
+            if (choice == 2) {
+                int variable = gen.nextInt(2) + 1;
+                int a = gen.nextInt(2) + 1;
                 if (a == 1) {
                     wrong = answer + variable;
                 } else {
                     wrong = answer - variable;
                 }
-            displayed = wrong;
+                displayed = wrong;
+            } else {
+                displayed = answer;
+            }
+        } else if (answer >= -20 && answer <= 20) {
+            if (choice == 2) {
+                int variable = gen.nextInt(3) + 1;
+                int a = gen.nextInt(2) + 1;
+                if (a == 1) {
+                    wrong = answer + variable;
+                } else {
+                    wrong = answer - variable;
+                }
+                displayed = wrong;
+            } else {
+                displayed = answer;
+            }
+        } else if (answer >= -40 && answer <= 40) {
+            if (choice == 2) {
+                int variable = gen.nextInt(4) + 1;
+                int a = gen.nextInt(2) + 1;
+                if (a == 1) {
+                    wrong = answer + variable;
+                } else {
+                    wrong = answer - variable;
+                }
+                displayed = wrong;
+            } else {
+                displayed = answer;
+            }
+        } else if (answer >= -60 && answer <= 60) {
+            if (choice == 2) {
+                int variable = gen.nextInt(5) + 1;
+                int a = gen.nextInt(2) + 1;
+                if (a == 1) {
+                    wrong = answer + variable;
+                } else {
+                    wrong = answer - variable;
+                }
+                displayed = wrong;
+            } else {
+                displayed = answer;
+            }
         } else {
-            displayed = answer;
+            if (choice == 2) {
+                int variable = gen.nextInt(6) + 1;
+                int a = gen.nextInt(2) + 1;
+                if (a == 1) {
+                    wrong = answer + variable;
+                } else {
+                    wrong = answer - variable;
+                }
+                displayed = wrong;
+            } else {
+                displayed = answer;
+            }
         }
         return displayed;
     }
