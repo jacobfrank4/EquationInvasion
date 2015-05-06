@@ -7,10 +7,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.content.Intent;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+
+    public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
 
     /**
      * My declarations for the streak counter
@@ -28,40 +33,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          * Instantiating everything for streak counter
          * -John
          */
-        first = (ImageView)findViewById(R.id.imageView);
-        second = (ImageView)findViewById(R.id.imageView2);
-        third = (ImageView)findViewById(R.id.imageView3);
-        fourth = (ImageView)findViewById(R.id.imageView4);
-        fifth = (ImageView)findViewById(R.id.imageView5);
-        button = (Button)findViewById(R.id.button);
+        first = (ImageView) findViewById(R.id.imageView);
+        second = (ImageView) findViewById(R.id.imageView2);
+        third = (ImageView) findViewById(R.id.imageView3);
+        fourth = (ImageView) findViewById(R.id.imageView4);
+        fifth = (ImageView) findViewById(R.id.imageView5);
+        button = (Button) findViewById(R.id.button);
         button.setOnClickListener(this);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    /** Called when the user clicks the Send button */
+    /**
+     * public void sendMessage(View view) {
+     * Intent intent = new Intent(this, DisplayMessageActivity.class);
+     * EditText editText = (EditText) findViewById(R.id.edit_message);
+     * String message = editText.getText().toString();
+     * intent.putExtra(EXTRA_MESSAGE, message);
+     * startActivity(intent);
+     * }
+     */
+
+    //Called when player clicks the Play button
+    public void goToPlay(View view) {
+        Intent intent = new Intent(this, Play.class);
+        startActivity(intent);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    //Called when player clicks the High Scores button
+    public void goToHighScores(View view) {
+        Intent intent = new Intent(this, HighScores.class);
+        startActivity(intent);
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    //Called when player clicks the credits button
+    public void goToCredits(View view) {
+        Intent intent = new Intent(this, Credits.class);
+        startActivity(intent);
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == button.getId()) {
+
+
             /**
              * Switch statement utilizes fall-through to keep pips highlighted depending on the value
              * of streak. There's a break to prevent it falling into the default case.
@@ -71,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              *
              * -John
              */
-            switch(streak) {
+            switch (streak) {
                 case 5:
                     fifth.setImageResource(R.drawable.streakpipon);
                 case 4:
