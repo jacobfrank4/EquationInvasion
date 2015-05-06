@@ -15,8 +15,6 @@ public class Play extends ActionBarActivity implements View.OnClickListener {
     private TextView equation;
     Random rand = new Random();
 
-public class Play extends ActionBarActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +23,8 @@ public class Play extends ActionBarActivity {
         final Button newEquation = (Button) findViewById(R.id.button);
         newEquation.setOnClickListener(this);
         equation = (TextView) findViewById(R.id.textView);
+
+
     }
 
     public void onClick(View v) {
