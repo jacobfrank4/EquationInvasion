@@ -17,29 +17,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
 
-    /**
-     * My declarations for the streak counter
-     * -John
-     */
-    private ImageView first, second, third, fourth, fifth;
-    private Button button;
-    private int streak;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /**
-         * Instantiating everything for streak counter
-         * -John
-         */
-        first = (ImageView) findViewById(R.id.imageView);
-        second = (ImageView) findViewById(R.id.imageView2);
-        third = (ImageView) findViewById(R.id.imageView3);
-        fourth = (ImageView) findViewById(R.id.imageView4);
-        fifth = (ImageView) findViewById(R.id.imageView5);
-        button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(this);
+
     }
 
     /** Called when the user clicks the Send button */
@@ -73,42 +57,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == button.getId()) {
 
-
-            /**
-             * Switch statement utilizes fall-through to keep pips highlighted depending on the value
-             * of streak. There's a break to prevent it falling into the default case.
-             * Every pip is an ImageView with two images, an on and an off image.
-             * I switch them depending on whether or not they should be active for the current streak.
-             * Finally there's a simple if statement to keep streak looping from 0-5.
-             *
-             * -John
-             */
-            switch (streak) {
-                case 5:
-                    fifth.setImageResource(R.drawable.streakpipon);
-                case 4:
-                    fourth.setImageResource(R.drawable.streakpipon);
-                case 3:
-                    third.setImageResource(R.drawable.streakpipon);
-                case 2:
-                    second.setImageResource(R.drawable.streakpipon);
-                case 1:
-                    first.setImageResource(R.drawable.streakpipon);
-                    break;
-                default:
-                    first.setImageResource(R.drawable.streakpipoff);
-                    second.setImageResource(R.drawable.streakpipoff);
-                    third.setImageResource(R.drawable.streakpipoff);
-                    fourth.setImageResource(R.drawable.streakpipoff);
-                    fifth.setImageResource(R.drawable.streakpipoff);
-            }
-            if (streak < 5) {
-                streak++;
-            } else {
-                streak = 0;
-            }
-        }
     }
 }
