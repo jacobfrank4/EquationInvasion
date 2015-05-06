@@ -9,12 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.content.Intent;
+import java.util.Random;
 import java.text.DecimalFormat;
 
-
 public class Play extends AppCompatActivity implements View.OnClickListener {
-
+    private TextView equation;
+    Random rand = new Random();
     /**
      * My declarations for the streak counter
      * -John
@@ -58,11 +59,19 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         timer = new MyTimer(180000);
         timer.start();
         running = true;
+
+
+
+        final Button newEquation = (Button) findViewById(R.id.button);
+        newEquation.setOnClickListener(this);
+        equation = (TextView) findViewById(R.id.textView);
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == pipChange.getId()) {
+        if(view.getId() == R.id.button) {
+            getNew();
+        } else if (view.getId() == pipChange.getId()) {
             /**
              * Switch statement utilizes fall-through to keep pips highlighted depending on the value
              * of streak. There's a break to prevent it falling into the default case.
@@ -96,7 +105,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             } else {
                 streak = 0;
             }
-        }else if (view.getId() == addTime.getId()) {
+        } else if (view.getId() == addTime.getId()) {
             long carryOver = currentMilli;
             int secondsToRun;
             if (running) {
@@ -145,5 +154,67 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             minute = currentTime / 60000;
             return minute + ":" + fmt.format(second);
         }
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_play, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+    }
+
+    public void getNew() {
+        final int maxNumber = 10;
+
+        int a = rand.nextInt(maxNumber);
+        int b = rand.nextInt(maxNumber);
+
+        int type = rand.nextInt(4);
+
+        switch(type) {
+            case 0:
+                add(a, b);
+                break;
+            case 1:
+                subtract(a, b);
+                break;
+            case 2:
+                divide(a, b);
+                break;
+            case 3:
+                multiply(a, b);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    public void add(int a, int b) {
+        int expected = a + b;
+        askQuestion(a + " + " + b + " = ");
+    }
+
+    public void subtract(int a, int b) {
+        int expected = a - b;
+        askQuestion(a + " - " + b + " = ");
+    }
+
+    public void divide(int a, int b) {
+        int expected = a / b;
+        askQuestion(a + " / " + b + " = ");
+    }
+
+    public void multiply( int a, int b) {
+        int expected = a * b;
+        askQuestion(a + " * " + b + " = ");
+    }
+
+    private void askQuestion(final String question) {
+        equation.setText(question);
     }
 }

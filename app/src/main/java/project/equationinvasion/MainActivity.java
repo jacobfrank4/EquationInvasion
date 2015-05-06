@@ -1,5 +1,6 @@
 package project.equationinvasion;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -19,11 +20,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+    /**
+     * Declarations for audio functionality
+     * -Matt
+     */
+    static private MediaPlayer BGM;
+    private MediaPlayer SE;
+    static private int playing = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        /**
+         * Instantiating the background music.
+         * -Matt
+         */
+        backgroundMusic();
     }
 
     /** Called when the user clicks the Send button */
@@ -41,18 +54,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void goToPlay(View view) {
         Intent intent = new Intent(this, Play.class);
         startActivity(intent);
+        btnNoise();
     }
 
     //Called when player clicks the High Scores button
     public void goToHighScores(View view) {
         Intent intent = new Intent(this, HighScores.class);
         startActivity(intent);
+        btnNoise();
     }
 
     //Called when player clicks the credits button
     public void goToCredits(View view) {
         Intent intent = new Intent(this, Credits.class);
         startActivity(intent);
+        btnNoise();
+    }
+
+    //Method that plays button noise.
+    public void btnNoise(){
+        SE = MediaPlayer.create(MainActivity.this,R.raw.btn1sound);
+        SE.start();
+    }
+
+    /*
+        This method crates the background music, and limits it to one
+        copy so that it doesn't recreate itself
+        when switching pages.
+     */
+    public void backgroundMusic(){
+        if (playing == 0)
+        {
+            BGM = MediaPlayer.create(MainActivity.this, R.raw.bgm1);
+            BGM.setLooping(true);
+            BGM.start();
+        }
+        if (BGM.isPlaying())
+        {
+            playing = 1;
+        }
+
     }
 
     @Override
