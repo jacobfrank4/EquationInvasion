@@ -48,14 +48,14 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         third = (ImageView) findViewById(R.id.imageView3);
         fourth = (ImageView) findViewById(R.id.imageView4);
         fifth = (ImageView) findViewById(R.id.imageView5);
-        pipChange = (Button) findViewById(R.id.button);
+        pipChange = (Button) findViewById(R.id.pipSwitch);
         pipChange.setOnClickListener(this);
         /**
          * Instantiating what I need for the timer
          */
         addTime = (Button)findViewById(R.id.timeAdd);
         addTime.setOnClickListener(this);
-        time = (TextView) findViewById(R.id.textView);
+        time = (TextView) findViewById(R.id.time);
         timer = new MyTimer(180000);
         timer.start();
         running = true;
