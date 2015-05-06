@@ -1,5 +1,7 @@
 package project.equationinvasion;
 
+import android.media.MediaPlayer;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import java.text.DecimalFormat;
 public class Play extends AppCompatActivity implements View.OnClickListener {
     private TextView equation;
     Random rand = new Random();
+    private MediaPlayer SE;
     /**
      * My declarations for the streak counter
      * -John
@@ -73,6 +76,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         if(view.getId() == R.id.button) {
             getNew();
+            btnNoise();
         } else if (view.getId() == pipChange.getId()) {
             /**
              * Switch statement utilizes fall-through to keep pips highlighted depending on the value
@@ -167,6 +171,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         int id = item.getItemId();
 
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
+    }
+
+    //the method to be called for sound effects when a button is clicked.
+    public void btnNoise()
+    {
+        SE = MediaPlayer.create(Play.this,R.raw.btn1sound);
+        SE.start();
     }
 
     public void getNew() {
