@@ -11,8 +11,9 @@
         android:layout_height="wrap_content"
         android:text="@string/pip_switcher"
         android:id="@+id/pipSwitch"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"/>
+        android:layout_alignBaseline="@+id/solution"
+        android:layout_alignBottom="@+id/solution"
+        android:layout_alignStart="@+id/imageView" />
 
     <!--<ImageView-->
         <!--android:layout_width="wrap_content"-->
