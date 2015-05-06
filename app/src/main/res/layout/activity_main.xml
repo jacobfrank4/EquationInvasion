@@ -18,4 +18,45 @@
         android:layout_toEndOf="@+id/textView"
         android:layout_marginBottom="129dp"/>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/streakpipon"
+        android:layout_marginLeft="80dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/streakpipon"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="100dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:src="@drawable/streakpipon"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="100dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView4"
+        android:src="@drawable/streakpipon"
+
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="170dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView5"
+        android:src="@drawable/streakpipon"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="100dp"/>
+
 </RelativeLayout>
