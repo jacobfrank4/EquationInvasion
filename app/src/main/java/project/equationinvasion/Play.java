@@ -1,7 +1,6 @@
 package project.equationinvasion;
 
 import android.media.MediaPlayer;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -11,12 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.content.Intent;
+
 import java.util.Random;
 import java.text.DecimalFormat;
 
 public class Play extends AppCompatActivity implements View.OnClickListener {
     private TextView equation;
+    private TextView answer;
     Random rand = new Random();
     private MediaPlayer SE;
     /**
@@ -67,7 +67,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
         final Button newEquation = (Button) findViewById(R.id.button);
         newEquation.setOnClickListener(this);
-        equation = (TextView) findViewById(R.id.textView);
+        equation = (TextView) findViewById(R.id.leftEquation);
+        answer = (TextView) findViewById(R.id.solution);
 
 
     }
@@ -210,21 +211,25 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     public void add(int a, int b) {
         int expected = a + b;
         askQuestion(a + " + " + b );
+        answerQuestion("" + answerGen(expected));
     }
 
     public void subtract(int a, int b) {
         int expected = a - b;
         askQuestion(a + " - " + b );
+        answerQuestion("" + answerGen(expected));
     }
 
     public void divide(int a, int b) {
         int expected = a / b;
         askQuestion(a + " / " + b);
+        answerQuestion("" + answerGen(expected));
     }
 
     public void multiply( int a, int b) {
         int expected = a * b;
         askQuestion(a + " * " + b);
+        answerQuestion("" + answerGen(expected));
     }
 
     private void askQuestion(final String question) {
@@ -241,7 +246,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         Random gen = new Random();
 
         int wrong;
-        int displayed = 0;
+        int displayed;
         int choice = gen.nextInt(2) + 1;  // True or False Decision
 
         if (answer >= -10 && answer <= 10) {
@@ -311,5 +316,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             }
         }
         return displayed;
+    }
+
+    public void answerQuestion(final String answered) {
+        answer.setText(answered);
     }
 }
