@@ -15,10 +15,12 @@ import java.util.Random;
 import java.text.DecimalFormat;
 
 public class Play extends AppCompatActivity implements View.OnClickListener {
+
     private TextView equation;
     private TextView answer;
     Random rand = new Random();
     private MediaPlayer SE;
+
     /**
      * My declarations for the streak counter
      * -John
@@ -43,6 +45,14 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     private Button levelChange;
     private TextView levelView;
     public int currentLevel = 1;
+
+    /**
+     * Score tracking
+     */
+    private int score = 0;
+    private final int scoreIncrement = 100;
+    private Button scoreAdder;
+    private TextView scoreDisplay;
 
 
     @Override
@@ -87,6 +97,12 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         levelChange.setOnClickListener(this);
         levelView = (TextView) findViewById(R.id.levelView);
 
+        /**
+         * Adding score with button
+         */
+        scoreAdder = (Button) findViewById(R.id.scoreAdder);
+        scoreAdder.setOnClickListener(this);
+        scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
 
     }
 
@@ -140,6 +156,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             }
         } else if (view.getId() == levelChange.getId()) {
             levelChanger();
+        } else if (view.getId() == scoreAdder.getId()) {
+            scoreCounter();
         }
 
     }
@@ -180,17 +198,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             minute = currentTime / 60000;
             return minute + ":" + fmt.format(second);
         }
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_play, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
     //the method to be called for sound effects when a button is clicked.
@@ -439,6 +446,15 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
         levelViewer("Level: " + currentLevel);
         return currentLevel;
+    }
+
+    /**
+     * Increments the score.
+     */
+    public void scoreCounter() {
+
+        score += scoreIncrement;
+        scoreDisplay.setText("Score: " + score);
     }
 
     public void levelViewer(final String level) {
