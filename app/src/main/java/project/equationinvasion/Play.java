@@ -337,13 +337,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 askQuestion(a + " / " + b);
                 answerQuestion("" + answerGen(expected));
             } else {
-                int c = rand.nextInt(10) + 1;
-                int d = rand.nextInt(10) + 1;
+                int c = rand.nextInt(10);
+                int d = rand.nextInt(10);
                 divide(c, d);
             }
         } else{
-            int c = rand.nextInt(10) + 1;
-            int d = rand.nextInt(10) + 1;
+            int c = rand.nextInt(10);
+            int d = rand.nextInt(10);
             divide(c, d);
         }
     }
