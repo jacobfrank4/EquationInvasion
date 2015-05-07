@@ -47,6 +47,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * Score tracking
      */
     private int score = 0;
+    private final int scoreIncrement = 100;
     private Button scoreAdder;
     private TextView scoreDisplay;
 
@@ -301,9 +302,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void addDivide(int a, int b, int c) {
-        int expected = a + b / c;
-        askQuestion(a + " + " + b + " / " + c);
-        answerQuestion("" + answerGen(expected));
+        if (c != 0) {
+            int expected = a + b / c;
+            askQuestion(a + " + " + b + " / " + c);
+            answerQuestion("" + answerGen(expected));
+        } else {
+            levelTwo();
+        }
     }
 
     /**
@@ -324,11 +329,19 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private void divide(int a, int b) {
         if(b != 0) {
-            int expected = a / b;
-            askQuestion(a + " / " + b);
-            answerQuestion("" + answerGen(expected));
+            if (a % b == 0) {
+                int expected = a / b;
+                askQuestion(a + " / " + b);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int c = rand.nextInt(10) + 1;
+                int d = rand.nextInt(10) + 1;
+                divide(c, d);
+            }
         } else{
-            levelOne();
+            int c = rand.nextInt(10) + 1;
+            int d = rand.nextInt(10) + 1;
+            divide(c, d);
         }
     }
 
