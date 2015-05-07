@@ -305,9 +305,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void addDivide(int a, int b, int c) {
-        int expected = a + b / c;
-        askQuestion(a + " + " + b + " / " + c);
-        answerQuestion("" + answerGen(expected));
+        if (c != 0) {
+            int expected = a + b / c;
+            askQuestion(a + " + " + b + " / " + c);
+            answerQuestion("" + answerGen(expected));
+        } else {
+            levelTwo();
+        }
     }
 
     /**
@@ -341,7 +345,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * @param a
      * @param b
      */
-    public void multiply( int a, int b) {
+    public void multiply(int a, int b) {
         int expected = a * b;
         askQuestion(a + " * " + b);
         answerQuestion("" + answerGen(expected));
