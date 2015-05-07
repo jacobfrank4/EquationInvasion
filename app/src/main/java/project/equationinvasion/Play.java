@@ -77,16 +77,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         timer.start();
         running = true;
 
-
-        /**
-         * Instantiating variables for equation generator
-         * ~Chun
-         */
-        final Button newEquation = (Button) findViewById(R.id.button);
-        newEquation.setOnClickListener(this);
-        equation = (TextView) findViewById(R.id.leftEquation);
-        answer = (TextView) findViewById(R.id.solution);
-
         /**
          * Level System
          */
@@ -101,6 +91,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         scoreAdder.setOnClickListener(this);
         scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
 
+        /**
+         * True and False buttons
+         */
         final Button TRUE = (Button) findViewById(R.id.trueBtn);
         final Button FALSE = (Button) findViewById(R.id.falseBtn);
         TRUE.setOnClickListener(this);
