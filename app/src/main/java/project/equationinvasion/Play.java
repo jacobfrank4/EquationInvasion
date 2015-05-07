@@ -227,7 +227,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         int a = rand.nextInt(maxNumber);
         int b = rand.nextInt(maxNumber);
 
-        int type = rand.nextInt(4);
+        int type = rand.nextInt(2);
 
         switch(type) {
             case 0:
@@ -236,12 +236,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             case 1:
                 subtract(a, b);
                 break;
-            case 2:
-                divide(a, b);
-                break;
-            case 3:
-                multiply(a, b);
-                break;
             default:
                 break;
         }
@@ -249,6 +243,70 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void levelTwo() {
+        final int maxNumber = 10;
+
+        int a = rand.nextInt(maxNumber);
+        int b = rand.nextInt(maxNumber);
+
+        int type = rand.nextInt(2);
+
+        switch(type) {
+            case 0:
+                multiply(a, b);
+                break;
+            case 1:
+                divide(a, b);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    public void levelThree() {
+        final int maxNumber = 100;
+
+        int a = rand.nextInt(maxNumber);
+        int b = rand.nextInt(maxNumber);
+
+        int type = rand.nextInt(2);
+
+        switch(type) {
+            case 0:
+                add(a, b);
+                break;
+            case 1:
+                subtract(a, b);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    public void levelFour() {
+        final int maxNumber = 10;
+
+        int a = rand.nextInt(maxNumber);
+        int b = rand.nextInt(maxNumber);
+        int c = rand.nextInt(maxNumber);
+
+        int type = rand.nextInt(2);
+
+        switch(type) {
+            case 0:
+                addAdd(a, b, c);
+                break;
+            case 1:
+                addSubtract(a, b, c);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    public void levelFive() {
         final int maxNumber = 20;
 
         int a = rand.nextInt(maxNumber);
@@ -306,11 +364,12 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     public void addDivide(int a, int b, int c) {
         if(c != 0) {
+
             int expected = a + b / c;
             askQuestion(a + " + " + b + " / " + c);
             answerQuestion("" + answerGen(expected));
         } else {
-            levelTwo();
+            levelFive();
         }
     }
 
@@ -322,6 +381,24 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     public void subtract(int a, int b) {
         int expected = a - b;
         askQuestion(a + " - " + b );
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void subtractAdd(int a, int b, int c) {
+        int expected = a - b + c;
+        askQuestion(a + " - " + b + " + " + c);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void subtractSubtract(int a, int b, int c) {
+        int expected = a - b - c;
+        askQuestion(a + " - " + b + " - " + c);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void subtractMultiply(int a, int b, int c) {
+        int expected = a - b * c;
+        askQuestion(a + " - " + b + " * " + c);
         answerQuestion("" + answerGen(expected));
     }
 
