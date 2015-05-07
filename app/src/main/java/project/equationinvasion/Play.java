@@ -37,6 +37,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     private TextView time;
     private Button addTime;
 
+    /**
+     * Level Changer
+     */
+    private Button levelChange;
+    private TextView levelView;
+    public int currentLevel = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +71,21 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         running = true;
 
 
-
+        /**
+         * Instantiating variables for equation generator
+         * ~Chun
+         */
         final Button newEquation = (Button) findViewById(R.id.button);
         newEquation.setOnClickListener(this);
         equation = (TextView) findViewById(R.id.leftEquation);
         answer = (TextView) findViewById(R.id.solution);
+
+        /**
+         * Level System
+         */
+        levelChange = (Button) findViewById(R.id.levelChange);
+        levelChange.setOnClickListener(this);
+        levelView = (TextView) findViewById(R.id.levelView);
 
 
     }
@@ -76,7 +93,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.button) {
-            getNew();
+            levelChecker();
             btnNoise();
         } else if (view.getId() == pipChange.getId()) {
             /**
@@ -121,6 +138,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 timer = new MyTimer(carryOver + (secondsToRun * 1000));
                 timer.start();
             }
+        } else if (view.getId() == levelChange.getId()) {
+            levelChanger();
         }
 
     }
@@ -181,7 +200,21 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         SE.start();
     }
 
-    public void getNew() {
+    /**
+     * Sets the equation level to be current level
+     */
+    public void levelChecker() {
+        switch(currentLevel) {
+            case 1:
+                levelOne();
+                break;
+            case 2:
+                levelTwo();
+                break;
+        }
+    }
+
+    public void levelOne() {
         final int maxNumber = 10;
 
         int a = rand.nextInt(maxNumber);
@@ -208,24 +241,99 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    public void levelTwo() {
+        final int maxNumber = 20;
+
+        int a = rand.nextInt(maxNumber);
+        int b = rand.nextInt(maxNumber);
+        int c = rand.nextInt(maxNumber);
+
+        int type = rand.nextInt(4);
+
+        switch(type) {
+            case 0:
+                addAdd(a, b, c);
+                break;
+            case 1:
+                addSubtract(a, b, c);
+                break;
+            case 2:
+                addDivide(a, b, c);
+                break;
+            case 3:
+                addMultiply(a, b, c);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Method for 2 variable addition
+     * @param a
+     * @param b
+     */
     public void add(int a, int b) {
         int expected = a + b;
         askQuestion(a + " + " + b );
         answerQuestion("" + answerGen(expected));
     }
 
+    public void addAdd(int a, int b, int c) {
+        int expected = a + b + c;
+        askQuestion(a + " + " + b + " + " + c);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void addSubtract(int a, int b, int c) {
+        int expected = a + b - c;
+        askQuestion(a + " + " + b + " - " + c);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void addMultiply(int a, int b, int c) {
+        int expected = a + b * c;
+        askQuestion(a + " + " + b + " * " + c);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void addDivide(int a, int b, int c) {
+        int expected = a + b / c;
+        askQuestion(a + " + " + b + " / " + c);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    /**
+     * Method for 2 variable subtraction
+     * @param a
+     * @param b
+     */
     public void subtract(int a, int b) {
         int expected = a - b;
         askQuestion(a + " - " + b );
         answerQuestion("" + answerGen(expected));
     }
 
+    /**
+     * Method for 2 variable division
+     * @param a
+     * @param b
+     */
     public void divide(int a, int b) {
-        int expected = a / b;
-        askQuestion(a + " / " + b);
-        answerQuestion("" + answerGen(expected));
+        if(b != 0) {
+            int expected = a / b;
+            askQuestion(a + " / " + b);
+            answerQuestion("" + answerGen(expected));
+        } else{
+            levelOne();
+        }
     }
 
+    /**
+     * Method for 2 variable multiplication
+     * @param a
+     * @param b
+     */
     public void multiply( int a, int b) {
         int expected = a * b;
         askQuestion(a + " * " + b);
@@ -320,5 +428,20 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     public void answerQuestion(final String answered) {
         answer.setText(answered);
+    }
+
+    public int levelChanger() {
+
+        if(currentLevel < 2) {
+            currentLevel++;
+        } else {
+            currentLevel = 1;
+        }
+        levelViewer("Level: " + currentLevel);
+        return currentLevel;
+    }
+
+    public void levelViewer(final String level) {
+        levelView.setText(level);
     }
 }
