@@ -20,7 +20,7 @@
     <string name="current_score">Score: 0</string>
     <string name="score_adder_button">Score Adder</string>
     <string name="level_changer_button">Level Changer</string>
-    <string name="current_level">Level: 0</string>
+    <string name="current_level">Level: 1</string>
     <string name="equation_answer">Answer</string>
     <string name="equals_sign">=</string>
     <string name="new_equation_button">New Equation</string>
