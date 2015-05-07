@@ -374,7 +374,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
         if (answer >= -10 && answer <= 10) {
             if (wrongAnswerShown) {
-                int variable = rand.nextInt(2) + 1;
+                int variable = rand.nextInt(1) + 1;
                 if (rand.nextBoolean()) {
                     wrong = answer + variable;
                 } else {
@@ -386,7 +386,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             }
         } else if (answer >= -20 && answer <= 20) {
             if (wrongAnswerShown) {
-                int variable = rand.nextInt(3) + 1;
+                int variable = rand.nextInt(2) + 1;
                 if (rand.nextBoolean()) {
                     wrong = answer + variable;
                 } else {
@@ -398,7 +398,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             }
         } else if (answer >= -40 && answer <= 40) {
             if (wrongAnswerShown) {
-                int variable = rand.nextInt(4) + 1;
+                int variable = rand.nextInt(3) + 1;
                 if (rand.nextBoolean()) {
                     wrong = answer + variable;
                 } else {
@@ -410,7 +410,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             }
         } else if (answer >= -60 && answer <= 60) {
             if (wrongAnswerShown) {
-                int variable = rand.nextInt(5) + 1;
+                int variable = rand.nextInt(4) + 1;
                 if (rand.nextBoolean()) {
                     wrong = answer + variable;
                 } else {
@@ -422,7 +422,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             }
         } else {
             if (wrongAnswerShown) {
-                int variable = rand.nextInt(6) + 1;
+                int variable = rand.nextInt(5) + 1;
                 if (rand.nextBoolean()) {
                     wrong = answer + variable;
                 } else {
