@@ -298,9 +298,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void addDivide(int a, int b, int c) {
-        int expected = a + b / c;
-        askQuestion(a + " + " + b + " / " + c);
-        answerQuestion("" + answerGen(expected));
+        if(c != 0) {
+            int expected = a + b / c;
+            askQuestion(a + " + " + b + " / " + c);
+            answerQuestion("" + answerGen(expected));
+        } else {
+            levelTwo();
+        }
     }
 
     /**
