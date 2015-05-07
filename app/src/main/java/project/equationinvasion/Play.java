@@ -101,11 +101,19 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         scoreAdder.setOnClickListener(this);
         scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
 
+        final Button TRUE = (Button) findViewById(R.id.trueBtn);
+        final Button FALSE = (Button) findViewById(R.id.falseBtn);
+        TRUE.setOnClickListener(this);
+        FALSE.setOnClickListener(this);
+        equation = (TextView) findViewById(R.id.leftEquation);
+        answer = (TextView) findViewById(R.id.solution);
+
     }
+
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.button) {
+        if(view.getId() == R.id.trueBtn || view.getId() == R.id.falseBtn) {
             levelChecker();
             btnNoise();
         } else if (view.getId() == pipChange.getId()) {
@@ -374,7 +382,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
         if (answer >= -10 && answer <= 10) {
             if (wrongAnswerShown) {
-                int variable = rand.nextInt(1) + 1;
+                int variable = 1;
                 if (rand.nextBoolean()) {
                     wrong = answer + variable;
                 } else {
