@@ -33,7 +33,7 @@
         android:id="@+id/time"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_alignParentStart="false"
         android:layout_marginRight="50dp"/>
 
