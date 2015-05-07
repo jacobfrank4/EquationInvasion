@@ -11,9 +11,9 @@
         android:layout_height="wrap_content"
         android:text="@string/pip_switcher"
         android:id="@+id/pipSwitch"
-        android:layout_alignBaseline="@+id/solution"
-        android:layout_alignBottom="@+id/solution"
-        android:layout_alignStart="@+id/imageView" />
+        android:layout_marginBottom="68dp"
+        android:layout_alignBottom="@+id/button"
+        android:layout_centerHorizontal="true" />
 
     <!--<ImageView-->
         <!--android:layout_width="wrap_content"-->
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="3:00"
+        android:text="@string/initial_timer_time"
         android:id="@+id/time"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -85,7 +85,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add time"
+        android:text="@string/add_time"
         android:id="@+id/timeAdd"
         android:layout_below="@+id/button"
         android:layout_centerHorizontal="true"
@@ -94,7 +94,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@string/current_equation"
         android:id="@+id/leftEquation"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -103,7 +103,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="@string/new_equation_button"
         android:id="@+id/button"
         android:layout_below="@+id/leftEquation"
         android:layout_centerHorizontal="true"
@@ -113,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="="
+        android:text="@string/equals_sign"
         android:id="@+id/textView2"
         android:layout_below="@+id/leftEquation"
         android:layout_centerHorizontal="true" />
@@ -121,7 +121,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Answer"
+        android:text="@string/equation_answer"
         android:id="@+id/solution"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true" />
@@ -145,16 +145,33 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Level: 0"
+        android:text="@string/current_level"
         android:id="@+id/levelView"
-        android:layout_alignBottom="@+id/time"
+        android:layout_alignTop="@+id/solution"
+        android:layout_alignEnd="@+id/levelChange"
+        android:layout_marginEnd="41dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/level_changer_button"
+        android:id="@+id/levelChange"
+        android:layout_above="@+id/pipSwitch"
+        android:layout_toStartOf="@+id/pipSwitch" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/current_score"
+        android:id="@+id/scoreDisplay"
+        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Level Changer"
-        android:id="@+id/levelChange"
-        android:layout_alignTop="@+id/pipSwitch"
+        android:text="@string/score_adder_button"
+        android:id="@+id/scoreAdder"
+        android:layout_below="@+id/time"
         android:layout_alignParentStart="true" />
 </RelativeLayout>
