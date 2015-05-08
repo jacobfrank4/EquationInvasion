@@ -1936,7 +1936,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void levelChanger() {
 
-        if(currentLevel < 2) {
+        if(currentLevel < 6) {
             currentLevel++;
         } else {
             currentLevel = 1;
