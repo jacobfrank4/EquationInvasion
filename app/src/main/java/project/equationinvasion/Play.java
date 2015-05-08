@@ -16,6 +16,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private TextView equation;
     private TextView answer;
+    private TextView feedback;
     private final Random rand = new Random();
 
     /**
@@ -100,15 +101,21 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         FALSE.setOnClickListener(this);
         equation = (TextView) findViewById(R.id.leftEquation);
         answer = (TextView) findViewById(R.id.solution);
+        feedback = (TextView) findViewById(R.id.feedback);
 
     }
 
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.trueBtn || view.getId() == R.id.falseBtn) {
+        if (view.getId() == R.id.trueBtn) {
             levelChecker();
             btnNoise();
+            truthChecker();
+        } else if (view.getId() == R.id.falseBtn) {
+            levelChecker();
+            btnNoise();
+            falseChecker();
         } else if (view.getId() == pipChange.getId()) {
             /**
              * Switch statement utilizes fall-through to keep pips highlighted depending on the value
@@ -1941,5 +1948,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void levelViewer(final String level) {
         levelView.setText(level);
+    }
+
+    private void truthChecker() {
+        feedback.setText("HELLO");
+    }
+
+    private void falseChecker() {
+        feedback.setText("HELLO");
     }
 }
