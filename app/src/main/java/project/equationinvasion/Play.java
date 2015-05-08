@@ -234,7 +234,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     }
 
     //comleted
-    public void levelOne() {
+    private void levelOne() {
         final int maxNumber = 10;
 
         int a = rand.nextInt(maxNumber);
@@ -256,7 +256,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     }
 
     //completed
-    public void levelTwo() {
+    private void levelTwo() {
         final int maxNumber = 10;
 
         int a = rand.nextInt(maxNumber);
@@ -278,7 +278,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     }
 
     //completed
-    public void levelThree() {
+    private void levelThree() {
         final int maxNumber = 100;
 
         int a = rand.nextInt(maxNumber);
@@ -300,7 +300,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     }
 
     //completed
-    public void levelFour() {
+    private void levelFour() {
         final int maxNumber = 100;
 
         int a = rand.nextInt(maxNumber);
@@ -329,7 +329,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     }
 
     //working on right now
-    public void levelFive() {
+    private void levelFive() {
         final int maxNumber = 100;
         final int maxMultiDivi = 10;
 
@@ -396,7 +396,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void levelSix() {
+    private void levelSix() {
         final int maxNumber = 100;
         final int maxMultiDivi = 10;
 
@@ -637,7 +637,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         answerQuestion("" + answerGen(expected));
     }
 
-    public void addDivide(int a, int b, int c) {
+    private void addDivide(int a, int b, int c) {
         if(c != 0) {
             if (b % c == 0) {
                 int expected = a + b / c;
@@ -658,19 +658,19 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void addAddAdd(int a, int b, int c, int d) {
+    private void addAddAdd(int a, int b, int c, int d) {
         int expected = a + b + c + d;
         askQuestion(a + " + " + b + " + " + c + " + " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void addAddSubtract(int a, int b, int c, int d) {
+    private void addAddSubtract(int a, int b, int c, int d) {
         int expected = a + b + c - d;
         askQuestion(a + " + " + b + " + " + c + " - " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void addAddDivide(int a, int b, int c, int d) {
+    private void addAddDivide(int a, int b, int c, int d) {
         if(c != 0) {
             if (c % d == 0) {
                 int expected = a + b + c / d;
@@ -692,25 +692,25 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void addAddMultiply(int a, int b, int c, int d) {
+    private void addAddMultiply(int a, int b, int c, int d) {
         int expected = a + b + c * d;
         askQuestion(a + " + " + b + " + " + c + " * " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void addSubtractAdd(int a, int b, int c, int d) {
+    private void addSubtractAdd(int a, int b, int c, int d) {
         int expected = a + b - c + d;
         askQuestion(a + " + " + b + " - " + c + " + " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void addSubtractSubtract(int a, int b, int c, int d) {
+    private void addSubtractSubtract(int a, int b, int c, int d) {
         int expected = a + b - c - d;
         askQuestion(a + " + " + b + " - " + c + " - " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void addSubtractDivide(int a, int b, int c, int d) {
+    private void addSubtractDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if(c % d == 0) {
                 int expected = a + b - c / d;
@@ -738,7 +738,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         answerQuestion("" + answerGen(expected));
     }
 
-    public void addDivideAdd(int a, int b, int c, int d) {
+    private void addDivideAdd(int a, int b, int c, int d) {
         if(c != 0) {
             if(b % c == 0) {
                 int expected = a + b / c + d;
@@ -760,7 +760,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void addDivideSubtract(int a, int b, int c, int d) {
+    private void addDivideSubtract(int a, int b, int c, int d) {
         if(c != 0) {
             if(b % c == 0) {
                 int expected = a + b / c - d;
@@ -782,7 +782,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void addDivideDivide(int a, int b, int c, int d) {
+    private void addDivideDivide(int a, int b, int c, int d) {
         if(c != 0 && d != 0) {
             if(b % c == 0 && (b / c) % d == 0) {
                 int expected = a + b / c / d;
@@ -804,7 +804,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void addDivideMultiply(int a, int b, int c, int d) {
+    private void addDivideMultiply(int a, int b, int c, int d) {
         if(c != 0) {
             if(b % c == 0) {
                 int expected = a + b / c * d;
@@ -826,19 +826,19 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void addMultiplyAdd(int a, int b, int c, int d) {
+    private void addMultiplyAdd(int a, int b, int c, int d) {
         int expected = a + b * c + d;
         askQuestion(a + " + " + b + " * " + c + " + " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void addMultiplySubtract(int a, int b, int c, int d) {
+    private void addMultiplySubtract(int a, int b, int c, int d) {
         int expected = a + b * c - d;
         askQuestion(a + " + " + b + " * " + c + " - " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void addMultiplyDivide(int a, int b, int c, int d) {
+    private void addMultiplyDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if ((b * c) % d == 0) {
                 int expected = a + b * c / d;
@@ -860,7 +860,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void addMultiplyMultiply(int a, int b, int c, int d) {
+    private void addMultiplyMultiply(int a, int b, int c, int d) {
         int expected = a + b * c * d;
         askQuestion(a + " + " + b + " * " + c + " * " + d);
         answerQuestion("" + answerGen(expected));
@@ -878,25 +878,25 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         answerQuestion("" + answerGen(expected));
     }
 
-    public void subtractAdd(int a, int b, int c) {
+    private void subtractAdd(int a, int b, int c) {
         int expected = a - b + c;
         askQuestion(a + " - " + b + " + " + c);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void subtractSubtract(int a, int b, int c) {
+    private void subtractSubtract(int a, int b, int c) {
         int expected = a - b - c;
         askQuestion(a + " - " + b + " - " + c);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void subtractMultiply(int a, int b, int c) {
+    private void subtractMultiply(int a, int b, int c) {
         int expected = a - b * c;
         askQuestion(a + " - " + b + " * " + c);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void subtractDivide(int a, int b, int c) {
+    private void subtractDivide(int a, int b, int c) {
         if(c != 0) {
             if (b % c == 0) {
                 int expected = a - b / c;
@@ -917,19 +917,19 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void subtractAddAdd(int a, int b, int c, int d) {
+    private void subtractAddAdd(int a, int b, int c, int d) {
         int expected = a - b + c + d;
         askQuestion(a + " - " + b + " + " + c + " + " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void subtractAddSubtract(int a, int b, int c, int d) {
+    private void subtractAddSubtract(int a, int b, int c, int d) {
         int expected = a - b + c - d;
         askQuestion(a + " - " + b + " + " + c + " - " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void subtractAddDivide(int a, int b, int c, int d) {
+    private void subtractAddDivide(int a, int b, int c, int d) {
         if(c != 0) {
             if (c % d == 0) {
                 int expected = a - b + c / d;
@@ -951,25 +951,25 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void subtractAddMultiply(int a, int b, int c, int d) {
+    private void subtractAddMultiply(int a, int b, int c, int d) {
         int expected = a - b + c * d;
         askQuestion(a + " - " + b + " + " + c + " * " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void subtractSubtractAdd(int a, int b, int c, int d) {
+    private void subtractSubtractAdd(int a, int b, int c, int d) {
         int expected = a - b - c + d;
         askQuestion(a + " - " + b + " - " + c + " + " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void subtractSubtractSubtract(int a, int b, int c, int d) {
+    private void subtractSubtractSubtract(int a, int b, int c, int d) {
         int expected = a - b - c - d;
         askQuestion(a + " - " + b + " - " + c + " - " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void subtractSubtractDivide(int a, int b, int c, int d) {
+    private void subtractSubtractDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if(c % d == 0) {
                 int expected = a - b - c / d;
@@ -991,13 +991,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void subtractSubtractMultiply(int a, int b, int c, int d) {
+    private void subtractSubtractMultiply(int a, int b, int c, int d) {
         int expected = a - b - c * d;
         askQuestion(a + " - " + b + " - " + c + " * " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void subtractDivideAdd(int a, int b, int c, int d) {
+    private void subtractDivideAdd(int a, int b, int c, int d) {
         if(c != 0) {
             if(b % c == 0) {
                 int expected = a - b / c + d;
@@ -1019,7 +1019,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void subtractDivideSubtract(int a, int b, int c, int d) {
+    private void subtractDivideSubtract(int a, int b, int c, int d) {
         if(c != 0) {
             if(b % c == 0) {
                 int expected = a - b / c - d;
@@ -1041,7 +1041,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void subtractDivideDivide(int a, int b, int c, int d) {
+    private void subtractDivideDivide(int a, int b, int c, int d) {
         if(c != 0 && d != 0) {
             if(b % c == 0 && (b / c) % d == 0) {
                 int expected = a - b / c / d;
@@ -1063,7 +1063,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void subtractDivideMultiply(int a, int b, int c, int d) {
+    private void subtractDivideMultiply(int a, int b, int c, int d) {
         if(c != 0) {
             if(b % c == 0) {
                 int expected = a - b / c * d;
@@ -1085,19 +1085,19 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void subtractMultiplyAdd(int a, int b, int c, int d) {
+    private void subtractMultiplyAdd(int a, int b, int c, int d) {
         int expected = a - b * c + d;
         askQuestion(a + " - " + b + " * " + c + " + " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void subtractMultiplySubtract(int a, int b, int c, int d) {
+    private void subtractMultiplySubtract(int a, int b, int c, int d) {
         int expected = a - b * c - d;
         askQuestion(a + " - " + b + " * " + c + " - " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void subtractMultiplyDivide(int a, int b, int c, int d) {
+    private void subtractMultiplyDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if ((b * c) % d == 0) {
                 int expected = a - b * c / d;
@@ -1119,7 +1119,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void subtractMultiplyMultiply(int a, int b, int c, int d) {
+    private void subtractMultiplyMultiply(int a, int b, int c, int d) {
         int expected = a - b * c * d;
         askQuestion(a + " - " + b + " * " + c + " * " + d);
         answerQuestion("" + answerGen(expected));
@@ -1148,7 +1148,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideAdd(int a, int b, int c) {
+    private void divideAdd(int a, int b, int c) {
         if(b != 0) {
             if(a % b == 0) {
                 int expected = a / b + c;
@@ -1169,7 +1169,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    public void divideSubtract(int a, int b, int c) {
+    private void divideSubtract(int a, int b, int c) {
         if(b != 0) {
             if(a % b == 0) {
                 int expected = a / b - c;
@@ -1189,7 +1189,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideMultiply(int a, int b, int c) {
+    private void divideMultiply(int a, int b, int c) {
         if(b != 0) {
             if(a % b == 0) {
                 int expected = a / b * c;
@@ -1208,7 +1208,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             divideDivide(d, e, f);
         }
     }
-    public void divideDivide(int a, int b, int c) {
+    private void divideDivide(int a, int b, int c) {
         if(b != 0 && c != 0) {
             if(a % b == 0 && (a / b) % c == 0) {
                 int expected = a / b / c;
@@ -1228,7 +1228,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideAddAdd(int a, int b, int c, int d) {
+    private void divideAddAdd(int a, int b, int c, int d) {
         if(b!= 0) {
             if(a % b == 0) {
                 int expected = a / b + c + d;
@@ -1250,7 +1250,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideAddSubtract(int a, int b, int c, int d) {
+    private void divideAddSubtract(int a, int b, int c, int d) {
         if(b!= 0) {
             if(a % b == 0) {
                 int expected = a / b + c - d;
@@ -1272,7 +1272,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideAddDivide(int a, int b, int c, int d) {
+    private void divideAddDivide(int a, int b, int c, int d) {
         if(b!= 0 && d != 0) {
             if(a % b == 0 && c % d == 0) {
                 int expected = a / b + c / d;
@@ -1294,7 +1294,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideAddMultiply(int a, int b, int c, int d) {
+    private void divideAddMultiply(int a, int b, int c, int d) {
         if(b!= 0) {
             if(a % b == 0) {
                 int expected = a / b + c * d;
@@ -1316,7 +1316,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideSubtractAdd(int a, int b, int c, int d) {
+    private void divideSubtractAdd(int a, int b, int c, int d) {
         if(b!= 0) {
             if(a % b == 0) {
                 int expected = a / b - c + d;
@@ -1338,7 +1338,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideSubtractSubtract(int a, int b, int c, int d) {
+    private void divideSubtractSubtract(int a, int b, int c, int d) {
         if(b!= 0) {
             if(a % b == 0) {
                 int expected = a / b - c - d;
@@ -1360,7 +1360,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideSubtractDivide(int a, int b, int c, int d) {
+    private void divideSubtractDivide(int a, int b, int c, int d) {
         if(b!= 0 && d != 0) {
             if(a % b == 0 && c % d == 0) {
                 int expected = a / b - c / d;
@@ -1382,7 +1382,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideSubtractMultiply(int a, int b, int c, int d) {
+    private void divideSubtractMultiply(int a, int b, int c, int d) {
         if(b!= 0) {
             if(a % b == 0) {
                 int expected = a / b - c * d;
@@ -1404,7 +1404,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideDivideAdd(int a, int b, int c, int d) {
+    private void divideDivideAdd(int a, int b, int c, int d) {
         if(b != 0 && c != 0) {
             if(a % b == 0 && (a / b) % c == 0) {
                 int expected = a / b / c + d;
@@ -1426,7 +1426,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideDivideSubtract(int a, int b, int c, int d) {
+    private void divideDivideSubtract(int a, int b, int c, int d) {
         if(b != 0 && c != 0) {
             if(a % b == 0 && (a / b) % c == 0) {
                 int expected = a / b / c - d;
@@ -1448,7 +1448,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideDivideDivide(int a, int b, int c, int d) {
+    private void divideDivideDivide(int a, int b, int c, int d) {
         if(b != 0 && c != 0 && d != 0) {
             if(a % b == 0 && (a / b) % c == 0 && (a / b / c) % d == 0) {
                 int expected = a / b / c / d;
@@ -1470,7 +1470,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideDivideMultiply(int a, int b, int c, int d) {
+    private void divideDivideMultiply(int a, int b, int c, int d) {
         if(b != 0 && c != 0) {
             if(a % b == 0 && (a / b) % c == 0) {
                 int expected = a / b / c * d;
@@ -1492,7 +1492,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideMultiplyAdd(int a, int b, int c, int d) {
+    private void divideMultiplyAdd(int a, int b, int c, int d) {
         if (b != 0) {
             if(a % b == 0) {
                 int expected = a / b * c + d;
@@ -1514,7 +1514,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideMultiplySubtract(int a, int b, int c, int d) {
+    private void divideMultiplySubtract(int a, int b, int c, int d) {
         if (b != 0) {
             if(a % b == 0) {
                 int expected = a / b * c - d;
@@ -1536,7 +1536,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideMultiplyDivide(int a, int b, int c, int d) {
+    private void divideMultiplyDivide(int a, int b, int c, int d) {
         if (b != 0 && d != 0) {
             if(a % b == 0 && (a / b * c) % d == 0) {
                 int expected = a / b * c / d;
@@ -1558,7 +1558,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void divideMultiplyMultiply(int a, int b, int c, int d) {
+    private void divideMultiplyMultiply(int a, int b, int c, int d) {
         if (b != 0) {
             if(a % b == 0) {
                 int expected = a / b * c * d;
@@ -1591,20 +1591,20 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         answerQuestion("" + answerGen(expected));
     }
 
-    public void multiplyAdd( int a, int b, int c) {
+    private void multiplyAdd(int a, int b, int c) {
         int expected = a * b + c;
         askQuestion(a + " * " + b + " + " + c);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void multiplySubtract(int a, int b, int c) {
+    private void multiplySubtract(int a, int b, int c) {
         int expected = a * b - c;
         askQuestion(a + " * " + b + " - " + c);
         answerQuestion("" + answerGen(expected));
     }
 
 
-    public void multiplyDivide(int a, int b, int c) {
+    private void multiplyDivide(int a, int b, int c) {
         if(c != 0) {
             if ((a * b) % c == 0) {
 
@@ -1625,25 +1625,25 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void multiplyMultiply(int a, int b, int c) {
+    private void multiplyMultiply(int a, int b, int c) {
         int expected = a * b * c;
         askQuestion(a + " * " + b + " * " + c);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void multiplyAddAdd(int a, int b, int c, int d) {
+    private void multiplyAddAdd(int a, int b, int c, int d) {
         int expected = a * b + c + d;
         askQuestion(a + " * " + b + " + " + c + " + " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void multiplyAddSubtract(int a, int b, int c, int d) {
+    private void multiplyAddSubtract(int a, int b, int c, int d) {
         int expected = a * b + c - d;
         askQuestion(a + " * " + b + " + " + c + " - " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void multiplyAddDivide(int a, int b, int c, int d) {
+    private void multiplyAddDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if (c % d == 0) {
                 int expected = a * b + c / d;
@@ -1665,25 +1665,25 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void multiplyAddMultiply(int a, int b, int c, int d) {
+    private void multiplyAddMultiply(int a, int b, int c, int d) {
         int expected = a * b + c * d;
         askQuestion(a + " * " + b + " + " + c + " * " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void multiplySubtractAdd(int a, int b, int c, int d) {
+    private void multiplySubtractAdd(int a, int b, int c, int d) {
         int expected = a * b - c + d;
         askQuestion(a + " * " + b + " - " + c + " + " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void multiplySubtractSubtract(int a, int b, int c, int d) {
+    private void multiplySubtractSubtract(int a, int b, int c, int d) {
         int expected = a * b - c - d;
         askQuestion(a + " * " + b + " - " + c + " - " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void multiplySubtractDivide(int a, int b, int c, int d) {
+    private void multiplySubtractDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if (c % d == 0) {
                 int expected = a * b - c / d;
@@ -1705,13 +1705,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void multiplySubtractMultiply(int a, int b, int c, int d) {
+    private void multiplySubtractMultiply(int a, int b, int c, int d) {
         int expected = a * b + c * d;
         askQuestion(a + " * " + b + " + " + c + " * " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void multiplyDivideAdd(int a, int b, int c, int d) {
+    private void multiplyDivideAdd(int a, int b, int c, int d) {
         if(c != 0) {
             if((a * b) % c == 0) {
                 int expected = a * b / c + d;
@@ -1733,7 +1733,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void multiplyDivideSubtract(int a, int b, int c, int d) {
+    private void multiplyDivideSubtract(int a, int b, int c, int d) {
         if(c != 0) {
             if((a * b) % c == 0) {
                 int expected = a * b / c - d;
@@ -1755,7 +1755,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void multiplyDivideDivide(int a, int b, int c, int d) {
+    private void multiplyDivideDivide(int a, int b, int c, int d) {
         if(c != 0 && d != 0) {
             if((a * b) % c == 0 && (a * b / c) % d == 0) {
                 int expected = a * b / c / d;
@@ -1777,7 +1777,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void multiplyDivideMultiply(int a, int b, int c, int d) {
+    private void multiplyDivideMultiply(int a, int b, int c, int d) {
         if(c != 0) {
             if((a * b) % c == 0) {
                 int expected = a * b / c * d;
@@ -1799,19 +1799,19 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void multiplyMultiplyAdd(int a, int b, int c, int d) {
+    private void multiplyMultiplyAdd(int a, int b, int c, int d) {
         int expected = a * b * c + d;
         askQuestion(a + " * " + b + " * " + c + " + " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void multiplyMultiplySubtract(int a, int b, int c, int d) {
+    private void multiplyMultiplySubtract(int a, int b, int c, int d) {
         int expected = a * b * c - d;
         askQuestion(a + " * " + b + " * " + c + " - " + d);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void multiplyMultiplyDivide(int a, int b, int c, int d) {
+    private void multiplyMultiplyDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if ((a * b * c) % d == 0) {
                 int expected = a * b * c / d;
@@ -1833,7 +1833,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void multiplyMultiplyMultiply(int a, int b, int c, int d) {
+    private void multiplyMultiplyMultiply(int a, int b, int c, int d) {
         int expected = a * b * c * d;
         askQuestion(a + " * " + b + " * " + c + " * " + d);
         answerQuestion("" + answerGen(expected));
