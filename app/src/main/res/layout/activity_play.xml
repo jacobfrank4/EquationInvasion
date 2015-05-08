@@ -11,9 +11,8 @@
         android:layout_height="wrap_content"
         android:text="@string/pip_switcher"
         android:id="@+id/pipSwitch"
-        android:layout_marginBottom="68dp"
-        android:layout_alignBottom="@+id/button"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/scoreAdder"
+        android:layout_alignEnd="@+id/timeAdd" />
 
     <!--<ImageView-->
         <!--android:layout_width="wrap_content"-->
@@ -32,7 +31,7 @@
         android:id="@+id/time"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_alignParentStart="false"
         android:layout_marginRight="50dp"/>
 
@@ -87,33 +86,24 @@
         android:layout_height="wrap_content"
         android:text="@string/add_time"
         android:id="@+id/timeAdd"
-        android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"/>
+        android:layout_below="@+id/pipSwitch"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/current_equation"
+        android:textSize="25dp"
         android:id="@+id/leftEquation"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="86dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/new_equation_button"
-        android:id="@+id/button"
-        android:layout_below="@+id/leftEquation"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="181dp" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/equals_sign"
+        android:textSize="40dp"
         android:id="@+id/textView2"
         android:layout_below="@+id/leftEquation"
         android:layout_centerHorizontal="true" />
@@ -122,6 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/equation_answer"
+        android:textSize="30dp"
         android:id="@+id/solution"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true" />
@@ -147,17 +138,16 @@
         android:layout_height="wrap_content"
         android:text="Level 1"
         android:id="@+id/levelView"
-        android:layout_alignTop="@+id/solution"
-        android:layout_alignEnd="@+id/levelChange"
-        android:layout_marginEnd="41dp" />
+        android:layout_below="@+id/pipSwitch"
+        android:layout_alignEnd="@+id/scoreDisplay" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/level_changer_button"
         android:id="@+id/levelChange"
-        android:layout_above="@+id/pipSwitch"
-        android:layout_toStartOf="@+id/pipSwitch" />
+        android:layout_below="@+id/levelView"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"

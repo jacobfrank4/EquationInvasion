@@ -4,8 +4,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,8 +16,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private TextView equation;
     private TextView answer;
-    Random rand = new Random();
-    private MediaPlayer SE;
+    private final Random rand = new Random();
 
     /**
      * My declarations for the streak counter
@@ -44,7 +41,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private Button levelChange;
     private TextView levelView;
-    public int currentLevel = 1;
+    private int currentLevel = 1;
 
     /**
      * Score tracking
@@ -80,16 +77,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         timer.start();
         running = true;
 
-
-        /**
-         * Instantiating variables for equation generator
-         * ~Chun
-         */
-        final Button newEquation = (Button) findViewById(R.id.button);
-        newEquation.setOnClickListener(this);
-        equation = (TextView) findViewById(R.id.leftEquation);
-        answer = (TextView) findViewById(R.id.solution);
-
         /**
          * Level System
          */
@@ -104,11 +91,22 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         scoreAdder.setOnClickListener(this);
         scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
 
+        /**
+         * True and False buttons
+         */
+        final Button TRUE = (Button) findViewById(R.id.trueBtn);
+        final Button FALSE = (Button) findViewById(R.id.falseBtn);
+        TRUE.setOnClickListener(this);
+        FALSE.setOnClickListener(this);
+        equation = (TextView) findViewById(R.id.leftEquation);
+        answer = (TextView) findViewById(R.id.solution);
+
     }
+
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.button) {
+        if(view.getId() == R.id.trueBtn || view.getId() == R.id.falseBtn) {
             levelChecker();
             btnNoise();
         } else if (view.getId() == pipChange.getId()) {
@@ -188,7 +186,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
 
         /**
-         * My method to format the tme from milliseconds to a string that is used for the textview
+         * My method to format the time from milliseconds to a string that is used for the textview
          */
         private String formatTime(long currentTime) {
             long minute;
@@ -201,16 +199,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     }
 
     //the method to be called for sound effects when a button is clicked.
-    public void btnNoise()
+    private void btnNoise()
     {
-        SE = MediaPlayer.create(Play.this,R.raw.btn1sound);
+        MediaPlayer SE = MediaPlayer.create(Play.this, R.raw.btn1sound);
         SE.start();
     }
 
     /**
      * Sets the equation level to be current level
      */
-    public void levelChecker() {
+    private void levelChecker() {
         switch(currentLevel) {
             case 1:
                 levelOne();
@@ -620,25 +618,25 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * @param a
      * @param b
      */
-    public void add(int a, int b) {
+    private void add(int a, int b) {
         int expected = a + b;
         askQuestion(a + " + " + b );
         answerQuestion("" + answerGen(expected));
     }
 
-    public void addAdd(int a, int b, int c) {
+    private void addAdd(int a, int b, int c) {
         int expected = a + b + c;
         askQuestion(a + " + " + b + " + " + c);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void addSubtract(int a, int b, int c) {
+    private void addSubtract(int a, int b, int c) {
         int expected = a + b - c;
         askQuestion(a + " + " + b + " - " + c);
         answerQuestion("" + answerGen(expected));
     }
 
-    public void addMultiply(int a, int b, int c) {
+    private void addMultiply(int a, int b, int c) {
         int expected = a + b * c;
         askQuestion(a + " + " + b + " * " + c);
         answerQuestion("" + answerGen(expected));
@@ -879,7 +877,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * @param a
      * @param b
      */
-    public void subtract(int a, int b) {
+    private void subtract(int a, int b) {
         int expected = a - b;
         askQuestion(a + " - " + b );
         answerQuestion("" + answerGen(expected));
@@ -1137,7 +1135,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * @param a
      * @param b
      */
-    public void divide(int a, int b) {
+    private void divide(int a, int b) {
         if(b != 0) {
             if(a % b == 0) {
                 int expected = a / b;
@@ -1592,7 +1590,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * @param a
      * @param b
      */
-    public void multiply( int a, int b) {
+    private void multiply(int a, int b) {
         int expected = a * b;
         askQuestion(a + " * " + b);
         answerQuestion("" + answerGen(expected));
@@ -1862,18 +1860,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * @param answer from equation
      * @return displayed
      */
-    public int answerGen(int answer) {
-        Random gen = new Random();
+    private int answerGen(int answer) {
 
         int wrong;
         int displayed;
-        int choice = gen.nextInt(2) + 1;  // True or False Decision
+        boolean wrongAnswerShown = rand.nextBoolean();  // True or False Decision
 
         if (answer >= -10 && answer <= 10) {
-            if (choice == 2) {
-                int variable = gen.nextInt(2) + 1;
-                int a = gen.nextInt(2) + 1;
-                if (a == 1) {
+            if (wrongAnswerShown) {
+                int variable = 1;
+                if (rand.nextBoolean()) {
                     wrong = answer + variable;
                 } else {
                     wrong = answer - variable;
@@ -1883,10 +1879,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 displayed = answer;
             }
         } else if (answer >= -20 && answer <= 20) {
-            if (choice == 2) {
-                int variable = gen.nextInt(3) + 1;
-                int a = gen.nextInt(2) + 1;
-                if (a == 1) {
+            if (wrongAnswerShown) {
+                int variable = rand.nextInt(2) + 1;
+                if (rand.nextBoolean()) {
                     wrong = answer + variable;
                 } else {
                     wrong = answer - variable;
@@ -1896,10 +1891,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 displayed = answer;
             }
         } else if (answer >= -40 && answer <= 40) {
-            if (choice == 2) {
-                int variable = gen.nextInt(4) + 1;
-                int a = gen.nextInt(2) + 1;
-                if (a == 1) {
+            if (wrongAnswerShown) {
+                int variable = rand.nextInt(3) + 1;
+                if (rand.nextBoolean()) {
                     wrong = answer + variable;
                 } else {
                     wrong = answer - variable;
@@ -1909,10 +1903,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 displayed = answer;
             }
         } else if (answer >= -60 && answer <= 60) {
-            if (choice == 2) {
-                int variable = gen.nextInt(5) + 1;
-                int a = gen.nextInt(2) + 1;
-                if (a == 1) {
+            if (wrongAnswerShown) {
+                int variable = rand.nextInt(4) + 1;
+                if (rand.nextBoolean()) {
                     wrong = answer + variable;
                 } else {
                     wrong = answer - variable;
@@ -1922,10 +1915,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 displayed = answer;
             }
         } else {
-            if (choice == 2) {
-                int variable = gen.nextInt(6) + 1;
-                int a = gen.nextInt(2) + 1;
-                if (a == 1) {
+            if (wrongAnswerShown) {
+                int variable = rand.nextInt(5) + 1;
+                if (rand.nextBoolean()) {
                     wrong = answer + variable;
                 } else {
                     wrong = answer - variable;
@@ -1938,31 +1930,34 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         return displayed;
     }
 
-    public void answerQuestion(final String answered) {
+    private void answerQuestion(final String answered) {
         answer.setText(answered);
     }
 
-    public int levelChanger() {
+    private void levelChanger() {
 
-        if(currentLevel < 6) {
+        if(currentLevel < 2) {
             currentLevel++;
         } else {
             currentLevel = 1;
         }
         levelViewer("Level: " + currentLevel);
-        return currentLevel;
+        //Never used return so I switched method to void
+        // -John
+        //return currentLevel;
     }
 
     /**
      * Increments the score.
      */
-    public void scoreCounter() {
+    private void scoreCounter() {
 
+        int scoreIncrement = 100;
         score += scoreIncrement;
         scoreDisplay.setText("Score: " + score);
     }
 
-    public void levelViewer(final String level) {
+    private void levelViewer(final String level) {
         levelView.setText(level);
     }
 }

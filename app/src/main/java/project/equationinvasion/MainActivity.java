@@ -3,17 +3,11 @@ package project.equationinvasion;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.content.Intent;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
 
     public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
@@ -25,7 +19,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * -Matt
      */
     static private MediaPlayer BGM;
-    private MediaPlayer SE;
     static private boolean playing = false;
 
     @Override
@@ -72,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //Method that plays button noise.
-    public void btnNoise(){
-        SE = MediaPlayer.create(MainActivity.this,R.raw.btn1sound);
+    private void btnNoise(){
+        MediaPlayer SE = MediaPlayer.create(MainActivity.this, R.raw.btn1sound);
         SE.start();
     }
 
@@ -82,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         copy so that it doesn't recreate itself
         when switching pages.
      */
-    public void backgroundMusic(){
+    private void backgroundMusic(){
         if (!playing)
         {
             BGM = MediaPlayer.create(MainActivity.this, R.raw.bgm1);
@@ -93,11 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             playing = true;
         }
-
-    }
-
-    @Override
-    public void onClick(View v) {
 
     }
 }
