@@ -322,11 +322,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             case 3:
                 subtractSubtract(a, b, c);
                 break;
-            case 4:
-                add(a, b);
-                break;
-            case 5:
-                subtract(a, b);
             default:
                 break;
         }
