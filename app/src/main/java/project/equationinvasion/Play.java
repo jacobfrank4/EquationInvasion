@@ -617,34 +617,34 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private void add(int a, int b) {
         int expected = a + b;
-        askQuestion(a + " + " + b );
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " + " + b );
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void addAdd(int a, int b, int c) {
         int expected = a + b + c;
-        askQuestion(a + " + " + b + " + " + c);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " + " + b + " + " + c);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void addSubtract(int a, int b, int c) {
         int expected = a + b - c;
-        askQuestion(a + " + " + b + " - " + c);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " + " + b + " - " + c);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void addMultiply(int a, int b, int c) {
         int expected = a + b * c;
-        askQuestion(a + " + " + b + " * " + c);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " + " + b + " * " + c);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void addDivide(int a, int b, int c) {
         if(c != 0) {
             if (b % c == 0) {
                 int expected = a + b / c;
-                askQuestion(a + " + " + b + " / " + c);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " + " + b + " / " + c);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int d = rand.nextInt(100);
                 int e = rand.nextInt(10);
@@ -662,22 +662,22 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void addAddAdd(int a, int b, int c, int d) {
         int expected = a + b + c + d;
-        askQuestion(a + " + " + b + " + " + c + " + " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " + " + b + " + " + c + " + " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void addAddSubtract(int a, int b, int c, int d) {
         int expected = a + b + c - d;
-        askQuestion(a + " + " + b + " + " + c + " - " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " + " + b + " + " + c + " - " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void addAddDivide(int a, int b, int c, int d) {
         if(c != 0) {
             if (c % d == 0) {
                 int expected = a + b + c / d;
-                askQuestion(a + " + " + b + " + " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " + " + b + " + " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(100);
@@ -696,28 +696,28 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void addAddMultiply(int a, int b, int c, int d) {
         int expected = a + b + c * d;
-        askQuestion(a + " + " + b + " + " + c + " * " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " + " + b + " + " + c + " * " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void addSubtractAdd(int a, int b, int c, int d) {
         int expected = a + b - c + d;
-        askQuestion(a + " + " + b + " - " + c + " + " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " + " + b + " - " + c + " + " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void addSubtractSubtract(int a, int b, int c, int d) {
         int expected = a + b - c - d;
-        askQuestion(a + " + " + b + " - " + c + " - " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " + " + b + " - " + c + " - " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void addSubtractDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if(c % d == 0) {
                 int expected = a + b - c / d;
-                askQuestion(a + " + " + b + " - " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " + " + b + " - " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(100);
@@ -734,18 +734,18 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void addSubtractMultiply(int a, int b, int c, int d) {
+    private void addSubtractMultiply(int a, int b, int c, int d) {
         int expected = a + b - c * d;
-        askQuestion(a + " + " + b + " - " + c + " * " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " + " + b + " - " + c + " * " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void addDivideAdd(int a, int b, int c, int d) {
         if(c != 0) {
             if(b % c == 0) {
                 int expected = a + b / c + d;
-                askQuestion(a + " + " + b + " / " + c + " + " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " + " + b + " / " + c + " + " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(10);
@@ -766,8 +766,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(c != 0) {
             if(b % c == 0) {
                 int expected = a + b / c - d;
-                askQuestion(a + " + " + b + " / " + c + " - " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " + " + b + " / " + c + " - " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(10);
@@ -788,8 +788,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(c != 0 && d != 0) {
             if(b % c == 0 && (b / c) % d == 0) {
                 int expected = a + b / c / d;
-                askQuestion(a + " + " + b + " / " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " + " + b + " / " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(10);
@@ -810,8 +810,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(c != 0) {
             if(b % c == 0) {
                 int expected = a + b / c * d;
-                askQuestion(a + " + " + b + " / " + c + " * " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " + " + b + " / " + c + " * " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(10);
@@ -830,22 +830,22 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void addMultiplyAdd(int a, int b, int c, int d) {
         int expected = a + b * c + d;
-        askQuestion(a + " + " + b + " * " + c + " + " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " + " + b + " * " + c + " + " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void addMultiplySubtract(int a, int b, int c, int d) {
         int expected = a + b * c - d;
-        askQuestion(a + " + " + b + " * " + c + " - " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " + " + b + " * " + c + " - " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void addMultiplyDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if ((b * c) % d == 0) {
                 int expected = a + b * c / d;
-                askQuestion(a + " + " + b + " * " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " + " + b + " * " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(10);
@@ -864,8 +864,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void addMultiplyMultiply(int a, int b, int c, int d) {
         int expected = a + b * c * d;
-        askQuestion(a + " + " + b + " * " + c + " * " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " + " + b + " * " + c + " * " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
 
@@ -876,34 +876,34 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private void subtract(int a, int b) {
         int expected = a - b;
-        askQuestion(a + " - " + b );
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " - " + b );
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void subtractAdd(int a, int b, int c) {
         int expected = a - b + c;
-        askQuestion(a + " - " + b + " + " + c);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " - " + b + " + " + c);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void subtractSubtract(int a, int b, int c) {
         int expected = a - b - c;
-        askQuestion(a + " - " + b + " - " + c);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " - " + b + " - " + c);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void subtractMultiply(int a, int b, int c) {
         int expected = a - b * c;
-        askQuestion(a + " - " + b + " * " + c);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " - " + b + " * " + c);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void subtractDivide(int a, int b, int c) {
         if(c != 0) {
             if (b % c == 0) {
                 int expected = a - b / c;
-                askQuestion(a + " - " + b + " / " + c);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " - " + b + " / " + c);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int d = rand.nextInt(100);
                 int e = rand.nextInt(10);
@@ -921,22 +921,22 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void subtractAddAdd(int a, int b, int c, int d) {
         int expected = a - b + c + d;
-        askQuestion(a + " - " + b + " + " + c + " + " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " - " + b + " + " + c + " + " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void subtractAddSubtract(int a, int b, int c, int d) {
         int expected = a - b + c - d;
-        askQuestion(a + " - " + b + " + " + c + " - " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " - " + b + " + " + c + " - " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void subtractAddDivide(int a, int b, int c, int d) {
         if(c != 0) {
             if (c % d == 0) {
                 int expected = a - b + c / d;
-                askQuestion(a + " - " + b + " + " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " - " + b + " + " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(100);
@@ -955,28 +955,28 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void subtractAddMultiply(int a, int b, int c, int d) {
         int expected = a - b + c * d;
-        askQuestion(a + " - " + b + " + " + c + " * " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " - " + b + " + " + c + " * " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void subtractSubtractAdd(int a, int b, int c, int d) {
         int expected = a - b - c + d;
-        askQuestion(a + " - " + b + " - " + c + " + " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " - " + b + " - " + c + " + " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void subtractSubtractSubtract(int a, int b, int c, int d) {
         int expected = a - b - c - d;
-        askQuestion(a + " - " + b + " - " + c + " - " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " - " + b + " - " + c + " - " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void subtractSubtractDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if(c % d == 0) {
                 int expected = a - b - c / d;
-                askQuestion(a + " - " + b + " - " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " - " + b + " - " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(100);
@@ -995,16 +995,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void subtractSubtractMultiply(int a, int b, int c, int d) {
         int expected = a - b - c * d;
-        askQuestion(a + " - " + b + " - " + c + " * " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " - " + b + " - " + c + " * " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void subtractDivideAdd(int a, int b, int c, int d) {
         if(c != 0) {
             if(b % c == 0) {
                 int expected = a - b / c + d;
-                askQuestion(a + " - " + b + " / " + c + " + " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " - " + b + " / " + c + " + " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(10);
@@ -1025,8 +1025,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(c != 0) {
             if(b % c == 0) {
                 int expected = a - b / c - d;
-                askQuestion(a + " - " + b + " / " + c + " - " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " - " + b + " / " + c + " - " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(10);
@@ -1047,8 +1047,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(c != 0 && d != 0) {
             if(b % c == 0 && (b / c) % d == 0) {
                 int expected = a - b / c / d;
-                askQuestion(a + " - " + b + " / " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " - " + b + " / " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(10);
@@ -1069,8 +1069,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(c != 0) {
             if(b % c == 0) {
                 int expected = a - b / c * d;
-                askQuestion(a + " - " + b + " / " + c + " * " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " - " + b + " / " + c + " * " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(10);
@@ -1089,22 +1089,22 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void subtractMultiplyAdd(int a, int b, int c, int d) {
         int expected = a - b * c + d;
-        askQuestion(a + " - " + b + " * " + c + " + " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " - " + b + " * " + c + " + " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void subtractMultiplySubtract(int a, int b, int c, int d) {
         int expected = a - b * c - d;
-        askQuestion(a + " - " + b + " * " + c + " - " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " - " + b + " * " + c + " - " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void subtractMultiplyDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if ((b * c) % d == 0) {
                 int expected = a - b * c / d;
-                askQuestion(a + " - " + b + " * " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " - " + b + " * " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(100);
                 int f = rand.nextInt(10);
@@ -1123,8 +1123,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void subtractMultiplyMultiply(int a, int b, int c, int d) {
         int expected = a - b * c * d;
-        askQuestion(a + " - " + b + " * " + c + " * " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " - " + b + " * " + c + " * " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     /**
@@ -1136,8 +1136,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b != 0) {
             if(a % b == 0) {
                 int expected = a / b;
-                askQuestion(a + " / " + b);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int c = rand.nextInt(10);
                 int d = rand.nextInt(10);
@@ -1154,8 +1154,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b != 0) {
             if(a % b == 0) {
                 int expected = a / b + c;
-                askQuestion(a + " / " + b + " + " + c);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " + " + c);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int d = rand.nextInt(10);
                 int e = rand.nextInt(10);
@@ -1175,8 +1175,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b != 0) {
             if(a % b == 0) {
                 int expected = a / b - c;
-                askQuestion(a + " / " + b + " - " + c);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " - " + c);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int d = rand.nextInt(10);
                 int e = rand.nextInt(10);
@@ -1195,8 +1195,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b != 0) {
             if(a % b == 0) {
                 int expected = a / b * c;
-                askQuestion(a + " / " + b + " * " + c);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " * " + c);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int d = rand.nextInt(10);
                 int e = rand.nextInt(10);
@@ -1214,8 +1214,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b != 0 && c != 0) {
             if(a % b == 0 && (a / b) % c == 0) {
                 int expected = a / b / c;
-                askQuestion(a + " / " + b + " / " + c);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " / " + c);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int d = rand.nextInt(9) + 1;
                 int e = rand.nextInt(9) + 1;
@@ -1234,8 +1234,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b!= 0) {
             if(a % b == 0) {
                 int expected = a / b + c + d;
-                askQuestion(a + " / " + b + " + " + c + " + " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " + " + c + " + " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) + 1;
@@ -1256,8 +1256,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b!= 0) {
             if(a % b == 0) {
                 int expected = a / b + c - d;
-                askQuestion(a + " / " + b + " + " + c + " - " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " + " + c + " - " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) + 1;
@@ -1278,8 +1278,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b!= 0 && d != 0) {
             if(a % b == 0 && c % d == 0) {
                 int expected = a / b + c / d;
-                askQuestion(a + " / " + b + " + " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " + " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) + 1;
@@ -1300,8 +1300,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b!= 0) {
             if(a % b == 0) {
                 int expected = a / b + c * d;
-                askQuestion(a + " / " + b + " + " + c + " * " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " + " + c + " * " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) + 1;
@@ -1322,8 +1322,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b!= 0) {
             if(a % b == 0) {
                 int expected = a / b - c + d;
-                askQuestion(a + " / " + b + " - " + c + " + " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " - " + c + " + " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) + 1;
@@ -1344,8 +1344,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b!= 0) {
             if(a % b == 0) {
                 int expected = a / b - c - d;
-                askQuestion(a + " / " + b + " - " + c + " - " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " - " + c + " - " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) + 1;
@@ -1366,8 +1366,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b!= 0 && d != 0) {
             if(a % b == 0 && c % d == 0) {
                 int expected = a / b - c / d;
-                askQuestion(a + " / " + b + " - " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " - " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) + 1;
@@ -1388,8 +1388,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b!= 0) {
             if(a % b == 0) {
                 int expected = a / b - c * d;
-                askQuestion(a + " / " + b + " - " + c + " * " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " - " + c + " * " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) + 1;
@@ -1410,8 +1410,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b != 0 && c != 0) {
             if(a % b == 0 && (a / b) % c == 0) {
                 int expected = a / b / c + d;
-                askQuestion(a + " / " + b + " / " + c + " + " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " / " + c + " + " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) - 1;
@@ -1432,8 +1432,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b != 0 && c != 0) {
             if(a % b == 0 && (a / b) % c == 0) {
                 int expected = a / b / c - d;
-                askQuestion(a + " / " + b + " / " + c + " - " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " / " + c + " - " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) - 1;
@@ -1454,8 +1454,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b != 0 && c != 0 && d != 0) {
             if(a % b == 0 && (a / b) % c == 0 && (a / b / c) % d == 0) {
                 int expected = a / b / c / d;
-                askQuestion(a + " / " + b + " / " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " / " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) - 1;
@@ -1476,8 +1476,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(b != 0 && c != 0) {
             if(a % b == 0 && (a / b) % c == 0) {
                 int expected = a / b / c * d;
-                askQuestion(a + " / " + b + " / " + c + " * " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " / " + c + " * " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) - 1;
@@ -1498,8 +1498,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if (b != 0) {
             if(a % b == 0) {
                 int expected = a / b * c + d;
-                askQuestion(a + " / " + b + " * " + c + " + " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " * " + c + " + " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) + 1;
@@ -1520,8 +1520,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if (b != 0) {
             if(a % b == 0) {
                 int expected = a / b * c - d;
-                askQuestion(a + " / " + b + " * " + c + " - " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " * " + c + " - " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) + 1;
@@ -1542,8 +1542,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if (b != 0 && d != 0) {
             if(a % b == 0 && (a / b * c) % d == 0) {
                 int expected = a / b * c / d;
-                askQuestion(a + " / " + b + " * " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " * " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) + 1;
@@ -1564,8 +1564,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if (b != 0) {
             if(a % b == 0) {
                 int expected = a / b * c * d;
-                askQuestion(a + " / " + b + " * " + c + " * " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " / " + b + " * " + c + " * " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(9) + 1;
@@ -1589,20 +1589,20 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private void multiply(int a, int b) {
         int expected = a * b;
-        askQuestion(a + " * " + b);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " * " + b);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void multiplyAdd(int a, int b, int c) {
         int expected = a * b + c;
-        askQuestion(a + " * " + b + " + " + c);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " * " + b + " + " + c);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void multiplySubtract(int a, int b, int c) {
         int expected = a * b - c;
-        askQuestion(a + " * " + b + " - " + c);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " * " + b + " - " + c);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
 
@@ -1611,8 +1611,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             if ((a * b) % c == 0) {
 
                 int expected = a * b / c;
-                askQuestion(a + " * " + b + " / " + c);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " * " + b + " / " + c);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int d = rand.nextInt(10);
                 int e = rand.nextInt(10);
@@ -1629,28 +1629,28 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void multiplyMultiply(int a, int b, int c) {
         int expected = a * b * c;
-        askQuestion(a + " * " + b + " * " + c);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " * " + b + " * " + c);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void multiplyAddAdd(int a, int b, int c, int d) {
         int expected = a * b + c + d;
-        askQuestion(a + " * " + b + " + " + c + " + " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " * " + b + " + " + c + " + " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void multiplyAddSubtract(int a, int b, int c, int d) {
         int expected = a * b + c - d;
-        askQuestion(a + " * " + b + " + " + c + " - " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " * " + b + " + " + c + " - " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void multiplyAddDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if (c % d == 0) {
                 int expected = a * b + c / d;
-                askQuestion(a + " * " + b + " + " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " * " + b + " + " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(10);
@@ -1669,28 +1669,28 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void multiplyAddMultiply(int a, int b, int c, int d) {
         int expected = a * b + c * d;
-        askQuestion(a + " * " + b + " + " + c + " * " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " * " + b + " + " + c + " * " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void multiplySubtractAdd(int a, int b, int c, int d) {
         int expected = a * b - c + d;
-        askQuestion(a + " * " + b + " - " + c + " + " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " * " + b + " - " + c + " + " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void multiplySubtractSubtract(int a, int b, int c, int d) {
         int expected = a * b - c - d;
-        askQuestion(a + " * " + b + " - " + c + " - " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " * " + b + " - " + c + " - " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void multiplySubtractDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if (c % d == 0) {
                 int expected = a * b - c / d;
-                askQuestion(a + " * " + b + " - " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " * " + b + " - " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(10);
@@ -1709,16 +1709,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void multiplySubtractMultiply(int a, int b, int c, int d) {
         int expected = a * b + c * d;
-        askQuestion(a + " * " + b + " + " + c + " * " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " * " + b + " + " + c + " * " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void multiplyDivideAdd(int a, int b, int c, int d) {
         if(c != 0) {
             if((a * b) % c == 0) {
                 int expected = a * b / c + d;
-                askQuestion(a + " * " + b + " / " + c + " + " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " * " + b + " / " + c + " + " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(10);
@@ -1739,8 +1739,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(c != 0) {
             if((a * b) % c == 0) {
                 int expected = a * b / c - d;
-                askQuestion(a + " * " + b + " / " + c + " - " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " * " + b + " / " + c + " - " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(10);
@@ -1761,8 +1761,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(c != 0 && d != 0) {
             if((a * b) % c == 0 && (a * b / c) % d == 0) {
                 int expected = a * b / c / d;
-                askQuestion(a + " * " + b + " / " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " * " + b + " / " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(10);
@@ -1783,8 +1783,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(c != 0) {
             if((a * b) % c == 0) {
                 int expected = a * b / c * d;
-                askQuestion(a + " * " + b + " / " + c + " * " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " * " + b + " / " + c + " * " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(10);
@@ -1803,22 +1803,22 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void multiplyMultiplyAdd(int a, int b, int c, int d) {
         int expected = a * b * c + d;
-        askQuestion(a + " * " + b + " * " + c + " + " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " * " + b + " * " + c + " + " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void multiplyMultiplySubtract(int a, int b, int c, int d) {
         int expected = a * b * c - d;
-        askQuestion(a + " * " + b + " * " + c + " - " + d);
-        answerQuestion("" + answerGen(expected));
+        equation.setText(a + " * " + b + " * " + c + " - " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     private void multiplyMultiplyDivide(int a, int b, int c, int d) {
         if(d != 0) {
             if ((a * b * c) % d == 0) {
                 int expected = a * b * c / d;
-                askQuestion(a + " * " + b + " * " + c + " / " + d);
-                answerQuestion("" + answerGen(expected));
+                equation.setText(a + " * " + b + " * " + c + " / " + d);
+                answer.setText(String.valueOf(answerGen(expected)));
             } else {
                 int e = rand.nextInt(10);
                 int f = rand.nextInt(10);
@@ -1837,18 +1837,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private void multiplyMultiplyMultiply(int a, int b, int c, int d) {
         int expected = a * b * c * d;
-        askQuestion(a + " * " + b + " * " + c + " * " + d);
-        answerQuestion("" + answerGen(expected));
-    }
-
-
-    /**
-     * Generates the equation as a text on the canvas
-     * Basically renders the question onto the screen
-     * @param question
-     */
-    private void askQuestion(final String question) {
-        equation.setText(question);
+        equation.setText(a + " * " + b + " * " + c + " * " + d);
+        answer.setText(String.valueOf(answerGen(expected)));
     }
 
     /**
@@ -1858,7 +1848,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * @return displayed
      */
     private int answerGen(int answer) {
-
         int wrong;
         int displayed;
         boolean wrongAnswerShown = rand.nextBoolean();  // True or False Decision
@@ -1925,10 +1914,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             }
         }
         return displayed;
-    }
-
-    private void answerQuestion(final String answered) {
-        answer.setText(answered);
     }
 
     private void levelChanger() {
