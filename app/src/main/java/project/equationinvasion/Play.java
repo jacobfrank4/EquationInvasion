@@ -218,9 +218,24 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             case 2:
                 levelTwo();
                 break;
+            case 3:
+                levelThree();
+                break;
+            case 4:
+                levelFour();
+                break;
+            case 5:
+                levelFive();
+                break;
+            case 6:
+                levelSix();
+                break;
+            default:
+                break;
         }
     }
 
+    //comleted
     public void levelOne() {
         final int maxNumber = 10;
 
@@ -242,6 +257,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    //completed
     public void levelTwo() {
         final int maxNumber = 10;
 
@@ -263,6 +279,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    //completed
     public void levelThree() {
         final int maxNumber = 100;
 
@@ -284,36 +301,15 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    //completed
     public void levelFour() {
-        final int maxNumber = 10;
+        final int maxNumber = 100;
 
         int a = rand.nextInt(maxNumber);
         int b = rand.nextInt(maxNumber);
         int c = rand.nextInt(maxNumber);
 
-        int type = rand.nextInt(2);
-
-        switch(type) {
-            case 0:
-                addAdd(a, b, c);
-                break;
-            case 1:
-                addSubtract(a, b, c);
-                break;
-            default:
-                break;
-        }
-
-    }
-
-    public void levelFive() {
-        final int maxNumber = 20;
-
-        int a = rand.nextInt(maxNumber);
-        int b = rand.nextInt(maxNumber);
-        int c = rand.nextInt(maxNumber);
-
-        int type = rand.nextInt(4);
+        int type = rand.nextInt(6);
 
         switch(type) {
             case 0:
@@ -323,18 +319,304 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 addSubtract(a, b, c);
                 break;
             case 2:
-                addDivide(a, b, c);
+                subtractAdd(a, b, c);
                 break;
             case 3:
-                addMultiply(a, b, c);
+                subtractSubtract(a, b, c);
                 break;
+            case 4:
+                add(a, b);
+                break;
+            case 5:
+                subtract(a, b);
+            default:
+                break;
+        }
+
+    }
+
+    //working on right now
+    public void levelFive() {
+        final int maxNumber = 100;
+        final int maxMultiDivi = 10;
+
+        int a = rand.nextInt(maxNumber);
+        int b = rand.nextInt(maxNumber);
+        int c = rand.nextInt(maxNumber);
+
+        int d = rand.nextInt(maxMultiDivi);
+        int e = rand.nextInt(maxMultiDivi);
+        int f = rand.nextInt(maxMultiDivi);
+
+        int type = rand.nextInt(16);
+
+        switch(type) {
+            case 0:
+                addAdd(a, b, c);
+                break;
+            case 1:
+                addSubtract(a, b, c);
+                break;
+            case 2:
+                addDivide(a, d, e);
+                break;
+            case 3:
+                addMultiply(a, d, e);
+                break;
+            case 4:
+                subtractAdd(a, b, c);
+                break;
+            case 5:
+                subtractSubtract(a, b, c);
+                break;
+            case 6:
+                subtractDivide(a, d, e);
+                break;
+            case 7:
+                subtractMultiply(a, d, e);
+                break;
+            case 8:
+                divideAdd(d, e, a);
+                break;
+            case 9:
+                divideSubtract(d, e, a);
+                break;
+            case 10:
+                divideDivide(d, e, f);
+                break;
+            case 11:
+                divideMultiply(d, e, f);
+                break;
+            case 12:
+                multiplyAdd(d, e, a);
+                break;
+            case 13:
+                multiplySubtract(d, e, a);
+                break;
+            case 14:
+                multiplyDivide(d, e, f);
+                break;
+            case 15:
+                multiplyMultiply(d, e, f);
             default:
                 break;
         }
     }
 
+    public void levelSix() {
+        final int maxNumber = 100;
+        final int maxMultiDivi = 10;
+
+        int a = rand.nextInt(maxNumber);
+        int b = rand.nextInt(maxNumber);
+        int c = rand.nextInt(maxNumber);
+        int d = rand.nextInt(maxNumber);
+
+        int e = rand.nextInt(maxMultiDivi);
+        int f = rand.nextInt(maxMultiDivi);
+        int g = rand.nextInt(maxMultiDivi);
+        int h = rand.nextInt(maxMultiDivi);
+
+        int type = rand.nextInt(64);
+
+        switch(type) {
+            case 0:
+                addAddAdd(a, b, c, d);
+                break;
+            case 1:
+                addAddSubtract(a, b, c, d);
+                break;
+            case 3:
+                addAddDivide(a, b, e, f);
+                break;
+            case 4:
+                addAddMultiply(a, b, e, f);
+                break;
+            case 5:
+                addSubtractAdd(a, b, c, d);
+                break;
+            case 6:
+                addSubtractSubtract(a, b, c, d);
+                break;
+            case 7:
+                addSubtractDivide(a, b, e, f);
+                break;
+            case 8:
+                addDivideAdd(a, e, f, b);
+                break;
+            case 9:
+                addDivideSubtract(a, e, f, b);
+                break;
+            case 10:
+                addDivideDivide(a, e, f, g);
+                break;
+            case 11:
+                addDivideMultiply(a, e, f, g);
+                break;
+            case 12:
+                addMultiplyAdd(a, e, f, b);
+                break;
+            case 13:
+                addMultiplySubtract(a, e, f, b);
+                break;
+            case 14:
+                addMultiplyDivide(a, e, f, g);
+                break;
+            case 15:
+                addMultiplyMultiply(a, e, f, g);
+                break;
+            case 16:
+                subtractAddAdd(a, b, c, d);
+                break;
+            case 17:
+                subtractAddSubtract(a, b, c, d);
+                break;
+            case 18:
+                subtractAddDivide(a, b , e, f);
+                break;
+            case 19:
+                subtractAddMultiply(a, b, e, f);
+                break;
+            case 20:
+                subtractSubtractAdd(a, b, c, d);
+                break;
+            case 21:
+                subtractSubtractSubtract(a, b, c, d);
+                break;
+            case 22:
+                subtractSubtractDivide(a, b, e, f);
+                break;
+            case 23:
+                subtractSubtractMultiply(a, b, e, f);
+                break;
+            case 24:
+                subtractDivideAdd(a, e, f ,b);
+                break;
+            case 25:
+                subtractDivideSubtract(a, e, f, b);
+                break;
+            case 26:
+                subtractDivideDivide(a, e, f, g);
+                break;
+            case 27:
+                subtractDivideMultiply(a, e, f, g);
+                break;
+            case 28:
+                subtractMultiplyAdd(a, e, f, b);
+                break;
+            case 29:
+                subtractMultiplySubtract(a, e, f, b);
+                break;
+            case 30:
+                subtractMultiplyDivide(a, e, f, g);
+                break;
+            case 31:
+                subtractMultiplyMultiply(a, e, f, g);
+                break;
+            case 32:
+                divideAddAdd(e, f, a, b);
+                break;
+            case 33:
+                divideAddSubtract(e, f, a, b);
+                break;
+            case 34:
+                divideAddDivide(e, f, g, h);
+                break;
+            case 35:
+                divideAddMultiply(e, f, g, h);
+                break;
+            case 36:
+                divideSubtractAdd(e, f, a, b);
+                break;
+            case 37:
+                divideSubtractSubtract(e, f, a, b);
+                break;
+            case 38:
+                divideSubtractDivide(e, f, g, h);
+                break;
+            case 39:
+                divideSubtractMultiply(e, f, g, h);
+                break;
+            case 40:
+                divideDivideAdd(e, f, g, a);
+                break;
+            case 41:
+                divideDivideSubtract(e, f, g, a);
+                break;
+            case 42:
+                divideDivideDivide(e, f, g, h);
+                break;
+            case 43:
+                divideDivideMultiply(e, f, g, h);
+                break;
+            case 44:
+                divideMultiplyAdd(e, f, g, a);
+                break;
+            case 45:
+                divideMultiplySubtract(e, f, g, a);
+                break;
+            case 46:
+                divideMultiplyDivide(e, f, g, h);
+                break;
+            case 47:
+                divideMultiplyMultiply(e, f, g, h);
+                break;
+            case 48:
+                multiplyAddAdd(e, f, a, b);
+                break;
+            case 49:
+                multiplyAddSubtract(e, f, a, b);
+                break;
+            case 50:
+                multiplyAddDivide(e, f, g, h);
+                break;
+            case 51:
+                multiplyAddMultiply(e, f, g, h);
+                break;
+            case 52:
+                multiplySubtractAdd(e, f, a, b);
+                break;
+            case 53:
+                multiplySubtractSubtract(e, f, a, b);
+                break;
+            case 54:
+                multiplySubtractDivide(e, f, g, h);
+                break;
+            case 55:
+                multiplySubtractMultiply(e, f, g, h);
+                break;
+            case 56:
+                multiplyDivideAdd(e, f, g, a);
+                break;
+            case 57:
+                multiplyDivideSubtract(e, f, g, a);
+                break;
+            case 58:
+                multiplyDivideDivide(e, f, g, h);
+                break;
+            case 59:
+                multiplyDivideMultiply(e, f, g, h);
+                break;
+            case 60:
+                multiplyMultiplyAdd(e, f, g, a);
+                break;
+            case 61:
+                multiplyMultiplySubtract(e, f, g, a);
+                break;
+            case 62:
+                multiplyMultiplyDivide(e, f, g, h);
+                break;
+            case 63:
+                multiplyMultiplyMultiply(e, f, g, h);
+                break;
+            default:
+                break;
+        }
+
+    }
+
     /**
-     * Method for 2 variable addition
+     * Methods for addition as first operation
      * @param a
      * @param b
      */
@@ -364,17 +646,236 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     public void addDivide(int a, int b, int c) {
         if(c != 0) {
+            if (b % c == 0) {
+                int expected = a + b / c;
+                askQuestion(a + " + " + b + " / " + c);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int d = rand.nextInt(100);
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(10);
+                addDivide(d, e, f);
 
-            int expected = a + b / c;
-            askQuestion(a + " + " + b + " / " + c);
-            answerQuestion("" + answerGen(expected));
+            }
         } else {
-            levelFive();
+            int d = rand.nextInt(100);
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(10);
+            addDivide(d, e, f);
         }
     }
 
+    public void addAddAdd(int a, int b, int c, int d) {
+        int expected = a + b + c + d;
+        askQuestion(a + " + " + b + " + " + c + " + " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void addAddSubtract(int a, int b, int c, int d) {
+        int expected = a + b + c - d;
+        askQuestion(a + " + " + b + " + " + c + " - " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void addAddDivide(int a, int b, int c, int d) {
+        if(c != 0) {
+            if (c % d == 0) {
+                int expected = a + b + c / d;
+                askQuestion(a + " + " + b + " + " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(100);
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(9) + 1;
+                addAddDivide(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(100);
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(9) + 1;
+            addAddDivide(e, f, g, h);
+        }
+    }
+
+    public void addAddMultiply(int a, int b, int c, int d) {
+        int expected = a + b + c * d;
+        askQuestion(a + " + " + b + " + " + c + " * " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void addSubtractAdd(int a, int b, int c, int d) {
+        int expected = a + b - c + d;
+        askQuestion(a + " + " + b + " - " + c + " + " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void addSubtractSubtract(int a, int b, int c, int d) {
+        int expected = a + b - c - d;
+        askQuestion(a + " + " + b + " - " + c + " - " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void addSubtractDivide(int a, int b, int c, int d) {
+        if(d != 0) {
+            if(c % d == 0) {
+                int expected = a + b - c / d;
+                askQuestion(a + " + " + b + " - " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(100);
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(9) + 1;
+                addAddDivide(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(100);
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(9) + 1;
+            addAddDivide(e, f, g, h);
+        }
+    }
+
+    public void addSubtractMultiply(int a, int b, int c, int d) {
+        int expected = a + b - c * d;
+        askQuestion(a + " + " + b + " - " + c + " * " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void addDivideAdd(int a, int b, int c, int d) {
+        if(c != 0) {
+            if(b % c == 0) {
+                int expected = a + b / c + d;
+                askQuestion(a + " + " + b + " / " + c + " + " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(100);
+                addDivideAdd(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(100);
+            addDivideAdd(e, f, g, h);
+        }
+    }
+
+    public void addDivideSubtract(int a, int b, int c, int d) {
+        if(c != 0) {
+            if(b % c == 0) {
+                int expected = a + b / c - d;
+                askQuestion(a + " + " + b + " / " + c + " - " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(100);
+                addDivideSubtract(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(100);
+            addDivideSubtract(e, f, g, h);
+        }
+    }
+
+    public void addDivideDivide(int a, int b, int c, int d) {
+        if(c != 0 && d != 0) {
+            if(b % c == 0 && (b / c) % d == 0) {
+                int expected = a + b / c / d;
+                askQuestion(a + " + " + b + " / " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(9) + 1;
+                addDivideAdd(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(9) + 1;
+            addDivideAdd(e, f, g, h);
+        }
+    }
+
+    public void addDivideMultiply(int a, int b, int c, int d) {
+        if(c != 0) {
+            if(b % c == 0) {
+                int expected = a + b / c * d;
+                askQuestion(a + " + " + b + " / " + c + " * " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(10);
+                addDivideAdd(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(10);
+            addDivideAdd(e, f, g, h);
+        }
+    }
+
+    public void addMultiplyAdd(int a, int b, int c, int d) {
+        int expected = a + b * c + d;
+        askQuestion(a + " + " + b + " * " + c + " + " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void addMultiplySubtract(int a, int b, int c, int d) {
+        int expected = a + b * c - d;
+        askQuestion(a + " + " + b + " * " + c + " - " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void addMultiplyDivide(int a, int b, int c, int d) {
+        if(d != 0) {
+            if ((b * c) % d == 0) {
+                int expected = a + b * c / d;
+                askQuestion(a + " + " + b + " * " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(9) + 1;
+                addAddDivide(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(9) + 1;
+            addAddDivide(e, f, g, h);
+        }
+    }
+
+    public void addMultiplyMultiply(int a, int b, int c, int d) {
+        int expected = a + b * c * d;
+        askQuestion(a + " + " + b + " * " + c + " * " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+
     /**
-     * Method for 2 variable subtraction
+     * Methods for subtraction as first operation
      * @param a
      * @param b
      */
@@ -402,23 +903,692 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         answerQuestion("" + answerGen(expected));
     }
 
+    public void subtractDivide(int a, int b, int c) {
+        if(c != 0) {
+            if (b % c == 0) {
+                int expected = a - b / c;
+                askQuestion(a + " - " + b + " / " + c);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int d = rand.nextInt(100);
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(10);
+                addDivide(d, e, f);
+
+            }
+        } else {
+            int d = rand.nextInt(100);
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(10);
+            addDivide(d, e, f);
+        }
+    }
+
+    public void subtractAddAdd(int a, int b, int c, int d) {
+        int expected = a - b + c + d;
+        askQuestion(a + " - " + b + " + " + c + " + " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void subtractAddSubtract(int a, int b, int c, int d) {
+        int expected = a - b + c - d;
+        askQuestion(a + " - " + b + " + " + c + " - " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void subtractAddDivide(int a, int b, int c, int d) {
+        if(c != 0) {
+            if (c % d == 0) {
+                int expected = a - b + c / d;
+                askQuestion(a + " - " + b + " + " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(100);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(9) + 1;
+                subtractAddDivide(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(100);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(9) + 1;
+            subtractAddDivide(e, f, g, h);
+        }
+    }
+
+    public void subtractAddMultiply(int a, int b, int c, int d) {
+        int expected = a - b + c * d;
+        askQuestion(a + " - " + b + " + " + c + " * " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void subtractSubtractAdd(int a, int b, int c, int d) {
+        int expected = a - b - c + d;
+        askQuestion(a + " - " + b + " - " + c + " + " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void subtractSubtractSubtract(int a, int b, int c, int d) {
+        int expected = a - b - c - d;
+        askQuestion(a + " - " + b + " - " + c + " - " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void subtractSubtractDivide(int a, int b, int c, int d) {
+        if(d != 0) {
+            if(c % d == 0) {
+                int expected = a - b - c / d;
+                askQuestion(a + " - " + b + " - " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(100);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(9) + 1;
+                subtractAddDivide(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(100);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(9) + 1;
+            subtractAddDivide(e, f, g, h);
+        }
+    }
+
+    public void subtractSubtractMultiply(int a, int b, int c, int d) {
+        int expected = a - b - c * d;
+        askQuestion(a + " - " + b + " - " + c + " * " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void subtractDivideAdd(int a, int b, int c, int d) {
+        if(c != 0) {
+            if(b % c == 0) {
+                int expected = a - b / c + d;
+                askQuestion(a + " - " + b + " / " + c + " + " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(100);
+                subtractDivideAdd(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(100);
+            subtractDivideAdd(e, f, g, h);
+        }
+    }
+
+    public void subtractDivideSubtract(int a, int b, int c, int d) {
+        if(c != 0) {
+            if(b % c == 0) {
+                int expected = a - b / c - d;
+                askQuestion(a + " - " + b + " / " + c + " - " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(100);
+                subtractDivideSubtract(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(100);
+            subtractDivideSubtract(e, f, g, h);
+        }
+    }
+
+    public void subtractDivideDivide(int a, int b, int c, int d) {
+        if(c != 0 && d != 0) {
+            if(b % c == 0 && (b / c) % d == 0) {
+                int expected = a - b / c / d;
+                askQuestion(a + " - " + b + " / " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(9) + 1;
+                subtractDivideAdd(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(9) + 1;
+            subtractDivideAdd(e, f, g, h);
+        }
+    }
+
+    public void subtractDivideMultiply(int a, int b, int c, int d) {
+        if(c != 0) {
+            if(b % c == 0) {
+                int expected = a - b / c * d;
+                askQuestion(a + " - " + b + " / " + c + " * " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(10);
+                subtractDivideAdd(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(10);
+            subtractDivideAdd(e, f, g, h);
+        }
+    }
+
+    public void subtractMultiplyAdd(int a, int b, int c, int d) {
+        int expected = a - b * c + d;
+        askQuestion(a + " - " + b + " * " + c + " + " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void subtractMultiplySubtract(int a, int b, int c, int d) {
+        int expected = a - b * c - d;
+        askQuestion(a + " - " + b + " * " + c + " - " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void subtractMultiplyDivide(int a, int b, int c, int d) {
+        if(d != 0) {
+            if ((b * c) % d == 0) {
+                int expected = a - b * c / d;
+                askQuestion(a + " - " + b + " * " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(100);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(9) + 1;
+                subtractAddDivide(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(100);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(9) + 1;
+            subtractAddDivide(e, f, g, h);
+        }
+    }
+
+    public void subtractMultiplyMultiply(int a, int b, int c, int d) {
+        int expected = a - b * c * d;
+        askQuestion(a + " - " + b + " * " + c + " * " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
     /**
-     * Method for 2 variable division
+     * Methods for division as first operation
      * @param a
      * @param b
      */
     public void divide(int a, int b) {
         if(b != 0) {
-            int expected = a / b;
-            askQuestion(a + " / " + b);
-            answerQuestion("" + answerGen(expected));
+            if(a % b == 0) {
+                int expected = a / b;
+                askQuestion(a + " / " + b);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int c = rand.nextInt(10);
+                int d = rand.nextInt(10);
+                divide(c, d);
+            }
         } else{
-            levelOne();
+            int c = rand.nextInt(10);
+            int d = rand.nextInt(10);
+            divide(c, d);
         }
     }
 
-    /**
-     * Method for 2 variable multiplication
+    public void divideAdd(int a, int b, int c) {
+        if(b != 0) {
+            if(a % b == 0) {
+                int expected = a / b + c;
+                askQuestion(a + " / " + b + " + " + c);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int d = rand.nextInt(10);
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(100);
+                divideAdd(d, e, f);
+            }
+        } else {
+            int d = rand.nextInt(9) + 1;
+            int e = rand.nextInt(9) + 1;
+            int f = rand.nextInt(9) + 1;
+            divideDivide(d, e, f);
+        }
+
+    }
+
+    public void divideSubtract(int a, int b, int c) {
+        if(b != 0) {
+            if(a % b == 0) {
+                int expected = a / b - c;
+                askQuestion(a + " / " + b + " - " + c);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int d = rand.nextInt(10);
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(100);
+                divideSubtract(d, e, f);
+            }
+        } else {
+            int d = rand.nextInt(9) + 1;
+            int e = rand.nextInt(9) + 1;
+            int f = rand.nextInt(9) + 1;
+            divideDivide(d, e, f);
+        }
+    }
+
+    public void divideMultiply(int a, int b, int c) {
+        if(b != 0) {
+            if(a % b == 0) {
+                int expected = a / b * c;
+                askQuestion(a + " / " + b + " * " + c);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int d = rand.nextInt(10);
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(10);
+                divideMultiply(d, e, f);
+            }
+        } else {
+            int d = rand.nextInt(9) + 1;
+            int e = rand.nextInt(9) + 1;
+            int f = rand.nextInt(9) + 1;
+            divideDivide(d, e, f);
+        }
+    }
+    public void divideDivide(int a, int b, int c) {
+        if(b != 0 && c != 0) {
+            if(a % b == 0 && (a / b) % c == 0) {
+                int expected = a / b / c;
+                askQuestion(a + " / " + b + " / " + c);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int d = rand.nextInt(9) + 1;
+                int e = rand.nextInt(9) + 1;
+                int f = rand.nextInt(9) + 1;
+                divideDivide(d, e, f);
+            }
+        } else {
+            int d = rand.nextInt(9) + 1;
+            int e = rand.nextInt(9) + 1;
+            int f = rand.nextInt(9) + 1;
+            divideDivide(d, e, f);
+        }
+    }
+
+    public void divideAddAdd(int a, int b, int c, int d) {
+        if(b!= 0) {
+            if(a % b == 0) {
+                int expected = a / b + c + d;
+                askQuestion(a + " / " + b + " + " + c + " + " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) + 1;
+                int g = rand.nextInt(100);
+                int h = rand.nextInt(100);
+                divideAddAdd(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) + 1;
+            int g = rand.nextInt(100);
+            int h = rand.nextInt(100);
+            divideAddAdd(e, f, g, h);
+        }
+    }
+
+    public void divideAddSubtract(int a, int b, int c, int d) {
+        if(b!= 0) {
+            if(a % b == 0) {
+                int expected = a / b + c - d;
+                askQuestion(a + " / " + b + " + " + c + " - " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) + 1;
+                int g = rand.nextInt(100);
+                int h = rand.nextInt(100);
+                divideAddSubtract(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) + 1;
+            int g = rand.nextInt(100);
+            int h = rand.nextInt(100);
+            divideAddSubtract(e, f, g, h);
+        }
+    }
+
+    public void divideAddDivide(int a, int b, int c, int d) {
+        if(b!= 0 && d != 0) {
+            if(a % b == 0 && c % d == 0) {
+                int expected = a / b + c / d;
+                askQuestion(a + " / " + b + " + " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) + 1;
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(9) + 1;
+                divideAddDivide(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) + 1;
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(9) + 1;
+            divideAddDivide(e, f, g, h);
+        }
+    }
+
+    public void divideAddMultiply(int a, int b, int c, int d) {
+        if(b!= 0) {
+            if(a % b == 0) {
+                int expected = a / b + c * d;
+                askQuestion(a + " / " + b + " + " + c + " * " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) + 1;
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(10);
+                divideAddMultiply(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) + 1;
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(10);
+            divideAddMultiply(e, f, g, h);
+        }
+    }
+
+    public void divideSubtractAdd(int a, int b, int c, int d) {
+        if(b!= 0) {
+            if(a % b == 0) {
+                int expected = a / b - c + d;
+                askQuestion(a + " / " + b + " - " + c + " + " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) + 1;
+                int g = rand.nextInt(100);
+                int h = rand.nextInt(100);
+                divideSubtractAdd(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) + 1;
+            int g = rand.nextInt(100);
+            int h = rand.nextInt(100);
+            divideSubtractAdd(e, f, g, h);
+        }
+    }
+
+    public void divideSubtractSubtract(int a, int b, int c, int d) {
+        if(b!= 0) {
+            if(a % b == 0) {
+                int expected = a / b - c - d;
+                askQuestion(a + " / " + b + " - " + c + " - " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) + 1;
+                int g = rand.nextInt(100);
+                int h = rand.nextInt(100);
+                divideSubtractSubtract(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) + 1;
+            int g = rand.nextInt(100);
+            int h = rand.nextInt(100);
+            divideSubtractSubtract(e, f, g, h);
+        }
+    }
+
+    public void divideSubtractDivide(int a, int b, int c, int d) {
+        if(b!= 0 && d != 0) {
+            if(a % b == 0 && c % d == 0) {
+                int expected = a / b - c / d;
+                askQuestion(a + " / " + b + " - " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) + 1;
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(9) + 1;
+                divideSubtractDivide(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) + 1;
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(9) + 1;
+            divideSubtractDivide(e, f, g, h);
+        }
+    }
+
+    public void divideSubtractMultiply(int a, int b, int c, int d) {
+        if(b!= 0) {
+            if(a % b == 0) {
+                int expected = a / b - c * d;
+                askQuestion(a + " / " + b + " - " + c + " * " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) + 1;
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(10);
+                divideSubtractMultiply(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) + 1;
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(10);
+            divideSubtractMultiply(e, f, g, h);
+        }
+    }
+
+    public void divideDivideAdd(int a, int b, int c, int d) {
+        if(b != 0 && c != 0) {
+            if(a % b == 0 && (a / b) % c == 0) {
+                int expected = a / b / c + d;
+                askQuestion(a + " / " + b + " / " + c + " + " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) - 1;
+                int g = rand.nextInt(9) - 1;
+                int h = rand.nextInt(100);
+                divideDivideAdd(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) - 1;
+            int g = rand.nextInt(9) - 1;
+            int h = rand.nextInt(100);
+            divideDivideAdd(e, f, g, h);
+        }
+    }
+
+    public void divideDivideSubtract(int a, int b, int c, int d) {
+        if(b != 0 && c != 0) {
+            if(a % b == 0 && (a / b) % c == 0) {
+                int expected = a / b / c - d;
+                askQuestion(a + " / " + b + " / " + c + " - " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) - 1;
+                int g = rand.nextInt(9) - 1;
+                int h = rand.nextInt(100);
+                divideDivideSubtract(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) - 1;
+            int g = rand.nextInt(9) - 1;
+            int h = rand.nextInt(100);
+            divideDivideSubtract(e, f, g, h);
+        }
+    }
+
+    public void divideDivideDivide(int a, int b, int c, int d) {
+        if(b != 0 && c != 0 && d != 0) {
+            if(a % b == 0 && (a / b) % c == 0 && (a / b / c) % d == 0) {
+                int expected = a / b / c / d;
+                askQuestion(a + " / " + b + " / " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) - 1;
+                int g = rand.nextInt(9) - 1;
+                int h = rand.nextInt(9) - 1;
+                divideDivideDivide(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) - 1;
+            int g = rand.nextInt(9) - 1;
+            int h = rand.nextInt(9) - 1;
+            divideDivideDivide(e, f, g, h);
+        }
+    }
+
+    public void divideDivideMultiply(int a, int b, int c, int d) {
+        if(b != 0 && c != 0) {
+            if(a % b == 0 && (a / b) % c == 0) {
+                int expected = a / b / c * d;
+                askQuestion(a + " / " + b + " / " + c + " * " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) - 1;
+                int g = rand.nextInt(9) - 1;
+                int h = rand.nextInt(10);
+                divideDivideMultiply(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) - 1;
+            int g = rand.nextInt(9) - 1;
+            int h = rand.nextInt(10);
+            divideDivideMultiply(e, f, g, h);
+        }
+    }
+
+    public void divideMultiplyAdd(int a, int b, int c, int d) {
+        if (b != 0) {
+            if(a % b == 0) {
+                int expected = a / b * c + d;
+                askQuestion(a + " / " + b + " * " + c + " + " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) + 1;
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(100);
+                divideMultiplyAdd(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) + 1;
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(100);
+            divideMultiplyAdd(e, f, g, h);
+        }
+    }
+
+    public void divideMultiplySubtract(int a, int b, int c, int d) {
+        if (b != 0) {
+            if(a % b == 0) {
+                int expected = a / b * c - d;
+                askQuestion(a + " / " + b + " * " + c + " - " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) + 1;
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(100);
+                divideMultiplySubtract(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) + 1;
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(100);
+            divideMultiplySubtract(e, f, g, h);
+        }
+    }
+
+    public void divideMultiplyDivide(int a, int b, int c, int d) {
+        if (b != 0 && d != 0) {
+            if(a % b == 0 && (a / b * c) % d == 0) {
+                int expected = a / b * c / d;
+                askQuestion(a + " / " + b + " * " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) + 1;
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(9) + 1;
+                divideMultiplySubtract(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) + 1;
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(9) + 1;
+            divideMultiplySubtract(e, f, g, h);
+        }
+    }
+
+    public void divideMultiplyMultiply(int a, int b, int c, int d) {
+        if (b != 0) {
+            if(a % b == 0) {
+                int expected = a / b * c * d;
+                askQuestion(a + " / " + b + " * " + c + " * " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) + 1;
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(10);
+                divideMultiplyMultiply(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) + 1;
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(10);
+            divideMultiplyMultiply(e, f, g, h);
+        }
+    }
+
+    /**)
+     * Methods for multiplication as first operation
      * @param a
      * @param b
      */
@@ -428,6 +1598,260 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         answerQuestion("" + answerGen(expected));
     }
 
+    public void multiplyAdd( int a, int b, int c) {
+        int expected = a * b + c;
+        askQuestion(a + " * " + b + " + " + c);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void multiplySubtract(int a, int b, int c) {
+        int expected = a * b - c;
+        askQuestion(a + " * " + b + " - " + c);
+        answerQuestion("" + answerGen(expected));
+    }
+
+
+    public void multiplyDivide(int a, int b, int c) {
+        if(c != 0) {
+            if ((a * b) % c == 0) {
+
+                int expected = a * b / c;
+                askQuestion(a + " * " + b + " / " + c);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int d = rand.nextInt(10);
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(9) + 1;
+                multiplyDivide(d, e, f);
+            }
+        }else {
+            int d = rand.nextInt(10);
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(9) + 1;
+            multiplyDivide(d, e, f);
+        }
+    }
+
+    public void multiplyMultiply(int a, int b, int c) {
+        int expected = a * b * c;
+        askQuestion(a + " * " + b + " * " + c);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void multiplyAddAdd(int a, int b, int c, int d) {
+        int expected = a * b + c + d;
+        askQuestion(a + " * " + b + " + " + c + " + " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void multiplyAddSubtract(int a, int b, int c, int d) {
+        int expected = a * b + c - d;
+        askQuestion(a + " * " + b + " + " + c + " - " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void multiplyAddDivide(int a, int b, int c, int d) {
+        if(d != 0) {
+            if (c % d == 0) {
+                int expected = a * b + c / d;
+                askQuestion(a + " * " + b + " + " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(9) + 1;
+                multiplyAddDivide(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(9) + 1;
+            multiplyAddDivide(e, f, g, h);
+        }
+    }
+
+    public void multiplyAddMultiply(int a, int b, int c, int d) {
+        int expected = a * b + c * d;
+        askQuestion(a + " * " + b + " + " + c + " * " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void multiplySubtractAdd(int a, int b, int c, int d) {
+        int expected = a * b - c + d;
+        askQuestion(a + " * " + b + " - " + c + " + " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void multiplySubtractSubtract(int a, int b, int c, int d) {
+        int expected = a * b - c - d;
+        askQuestion(a + " * " + b + " - " + c + " - " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void multiplySubtractDivide(int a, int b, int c, int d) {
+        if(d != 0) {
+            if (c % d == 0) {
+                int expected = a * b - c / d;
+                askQuestion(a + " * " + b + " - " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(9) + 1;
+                multiplySubtractDivide(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(9) + 1;
+            multiplySubtractDivide(e, f, g, h);
+        }
+    }
+
+    public void multiplySubtractMultiply(int a, int b, int c, int d) {
+        int expected = a * b + c * d;
+        askQuestion(a + " * " + b + " + " + c + " * " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void multiplyDivideAdd(int a, int b, int c, int d) {
+        if(c != 0) {
+            if((a * b) % c == 0) {
+                int expected = a * b / c + d;
+                askQuestion(a + " * " + b + " / " + c + " + " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(100);
+                multiplyDivideAdd(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(100);
+            multiplyDivideAdd(e, f, g, h);
+        }
+    }
+
+    public void multiplyDivideSubtract(int a, int b, int c, int d) {
+        if(c != 0) {
+            if((a * b) % c == 0) {
+                int expected = a * b / c - d;
+                askQuestion(a + " * " + b + " / " + c + " - " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(100);
+                multiplyDivideSubtract(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(100);
+            multiplyDivideSubtract(e, f, g, h);
+        }
+    }
+
+    public void multiplyDivideDivide(int a, int b, int c, int d) {
+        if(c != 0 && d != 0) {
+            if((a * b) % c == 0 && (a * b / c) % d == 0) {
+                int expected = a * b / c / d;
+                askQuestion(a + " * " + b + " / " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(9) + 1;
+                multiplyDivideDivide(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(9) + 1;
+            multiplyDivideDivide(e, f, g, h);
+        }
+    }
+
+    public void multiplyDivideMultiply(int a, int b, int c, int d) {
+        if(c != 0) {
+            if((a * b) % c == 0) {
+                int expected = a * b / c * d;
+                askQuestion(a + " * " + b + " / " + c + " * " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(9) + 1;
+                int h = rand.nextInt(10);
+                multiplyDivideMultiply(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(9) + 1;
+            int h = rand.nextInt(10);
+            multiplyDivideMultiply(e, f, g, h);
+        }
+    }
+
+    public void multiplyMultiplyAdd(int a, int b, int c, int d) {
+        int expected = a * b * c + d;
+        askQuestion(a + " * " + b + " * " + c + " + " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void multiplyMultiplySubtract(int a, int b, int c, int d) {
+        int expected = a * b * c - d;
+        askQuestion(a + " * " + b + " * " + c + " - " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+    public void multiplyMultiplyDivide(int a, int b, int c, int d) {
+        if(d != 0) {
+            if ((a * b * c) % d == 0) {
+                int expected = a * b * c / d;
+                askQuestion(a + " * " + b + " * " + c + " / " + d);
+                answerQuestion("" + answerGen(expected));
+            } else {
+                int e = rand.nextInt(10);
+                int f = rand.nextInt(10);
+                int g = rand.nextInt(10);
+                int h = rand.nextInt(9) + 1;
+                multiplyMultiplyDivide(e, f, g, h);
+            }
+        } else {
+            int e = rand.nextInt(10);
+            int f = rand.nextInt(10);
+            int g = rand.nextInt(10);
+            int h = rand.nextInt(9) + 1;
+            multiplyMultiplyDivide(e, f, g, h);
+        }
+    }
+
+    public void multiplyMultiplyMultiply(int a, int b, int c, int d) {
+        int expected = a * b * c * d;
+        askQuestion(a + " * " + b + " * " + c + " * " + d);
+        answerQuestion("" + answerGen(expected));
+    }
+
+
+    /**
+     * Generates the equation as a text on the canvas
+     * Basically renders the question onto the screen
+     * @param question
+     */
     private void askQuestion(final String question) {
         equation.setText(question);
     }
@@ -520,7 +1944,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     public int levelChanger() {
 
-        if(currentLevel < 2) {
+        if(currentLevel < 6) {
             currentLevel++;
         } else {
             currentLevel = 1;
