@@ -16,6 +16,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
 	private static TextView equation;
 	private static TextView answer;
+    private TextView feedback;
 	private static final Random rand = new Random();
 	private static EquationGenerator mathGen;
 
@@ -101,13 +102,19 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 		equation = (TextView) findViewById(R.id.leftEquation);
 		answer = (TextView) findViewById(R.id.solution);
 		mathGen = new EquationGenerator();
+        feedback = (TextView) findViewById(R.id.feedback);
 	}
-
+    
 
 	@Override
 	public void onClick(View view) {
 		if (view.getId() == R.id.trueBtn || view.getId() == R.id.falseBtn) {
-			mathGen.generate(currentLevel);
+            if (view.getId() == R.id.trueBtn) {
+                truthChecker();
+            } else if (view.getId() == R.id.falseBtn) {
+                falseChecker();
+            }
+            mathGen.generate(currentLevel);
 			btnNoise();
 		} else if (view.getId() == pipChange.getId()) {
 			/**
@@ -153,14 +160,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 		} else if (view.getId() == scoreAdder.getId()) {
 			scoreCounter();
 		}
-
 	}
-
+    
 	private class MyTimer extends CountDownTimer {
 		public MyTimer(long duration) {
 			super(duration, 1000L);
 		}
-
+        
 		/**
 		 * Ticks every second and changes the text of the TextView to represent that change
 		 *
@@ -228,4 +234,12 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 	public static int getCurrentLevel() {
 		return currentLevel;
 	}
+
+    private void truthChecker() {
+        feedback.setText("HELLO");
+    }
+
+    private void falseChecker() {
+        feedback.setText("HELLO");
+    }
 }
