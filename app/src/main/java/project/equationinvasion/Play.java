@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.graphics.Typeface;
 
 import java.util.Random;
 import java.text.DecimalFormat;
@@ -103,6 +104,29 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         answer = (TextView) findViewById(R.id.solution);
         mathGen = new EquationGenerator();
         feedback = (TextView) findViewById(R.id.feedback);
+
+        /**
+         * Setting font style
+         */
+        //Font path
+        String chalkboardFontPath = "fonts/Chalkboard.ttf";
+
+        //text view label
+        TextView txtEquation = (TextView) findViewById(R.id.leftEquation);
+        TextView txtTimer = (TextView) findViewById(R.id.time);
+        TextView txtScore = (TextView) findViewById(R.id.scoreDisplay);
+        TextView txtAnswer = (TextView) findViewById(R.id.solution);
+        TextView txtEquals = (TextView) findViewById(R.id.equals);
+
+        //Load Font Face
+        Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
+
+        //Applying font
+        txtEquation.setTypeface(chalkboardFont);
+        txtTimer.setTypeface(chalkboardFont);
+        txtScore.setTypeface(chalkboardFont);
+        txtAnswer.setTypeface(chalkboardFont);
+        txtEquals.setTypeface(chalkboardFont);
     }
 
 

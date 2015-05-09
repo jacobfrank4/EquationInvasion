@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">EquationInvasion</string>
 
+    <string name="game_title">Equation Invasion</string>
+    <string name="play_instructions">Practice your mathematical skills by determining if the provided answer is correct</string>
+
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
 
