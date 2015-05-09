@@ -1643,7 +1643,9 @@ public class EquationGenerator {
 		equation.setText(a + " * " + b + " * " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
-
+	
+	private boolean correctAnswerShown;
+	
 	/**
 	 * Random Answer Generator.
 	 *
@@ -1653,10 +1655,10 @@ public class EquationGenerator {
 	private int answerGen(int answer) {
 		int wrong;
 		int displayed;
-		boolean wrongAnswerShown = rand.nextBoolean();  // True or False Decision
+		boolean correctAnswerShown = rand.nextBoolean();  // True or False Decision
 
 		if (answer >= -10 && answer <= 10) {
-			if (wrongAnswerShown) {
+			if (!correctAnswerShown) {
 				int variable = 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
@@ -1668,7 +1670,7 @@ public class EquationGenerator {
 				displayed = answer;
 			}
 		} else if (answer >= -20 && answer <= 20) {
-			if (wrongAnswerShown) {
+			if (!correctAnswerShown) {
 				int variable = rand.nextInt(2) + 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
@@ -1680,7 +1682,7 @@ public class EquationGenerator {
 				displayed = answer;
 			}
 		} else if (answer >= -40 && answer <= 40) {
-			if (wrongAnswerShown) {
+			if (!correctAnswerShown) {
 				int variable = rand.nextInt(3) + 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
@@ -1692,7 +1694,7 @@ public class EquationGenerator {
 				displayed = answer;
 			}
 		} else if (answer >= -60 && answer <= 60) {
-			if (wrongAnswerShown) {
+			if (!correctAnswerShown) {
 				int variable = rand.nextInt(4) + 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
@@ -1704,7 +1706,7 @@ public class EquationGenerator {
 				displayed = answer;
 			}
 		} else {
-			if (wrongAnswerShown) {
+			if (!correctAnswerShown) {
 				int variable = rand.nextInt(5) + 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
