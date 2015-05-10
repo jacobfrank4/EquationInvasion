@@ -8,15 +8,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.graphics.Typeface;
 
 import java.util.Random;
 import java.text.DecimalFormat;
 
 public class Play extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView equation;
-    private TextView answer;
-    private final Random rand = new Random();
+    private static TextView equation;
+    private static TextView answer;
+    private TextView feedback;
+    private static final Random rand = new Random();
+    private static EquationGenerator mathGen;
 
     /**
      * My declarations for the streak counter
@@ -41,7 +44,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private Button levelChange;
     private TextView levelView;
-    private int currentLevel = 1;
+    private static int currentLevel = 1;
 
     /**
      * Score tracking
@@ -50,7 +53,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     private final int scoreIncrement = 100;
     private Button scoreAdder;
     private TextView scoreDisplay;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +72,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         /**
          * Instantiating what I need for the timer
          */
-        addTime = (Button)findViewById(R.id.timeAdd);
+        addTime = (Button) findViewById(R.id.timeAdd);
         addTime.setOnClickListener(this);
         time = (TextView) findViewById(R.id.time);
         timer = new MyTimer(180000);
@@ -100,14 +102,43 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         FALSE.setOnClickListener(this);
         equation = (TextView) findViewById(R.id.leftEquation);
         answer = (TextView) findViewById(R.id.solution);
+        mathGen = new EquationGenerator();
+        feedback = (TextView) findViewById(R.id.feedback);
 
+        /**
+         * Setting font style
+         */
+        //Font path
+        String chalkboardFontPath = "fonts/Chalkboard.ttf";
+
+        //text view label
+        TextView txtEquation = (TextView) findViewById(R.id.leftEquation);
+        TextView txtTimer = (TextView) findViewById(R.id.time);
+        TextView txtScore = (TextView) findViewById(R.id.scoreDisplay);
+        TextView txtAnswer = (TextView) findViewById(R.id.solution);
+        TextView txtEquals = (TextView) findViewById(R.id.equals);
+
+        //Load Font Face
+        Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
+
+        //Applying font
+        txtEquation.setTypeface(chalkboardFont);
+        txtTimer.setTypeface(chalkboardFont);
+        txtScore.setTypeface(chalkboardFont);
+        txtAnswer.setTypeface(chalkboardFont);
+        txtEquals.setTypeface(chalkboardFont);
     }
 
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.trueBtn || view.getId() == R.id.falseBtn) {
-            levelChecker();
+        if (view.getId() == R.id.trueBtn || view.getId() == R.id.falseBtn) {
+            if (view.getId() == R.id.trueBtn) {
+                truthChecker();
+            } else if (view.getId() == R.id.falseBtn) {
+                falseChecker();
+            }
+            mathGen.generate(currentLevel);
             btnNoise();
         } else if (view.getId() == pipChange.getId()) {
             /**
@@ -138,18 +169,14 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                     fourth.setImageResource(R.drawable.streakpipoff);
                     fifth.setImageResource(R.drawable.streakpipoff);
             }
-            if (streak < 5) {
-                streak++;
-            } else {
-                streak = 0;
-            }
+            streak++;
+            streak %= 6;
         } else if (view.getId() == addTime.getId()) {
-            long carryOver = currentMilli;
-            int secondsToRun;
+            int secondsToAdd;
             if (running) {
                 timer.cancel();
-                secondsToRun = 10;
-                timer = new MyTimer(carryOver + (secondsToRun * 1000));
+                secondsToAdd = 10;
+                timer = new MyTimer(currentMilli + (secondsToAdd * 1000));
                 timer.start();
             }
         } else if (view.getId() == levelChange.getId()) {
@@ -157,18 +184,17 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         } else if (view.getId() == scoreAdder.getId()) {
             scoreCounter();
         }
-
     }
-
 
 
     private class MyTimer extends CountDownTimer {
         public MyTimer(long duration) {
-            super(duration, (long) 1000);
+            super(duration, 1000L);
         }
 
         /**
          * Ticks every second and changes the text of the TextView to represent that change
+         *
          * @param millisUntilFinished The amount of time left on the timer. THIS IS THE ONLY WAY IT CAN BE VIEWED OR ACCESSED.
          */
         @Override
@@ -199,272 +225,52 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     }
 
     //the method to be called for sound effects when a button is clicked.
-    private void btnNoise()
-    {
+    private void btnNoise() {
         MediaPlayer SE = MediaPlayer.create(Play.this, R.raw.btn1sound);
         SE.start();
     }
 
-    /**
-     * Sets the equation level to be current level
-     */
-    private void levelChecker() {
-        switch(currentLevel) {
-            case 1:
-                levelOne();
-                break;
-            case 2:
-                levelTwo();
-                break;
-        }
-    }
-
-    private void levelOne() {
-        final int maxNumber = 10;
-
-        int a = rand.nextInt(maxNumber);
-        int b = rand.nextInt(maxNumber);
-
-        int type = rand.nextInt(4);
-
-        switch(type) {
-            case 0:
-                add(a, b);
-                break;
-            case 1:
-                subtract(a, b);
-                break;
-            case 2:
-                divide(a, b);
-                break;
-            case 3:
-                multiply(a, b);
-                break;
-            default:
-                break;
-        }
-
-    }
-
-    private void levelTwo() {
-        final int maxNumber = 20;
-
-        int a = rand.nextInt(maxNumber);
-        int b = rand.nextInt(maxNumber);
-        int c = rand.nextInt(maxNumber);
-
-        int type = rand.nextInt(4);
-
-        switch(type) {
-            case 0:
-                addAdd(a, b, c);
-                break;
-            case 1:
-                addSubtract(a, b, c);
-                break;
-            case 2:
-                addDivide(a, b, c);
-                break;
-            case 3:
-                addMultiply(a, b, c);
-                break;
-            default:
-                break;
-        }
-    }
-
-    /**
-     * Method for 2 variable addition
-     * @param a
-     * @param b
-     */
-    private void add(int a, int b) {
-        int expected = a + b;
-        askQuestion(a + " + " + b );
-        answerQuestion("" + answerGen(expected));
-    }
-
-    private void addAdd(int a, int b, int c) {
-        int expected = a + b + c;
-        askQuestion(a + " + " + b + " + " + c);
-        answerQuestion("" + answerGen(expected));
-    }
-
-    private void addSubtract(int a, int b, int c) {
-        int expected = a + b - c;
-        askQuestion(a + " + " + b + " - " + c);
-        answerQuestion("" + answerGen(expected));
-    }
-
-    private void addMultiply(int a, int b, int c) {
-        int expected = a + b * c;
-        askQuestion(a + " + " + b + " * " + c);
-        answerQuestion("" + answerGen(expected));
-    }
-
-    private void addDivide(int a, int b, int c) {
-        if (c != 0) {
-            int expected = a + b / c;
-            askQuestion(a + " + " + b + " / " + c);
-            answerQuestion("" + answerGen(expected));
-        } else {
-            levelTwo();
-        }
-    }
-
-    /**
-     * Method for 2 variable subtraction
-     * @param a
-     * @param b
-     */
-    private void subtract(int a, int b) {
-        int expected = a - b;
-        askQuestion(a + " - " + b );
-        answerQuestion("" + answerGen(expected));
-    }
-
-    /**
-     * Method for 2 variable division
-     * @param a
-     * @param b
-     */
-    private void divide(int a, int b) {
-        if(b != 0) {
-            if (a % b == 0) {
-                int expected = a / b;
-                askQuestion(a + " / " + b);
-                answerQuestion("" + answerGen(expected));
-            } else {
-                int c = rand.nextInt(10);
-                int d = rand.nextInt(10);
-                divide(c, d);
-            }
-        } else{
-            int c = rand.nextInt(10);
-            int d = rand.nextInt(10);
-            divide(c, d);
-        }
-    }
-
-    /**
-     * Method for 2 variable multiplication
-     * @param a
-     * @param b
-     */
-    private void multiply(int a, int b) {
-        int expected = a * b;
-        askQuestion(a + " * " + b);
-        answerQuestion("" + answerGen(expected));
-    }
-
-    private void askQuestion(final String question) {
-        equation.setText(question);
-    }
-
-    /**
-     * Random Answer Generator.
-     *
-     * @param answer from equation
-     * @return displayed
-     */
-    private int answerGen(int answer) {
-
-        int wrong;
-        int displayed;
-        boolean wrongAnswerShown = rand.nextBoolean();  // True or False Decision
-
-        if (answer >= -10 && answer <= 10) {
-            if (wrongAnswerShown) {
-                int variable = 1;
-                if (rand.nextBoolean()) {
-                    wrong = answer + variable;
-                } else {
-                    wrong = answer - variable;
-                }
-                displayed = wrong;
-            } else {
-                displayed = answer;
-            }
-        } else if (answer >= -20 && answer <= 20) {
-            if (wrongAnswerShown) {
-                int variable = rand.nextInt(2) + 1;
-                if (rand.nextBoolean()) {
-                    wrong = answer + variable;
-                } else {
-                    wrong = answer - variable;
-                }
-                displayed = wrong;
-            } else {
-                displayed = answer;
-            }
-        } else if (answer >= -40 && answer <= 40) {
-            if (wrongAnswerShown) {
-                int variable = rand.nextInt(3) + 1;
-                if (rand.nextBoolean()) {
-                    wrong = answer + variable;
-                } else {
-                    wrong = answer - variable;
-                }
-                displayed = wrong;
-            } else {
-                displayed = answer;
-            }
-        } else if (answer >= -60 && answer <= 60) {
-            if (wrongAnswerShown) {
-                int variable = rand.nextInt(4) + 1;
-                if (rand.nextBoolean()) {
-                    wrong = answer + variable;
-                } else {
-                    wrong = answer - variable;
-                }
-                displayed = wrong;
-            } else {
-                displayed = answer;
-            }
-        } else {
-            if (wrongAnswerShown) {
-                int variable = rand.nextInt(5) + 1;
-                if (rand.nextBoolean()) {
-                    wrong = answer + variable;
-                } else {
-                    wrong = answer - variable;
-                }
-                displayed = wrong;
-            } else {
-                displayed = answer;
-            }
-        }
-        return displayed;
-    }
-
-    private void answerQuestion(final String answered) {
-        answer.setText(answered);
-    }
-
     private void levelChanger() {
-
-        if(currentLevel < 2) {
+        if (currentLevel < 6) {
             currentLevel++;
         } else {
             currentLevel = 1;
         }
-        levelViewer("Level: " + currentLevel);
-        //Never used return so I switched method to void
-        // -John
-        //return currentLevel;
+        levelView.setText("Level: " + currentLevel);
     }
 
     /**
      * Increments the score.
      */
     private void scoreCounter() {
-
         int scoreIncrement = 100;
         score += scoreIncrement;
         scoreDisplay.setText("Score: " + score);
     }
 
-    private void levelViewer(final String level) {
-        levelView.setText(level);
+    public static TextView getEquationTextView() {
+        return equation;
+    }
+
+    public static TextView getAnswerTextView() {
+        return answer;
+    }
+
+    public static int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    /**
+     * validation for the truth button
+     */
+    private void truthChecker() {
+        feedback.setText("HELLO");
+    }
+
+    /**
+     * validation for the false button
+     */
+    private void falseChecker() {
+        feedback.setText("HELLO");
     }
 }

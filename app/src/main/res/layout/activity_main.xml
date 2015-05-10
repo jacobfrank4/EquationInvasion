@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="#ff1b3d1c">
 
     <!-- Button and Edit text example to be used as guide and deleted later
     <Button
@@ -30,30 +31,57 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="70dp"
-        android:text="@string/go_to_play"
         android:id="@+id/play"
         android:onClick="goToPlay"
-        android:layout_above="@+id/credits"
+        android:layout_above="@+id/highScore"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="166dp" />
+        android:background="@drawable/playbutton"/>
 
     <Button
         android:layout_width="200dp"
         android:layout_height="70dp"
-        android:text="@string/go_to_high_scores"
         android:id="@+id/highScore"
         android:onClick="goToHighScores"
         android:layout_above="@+id/credits"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="72dp" />
+        android:layout_alignStart="@+id/play"
+        android:background="@drawable/highscorebutton"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/credits"
-        android:text="@string/go_to_credits"
         android:onClick="goToCredits"
+        android:background="@drawable/creditsbutton"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toStartOf="@+id/highScore" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/game_title"
+        android:id="@+id/gameTitle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textColor="#ffffff"
+        android:editable="false"
+        android:textSize="65sp"
+        android:textIsSelectable="true"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/play_instructions"
+        android:id="@+id/instructions"
+        android:textColor="#ffffc90e"
+        android:textSize="20sp"
+        android:textIsSelectable="true"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/gameTitle"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"/>
 
 </RelativeLayout>

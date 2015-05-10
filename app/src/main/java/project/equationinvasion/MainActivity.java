@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +32,23 @@ public class MainActivity extends AppCompatActivity {
          * -Matt
          */
         backgroundMusic();
+
+        /**
+         * Setting font style
+         */
+        //Font path
+        String chalkboardFontPath = "fonts/Chalkboard.ttf";
+
+        //text view label
+        TextView txtGameTitle = (TextView) findViewById(R.id.gameTitle);
+        TextView txtGameInstructions = (TextView) findViewById(R.id.instructions);
+
+        //Load Font Face
+        Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
+
+        //Applying font
+        txtGameTitle.setTypeface(chalkboardFont);
+        txtGameInstructions.setTypeface(chalkboardFont);
     }
 
     /** Called when the user clicks the Send button */

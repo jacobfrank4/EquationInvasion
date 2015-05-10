@@ -4,7 +4,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="project.equationinvasion.Play">
+    tools:context="project.equationinvasion.Play"
+    android:background="#ff1b3d1c">
 
     <Button
         android:layout_width="wrap_content"
@@ -33,7 +34,8 @@
         android:layout_alignParentEnd="true"
         android:textSize="20sp"
         android:layout_alignParentStart="false"
-        android:layout_marginRight="50dp"/>
+        android:layout_marginRight="50dp"
+        android:textColor="#ffffff" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -96,7 +98,8 @@
         android:textSize="25dp"
         android:id="@+id/leftEquation"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffffff" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -104,9 +107,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/equals_sign"
         android:textSize="40dp"
-        android:id="@+id/textView2"
+        android:id="@+id/equals"
         android:layout_below="@+id/leftEquation"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -114,32 +118,36 @@
         android:text="@string/equation_answer"
         android:textSize="30dp"
         android:id="@+id/solution"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/equals"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff" />
 
     <Button
-        android:layout_width="150dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="@string/true_button"
         android:id="@+id/trueBtn"
+        android:background="@drawable/truebutton"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toStartOf="@+id/equals"
+        android:layout_alignTop="@+id/falseBtn" />
 
     <Button
-        android:layout_width="150dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="@string/false_button"
         android:id="@+id/falseBtn"
+        android:background="@drawable/falsebutton"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_toEndOf="@+id/equals"
+        android:layout_below="@+id/feedback" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/current_level"
+        android:text="Level 1"
         android:id="@+id/levelView"
         android:layout_below="@+id/pipSwitch"
-        android:layout_alignEnd="@+id/scoreDisplay" />
+        android:layout_alignEnd="@+id/scoreDisplay"
+        android:textColor="#ffffff" />
 
     <Button
         android:layout_width="wrap_content"
@@ -155,7 +163,9 @@
         android:text="@string/current_score"
         android:id="@+id/scoreDisplay"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -164,4 +174,14 @@
         android:id="@+id/scoreAdder"
         android:layout_below="@+id/time"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/feedback"
+        android:layout_below="@+id/solution"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
 </RelativeLayout>
