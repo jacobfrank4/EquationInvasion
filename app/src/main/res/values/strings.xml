@@ -11,12 +11,6 @@
     <string name="title_activity_credits">Credits</string>
     <string name="title_activity_display_message">My Message</string>
 
-    <!-- Navigational buttons -->
-    <string name="go_to_play">Play</string>
-    <string name="go_to_high_scores">High Scores</string>
-    <string name="go_to_credits">Credits</string>
-    <string name="go_to_main">Go To Main</string>
-
 
 
     <!-- Play Screen Buttons and text fields that allow operation of the individual mechanics -->
@@ -35,7 +29,4 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_play">Play</string>
     <string name="title_activity_high_scores">HighScores</string>
-
-    <string name="true_button">TRUE</string>
-    <string name="false_button">FALSE</string>
 </resources>

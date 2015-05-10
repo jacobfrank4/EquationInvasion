@@ -10,10 +10,10 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/go_to_main"
         android:id="@+id/main"
         android:onClick="goToMain"
-        android:layout_marginBottom="72dp"
+        android:background="@drawable/gotomainbutton"
+        android:layout_marginBottom="44dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
