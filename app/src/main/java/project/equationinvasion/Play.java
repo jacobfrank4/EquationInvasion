@@ -131,20 +131,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 		String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
 		//text view label
-		TextView txtEquation = (TextView) findViewById(R.id.leftEquation);
-		TextView txtTimer = (TextView) findViewById(R.id.time);
-		TextView txtScore = (TextView) findViewById(R.id.scoreDisplay);
-		TextView txtAnswer = (TextView) findViewById(R.id.solution);
 		TextView txtEquals = (TextView) findViewById(R.id.equals);
 
 		//Load Font Face
 		Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
 
 		//Applying font
-		txtEquation.setTypeface(chalkboardFont);
-		txtTimer.setTypeface(chalkboardFont);
-		txtScore.setTypeface(chalkboardFont);
-		txtAnswer.setTypeface(chalkboardFont);
+		equation.setTypeface(chalkboardFont);
+		time.setTypeface(chalkboardFont);
+		scoreDisplay.setTypeface(chalkboardFont);
+		answer.setTypeface(chalkboardFont);
 		txtEquals.setTypeface(chalkboardFont);
 
 		//generating first equation
