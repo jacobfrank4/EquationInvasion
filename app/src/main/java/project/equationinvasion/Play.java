@@ -26,7 +26,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * -John
      */
     private ImageView first, second, third, fourth, fifth;
-    private Button pipChange;
     private int streak;
 
     /**
@@ -43,6 +42,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * Declaration for validation text Timer.
      */
     private CountDownTimer invisibleTimer;
+
+    /**
+     * Declaration for pip changer Timer
+     * When it hits 5 streak, it will briefly show then disappear
+     */
+    private CountDownTimer pipTimer;
+
     /**
      * Level Changer
      */
@@ -55,7 +61,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private int score = 0;
     private final int scoreIncrement = 100;
-    private Button scoreAdder;
     private TextView scoreDisplay;
 
     @Override
@@ -66,13 +71,29 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
          * Instantiating everything for streak counter
          * -John
          */
+        streak = -1;
         first = (ImageView) findViewById(R.id.imageView);
         second = (ImageView) findViewById(R.id.imageView2);
         third = (ImageView) findViewById(R.id.imageView3);
         fourth = (ImageView) findViewById(R.id.imageView4);
         fifth = (ImageView) findViewById(R.id.imageView5);
-        pipChange = (Button) findViewById(R.id.pipSwitch);
-        pipChange.setOnClickListener(this);
+        pipChanger();
+        pipTimer = new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFInished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                    first.setImageResource(R.drawable.streakpipoff);
+                    second.setImageResource(R.drawable.streakpipoff);
+                    third.setImageResource(R.drawable.streakpipoff);
+                    fourth.setImageResource(R.drawable.streakpipoff);
+                    fifth.setImageResource(R.drawable.streakpipoff);
+                    pipTimer.cancel();
+            }
+        };
         /**
          * Instantiating what I need for the timer
          */
@@ -106,10 +127,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         levelView = (TextView) findViewById(R.id.levelView);
 
         /**
-         * Adding score with button
+         * Adding score
          */
-        scoreAdder = (Button) findViewById(R.id.scoreAdder);
-        scoreAdder.setOnClickListener(this);
         scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
 
         /**
@@ -162,37 +181,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             }
             mathGen.generate(currentLevel);
             btnNoise();
-        } else if (view.getId() == pipChange.getId()) {
-            /**
-             * Switch statement utilizes fall-through to keep pips highlighted depending on the value
-             * of streak. There's a break to prevent it falling into the default case.
-             * Every pip is an ImageView with two images, an on and an off image.
-             * I switch them depending on whether or not they should be active for the current streak.
-             * Finally there's a simple if statement to keep streak looping from 0-5.
-             *
-             * -John
-             */
-            switch (streak) {
-                case 5:
-                    fifth.setImageResource(R.drawable.streakpipon);
-                case 4:
-                    fourth.setImageResource(R.drawable.streakpipon);
-                case 3:
-                    third.setImageResource(R.drawable.streakpipon);
-                case 2:
-                    second.setImageResource(R.drawable.streakpipon);
-                case 1:
-                    first.setImageResource(R.drawable.streakpipon);
-                    break;
-                default:
-                    first.setImageResource(R.drawable.streakpipoff);
-                    second.setImageResource(R.drawable.streakpipoff);
-                    third.setImageResource(R.drawable.streakpipoff);
-                    fourth.setImageResource(R.drawable.streakpipoff);
-                    fifth.setImageResource(R.drawable.streakpipoff);
-            }
-            streak++;
-            streak %= 6;
         } else if (view.getId() == addTime.getId()) {
             int secondsToAdd;
             if (running) {
@@ -201,10 +189,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 timer = new MyTimer(currentMilli + (secondsToAdd * 1000));
                 timer.start();
             }
-        } else if (view.getId() == levelChange.getId()) {
-            levelChanger();
-        } else if (view.getId() == scoreAdder.getId()) {
-            scoreCounter();
         }
     }
 
@@ -230,7 +214,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
          */
         @Override
         public void onFinish() {
-            time.setText("Ding fries are done!");
+            time.setText("Game Over");
         }
 
         /**
@@ -246,20 +230,81 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+    /**
+     * Moved on button click of add time to a method to call
+     *
+     * TO DO: remove button that adds time
+     */
+    private void addTime() {
+        int secondsToAdd;
+        if (running) {
+            timer.cancel();
+            secondsToAdd = 10;
+            timer = new MyTimer(currentMilli + (secondsToAdd * 1000));
+            timer.start();
+        }
+    }
+
+    /**
+     * Switch statement utilizes fall-through to keep pips highlighted depending on the value
+     * of streak. There's a break to prevent it falling into the default case.
+     * Every pip is an ImageView with two images, an on and an off image.
+     * I switch them depending on whether or not they should be active for the current streak.
+     * Finally there's a simple if statement to keep streak looping from 0-5.
+     *
+     * -John
+     *
+     * Moved down to it's own method so I can start integrating it into the app.
+     *
+     * -Chun
+     */
+
+    private void pipChanger() {
+        streak++;
+        switch (streak) {
+            case 5:
+                fifth.setImageResource(R.drawable.streakpipon);
+                pipTimer.start();
+                addTime();
+                streak = 0;
+            case 4:
+                fourth.setImageResource(R.drawable.streakpipon);
+            case 3:
+                third.setImageResource(R.drawable.streakpipon);
+            case 2:
+                second.setImageResource(R.drawable.streakpipon);
+            case 1:
+                first.setImageResource(R.drawable.streakpipon);
+                break;
+            default:
+                first.setImageResource(R.drawable.streakpipoff);
+                second.setImageResource(R.drawable.streakpipoff);
+                third.setImageResource(R.drawable.streakpipoff);
+                fourth.setImageResource(R.drawable.streakpipoff);
+                fifth.setImageResource(R.drawable.streakpipoff);
+        }
+        streak %= 6;
+    }
+
     //the method to be called for sound effects when a button is clicked.
     private void btnNoise() {
         MediaPlayer SE = MediaPlayer.create(Play.this, R.raw.btn1sound);
         SE.start();
     }
 
-    //method to change level on method call
+    /**
+     *
+     method to change level on method call
+     */
     private void levelChanger() {
-        if (currentLevel < 6) {
-            currentLevel++;
-        } else {
-            currentLevel = 1;
+        if(streak == 5) {
+            if (currentLevel < 6) {
+                currentLevel++;
+            } else {
+                currentLevel = 1;
+            }
+            levelView.setText("Level: " + currentLevel);
         }
-        levelView.setText("Level: " + currentLevel);
     }
 
     /**
@@ -292,8 +337,12 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(mathGen.getAnswer() == mathGen.getEquation()) {
             feedback.setText("Correct");
             scoreCounter();
+            pipChanger();
+            levelChanger();
         }else {
             feedback.setText("Wrong");
+            streak = -1;
+            pipChanger();
         }
         invisibleTimer.start();
     }
@@ -307,8 +356,12 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if(mathGen.getAnswer() != mathGen.getEquation()) {
             feedback.setText("Correct");
             scoreCounter();
+            pipChanger();
+            levelChanger();
         }else {
             feedback.setText("Wrong");
+            streak = -1;
+            pipChanger();
         }
         invisibleTimer.start();
     }
