@@ -75,15 +75,6 @@
         android:layout_alignParentEnd="false"
         android:layout_marginTop="30dp"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_time"
-        android:id="@+id/timeAdd"
-        android:layout_below="@+id/imageView5"
-        android:layout_toEndOf="@+id/imageView2"
-        android:layout_marginTop="41dp" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -140,15 +131,7 @@
         android:id="@+id/levelView"
         android:textColor="#ffffff"
         android:layout_alignEnd="@+id/scoreDisplay"
-        android:layout_below="@+id/timeAdd" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/level_changer_button"
-        android:id="@+id/levelChange"
-        android:layout_below="@+id/levelView"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/imageView5" />
 
     <TextView
         android:layout_width="wrap_content"

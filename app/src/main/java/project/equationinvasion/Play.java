@@ -36,7 +36,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     private long currentMilli = 0;
     private CountDownTimer timer;
     private TextView time;
-    private Button addTime;
 
     /**
      * Declaration for validation text Timer.
@@ -52,7 +51,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     /**
      * Level Changer
      */
-    private Button levelChange;
     private TextView levelView;
     private static int currentLevel = 1;
 
@@ -97,8 +95,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         /**
          * Instantiating what I need for the timer
          */
-        addTime = (Button) findViewById(R.id.timeAdd);
-        addTime.setOnClickListener(this);
         time = (TextView) findViewById(R.id.time);
         timer = new MyTimer(180000);
         timer.start();
@@ -122,8 +118,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         /**
          * Level System
          */
-        levelChange = (Button) findViewById(R.id.levelChange);
-        levelChange.setOnClickListener(this);
         levelView = (TextView) findViewById(R.id.levelView);
 
         /**
@@ -181,14 +175,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             }
             mathGen.generate(currentLevel);
             btnNoise();
-        } else if (view.getId() == addTime.getId()) {
-            int secondsToAdd;
-            if (running) {
-                timer.cancel();
-                secondsToAdd = 10;
-                timer = new MyTimer(currentMilli + (secondsToAdd * 1000));
-                timer.start();
-            }
         }
     }
 
@@ -232,8 +218,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     /**
      * Moved on button click of add time to a method to call
-     *
-     * TO DO: remove button that adds time
      */
     private void addTime() {
         int secondsToAdd;

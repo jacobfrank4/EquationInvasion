@@ -458,6 +458,9 @@ class EquationGenerator {
 		};
 	}
 
+	/**
+	 * Method for single operation: X + Y.
+	 */
 	private void add() {
 		int a, b;
 		if (currentLevel == 3) {
@@ -472,6 +475,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for two operations: X + Y + Z
+	 */
 	private void addAdd() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -481,6 +487,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for two operations: X + Y - Z
+	 */
 	private void addSubtract() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -490,6 +499,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for two operations: X + Y * Z
+	 */
 	private void addMultiply() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -499,6 +511,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for two operations: X + Y / Z
+	 */
 	private void addDivide() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -516,6 +531,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W + X + Y + Z
+	 */
 	private void addAddAdd() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -526,6 +544,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W + X + Y - Z
+	 */
 	private void addAddSubtract() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -536,6 +557,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W + X + Y / Z
+	 */
 	private void addAddDivide() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -554,6 +578,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W + X + Y * Z
+	 */
 	private void addAddMultiply() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -564,6 +591,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W + X - Y + Z
+	 */
 	private void addSubtractAdd() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -574,6 +604,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W + X - Y - Z
+	 */
 	private void addSubtractSubtract() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -584,6 +617,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W + X - Y / Z
+	 */
 	private void addSubtractDivide() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -602,6 +638,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W + X - Y * Z
+	 */
 	private void addSubtractMultiply() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -612,6 +651,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W + X / Y + Z
+	 */
 	private void addDivideAdd() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -630,6 +672,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W + X / Y - Z
+	 */
 	private void addDivideSubtract() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -648,6 +693,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W + X / Y / Z
+	 */
 	private void addDivideDivide() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -666,6 +714,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W + X / Y * Z
+	 */
 	private void addDivideMultiply() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -684,6 +735,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W + X * Y + Z
+	 */
 	private void addMultiplyAdd() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -694,6 +748,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W + X * Y - Z
+	 */
 	private void addMultiplySubtract() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -704,6 +761,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W + X * Y / Z
+	 */
 	private void addMultiplyDivide() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -722,6 +782,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W + X * Y * Z
+	 */
 	private void addMultiplyMultiply() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -732,6 +795,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for single operation: X - Y
+	 */
 	private void subtract() {
 		int a, b;
 		if (currentLevel == 3) {
@@ -746,6 +812,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for two operations: X - Y + Z
+	 */
 	private void subtractAdd() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -755,6 +824,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for two operations: X - Y - Z
+	 */
 	private void subtractSubtract() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -764,6 +836,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for two operations: X - Y * Z
+	 */
 	private void subtractMultiply() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -773,6 +848,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for two operations: X - Y / Z
+	 */
 	private void subtractDivide() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -790,6 +868,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W - X + Y + Z
+	 */
 	private void subtractAddAdd() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -800,6 +881,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W - X + Y - Z
+	 */
 	private void subtractAddSubtract() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -810,6 +894,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W - X + Y / Z
+	 */
 	private void subtractAddDivide() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -828,6 +915,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W - X + Y * Z
+	 */
 	private void subtractAddMultiply() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -838,6 +928,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W - X - Y + Z
+	 */
 	private void subtractSubtractAdd() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -848,6 +941,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W - X - Y - Z
+	 */
 	private void subtractSubtractSubtract() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -858,6 +954,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W - X - Y / Z
+	 */
 	private void subtractSubtractDivide() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -876,6 +975,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W - X - Y * Z
+	 */
 	private void subtractSubtractMultiply() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
@@ -886,6 +988,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W - X / Y + Z 
+	 */
 	private void subtractDivideAdd() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -904,6 +1009,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W - X / Y - Z 
+	 */
 	private void subtractDivideSubtract() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -922,6 +1030,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W - X / Y / Z 
+	 */
 	private void subtractDivideDivide() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -940,6 +1051,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W - X / Y * Z 
+	 */
 	private void subtractDivideMultiply() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -958,6 +1072,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W - X * Y + Z 
+	 */
 	private void subtractMultiplyAdd() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -968,6 +1085,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W - X * Y - Z 
+	 */
 	private void subtractMultiplySubtract() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -978,6 +1098,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W - X * Y / Z 
+	 */
 	private void subtractMultiplyDivide() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -996,6 +1119,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W - X * Y * Z 
+	 */
 	private void subtractMultiplyMultiply() {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
@@ -1006,6 +1132,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for two operations: X / Y
+	 */
 	private void divide() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1022,6 +1151,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for two operations: X / Y + Z 
+	 */
 	private void divideAdd() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1040,6 +1172,9 @@ class EquationGenerator {
 
 	}
 
+	/**
+	 * Method for two operations: X / Y - Z 
+	 */
 	private void divideSubtract() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1057,6 +1192,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for two operations: X / Y * Z 
+	 */
 	private void divideMultiply() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1074,6 +1212,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for two operations: X / Y / Z 
+	 */
 	private void divideDivide() {
 		int a = rand.nextInt(9) + 1;
 		int b = rand.nextInt(9) + 1;
@@ -1091,6 +1232,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X + Y + Z 
+	 */
 	private void divideAddAdd() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1109,6 +1253,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X + Y - Z 
+	 */
 	private void divideAddSubtract() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1127,6 +1274,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X + Y / Z 
+	 */
 	private void divideAddDivide() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1145,6 +1295,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X + Y * Z 
+	 */
 	private void divideAddMultiply() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1163,6 +1316,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X - Y + Z 
+	 */
 	private void divideSubtractAdd() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1181,6 +1337,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X - Y - Z 
+	 */
 	private void divideSubtractSubtract() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1199,6 +1358,10 @@ class EquationGenerator {
 		}
 	}
 
+
+	/**
+	 * Method for three operations: W / X - Y / Z 
+	 */
 	private void divideSubtractDivide() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1217,6 +1380,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X - Y * Z 
+	 */
 	private void divideSubtractMultiply() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1235,6 +1401,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X / Y + Z 
+	 */
 	private void divideDivideAdd() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1253,6 +1422,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X / Y - Z 
+	 */
 	private void divideDivideSubtract() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1271,6 +1443,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X / Y / Z 
+	 */
 	private void divideDivideDivide() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1289,6 +1464,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X / Y * Z 
+	 */
 	private void divideDivideMultiply() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1307,6 +1485,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X * Y + Z 
+	 */
 	private void divideMultiplyAdd() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1325,6 +1506,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X * Y - Z 
+	 */
 	private void divideMultiplySubtract() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1343,6 +1527,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X * Y / Z 
+	 */
 	private void divideMultiplyDivide() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1361,6 +1548,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W / X * Y * Z 
+	 */
 	private void divideMultiplyMultiply() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(9) + 1;
@@ -1379,6 +1569,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for single operations: X * Y
+	 */
 	private void multiply() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1387,6 +1580,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for two operations: X * Y + Z
+	 */
 	private void multiplyAdd() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1396,6 +1592,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for two operations: X * Y - Z
+	 */
 	private void multiplySubtract() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1405,6 +1604,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for two operations: X * Y / Z
+	 */
 	private void multiplyDivide() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1422,6 +1624,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for two operations: X * Y * Z
+	 */
 	private void multiplyMultiply() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1431,6 +1636,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W * X + Y + Z
+	 */
 	private void multiplyAddAdd() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1441,6 +1649,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W * X + Y - Z
+	 */
 	private void multiplyAddSubtract() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1451,6 +1662,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W * X + Y / Z
+	 */
 	private void multiplyAddDivide() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1469,6 +1683,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W * X + Y * Z
+	 */
 	private void multiplyAddMultiply() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1479,6 +1696,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W * X - Y + Z
+	 */
 	private void multiplySubtractAdd() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1489,6 +1709,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W * X - Y - Z
+	 */
 	private void multiplySubtractSubtract() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1499,6 +1722,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W * X - Y / Z
+	 */
 	private void multiplySubtractDivide() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1517,6 +1743,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W * X - Y * Z
+	 */
 	private void multiplySubtractMultiply() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1527,6 +1756,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W * X / Y + Z
+	 */
 	private void multiplyDivideAdd() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1545,6 +1777,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W * X / Y - Z
+	 */
 	private void multiplyDivideSubtract() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1563,6 +1798,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W * X / Y / Z
+	 */
 	private void multiplyDivideDivide() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1581,6 +1819,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W * X / Y * Z
+	 */
 	private void multiplyDivideMultiply() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1599,6 +1840,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W * X * Y + Z
+	 */
 	private void multiplyMultiplyAdd() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1609,6 +1853,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W * X * Y - Z
+	 */
 	private void multiplyMultiplySubtract() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1619,6 +1866,9 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 
+	/**
+	 * Method for three operations: W * X * Y / Z
+	 */
 	private void multiplyMultiplyDivide() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
@@ -1637,6 +1887,9 @@ class EquationGenerator {
 		}
 	}
 
+	/**
+	 * Method for three operations: W * X * Y * Z
+	 */
 	private void multiplyMultiplyMultiply() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
