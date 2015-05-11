@@ -7,6 +7,8 @@ import java.util.Random;
 public class EquationGenerator {
 
 	private static final Random rand = new Random();
+	public int expected;
+	public int displayed;
 
 	interface Equation {
 		void create();
@@ -16,6 +18,7 @@ public class EquationGenerator {
 	private TextView answer;
 	private int currentLevel;
 	private Equation[] equationGen;
+
 
 	public EquationGenerator() {
 		equation = Play.getEquationTextView();
@@ -464,7 +467,7 @@ public class EquationGenerator {
 			a = rand.nextInt(10);
 			b = rand.nextInt(10);
 		}
-		int expected = a + b;
+		expected = a + b;
 		equation.setText(a + " + " + b);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -473,7 +476,7 @@ public class EquationGenerator {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(100);
-		int expected = a + b + c;
+		expected = a + b + c;
 		equation.setText(a + " + " + b + " + " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -482,7 +485,7 @@ public class EquationGenerator {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(100);
-		int expected = a + b - c;
+		expected = a + b - c;
 		equation.setText(a + " + " + b + " - " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -491,7 +494,7 @@ public class EquationGenerator {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
-		int expected = a + b * c;
+		expected = a + b * c;
 		equation.setText(a + " + " + b + " * " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -502,7 +505,7 @@ public class EquationGenerator {
 		int c = rand.nextInt(10);
 		if (c != 0) {
 			if (b % c == 0) {
-				int expected = a + b / c;
+				expected = a + b / c;
 				equation.setText(a + " + " + b + " / " + c);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -518,7 +521,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(100);
 		int d = rand.nextInt(100);
-		int expected = a + b + c + d;
+		expected = a + b + c + d;
 		equation.setText(a + " + " + b + " + " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -528,7 +531,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(100);
 		int d = rand.nextInt(100);
-		int expected = a + b + c - d;
+		expected = a + b + c - d;
 		equation.setText(a + " + " + b + " + " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -540,7 +543,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (c != 0) {
 			if (c % d == 0) {
-				int expected = a + b + c / d;
+				expected = a + b + c / d;
 				equation.setText(a + " + " + b + " + " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -556,7 +559,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(10);
-		int expected = a + b + c * d;
+		expected = a + b + c * d;
 		equation.setText(a + " + " + b + " + " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -566,7 +569,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(100);
 		int d = rand.nextInt(100);
-		int expected = a + b - c + d;
+		expected = a + b - c + d;
 		equation.setText(a + " + " + b + " - " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -576,7 +579,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(100);
 		int d = rand.nextInt(100);
-		int expected = a + b - c - d;
+		expected = a + b - c - d;
 		equation.setText(a + " + " + b + " - " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -588,7 +591,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if (c % d == 0) {
-				int expected = a + b - c / d;
+				expected = a + b - c / d;
 				equation.setText(a + " + " + b + " - " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -604,7 +607,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(10);
-		int expected = a + b - c * d;
+		expected = a + b - c * d;
 		equation.setText(a + " + " + b + " - " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -616,7 +619,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (c != 0) {
 			if (b % c == 0) {
-				int expected = a + b / c + d;
+				expected = a + b / c + d;
 				equation.setText(a + " + " + b + " / " + c + " + " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -634,7 +637,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (c != 0) {
 			if (b % c == 0) {
-				int expected = a + b / c - d;
+				expected = a + b / c - d;
 				equation.setText(a + " + " + b + " / " + c + " - " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -652,7 +655,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (c != 0 && d != 0) {
 			if (b % c == 0 && (b / c) % d == 0) {
-				int expected = a + b / c / d;
+				expected = a + b / c / d;
 				equation.setText(a + " + " + b + " / " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -670,7 +673,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(10);
 		if (c != 0) {
 			if (b % c == 0) {
-				int expected = a + b / c * d;
+				expected = a + b / c * d;
 				equation.setText(a + " + " + b + " / " + c + " * " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -686,7 +689,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(100);
-		int expected = a + b * c + d;
+		expected = a + b * c + d;
 		equation.setText(a + " + " + b + " * " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -696,7 +699,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(100);
-		int expected = a + b * c - d;
+		expected = a + b * c - d;
 		equation.setText(a + " + " + b + " * " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -708,7 +711,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if ((b * c) % d == 0) {
-				int expected = a + b * c / d;
+				expected = a + b * c / d;
 				equation.setText(a + " + " + b + " * " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -724,7 +727,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(10);
-		int expected = a + b * c * d;
+		expected = a + b * c * d;
 		equation.setText(a + " + " + b + " * " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -738,7 +741,7 @@ public class EquationGenerator {
 			a = rand.nextInt(10);
 			b = rand.nextInt(10);
 		}
-		int expected = a - b;
+		expected = a - b;
 		equation.setText(a + " - " + b);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -747,7 +750,7 @@ public class EquationGenerator {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(100);
-		int expected = a - b + c;
+		expected = a - b + c;
 		equation.setText(a + " - " + b + " + " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -756,7 +759,7 @@ public class EquationGenerator {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(100);
-		int expected = a - b - c;
+		expected = a - b - c;
 		equation.setText(a + " - " + b + " - " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -765,7 +768,7 @@ public class EquationGenerator {
 		int a = rand.nextInt(100);
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
-		int expected = a - b * c;
+		expected = a - b * c;
 		equation.setText(a + " - " + b + " * " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -776,7 +779,7 @@ public class EquationGenerator {
 		int c = rand.nextInt(10);
 		if (c != 0) {
 			if (b % c == 0) {
-				int expected = a - b / c;
+				expected = a - b / c;
 				equation.setText(a + " - " + b + " / " + c);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -792,7 +795,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(100);
 		int d = rand.nextInt(100);
-		int expected = a - b + c + d;
+		expected = a - b + c + d;
 		equation.setText(a + " - " + b + " + " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -802,7 +805,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(100);
 		int d = rand.nextInt(100);
-		int expected = a - b + c - d;
+		expected = a - b + c - d;
 		equation.setText(a + " - " + b + " + " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -814,7 +817,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (c != 0) {
 			if (c % d == 0) {
-				int expected = a - b + c / d;
+				expected = a - b + c / d;
 				equation.setText(a + " - " + b + " + " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -830,7 +833,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(10);
-		int expected = a - b + c * d;
+		expected = a - b + c * d;
 		equation.setText(a + " - " + b + " + " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -840,7 +843,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(10);
-		int expected = a - b - c + d;
+		expected = a - b - c + d;
 		equation.setText(a + " - " + b + " - " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -850,7 +853,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(100);
 		int d = rand.nextInt(100);
-		int expected = a - b - c - d;
+		expected = a - b - c - d;
 		equation.setText(a + " - " + b + " - " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -862,7 +865,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if (c % d == 0) {
-				int expected = a - b - c / d;
+				expected = a - b - c / d;
 				equation.setText(a + " - " + b + " - " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -878,7 +881,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(100);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(10);
-		int expected = a - b - c * d;
+		expected = a - b - c * d;
 		equation.setText(a + " - " + b + " - " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -890,7 +893,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (c != 0) {
 			if (b % c == 0) {
-				int expected = a - b / c + d;
+				expected = a - b / c + d;
 				equation.setText(a + " - " + b + " / " + c + " + " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -908,7 +911,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (c != 0) {
 			if (b % c == 0) {
-				int expected = a - b / c - d;
+				expected = a - b / c - d;
 				equation.setText(a + " - " + b + " / " + c + " - " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -926,7 +929,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (c != 0 && d != 0) {
 			if (b % c == 0 && (b / c) % d == 0) {
-				int expected = a - b / c / d;
+				expected = a - b / c / d;
 				equation.setText(a + " - " + b + " / " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -944,7 +947,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(10);
 		if (c != 0) {
 			if (b % c == 0) {
-				int expected = a - b / c * d;
+				expected = a - b / c * d;
 				equation.setText(a + " - " + b + " / " + c + " * " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -960,7 +963,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(100);
-		int expected = a - b * c + d;
+		expected = a - b * c + d;
 		equation.setText(a + " - " + b + " * " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -970,7 +973,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(100);
-		int expected = a - b * c - d;
+		expected = a - b * c - d;
 		equation.setText(a + " - " + b + " * " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -982,7 +985,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if ((b * c) % d == 0) {
-				int expected = a - b * c / d;
+				expected = a - b * c / d;
 				equation.setText(a + " - " + b + " * " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -998,7 +1001,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(10);
-		int expected = a - b * c * d;
+		expected = a - b * c * d;
 		equation.setText(a + " - " + b + " * " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1008,7 +1011,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(9) + 1;
 		if (b != 0) {
 			if (a % b == 0) {
-				int expected = a / b;
+				expected = a / b;
 				equation.setText(a + " / " + b);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1025,7 +1028,7 @@ public class EquationGenerator {
 		int c = rand.nextInt(100);
 		if (b != 0) {
 			if (a % b == 0) {
-				int expected = a / b + c;
+				expected = a / b + c;
 				equation.setText(a + " / " + b + " + " + c);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1043,7 +1046,7 @@ public class EquationGenerator {
 		int c = rand.nextInt(100);
 		if (b != 0) {
 			if (a % b == 0) {
-				int expected = a / b - c;
+				expected = a / b - c;
 				equation.setText(a + " / " + b + " - " + c);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1060,7 +1063,7 @@ public class EquationGenerator {
 		int c = rand.nextInt(10);
 		if (b != 0) {
 			if (a % b == 0) {
-				int expected = a / b * c;
+				expected = a / b * c;
 				equation.setText(a + " / " + b + " * " + c);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1077,7 +1080,7 @@ public class EquationGenerator {
 		int c = rand.nextInt(9) + 1;
 		if (b != 0 && c != 0) {
 			if (a % b == 0 && (a / b) % c == 0) {
-				int expected = a / b / c;
+				expected = a / b / c;
 				equation.setText(a + " / " + b + " / " + c);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1095,7 +1098,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (b != 0) {
 			if (a % b == 0) {
-				int expected = a / b + c + d;
+				expected = a / b + c + d;
 				equation.setText(a + " / " + b + " + " + c + " + " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1113,7 +1116,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (b != 0) {
 			if (a % b == 0) {
-				int expected = a / b + c - d;
+				expected = a / b + c - d;
 				equation.setText(a + " / " + b + " + " + c + " - " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1131,7 +1134,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (b != 0 && d != 0) {
 			if (a % b == 0 && c % d == 0) {
-				int expected = a / b + c / d;
+				expected = a / b + c / d;
 				equation.setText(a + " / " + b + " + " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1149,7 +1152,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(10);
 		if (b != 0) {
 			if (a % b == 0) {
-				int expected = a / b + c * d;
+				expected = a / b + c * d;
 				equation.setText(a + " / " + b + " + " + c + " * " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1167,7 +1170,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (b != 0) {
 			if (a % b == 0) {
-				int expected = a / b - c + d;
+				expected = a / b - c + d;
 				equation.setText(a + " / " + b + " - " + c + " + " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1185,7 +1188,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (b != 0) {
 			if (a % b == 0) {
-				int expected = a / b - c - d;
+				expected = a / b - c - d;
 				equation.setText(a + " / " + b + " - " + c + " - " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1203,7 +1206,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (b != 0 && d != 0) {
 			if (a % b == 0 && c % d == 0) {
-				int expected = a / b - c / d;
+				expected = a / b - c / d;
 				equation.setText(a + " / " + b + " - " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1221,7 +1224,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(10);
 		if (b != 0) {
 			if (a % b == 0) {
-				int expected = a / b - c * d;
+				expected = a / b - c * d;
 				equation.setText(a + " / " + b + " - " + c + " * " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1239,7 +1242,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (b != 0 && c != 0) {
 			if (a % b == 0 && (a / b) % c == 0) {
-				int expected = a / b / c + d;
+				expected = a / b / c + d;
 				equation.setText(a + " / " + b + " / " + c + " + " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1257,7 +1260,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (b != 0 && c != 0) {
 			if (a % b == 0 && (a / b) % c == 0) {
-				int expected = a / b / c - d;
+				expected = a / b / c - d;
 				equation.setText(a + " / " + b + " / " + c + " - " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1275,7 +1278,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (b != 0 && c != 0 && d != 0) {
 			if (a % b == 0 && (a / b) % c == 0 && (a / b / c) % d == 0) {
-				int expected = a / b / c / d;
+				expected = a / b / c / d;
 				equation.setText(a + " / " + b + " / " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1293,7 +1296,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(10);
 		if (b != 0 && c != 0) {
 			if (a % b == 0 && (a / b) % c == 0) {
-				int expected = a / b / c * d;
+				expected = a / b / c * d;
 				equation.setText(a + " / " + b + " / " + c + " * " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1311,7 +1314,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (b != 0) {
 			if (a % b == 0) {
-				int expected = a / b * c + d;
+				expected = a / b * c + d;
 				equation.setText(a + " / " + b + " * " + c + " + " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1329,7 +1332,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (b != 0) {
 			if (a % b == 0) {
-				int expected = a / b * c - d;
+				expected = a / b * c - d;
 				equation.setText(a + " / " + b + " * " + c + " - " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1347,7 +1350,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (b != 0 && d != 0) {
 			if (a % b == 0 && (a / b * c) % d == 0) {
-				int expected = a / b * c / d;
+				expected = a / b * c / d;
 				equation.setText(a + " / " + b + " * " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1365,7 +1368,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(10);
 		if (b != 0) {
 			if (a % b == 0) {
-				int expected = a / b * c * d;
+				expected = a / b * c * d;
 				equation.setText(a + " / " + b + " * " + c + " * " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1379,7 +1382,7 @@ public class EquationGenerator {
 	private void multiply() {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
-		int expected = a * b;
+		expected = a * b;
 		equation.setText(a + " * " + b);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1388,7 +1391,7 @@ public class EquationGenerator {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(100);
-		int expected = a * b + c;
+		expected = a * b + c;
 		equation.setText(a + " * " + b + " + " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1397,7 +1400,7 @@ public class EquationGenerator {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(100);
-		int expected = a * b - c;
+		expected = a * b - c;
 		equation.setText(a + " * " + b + " - " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1408,7 +1411,7 @@ public class EquationGenerator {
 		int c = rand.nextInt(9) + 1;
 		if (c != 0) {
 			if ((a * b) % c == 0) {
-				int expected = a * b / c;
+				expected = a * b / c;
 				equation.setText(a + " * " + b + " / " + c);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1423,7 +1426,7 @@ public class EquationGenerator {
 		int a = rand.nextInt(10);
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
-		int expected = a * b * c;
+		expected = a * b * c;
 		equation.setText(a + " * " + b + " * " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1433,7 +1436,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(100);
 		int d = rand.nextInt(100);
-		int expected = a * b + c + d;
+		expected = a * b + c + d;
 		equation.setText(a + " * " + b + " + " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1443,7 +1446,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(100);
 		int d = rand.nextInt(100);
-		int expected = a * b + c - d;
+		expected = a * b + c - d;
 		equation.setText(a + " * " + b + " + " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1455,7 +1458,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if (c % d == 0) {
-				int expected = a * b + c / d;
+				expected = a * b + c / d;
 				equation.setText(a + " * " + b + " + " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1471,7 +1474,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(10);
-		int expected = a * b + c * d;
+		expected = a * b + c * d;
 		equation.setText(a + " * " + b + " + " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1481,7 +1484,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(100);
 		int d = rand.nextInt(100);
-		int expected = a * b - c + d;
+		expected = a * b - c + d;
 		equation.setText(a + " * " + b + " - " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1491,7 +1494,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(100);
 		int d = rand.nextInt(100);
-		int expected = a * b - c - d;
+		expected = a * b - c - d;
 		equation.setText(a + " * " + b + " - " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1503,7 +1506,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if (c % d == 0) {
-				int expected = a * b - c / d;
+				expected = a * b - c / d;
 				equation.setText(a + " * " + b + " - " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1519,7 +1522,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(10);
-		int expected = a * b - c * d;
+		expected = a * b - c * d;
 		equation.setText(a + " * " + b + " - " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1531,7 +1534,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (c != 0) {
 			if ((a * b) % c == 0) {
-				int expected = a * b / c + d;
+				expected = a * b / c + d;
 				equation.setText(a + " * " + b + " / " + c + " + " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1549,7 +1552,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(100);
 		if (c != 0) {
 			if ((a * b) % c == 0) {
-				int expected = a * b / c - d;
+				expected = a * b / c - d;
 				equation.setText(a + " * " + b + " / " + c + " - " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1567,7 +1570,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (c != 0 && d != 0) {
 			if ((a * b) % c == 0 && (a * b / c) % d == 0) {
-				int expected = a * b / c / d;
+				expected = a * b / c / d;
 				equation.setText(a + " * " + b + " / " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1585,7 +1588,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(10);
 		if (c != 0) {
 			if ((a * b) % c == 0) {
-				int expected = a * b / c * d;
+				expected = a * b / c * d;
 				equation.setText(a + " * " + b + " / " + c + " * " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1601,7 +1604,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(100);
-		int expected = a * b * c + d;
+		expected = a * b * c + d;
 		equation.setText(a + " * " + b + " * " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1611,7 +1614,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(100);
-		int expected = a * b * c - d;
+		expected = a * b * c - d;
 		equation.setText(a + " * " + b + " * " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1623,7 +1626,7 @@ public class EquationGenerator {
 		int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if ((a * b * c) % d == 0) {
-				int expected = a * b * c / d;
+				expected = a * b * c / d;
 				equation.setText(a + " * " + b + " * " + c + " / " + d);
 				answer.setText(String.valueOf(answerGen(expected)));
 			} else {
@@ -1639,7 +1642,7 @@ public class EquationGenerator {
 		int b = rand.nextInt(10);
 		int c = rand.nextInt(10);
 		int d = rand.nextInt(10);
-		int expected = a * b * c * d;
+		expected = a * b * c * d;
 		equation.setText(a + " * " + b + " * " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
@@ -1654,7 +1657,6 @@ public class EquationGenerator {
 	 */
 	private int answerGen(int answer) {
 		int wrong;
-		int displayed;
 		boolean correctAnswerShown = rand.nextBoolean();  // True or False Decision
 
 		if (answer >= -10 && answer <= 10) {
@@ -1752,5 +1754,13 @@ public class EquationGenerator {
 				break;
 		}
 		equationGen[index].create();
+	}
+
+	public int getEquation() {
+		return expected;
+	}
+
+	public int getAnswer() {
+		return displayed;
 	}
 }

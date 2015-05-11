@@ -127,6 +127,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         txtScore.setTypeface(chalkboardFont);
         txtAnswer.setTypeface(chalkboardFont);
         txtEquals.setTypeface(chalkboardFont);
+
+        //generating first equation
+        mathGen.generate(currentLevel);
     }
 
 
@@ -264,13 +267,22 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * validation for the truth button
      */
     private void truthChecker() {
-        feedback.setText("HELLO");
+        if(mathGen.getAnswer() == mathGen.getEquation()) {
+            feedback.setText("Correct");
+        }else {
+            feedback.setText("Wrong");
+        }
     }
 
     /**
      * validation for the false button
      */
     private void falseChecker() {
-        feedback.setText("HELLO");
+        if(mathGen.getAnswer() != mathGen.getEquation()) {
+            feedback.setText("Correct");
+        }else {
+            feedback.setText("Wrong");
+        }
     }
 }
+
