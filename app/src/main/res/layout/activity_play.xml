@@ -128,7 +128,7 @@
         android:id="@+id/trueBtn"
         android:background="@drawable/truebutton"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/equals"
+        android:layout_toStartOf="@+id/feedback"
         android:layout_alignTop="@+id/falseBtn" />
 
     <Button
@@ -189,6 +189,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/feedback"
+        android:layout_below="@+id/solution"
         android:layout_alignBottom="@+id/feedback2"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
