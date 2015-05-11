@@ -1,5 +1,6 @@
 package project.equationinvasion;
 
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -8,9 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.graphics.Typeface;
 
-import java.util.Random;
 import java.text.DecimalFormat;
 
 public class Play extends AppCompatActivity implements View.OnClickListener {
@@ -18,7 +17,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 	private static TextView equation;
 	private static TextView answer;
 	private ImageView feedback;
-	private static final Random rand = new Random();
 	private static EquationGenerator mathGen;
 
 	/**
@@ -131,20 +129,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 		String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
 		//text view label
-		TextView txtEquation = (TextView) findViewById(R.id.leftEquation);
-		TextView txtTimer = (TextView) findViewById(R.id.time);
-		TextView txtScore = (TextView) findViewById(R.id.scoreDisplay);
-		TextView txtAnswer = (TextView) findViewById(R.id.solution);
 		TextView txtEquals = (TextView) findViewById(R.id.equals);
 
 		//Load Font Face
-		Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
+		Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
 
 		//Applying font
-		txtEquation.setTypeface(chalkboardFont);
-		txtTimer.setTypeface(chalkboardFont);
-		txtScore.setTypeface(chalkboardFont);
-		txtAnswer.setTypeface(chalkboardFont);
+		equation.setTypeface(chalkboardFont);
+		time.setTypeface(chalkboardFont);
+		scoreDisplay.setTypeface(chalkboardFont);
+		answer.setTypeface(chalkboardFont);
 		txtEquals.setTypeface(chalkboardFont);
 
 		//generating first equation
@@ -157,7 +151,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 		if (view.getId() == R.id.trueBtn || view.getId() == R.id.falseBtn) {
 			if (view.getId() == R.id.trueBtn) {
 				truthChecker();
-			} else if (view.getId() == R.id.falseBtn) {
+			} else {
 				falseChecker();
 			}
 			mathGen.generate(currentLevel);
@@ -289,10 +283,10 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 	private void truthChecker() {
 		feedback.setVisibility(View.VISIBLE);
 		invisibleTimer.cancel();
-		if(mathGen.getAnswer() == mathGen.getEquation()) {
+		if (mathGen.getAnswer() == mathGen.getEquation()) {
 			feedback.setImageResource(R.drawable.checkmark);
 			scoreCounter();
-		}else {
+		} else {
 			feedback.setImageResource(R.drawable.x);
 		}
 		invisibleTimer.start();
@@ -304,10 +298,10 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 	private void falseChecker() {
 		feedback.setVisibility(View.VISIBLE);
 		invisibleTimer.cancel();
-		if(mathGen.getAnswer() != mathGen.getEquation()) {
+		if (mathGen.getAnswer() != mathGen.getEquation()) {
 			feedback.setImageResource(R.drawable.checkmark);
 			scoreCounter();
-		}else {
+		} else {
 			feedback.setImageResource(R.drawable.x);
 		}
 		invisibleTimer.start();
