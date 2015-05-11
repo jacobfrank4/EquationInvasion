@@ -45,7 +45,7 @@
         android:text="Contributors"
         android:id="@+id/contributorHeader"
         android:textColor="#ffffffff"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textIsSelectable="true"
         android:layout_marginTop="50dp"
         android:layout_below="@+id/devList"

@@ -64,7 +64,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:textColor="#ffffff"
-        android:editable="false"
         android:textSize="65sp"
         android:textIsSelectable="true"
         android:gravity="center" />
