@@ -17,7 +17,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     private static TextView equation;
     private static TextView answer;
-    private TextView feedback;
+    private ImageView feedback;
     private static final Random rand = new Random();
     private static EquationGenerator mathGen;
 
@@ -141,7 +141,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         equation = (TextView) findViewById(R.id.leftEquation);
         answer = (TextView) findViewById(R.id.solution);
         mathGen = new EquationGenerator();
-        feedback = (TextView) findViewById(R.id.feedback);
+        feedback = (ImageView) findViewById(R.id.feedback);
 
         /**
          * Setting font style
@@ -335,11 +335,12 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         feedback.setVisibility(View.VISIBLE);
         invisibleTimer.cancel();
         if(mathGen.getAnswer() == mathGen.getEquation()) {
-            feedback.setText("Correct");
+            feedback.setImageResource(R.drawable.checkmark);
             scoreCounter();
             pipChanger();
             levelChanger();
         }else {
+            feedback.setImageResource(R.drawable.x);
             feedback.setText("Wrong");
             streak = -1;
             pipChanger();
@@ -354,7 +355,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         feedback.setVisibility(View.VISIBLE);
         invisibleTimer.cancel();
         if(mathGen.getAnswer() != mathGen.getEquation()) {
-            feedback.setText("Correct");
+            feedback.setImageResource(R.drawable.checkmark);
             scoreCounter();
             pipChanger();
             levelChanger();
@@ -362,6 +363,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             feedback.setText("Wrong");
             streak = -1;
             pipChanger();
+            feedback.setImageResource(R.drawable.x);
         }
         invisibleTimer.start();
     }
