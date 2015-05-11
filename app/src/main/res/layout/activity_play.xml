@@ -138,7 +138,7 @@
         android:background="@drawable/falsebutton"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/equals"
-        android:layout_below="@+id/feedback2" />
+        android:layout_below="@+id/feedback" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -189,6 +189,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/feedback"
-        android:layout_below="@+id/solution"
+        android:layout_above="@+id/trueBtn"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
