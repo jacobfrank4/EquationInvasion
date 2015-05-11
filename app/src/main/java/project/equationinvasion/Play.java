@@ -86,7 +86,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 		/**
 		 * Instantiating the validation timer.
 		 */
-		invisibleTimer = new CountDownTimer(2000, 1000) {
+		invisibleTimer = new CountDownTimer(250, 1000) {
 			@Override
 			public void onTick(long millisUntilFinished) {
 
