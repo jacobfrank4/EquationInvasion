@@ -266,6 +266,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 fifth.setImageResource(R.drawable.streakpipon);
                 pipTimer.start();
                 addTime();
+                levelChanger();
                 streak = 0;
             case 4:
                 fourth.setImageResource(R.drawable.streakpipon);
@@ -297,14 +298,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      method to change level on method call
      */
     private void levelChanger() {
-        if(streak == 5) {
             if (currentLevel < 6) {
                 currentLevel++;
             } else {
                 currentLevel = 1;
             }
             levelView.setText("Level: " + currentLevel);
-        }
+
     }
 
     /**
@@ -338,10 +338,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             feedback.setImageResource(R.drawable.checkmark);
             scoreCounter();
             pipChanger();
-            levelChanger();
         }else {
             feedback.setImageResource(R.drawable.x);
-            feedback.setText("Wrong");
             streak = -1;
             pipChanger();
         }
@@ -358,12 +356,10 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             feedback.setImageResource(R.drawable.checkmark);
             scoreCounter();
             pipChanger();
-            levelChanger();
         }else {
-            feedback.setText("Wrong");
+            feedback.setImageResource(R.drawable.x);
             streak = -1;
             pipChanger();
-            feedback.setImageResource(R.drawable.x);
         }
         invisibleTimer.start();
     }
