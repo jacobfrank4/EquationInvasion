@@ -40,6 +40,10 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     private Button addTime;
 
     /**
+     * Declaration for validation text Timer.
+     */
+    private CountDownTimer invisibleTimer;
+    /**
      * Level Changer
      */
     private Button levelChange;
@@ -78,6 +82,21 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         timer = new MyTimer(180000);
         timer.start();
         running = true;
+
+        /**
+         * Instantiating the validation timer.
+         */
+        invisibleTimer = new CountDownTimer(2000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                feedback.setVisibility(View.INVISIBLE);
+            }
+        };
 
         /**
          * Level System
@@ -233,6 +252,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         SE.start();
     }
 
+    //method to change level on method call
     private void levelChanger() {
         if (currentLevel < 6) {
             currentLevel++;
@@ -267,22 +287,30 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * validation for the truth button
      */
     private void truthChecker() {
+        feedback.setVisibility(View.VISIBLE);
+        invisibleTimer.cancel();
         if(mathGen.getAnswer() == mathGen.getEquation()) {
             feedback.setText("Correct");
+            scoreCounter();
         }else {
             feedback.setText("Wrong");
         }
+        invisibleTimer.start();
     }
 
     /**
      * validation for the false button
      */
     private void falseChecker() {
+        feedback.setVisibility(View.VISIBLE);
+        invisibleTimer.cancel();
         if(mathGen.getAnswer() != mathGen.getEquation()) {
             feedback.setText("Correct");
+            scoreCounter();
         }else {
             feedback.setText("Wrong");
         }
+        invisibleTimer.start();
     }
 }
 
