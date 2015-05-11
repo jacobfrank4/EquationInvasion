@@ -4,20 +4,20 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-public class EquationGenerator {
+class EquationGenerator {
 
 	private static final Random rand = new Random();
-	public int expected;
-	public int displayed;
+	private int expected;
+	private int displayed;
 
 	interface Equation {
 		void create();
 	}
 
-	private TextView equation;
-	private TextView answer;
+	private final TextView equation;
+	private final TextView answer;
 	private int currentLevel;
-	private Equation[] equationGen;
+	private final Equation[] equationGen;
 
 
 	public EquationGenerator() {
