@@ -18,14 +18,21 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * Declaration for the textView that displays the equation.
      */
     private static TextView equation;
+
     /**
      * Declaration for the textView that displays the possible answer
      */
     private static TextView answer;
+
     /**
      * Declaration for the display that either shows a check mark or X after answering
      */
     private ImageView feedback;
+    /**
+     * Declaration for the display that lets the user know 10 seconds have been added to the time
+     */
+    private ImageView addTime;
+
     /**
      * Declaration for the generator in EquationGenerator class
      */
@@ -57,6 +64,11 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * When it hits 5 streak, it will briefly show then disappear
      */
     private CountDownTimer pipTimer;
+
+    /**
+     * Timer for +10 visual.
+     */
+    private CountDownTimer addTimeTimer;
 
     /**
      * Level Changer
@@ -113,7 +125,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         /**
          * Instantiating the validation timer.
          */
-        invisibleTimer = new CountDownTimer(2000, 1000) {
+        invisibleTimer = new CountDownTimer(250, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -122,6 +134,18 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onFinish() {
                 feedback.setVisibility(View.INVISIBLE);
+            }
+        };
+
+        addTimeTimer = new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                addTime.setVisibility(View.INVISIBLE);
             }
         };
 
@@ -146,6 +170,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         answer = (TextView) findViewById(R.id.solution);
         mathGen = new EquationGenerator();
         feedback = (ImageView) findViewById(R.id.feedback);
+        addTime = (ImageView) findViewById(R.id.addTime);
 
         /**
          * Setting font style
@@ -250,13 +275,18 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
 
     private void pipChanger() {
+
         switch (streak) {
             case 5:
+                addTime.setVisibility(View.VISIBLE);
+                addTimeTimer.cancel();
                 fifth.setImageResource(R.drawable.streakpipon);
                 pipTimer.start();
+                addTime.setImageResource(R.drawable.plusten);
                 addTime();
                 levelChanger();
                 streak = 0;
+                addTimeTimer.start();
             case 4:
                 fourth.setImageResource(R.drawable.streakpipon);
             case 3:
