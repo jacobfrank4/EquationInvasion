@@ -276,7 +276,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
 
     private void pipChanger() {
-        streak++;
         switch (streak) {
             case 5:
                 addTime.setVisibility(View.VISIBLE);
@@ -304,6 +303,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 fourth.setImageResource(R.drawable.streakpipoff);
                 fifth.setImageResource(R.drawable.streakpipoff);
         }
+        streak++;
         streak %= 6;
     }
 
@@ -374,7 +374,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             pipChanger();
         }else {
             feedback.setImageResource(R.drawable.x);
-            streak = -1;
+            streak = 0;
             pipChanger();
         }
         invisibleTimer.start();
@@ -403,7 +403,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             pipChanger();
         }else {
             feedback.setImageResource(R.drawable.x);
-            streak = -1;
+            streak = 0;
             pipChanger();
         }
         invisibleTimer.start();
