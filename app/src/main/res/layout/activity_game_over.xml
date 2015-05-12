@@ -12,7 +12,7 @@
         android:layout_height="80dp"
         android:id="@+id/play"
         android:onClick="goToPlay"
-        android:background="@drawable/playbutton"
+        android:background="@drawable/playagainbutton"
         android:layout_above="@+id/highScore"
         android:layout_centerHorizontal="true" />
 
