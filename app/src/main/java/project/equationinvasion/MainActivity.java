@@ -1,20 +1,17 @@
 package project.equationinvasion;
 
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.content.Intent;
-import android.graphics.Typeface;
 import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
 
-
     public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
-
-
 
     /**
      * Declarations for audio functionality
@@ -89,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
         SE.start();
     }
 
-    /*
-        This method crates the background music, and limits it to one
-        copy so that it doesn't recreate itself
-        when switching pages.
+    /**
+     * This method crates the background music, and limits it to one
+     * copy so that it doesn't recreate itself
+     * when switching pages.
      */
     private void backgroundMusic(){
         if (!playing)

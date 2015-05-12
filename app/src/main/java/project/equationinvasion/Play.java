@@ -1,5 +1,6 @@
 package project.equationinvasion;
 
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -8,9 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.graphics.Typeface;
 
-import java.util.Random;
 import java.text.DecimalFormat;
 
 public class Play extends AppCompatActivity implements View.OnClickListener {
@@ -18,7 +17,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     private static TextView equation;
     private static TextView answer;
     private ImageView feedback;
-    private static final Random rand = new Random();
     private static EquationGenerator mathGen;
 
     /**
@@ -58,7 +56,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * Score tracking
      */
     private int score = 0;
-    private final int scoreIncrement = 100;
     private TextView scoreDisplay;
 
     @Override
@@ -69,7 +66,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
          * Instantiating everything for streak counter
          * -John
          */
-        streak = -1;
+        streak = 0;
         first = (ImageView) findViewById(R.id.imageView);
         second = (ImageView) findViewById(R.id.imageView2);
         third = (ImageView) findViewById(R.id.imageView3);
@@ -78,18 +75,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         pipChanger();
         pipTimer = new CountDownTimer(1000, 1000) {
             @Override
-            public void onTick(long millisUntilFInished) {
-
-            }
+            public void onTick(long millisUntilFinished) {}
 
             @Override
             public void onFinish() {
-                    first.setImageResource(R.drawable.streakpipoff);
-                    second.setImageResource(R.drawable.streakpipoff);
-                    third.setImageResource(R.drawable.streakpipoff);
-                    fourth.setImageResource(R.drawable.streakpipoff);
-                    fifth.setImageResource(R.drawable.streakpipoff);
-                    pipTimer.cancel();
+                first.setImageResource(R.drawable.streakpipoff);
+                second.setImageResource(R.drawable.streakpipoff);
+                third.setImageResource(R.drawable.streakpipoff);
+                fourth.setImageResource(R.drawable.streakpipoff);
+                fifth.setImageResource(R.drawable.streakpipoff);
+                pipTimer.cancel();
             }
         };
         /**
@@ -144,20 +139,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
         //text view label
-        TextView txtEquation = (TextView) findViewById(R.id.leftEquation);
-        TextView txtTimer = (TextView) findViewById(R.id.time);
-        TextView txtScore = (TextView) findViewById(R.id.scoreDisplay);
-        TextView txtAnswer = (TextView) findViewById(R.id.solution);
         TextView txtEquals = (TextView) findViewById(R.id.equals);
 
         //Load Font Face
         Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
 
         //Applying font
-        txtEquation.setTypeface(chalkboardFont);
-        txtTimer.setTypeface(chalkboardFont);
-        txtScore.setTypeface(chalkboardFont);
-        txtAnswer.setTypeface(chalkboardFont);
+        equation.setTypeface(chalkboardFont);
+        time.setTypeface(chalkboardFont);
+        scoreDisplay.setTypeface(chalkboardFont);
+        answer.setTypeface(chalkboardFont);
         txtEquals.setTypeface(chalkboardFont);
 
         //generating first equation
@@ -170,7 +161,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if (view.getId() == R.id.trueBtn || view.getId() == R.id.falseBtn) {
             if (view.getId() == R.id.trueBtn) {
                 truthChecker();
-            } else if (view.getId() == R.id.falseBtn) {
+            } else {
                 falseChecker();
             }
             mathGen.generate(currentLevel);
@@ -244,7 +235,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
 
     private void pipChanger() {
-        streak++;
         switch (streak) {
             case 5:
                 fifth.setImageResource(R.drawable.streakpipon);
@@ -268,6 +258,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 fourth.setImageResource(R.drawable.streakpipoff);
                 fifth.setImageResource(R.drawable.streakpipoff);
         }
+		streak++;
         streak %= 6;
     }
 
@@ -282,12 +273,12 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      method to change level on method call
      */
     private void levelChanger() {
-            if (currentLevel < 6) {
-                currentLevel++;
-            } else {
-                currentLevel = 1;
-            }
-            levelView.setText("Level: " + currentLevel);
+		if (currentLevel < 6) {
+			currentLevel++;
+		} else {
+			currentLevel = 1;
+		}
+		levelView.setText("Level: " + currentLevel);
 
     }
 
@@ -296,7 +287,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private void scoreCounter() {
         int scoreIncrement = 100;
-        score += scoreIncrement;
+        score += (scoreIncrement * currentLevel);
         scoreDisplay.setText("Score: " + score);
     }
 
@@ -324,8 +315,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             pipChanger();
         }else {
             feedback.setImageResource(R.drawable.x);
-            streak = -1;
-            pipChanger();
+            streak = 0;
+			pipChanger();
         }
         invisibleTimer.start();
     }
@@ -342,8 +333,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             pipChanger();
         }else {
             feedback.setImageResource(R.drawable.x);
-            streak = -1;
-            pipChanger();
+            streak = 0;
+			pipChanger();
         }
         invisibleTimer.start();
     }
