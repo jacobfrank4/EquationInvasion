@@ -1,5 +1,21 @@
 package project.equationinvasion;
 
+/**
+ * Copyright 2015 Avium Studios
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
@@ -132,16 +148,38 @@ public class MainActivity extends FragmentActivity
 
 	@Override
 	public void onConnected(Bundle bundle) {
+		Player player = Games.Players.getCurrentPlayer(googleApiClient);
+		String playername;
+		if (player == null) {
+			playername = "???";
+		} else {
+			playername = player.getDisplayName();
+		}
 
 	}
 
 	@Override
 	public void onConnectionSuspended(int i) {
+		googleApiClient.connect();
 
 	}
 
 	@Override
 	public void onConnectionFailed(ConnectionResult connectionResult) {
+		if (resolvingConnectionFailure) {
+			return;
+		}
+
+//		if (signInClicked || autoStartSignInFlow) {
+//			autoStartSignInFlow = false;
+//			signInClicked = false;
+//			resolvingConnectionFailure = true;
+//			if (!BaseGameUtils.resolveConnectionFailure(this, googleApiClient, connectionResult,
+//					RC_SIGN_IN, getString(R.string.signin_other_error))) {
+//				resolvingConnectionFailure = false;
+//			}
+//		}
+
 
 	}
 
