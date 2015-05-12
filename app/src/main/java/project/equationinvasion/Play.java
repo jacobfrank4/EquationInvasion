@@ -62,7 +62,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * Level Changer
      */
     private TextView levelView;
-    private static int currentLevel = 1;
+    private static int currentLevel;
 
     /**
      * Score tracking
@@ -132,6 +132,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
          * Level System
          */
         levelView = (TextView) findViewById(R.id.levelView);
+        currentLevel = 1;
 
         /**
          * Adding score
@@ -293,8 +294,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     private void levelChanger() {
             if (currentLevel < 6) {
                 currentLevel++;
-            } else {
-                currentLevel = 1;
             }
             levelView.setText("Level: " + currentLevel);
 
