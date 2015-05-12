@@ -1,104 +1,185 @@
 package project.equationinvasion;
 
+/**
+ * Copyright 2015 Avium Studios
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
+import com.google.android.gms.games.Player;
+import com.google.android.gms.plus.Plus;
 
-    public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
 
-    /**
-     * Declarations for audio functionality
-     * -Matt
-     */
-    protected Audio noise;
+public class MainActivity extends FragmentActivity
+		implements GoogleApiClient.ConnectionCallbacks,
+		GoogleApiClient.OnConnectionFailedListener {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+	public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
+
+	private GoogleApiClient googleApiClient;
+
+	// Are we currently resolving a connection failure?
+	private boolean resolvingConnectionFailure = false;
+
+	// Has the user clicked the sign-in button?
+	private boolean signInClicked = false;
+
+	// Automatically start the sign-in flow when the Activity starts
+	private boolean autoStartSignInFlow = true;
+
+	/**
+	 * Declarations for audio functionality
+	 * -Matt
+	 */
+	protected Audio noise;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 
         /*
-            This code relates to instantiating our audio.
+			This code relates to instantiating our audio.
          */
-        noise = new Audio(MainActivity.this);
-        noise.menuBGM();
+		noise = new Audio(MainActivity.this);
+		noise.menuBGM();
 
-        /**
-         * Setting font style
-         */
-        //Font path
-        String chalkboardFontPath = "fonts/Chalkboard.ttf";
+		/**
+		 * Setting font style
+		 */
+		//Font path
+		String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
-        //text view label
-        TextView txtGameTitle = (TextView) findViewById(R.id.gameTitle);
-        TextView txtGameInstructions = (TextView) findViewById(R.id.instructions);
+		//text view label
+		TextView txtGameTitle = (TextView) findViewById(R.id.gameTitle);
+		TextView txtGameInstructions = (TextView) findViewById(R.id.instructions);
 
-        //Load Font Face
-        Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
+		//Load Font Face
+		Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
 
-        //Applying font
-        txtGameTitle.setTypeface(chalkboardFont);
-        txtGameInstructions.setTypeface(chalkboardFont);
-    }
+		//Applying font
+		txtGameTitle.setTypeface(chalkboardFont);
+		txtGameInstructions.setTypeface(chalkboardFont);
 
-    /** Called when the user clicks the Send button */
-    /**
-     * public void sendMessage(View view) {
-     * Intent intent = new Intent(this, DisplayMessageActivity.class);
-     * EditText editText = (EditText) findViewById(R.id.edit_message);
-     * String message = editText.getText().toString();
-     * intent.putExtra(EXTRA_MESSAGE, message);
-     * startActivity(intent);
-     * }
-     */
+		googleApiClient = new GoogleApiClient.Builder(this)
+				.addConnectionCallbacks(this)
+				.addOnConnectionFailedListener(this)
+				.addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
+				.addApi(Games.API).addScope(Games.SCOPE_GAMES)
+				.build();
+	}
 
-    //Called when player clicks the Play button
-    public void goToPlay(View view) {
-        Intent intent = new Intent(this, Play.class);
-        startActivity(intent);
-    }
+	/** Called when the user clicks the Send button */
+	/**
+	 * public void sendMessage(View view) {
+	 * Intent intent = new Intent(this, DisplayMessageActivity.class);
+	 * EditText editText = (EditText) findViewById(R.id.edit_message);
+	 * String message = editText.getText().toString();
+	 * intent.putExtra(EXTRA_MESSAGE, message);
+	 * startActivity(intent);
+	 * }
+	 */
 
-    //Called when player clicks the High Scores button
-    public void goToHighScores(View view) {
-        Intent intent = new Intent(this, HighScores.class);
-        startActivity(intent);
-    }
+	//Called when player clicks the Play button
+	public void goToPlay(View view) {
+		Intent intent = new Intent(this, Play.class);
+		startActivity(intent);
+	}
 
-    //Called when player clicks the credits button
-    public void goToCredits(View view) {
-        Intent intent = new Intent(this, Credits.class);
-        startActivity(intent);
-    }
+	//Called when player clicks the High Scores button
+	public void goToHighScores(View view) {
+		Intent intent = new Intent(this, HighScores.class);
+		startActivity(intent);
+	}
 
-    public void muteToggle() {
-        noise.toggleMute();
-    }
+	//Called when player clicks the credits button
+	public void goToCredits(View view) {
+		Intent intent = new Intent(this, Credits.class);
+		startActivity(intent);
+	}
 
-    @Override
-    protected void onUserLeaveHint() {
-        super.onUserLeaveHint();
-        noise.setSoundState(0);
-        noise.buttonNoise();
-        noise.pauseMusic();
-    }
+	public void muteToggle() {
+		noise.toggleMute();
+	}
 
-     @Override
-     protected void onResume() {
-         super.onResume();
-         noise.resumeMusic();
-     }
+	@Override
+	protected void onUserLeaveHint() {
+		super.onUserLeaveHint();
+		noise.setSoundState(0);
+		noise.buttonNoise();
+		noise.pauseMusic();
+	}
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        noise.close();
-    }
+	@Override
+	protected void onResume() {
+		super.onResume();
+		noise.resumeMusic();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		noise.close();
+	}
+
+	@Override
+	public void onConnected(Bundle bundle) {
+		Player player = Games.Players.getCurrentPlayer(googleApiClient);
+		String playername;
+		if (player == null) {
+			playername = "???";
+		} else {
+			playername = player.getDisplayName();
+		}
+	}
+
+	@Override
+	public void onConnectionSuspended(int i) {
+		googleApiClient.connect();
+
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult connectionResult) {
+		if (resolvingConnectionFailure) {
+			return;
+		}
+
+//		if (signInClicked || autoStartSignInFlow) {
+//			autoStartSignInFlow = false;
+//			signInClicked = false;
+//			resolvingConnectionFailure = true;
+//			if (!BaseGameUtils.resolveConnectionFailure(this, googleApiClient, connectionResult,
+//					RC_SIGN_IN, getString(R.string.signin_other_error))) {
+//				resolvingConnectionFailure = false;
+//			}
+//		}
+	}
+    
+	private boolean isSignedIn() {
+		return (googleApiClient != null && googleApiClient.isConnected());
+	}
 }
 
