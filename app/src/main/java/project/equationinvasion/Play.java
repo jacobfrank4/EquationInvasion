@@ -10,15 +10,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.graphics.Typeface;
 
-import java.util.Random;
 import java.text.DecimalFormat;
 
 public class Play extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     * Declaration for the textView that displays the equation.
+     */
     private static TextView equation;
+    /**
+     * Declartation for the textView that displays the possible answer
+     */
     private static TextView answer;
+    /**
+     * Declaration for the display that either shows a check mark or X after answering
+     */
     private ImageView feedback;
-    private static final Random rand = new Random();
+    /**
+     * Declaration for the generator in EquationGenerator class
+     */
     private static EquationGenerator mathGen;
 
     /**
@@ -76,6 +86,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         fourth = (ImageView) findViewById(R.id.imageView4);
         fifth = (ImageView) findViewById(R.id.imageView5);
         pipChanger();
+        /**
+         * Timer to display 5 pips for a second before resetting it
+         */
         pipTimer = new CountDownTimer(1000, 1000) {
             @Override
             public void onTick(long millisUntilFInished) {
@@ -144,20 +157,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
         //text view label
-        TextView txtEquation = (TextView) findViewById(R.id.leftEquation);
-        TextView txtTimer = (TextView) findViewById(R.id.time);
-        TextView txtScore = (TextView) findViewById(R.id.scoreDisplay);
-        TextView txtAnswer = (TextView) findViewById(R.id.solution);
         TextView txtEquals = (TextView) findViewById(R.id.equals);
 
         //Load Font Face
         Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
 
         //Applying font
-        txtEquation.setTypeface(chalkboardFont);
-        txtTimer.setTypeface(chalkboardFont);
-        txtScore.setTypeface(chalkboardFont);
-        txtAnswer.setTypeface(chalkboardFont);
+        equation.setTypeface(chalkboardFont);
+        time.setTypeface(chalkboardFont);
+        scoreDisplay.setTypeface(chalkboardFont);
+        answer.setTypeface(chalkboardFont);
         txtEquals.setTypeface(chalkboardFont);
 
         //generating first equation
@@ -308,12 +317,28 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         return answer;
     }
 
+    /**
+     * Getter for the current level so as to generate correct equation
+     * @return currentLevel
+     *          The current level of the game
+     *
+     */
     public static int getCurrentLevel() {
         return currentLevel;
     }
 
     /**
      * validation for the truth button
+     *      Sets the visibility of the picture to visible
+     *      deletes any old timer that removes the picture of checkmark/X
+     *      checks for correctness
+     *      if correct
+     *          display checkmark
+     *          increase score
+     *          change changes
+     *      if incorrect
+     *          displays X
+     *          resets streak
      */
     private void truthChecker() {
         feedback.setVisibility(View.VISIBLE);
@@ -332,6 +357,17 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
     /**
      * validation for the false button
+     *      Sets the visibility of the picture to visible
+     *      deletes any old timer that removes the picture of checkmark/X
+     *      checks for correctness
+     *      if correct
+     *          display checkmark
+     *          increase score
+     *          change changes
+     *      if incorrect
+     *          displays X
+     *          resets streak
+     *
      */
     private void falseChecker() {
         feedback.setVisibility(View.VISIBLE);
