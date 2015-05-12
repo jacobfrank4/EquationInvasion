@@ -19,7 +19,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private static TextView equation;
     /**
-     * Declartation for the textView that displays the possible answer
+     * Declaration for the textView that displays the possible answer
      */
     private static TextView answer;
     /**
