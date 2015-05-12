@@ -1,5 +1,6 @@
 package project.equationinvasion;
 
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -8,17 +9,33 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.graphics.Typeface;
 
-import java.util.Random;
 import java.text.DecimalFormat;
 
 public class Play extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     * Declaration for the textView that displays the equation.
+     */
     private static TextView equation;
+
+    /**
+     * Declaration for the textView that displays the possible answer
+     */
     private static TextView answer;
-    private TextView feedback;
-    private static final Random rand = new Random();
+
+    /**
+     * Declaration for the display that either shows a check mark or X after answering
+     */
+    private ImageView feedback;
+    /**
+     * Declaration for the display that lets the user know 10 seconds have been added to the time
+     */
+    private ImageView addTime;
+
+    /**
+     * Declaration for the generator in EquationGenerator class
+     */
     private static EquationGenerator mathGen;
 
     /**
@@ -26,7 +43,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * -John
      */
     private ImageView first, second, third, fourth, fifth;
-    private Button pipChange;
     private int streak;
 
     /**
@@ -37,25 +53,33 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     private long currentMilli = 0;
     private CountDownTimer timer;
     private TextView time;
-    private Button addTime;
 
     /**
      * Declaration for validation text Timer.
      */
     private CountDownTimer invisibleTimer;
+
+    /**
+     * Declaration for pip changer Timer
+     * When it hits 5 streak, it will briefly show then disappear
+     */
+    private CountDownTimer pipTimer;
+
+    /**
+     * Timer for +10 visual.
+     */
+    private CountDownTimer addTimeTimer;
+
     /**
      * Level Changer
      */
-    private Button levelChange;
     private TextView levelView;
-    private static int currentLevel = 1;
+    private static int currentLevel;
 
     /**
      * Score tracking
      */
     private int score = 0;
-    private final int scoreIncrement = 100;
-    private Button scoreAdder;
     private TextView scoreDisplay;
 
     @Override
@@ -66,18 +90,33 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
          * Instantiating everything for streak counter
          * -John
          */
+        streak = 0;
         first = (ImageView) findViewById(R.id.imageView);
         second = (ImageView) findViewById(R.id.imageView2);
         third = (ImageView) findViewById(R.id.imageView3);
         fourth = (ImageView) findViewById(R.id.imageView4);
         fifth = (ImageView) findViewById(R.id.imageView5);
-        pipChange = (Button) findViewById(R.id.pipSwitch);
-        pipChange.setOnClickListener(this);
+        pipChanger();
+        /**
+         * Timer to display 5 pips for a second before resetting it
+         */
+        pipTimer = new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {}
+
+            @Override
+            public void onFinish() {
+                first.setImageResource(R.drawable.streakpipoff);
+                second.setImageResource(R.drawable.streakpipoff);
+                third.setImageResource(R.drawable.streakpipoff);
+                fourth.setImageResource(R.drawable.streakpipoff);
+                fifth.setImageResource(R.drawable.streakpipoff);
+                pipTimer.cancel();
+            }
+        };
         /**
          * Instantiating what I need for the timer
          */
-        addTime = (Button) findViewById(R.id.timeAdd);
-        addTime.setOnClickListener(this);
         time = (TextView) findViewById(R.id.time);
         timer = new MyTimer(180000);
         timer.start();
@@ -86,7 +125,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         /**
          * Instantiating the validation timer.
          */
-        invisibleTimer = new CountDownTimer(2000, 1000) {
+        invisibleTimer = new CountDownTimer(250, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -98,18 +137,27 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             }
         };
 
+        addTimeTimer = new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                addTime.setVisibility(View.INVISIBLE);
+            }
+        };
+
         /**
          * Level System
          */
-        levelChange = (Button) findViewById(R.id.levelChange);
-        levelChange.setOnClickListener(this);
         levelView = (TextView) findViewById(R.id.levelView);
+        currentLevel = 1;
 
         /**
-         * Adding score with button
+         * Adding score
          */
-        scoreAdder = (Button) findViewById(R.id.scoreAdder);
-        scoreAdder.setOnClickListener(this);
         scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
 
         /**
@@ -122,7 +170,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         equation = (TextView) findViewById(R.id.leftEquation);
         answer = (TextView) findViewById(R.id.solution);
         mathGen = new EquationGenerator();
-        feedback = (TextView) findViewById(R.id.feedback);
+        feedback = (ImageView) findViewById(R.id.feedback);
+        addTime = (ImageView) findViewById(R.id.addTime);
 
         /**
          * Setting font style
@@ -131,20 +180,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
         //text view label
-        TextView txtEquation = (TextView) findViewById(R.id.leftEquation);
-        TextView txtTimer = (TextView) findViewById(R.id.time);
-        TextView txtScore = (TextView) findViewById(R.id.scoreDisplay);
-        TextView txtAnswer = (TextView) findViewById(R.id.solution);
         TextView txtEquals = (TextView) findViewById(R.id.equals);
 
         //Load Font Face
         Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
 
         //Applying font
-        txtEquation.setTypeface(chalkboardFont);
-        txtTimer.setTypeface(chalkboardFont);
-        txtScore.setTypeface(chalkboardFont);
-        txtAnswer.setTypeface(chalkboardFont);
+        equation.setTypeface(chalkboardFont);
+        time.setTypeface(chalkboardFont);
+        scoreDisplay.setTypeface(chalkboardFont);
+        answer.setTypeface(chalkboardFont);
         txtEquals.setTypeface(chalkboardFont);
 
         //generating first equation
@@ -157,54 +202,11 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if (view.getId() == R.id.trueBtn || view.getId() == R.id.falseBtn) {
             if (view.getId() == R.id.trueBtn) {
                 truthChecker();
-            } else if (view.getId() == R.id.falseBtn) {
+            } else {
                 falseChecker();
             }
             mathGen.generate(currentLevel);
             btnNoise();
-        } else if (view.getId() == pipChange.getId()) {
-            /**
-             * Switch statement utilizes fall-through to keep pips highlighted depending on the value
-             * of streak. There's a break to prevent it falling into the default case.
-             * Every pip is an ImageView with two images, an on and an off image.
-             * I switch them depending on whether or not they should be active for the current streak.
-             * Finally there's a simple if statement to keep streak looping from 0-5.
-             *
-             * -John
-             */
-            switch (streak) {
-                case 5:
-                    fifth.setImageResource(R.drawable.streakpipon);
-                case 4:
-                    fourth.setImageResource(R.drawable.streakpipon);
-                case 3:
-                    third.setImageResource(R.drawable.streakpipon);
-                case 2:
-                    second.setImageResource(R.drawable.streakpipon);
-                case 1:
-                    first.setImageResource(R.drawable.streakpipon);
-                    break;
-                default:
-                    first.setImageResource(R.drawable.streakpipoff);
-                    second.setImageResource(R.drawable.streakpipoff);
-                    third.setImageResource(R.drawable.streakpipoff);
-                    fourth.setImageResource(R.drawable.streakpipoff);
-                    fifth.setImageResource(R.drawable.streakpipoff);
-            }
-            streak++;
-            streak %= 6;
-        } else if (view.getId() == addTime.getId()) {
-            int secondsToAdd;
-            if (running) {
-                timer.cancel();
-                secondsToAdd = 10;
-                timer = new MyTimer(currentMilli + (secondsToAdd * 1000));
-                timer.start();
-            }
-        } else if (view.getId() == levelChange.getId()) {
-            levelChanger();
-        } else if (view.getId() == scoreAdder.getId()) {
-            scoreCounter();
         }
     }
 
@@ -230,7 +232,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
          */
         @Override
         public void onFinish() {
-            time.setText("Ding fries are done!");
+            time.setText("Game Over");
         }
 
         /**
@@ -246,20 +248,81 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+    /**
+     * Moved on button click of add time to a method to call
+     */
+    private void addTime() {
+        int secondsToAdd;
+        if (running) {
+            timer.cancel();
+            secondsToAdd = 10;
+            timer = new MyTimer(currentMilli + (secondsToAdd * 1000));
+            timer.start();
+        }
+    }
+
+    /**
+     * Switch statement utilizes fall-through to keep pips highlighted depending on the value
+     * of streak. There's a break to prevent it falling into the default case.
+     * Every pip is an ImageView with two images, an on and an off image.
+     * I switch them depending on whether or not they should be active for the current streak.
+     * Finally there's a simple if statement to keep streak looping from 0-5.
+     *
+     * -John
+     *
+     * Moved down to its own method so I can start integrating it into the app.
+     *
+     * -Chun
+     */
+
+    private void pipChanger() {
+        streak++;
+        switch (streak) {
+            case 5:
+                addTime.setVisibility(View.VISIBLE);
+                addTimeTimer.cancel();
+                fifth.setImageResource(R.drawable.streakpipon);
+                pipTimer.start();
+                addTime.setImageResource(R.drawable.plusten);
+                addTime();
+                levelChanger();
+                streak = 0;
+                addTimeTimer.start();
+            case 4:
+                fourth.setImageResource(R.drawable.streakpipon);
+            case 3:
+                third.setImageResource(R.drawable.streakpipon);
+            case 2:
+                second.setImageResource(R.drawable.streakpipon);
+            case 1:
+                first.setImageResource(R.drawable.streakpipon);
+                break;
+            default:
+                first.setImageResource(R.drawable.streakpipoff);
+                second.setImageResource(R.drawable.streakpipoff);
+                third.setImageResource(R.drawable.streakpipoff);
+                fourth.setImageResource(R.drawable.streakpipoff);
+                fifth.setImageResource(R.drawable.streakpipoff);
+        }
+        streak %= 6;
+    }
+
     //the method to be called for sound effects when a button is clicked.
     private void btnNoise() {
         MediaPlayer SE = MediaPlayer.create(Play.this, R.raw.btn1sound);
         SE.start();
     }
 
-    //method to change level on method call
+    /**
+     *
+     method to change level on method call
+     */
     private void levelChanger() {
-        if (currentLevel < 6) {
-            currentLevel++;
-        } else {
-            currentLevel = 1;
-        }
-        levelView.setText("Level: " + currentLevel);
+            if (currentLevel < 6) {
+                currentLevel++;
+            }
+            levelView.setText("Level: " + currentLevel);
+
     }
 
     /**
@@ -267,7 +330,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private void scoreCounter() {
         int scoreIncrement = 100;
-        score += scoreIncrement;
+        score += (scoreIncrement * currentLevel);
         scoreDisplay.setText("Score: " + score);
     }
 
@@ -279,36 +342,69 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         return answer;
     }
 
+    /**
+     * Getter for the current level so as to generate correct equation
+     * @return currentLevel
+     *          The current level of the game
+     *
+     */
     public static int getCurrentLevel() {
         return currentLevel;
     }
 
     /**
      * validation for the truth button
+     *      Sets the visibility of the picture to visible
+     *      deletes any old timer that removes the picture of checkmark/X
+     *      checks for correctness
+     *      if correct
+     *          display checkmark
+     *          increase score
+     *          change changes
+     *      if incorrect
+     *          displays X
+     *          resets streak
      */
     private void truthChecker() {
         feedback.setVisibility(View.VISIBLE);
         invisibleTimer.cancel();
         if(mathGen.getAnswer() == mathGen.getEquation()) {
-            feedback.setText("Correct");
+            feedback.setImageResource(R.drawable.checkmark);
             scoreCounter();
+            pipChanger();
         }else {
-            feedback.setText("Wrong");
+            feedback.setImageResource(R.drawable.x);
+            streak = -1;
+            pipChanger();
         }
         invisibleTimer.start();
     }
 
     /**
      * validation for the false button
+     *      Sets the visibility of the picture to visible
+     *      deletes any old timer that removes the picture of checkmark/X
+     *      checks for correctness
+     *      if correct
+     *          display checkmark
+     *          increase score
+     *          change changes
+     *      if incorrect
+     *          displays X
+     *          resets streak
+     *
      */
     private void falseChecker() {
         feedback.setVisibility(View.VISIBLE);
         invisibleTimer.cancel();
         if(mathGen.getAnswer() != mathGen.getEquation()) {
-            feedback.setText("Correct");
+            feedback.setImageResource(R.drawable.checkmark);
             scoreCounter();
+            pipChanger();
         }else {
-            feedback.setText("Wrong");
+            feedback.setImageResource(R.drawable.x);
+            streak = -1;
+            pipChanger();
         }
         invisibleTimer.start();
     }
