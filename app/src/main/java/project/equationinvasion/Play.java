@@ -1,5 +1,6 @@
 package project.equationinvasion;
 
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -8,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.graphics.Typeface;
 
 import java.text.DecimalFormat;
 
@@ -18,14 +18,21 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * Declaration for the textView that displays the equation.
      */
     private static TextView equation;
+
     /**
-     * Declartation for the textView that displays the possible answer
+     * Declaration for the textView that displays the possible answer
      */
     private static TextView answer;
+
     /**
      * Declaration for the display that either shows a check mark or X after answering
      */
     private ImageView feedback;
+    /**
+     * Declaration for the display that lets the user know 10 seconds have been added to the time
+     */
+    private ImageView addTime;
+
     /**
      * Declaration for the generator in EquationGenerator class
      */
@@ -59,6 +66,11 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     private CountDownTimer pipTimer;
 
     /**
+     * Timer for +10 visual.
+     */
+    private CountDownTimer addTimeTimer;
+
+    /**
      * Level Changer
      */
     private TextView levelView;
@@ -68,7 +80,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * Score tracking
      */
     private int score = 0;
-    private final int scoreIncrement = 100;
     private TextView scoreDisplay;
 
     @Override
@@ -79,7 +90,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
          * Instantiating everything for streak counter
          * -John
          */
-        streak = -1;
+        streak = 0;
         first = (ImageView) findViewById(R.id.imageView);
         second = (ImageView) findViewById(R.id.imageView2);
         third = (ImageView) findViewById(R.id.imageView3);
@@ -91,18 +102,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
          */
         pipTimer = new CountDownTimer(1000, 1000) {
             @Override
-            public void onTick(long millisUntilFInished) {
-
-            }
+            public void onTick(long millisUntilFinished) {}
 
             @Override
             public void onFinish() {
-                    first.setImageResource(R.drawable.streakpipoff);
-                    second.setImageResource(R.drawable.streakpipoff);
-                    third.setImageResource(R.drawable.streakpipoff);
-                    fourth.setImageResource(R.drawable.streakpipoff);
-                    fifth.setImageResource(R.drawable.streakpipoff);
-                    pipTimer.cancel();
+                first.setImageResource(R.drawable.streakpipoff);
+                second.setImageResource(R.drawable.streakpipoff);
+                third.setImageResource(R.drawable.streakpipoff);
+                fourth.setImageResource(R.drawable.streakpipoff);
+                fifth.setImageResource(R.drawable.streakpipoff);
+                pipTimer.cancel();
             }
         };
         /**
@@ -116,7 +125,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         /**
          * Instantiating the validation timer.
          */
-        invisibleTimer = new CountDownTimer(2000, 1000) {
+        invisibleTimer = new CountDownTimer(250, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -125,6 +134,18 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onFinish() {
                 feedback.setVisibility(View.INVISIBLE);
+            }
+        };
+
+        addTimeTimer = new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                addTime.setVisibility(View.INVISIBLE);
             }
         };
 
@@ -150,6 +171,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         answer = (TextView) findViewById(R.id.solution);
         mathGen = new EquationGenerator();
         feedback = (ImageView) findViewById(R.id.feedback);
+        addTime = (ImageView) findViewById(R.id.addTime);
 
         /**
          * Setting font style
@@ -180,7 +202,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         if (view.getId() == R.id.trueBtn || view.getId() == R.id.falseBtn) {
             if (view.getId() == R.id.trueBtn) {
                 truthChecker();
-            } else if (view.getId() == R.id.falseBtn) {
+            } else {
                 falseChecker();
             }
             mathGen.generate(currentLevel);
@@ -248,7 +270,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      *
      * -John
      *
-     * Moved down to it's own method so I can start integrating it into the app.
+     * Moved down to its own method so I can start integrating it into the app.
      *
      * -Chun
      */
@@ -257,11 +279,15 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         streak++;
         switch (streak) {
             case 5:
+                addTime.setVisibility(View.VISIBLE);
+                addTimeTimer.cancel();
                 fifth.setImageResource(R.drawable.streakpipon);
                 pipTimer.start();
+                addTime.setImageResource(R.drawable.plusten);
                 addTime();
                 levelChanger();
                 streak = 0;
+                addTimeTimer.start();
             case 4:
                 fourth.setImageResource(R.drawable.streakpipon);
             case 3:
@@ -304,7 +330,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private void scoreCounter() {
         int scoreIncrement = 100;
-        score += scoreIncrement;
+        score += (scoreIncrement * currentLevel);
         scoreDisplay.setText("Score: " + score);
     }
 
