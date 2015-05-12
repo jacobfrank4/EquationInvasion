@@ -89,7 +89,6 @@ public class MainActivity extends FragmentActivity
 				.addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
 				.addApi(Games.API).addScope(Games.SCOPE_GAMES)
 				.build();
-
 	}
 
 	/** Called when the user clicks the Send button */
@@ -119,7 +118,6 @@ public class MainActivity extends FragmentActivity
 	public void goToCredits(View view) {
 		Intent intent = new Intent(this, Credits.class);
 		startActivity(intent);
-
 	}
 
 	public void muteToggle() {
@@ -155,7 +153,6 @@ public class MainActivity extends FragmentActivity
 		} else {
 			playername = player.getDisplayName();
 		}
-
 	}
 
 	@Override
@@ -179,11 +176,8 @@ public class MainActivity extends FragmentActivity
 //				resolvingConnectionFailure = false;
 //			}
 //		}
-
-
 	}
-
-
+    
 	private boolean isSignedIn() {
 		return (googleApiClient != null && googleApiClient.isConnected());
 	}
