@@ -244,7 +244,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      *
      * -John
      *
-     * Moved down to it's own method so I can start integrating it into the app.
+     * Moved down to its own method so I can start integrating it into the app.
      *
      * -Chun
      */
