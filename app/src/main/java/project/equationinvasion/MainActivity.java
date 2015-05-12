@@ -17,18 +17,18 @@ public class MainActivity extends AppCompatActivity {
      * Declarations for audio functionality
      * -Matt
      */
-    static private MediaPlayer BGM;
-    static private boolean playing = false;
+    protected Audio noise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /**
-         * Instantiating the background music.
-         * -Matt
+
+        /*
+            This code relates to instantiating our audio.
          */
-        backgroundMusic();
+        noise = new Audio(MainActivity.this);
+        noise.menuBGM();
 
         /**
          * Setting font style
@@ -63,45 +63,43 @@ public class MainActivity extends AppCompatActivity {
     public void goToPlay(View view) {
         Intent intent = new Intent(this, Play.class);
         startActivity(intent);
-        btnNoise();
     }
 
     //Called when player clicks the High Scores button
     public void goToHighScores(View view) {
         Intent intent = new Intent(this, HighScores.class);
         startActivity(intent);
-        btnNoise();
     }
 
     //Called when player clicks the credits button
     public void goToCredits(View view) {
         Intent intent = new Intent(this, Credits.class);
         startActivity(intent);
-        btnNoise();
+
     }
 
-    //Method that plays button noise.
-    private void btnNoise(){
-        MediaPlayer SE = MediaPlayer.create(MainActivity.this, R.raw.btn1sound);
-        SE.start();
+    public void muteToggle() {
+        noise.toggleMute();
     }
 
-    /**
-     * This method crates the background music, and limits it to one
-     * copy so that it doesn't recreate itself
-     * when switching pages.
-     */
-    private void backgroundMusic(){
-        if (!playing)
-        {
-            BGM = MediaPlayer.create(MainActivity.this, R.raw.bgm1);
-            BGM.setLooping(true);
-            BGM.start();
-        }
-        if (BGM.isPlaying())
-        {
-            playing = true;
-        }
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        noise.setSoundState(0);
+        noise.buttonNoise();
+        noise.pauseMusic();
+    }
 
+     @Override
+     protected void onResume() {
+         super.onResume();
+         noise.resumeMusic();
+     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        noise.close();
     }
 }
+
