@@ -85,6 +85,11 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     private int score = 0;
     private TextView scoreDisplay;
 
+	/**
+	 * Audio variable for this page.
+	 */
+	private Audio noise;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -198,6 +203,10 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
         //generating first equation
         mathGen.generate(currentLevel);
+
+		//Starting up audio functionality
+		noise = new Audio(Play.this);
+        noise.playBGM();
     }
 
 
@@ -210,7 +219,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 falseChecker();
             }
             mathGen.generate(currentLevel);
-            btnNoise();
+            noise.buttonNoise();
         }
     }
 
@@ -377,6 +386,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             feedback.setImageResource(R.drawable.checkmark);
             scoreCounter();
             pipChanger();
+            noise.setSoundState(1);
         }else {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
@@ -387,6 +397,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 levelView.setText("Level: " + currentLevel);
             }
             pipChanger();
+            noise.setSoundState(2);
         }
         invisibleTimer.start();
     }
@@ -412,6 +423,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             feedback.setImageResource(R.drawable.checkmark);
             scoreCounter();
             pipChanger();
+            noise.setSoundState(1);
         }else {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
@@ -422,6 +434,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 levelView.setText("Level: " + currentLevel);
             }
             pipChanger();
+            noise.setSoundState(2);
         }
         invisibleTimer.start();
     }
