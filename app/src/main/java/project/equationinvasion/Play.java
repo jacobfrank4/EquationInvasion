@@ -14,6 +14,8 @@ import java.text.DecimalFormat;
 
 public class Play extends AppCompatActivity implements View.OnClickListener {
 
+    private static final int MILLI_IN_SECOND = 1000;
+
     /**
      * Declaration for the textView that displays the equation.
      */
@@ -44,6 +46,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private ImageView first, second, third, fourth, fifth;
     private int streak;
+    private int failStreak;
 
     /**
      * Declarations for the countdown Timer
@@ -96,6 +99,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
          * -John
          */
         streak = 0;
+        failStreak = 0;
         first = (ImageView) findViewById(R.id.imageView);
         second = (ImageView) findViewById(R.id.imageView2);
         third = (ImageView) findViewById(R.id.imageView3);
@@ -123,7 +127,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
          * Instantiating what I need for the timer
          */
         time = (TextView) findViewById(R.id.time);
-        timer = new MyTimer(180000);
+        timer = new MyTimer(45 * MILLI_IN_SECOND);
         timer.start();
         running = true;
 
@@ -329,6 +333,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     private void levelChanger() {
             if (currentLevel < 6) {
                 currentLevel++;
+                failStreak = 0;
             }
             levelView.setText("Level: " + currentLevel);
 
@@ -385,6 +390,12 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }else {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
+            failStreak++;
+            if (failStreak == 3 && currentLevel > 1) {
+                currentLevel--;
+                failStreak = 0;
+                levelView.setText("Level: " + currentLevel);
+            }
             pipChanger();
             noise.setSoundState(2);
         }
@@ -416,6 +427,12 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         }else {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
+            failStreak++;
+            if (failStreak == 3 && currentLevel > 1) {
+                currentLevel--;
+                failStreak = 0;
+                levelView.setText("Level: " + currentLevel);
+            }
             pipChanger();
             noise.setSoundState(2);
         }
