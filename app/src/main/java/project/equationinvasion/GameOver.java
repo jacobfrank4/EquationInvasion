@@ -1,9 +1,13 @@
 package project.equationinvasion;
 
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 
 public class GameOver extends ActionBarActivity {
@@ -13,6 +17,26 @@ public class GameOver extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
     }
+
+
+    //Called when player clicks the Play button
+    public void goToPlay(View view) {
+        Intent intent = new Intent(this, Play.class);
+        startActivity(intent);
+    }
+
+    //Called when player clicks the High Scores button
+    public void goToHighScores(View view) {
+        Intent intent = new Intent(this, HighScores.class);
+        startActivity(intent);
+    }
+
+    //Called when player clicks the credits button
+    public void goToCredits(View view) {
+        Intent intent = new Intent(this, Credits.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

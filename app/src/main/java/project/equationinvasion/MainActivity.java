@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
     public void goToCredits(View view) {
         Intent intent = new Intent(this, Credits.class);
         startActivity(intent);
-
     }
 
     public void muteToggle() {
