@@ -36,8 +36,7 @@ import com.google.android.gms.plus.Plus;
 
 public class MainActivity extends FragmentActivity implements
 		GoogleApiClient.ConnectionCallbacks,
-		GoogleApiClient.OnConnectionFailedListener,
-		View.OnClickListener {
+		GoogleApiClient.OnConnectionFailedListener {
 
 	public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
 
@@ -172,14 +171,14 @@ public class MainActivity extends FragmentActivity implements
 	//What occurs when the player is signed in and connected to Google Play services
 	@Override
 	public void onConnected(Bundle bundle) {
-		Player player = Games.Players.getCurrentPlayer(googleApiClient);
-		String playerName;
-		if (player == null) {
-			playerName = "???";
-		} else {
-			playerName = player.getDisplayName();
-		}
-		signInButton.setText("Hello " + playerName);
+//		Player player = Games.Players.getCurrentPlayer(googleApiClient);
+//		String playerName;
+//		if (player == null) {
+//			playerName = "???";
+//		} else {
+//			playerName = player.getDisplayName();
+//		}
+//		signInButton.setText("Hello " + playerName);
 	}
 
 	//Attempt to reconnect
@@ -230,15 +229,18 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	//Call when the sign-in button is clicked
-	private void signInClicked() {
+	public void signInClicked(View view) {
 		signInClicked = true;
 		googleApiClient.connect();
 	}
 
 	//Call when the sign-out button is clicked
-	private void signOutClicked() {
+	public void signOutClicked(View view) {
 		signInClicked = false;
 		Games.signOut(googleApiClient);
+		if (googleApiClient.isConnected()) {
+			googleApiClient.disconnect();
+		}
 	}
 
 //	public void onSignInButtonClicked(View view) {
@@ -262,23 +264,5 @@ public class MainActivity extends FragmentActivity implements
 		return (googleApiClient != null && googleApiClient.isConnected());
 	}
 
-	@Override
-	public void onClick(View view) {
-		if (view.getId() == signInButton.getId()) {
-			signInClicked = true;
-			googleApiClient.connect();
-			TextView txtGameInstructions = (TextView) findViewById(R.id.instructions);
-			txtGameInstructions.setText("Connecting");
-		} else if (view.getId() == signOutButton.getId()) {
-			signInClicked = false;
-			Games.signOut(googleApiClient);
-			if (googleApiClient.isConnected()) {
-				googleApiClient.disconnect();
-			}
-//			mMainMenuFragment.setGreeting(getString(R.string.signed_out_greeting));
-//			mMainMenuFragment.setShowSignInButton(true);
-//			mWinFragment.setShowSignInButton(true);
-		}
-	}
 }
 
