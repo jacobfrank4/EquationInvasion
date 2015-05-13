@@ -297,6 +297,24 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     }
 
     /**
+     * Subtract time method
+     */
+    private void subtractTime() {
+        int secondsToSubtract;
+        if (running && currentMilli > 10000) {
+            timer.cancel();
+            secondsToSubtract = 10;
+            timer = new MyTimer(currentMilli - (secondsToSubtract * 1000));
+            timer.start();
+        } else {
+            timer.cancel();
+            currentMilli = 0;
+            timer = new MyTimer(currentMilli);
+            timer.start();
+        }
+    }
+
+    /**
      * Switch statement utilizes fall-through to keep pips highlighted depending on the value
      * of streak. There's a break to prevent it falling into the default case.
      * Every pip is an ImageView with two images, an on and an off image.
@@ -413,10 +431,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             streak = 0;
             failStreak++;
             if (failStreak == 3) {
-                if(score > 0) {
-                    score -= (scoreIncrement * currentLevel);
-                    scoreDisplay.setText("Score: " + score);
-                }
+                subtractTime();
                 if(currentLevel > 1) {
                     currentLevel--;
                     levelView.setText("Level: " + currentLevel);
@@ -457,10 +472,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             streak = 0;
             failStreak++;
             if (failStreak == 3) {
-                if(score > 0) {
-                    score -= (scoreIncrement * currentLevel);
-                    scoreDisplay.setText("Score: " + score);
-                }
+                subtractTime();
                 if(currentLevel > 1) {
                     currentLevel--;
                     levelView.setText("Level: " + currentLevel);
