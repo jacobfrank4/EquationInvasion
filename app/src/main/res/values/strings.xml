@@ -31,4 +31,7 @@
     <string name="title_activity_high_scores">HighScores</string>
     <string name="title_activity_game_over">GameOver</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
+
+    <string name="signin_error">There was an error connecting</string>
+
 </resources>

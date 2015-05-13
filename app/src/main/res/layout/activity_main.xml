@@ -99,6 +99,7 @@
         android:layout_height="wrap_content"
         android:text="Sign In"
         android:id="@+id/signIn"
+        android:onClick="signInClicked"
         android:layout_above="@+id/instructions"
         android:layout_alignStart="@+id/instructions"/>
 
@@ -107,6 +108,7 @@
         android:layout_height="wrap_content"
         android:text="Sign Out"
         android:id="@+id/signOut"
+        android:onClick="signOutClicked"
         android:layout_above="@+id/instructions"
         android:layout_alignEnd="@+id/instructions"/>
 

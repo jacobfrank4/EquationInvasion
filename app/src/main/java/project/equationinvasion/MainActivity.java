@@ -34,9 +34,10 @@ import com.google.android.gms.games.Player;
 import com.google.android.gms.plus.Plus;
 
 
-public class MainActivity extends FragmentActivity
-		implements GoogleApiClient.ConnectionCallbacks,
-		GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+public class MainActivity extends FragmentActivity implements
+		GoogleApiClient.ConnectionCallbacks,
+		GoogleApiClient.OnConnectionFailedListener,
+		View.OnClickListener {
 
 	public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
 
@@ -94,6 +95,7 @@ public class MainActivity extends FragmentActivity
 		txtGameTitle.setTypeface(chalkboardFont);
 		txtGameInstructions.setTypeface(chalkboardFont);
 
+		// Create the google Api Client with access to the play Game services
 		googleApiClient = new GoogleApiClient.Builder(this)
 				.addConnectionCallbacks(this)
 				.addOnConnectionFailedListener(this)
@@ -167,18 +169,20 @@ public class MainActivity extends FragmentActivity
 		googleApiClient.disconnect();
 	}
 
+	//What occurs when the player is signed in and connected to Google Play services
 	@Override
 	public void onConnected(Bundle bundle) {
 		Player player = Games.Players.getCurrentPlayer(googleApiClient);
-		String playername;
+		String playerName;
 		if (player == null) {
-			playername = "???";
+			playerName = "???";
 		} else {
-			playername = player.getDisplayName();
+			playerName = player.getDisplayName();
 		}
-		signInButton.setText("Hello " + playername);
+		signInButton.setText("Hello " + playerName);
 	}
 
+	//Attempt to reconnect
 	@Override
 	public void onConnectionSuspended(int i) {
 		googleApiClient.connect();
@@ -190,20 +194,25 @@ public class MainActivity extends FragmentActivity
 		if (resolvingConnectionFailure) {
 			return;
 		}
+		//If the sign-in button was clicked or if auto sign-in is enabled,
+		//launch the sign-in flow
 		if (signInClicked || autoStartSignInFlow) {
 			autoStartSignInFlow = false;
 			signInClicked = false;
 			resolvingConnectionFailure = true;
+
+			// Attempt to resolve the connection failure using BaseGameUtils.
 			if (!BaseGameUtils.resolveConnectionFailure(this, googleApiClient, connectionResult,
 					//Replace the following string with a generic error message in Strings.xml
-					RC_SIGN_IN, "There was an error connecting")) {
+					RC_SIGN_IN, getResources().getString(R.string.signin_error))) {
 				resolvingConnectionFailure = false;
 			}
 		}
+		//Put code here to display the sign-in button??????????? (according to google dev website)
 	}
 
-	protected void onActivityResult(int requestCode, int resultCode,
-									Intent intent) {
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		if (requestCode == RC_SIGN_IN) {
 			signInClicked = false;
 			resolvingConnectionFailure = false;
@@ -215,9 +224,21 @@ public class MainActivity extends FragmentActivity
 				// string in your strings.xml file that tells the user they
 				// could not be signed in, such as "Unable to sign in."
 				BaseGameUtils.showActivityResultError(this,
-						requestCode, resultCode, R.string.hello_world);
+						requestCode, resultCode, R.string.signin_error);
 			}
 		}
+	}
+
+	//Call when the sign-in button is clicked
+	private void signInClicked() {
+		signInClicked = true;
+		googleApiClient.connect();
+	}
+
+	//Call when the sign-out button is clicked
+	private void signOutClicked() {
+		signInClicked = false;
+		Games.signOut(googleApiClient);
 	}
 
 //	public void onSignInButtonClicked(View view) {
