@@ -22,6 +22,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -34,7 +35,7 @@ import com.google.android.gms.plus.Plus;
 
 public class MainActivity extends FragmentActivity
 		implements GoogleApiClient.ConnectionCallbacks,
-		GoogleApiClient.OnConnectionFailedListener {
+		GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
 	public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
 
@@ -55,6 +56,9 @@ public class MainActivity extends FragmentActivity
 	 */
 	protected Audio noise;
 
+	private Button signInButton;
+	private Button signOutButton;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,6 +69,10 @@ public class MainActivity extends FragmentActivity
          */
 		noise = new Audio(MainActivity.this);
 		noise.menuBGM();
+
+		signInButton = (Button)findViewById(R.id.signIn);
+		signOutButton = (Button)findViewById(R.id.signOut);
+
 
 		/**
 		 * Setting font style
@@ -153,6 +161,7 @@ public class MainActivity extends FragmentActivity
 		} else {
 			playername = player.getDisplayName();
 		}
+		signInButton.setText("Hello " + playername);
 	}
 
 	@Override
@@ -167,19 +176,55 @@ public class MainActivity extends FragmentActivity
 			return;
 		}
 
-//		if (signInClicked || autoStartSignInFlow) {
-//			autoStartSignInFlow = false;
-//			signInClicked = false;
-//			resolvingConnectionFailure = true;
+		if (signInClicked || autoStartSignInFlow) {
+			autoStartSignInFlow = false;
+			signInClicked = false;
+			resolvingConnectionFailure = true;
 //			if (!BaseGameUtils.resolveConnectionFailure(this, googleApiClient, connectionResult,
 //					RC_SIGN_IN, getString(R.string.signin_other_error))) {
 //				resolvingConnectionFailure = false;
 //			}
-//		}
+		}
 	}
-    
+
+//	public void onSignInButtonClicked(View view) {
+//		signInClicked = true;
+//		googleApiClient.connect();
+//	}
+//
+//	public void onSignOutButtonClicked() {
+//		signInClicked = false;
+//		Games.signOut(googleApiClient);
+//		if (googleApiClient.isConnected()) {
+//			googleApiClient.disconnect();
+//		}
+//
+//		mMainMenuFragment.setGreeting(getString(R.string.signed_out_greeting));
+//		mMainMenuFragment.setShowSignInButton(true);
+//		mWinFragment.setShowSignInButton(true);
+//	}
+
 	private boolean isSignedIn() {
 		return (googleApiClient != null && googleApiClient.isConnected());
+	}
+
+	@Override
+	public void onClick(View view) {
+		if (view.getId() == signInButton.getId()) {
+			signInClicked = true;
+			googleApiClient.connect();
+			TextView txtGameInstructions = (TextView) findViewById(R.id.instructions);
+			txtGameInstructions.setText("Connecting");
+		} else if (view.getId() == signOutButton.getId()) {
+			signInClicked = false;
+			Games.signOut(googleApiClient);
+			if (googleApiClient.isConnected()) {
+				googleApiClient.disconnect();
+			}
+//			mMainMenuFragment.setGreeting(getString(R.string.signed_out_greeting));
+//			mMainMenuFragment.setShowSignInButton(true);
+//			mWinFragment.setShowSignInButton(true);
+		}
 	}
 }
 
