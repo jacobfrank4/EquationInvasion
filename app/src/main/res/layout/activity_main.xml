@@ -94,22 +94,20 @@
         android:layout_toEndOf="@+id/highScore"
         android:layout_below="@+id/highScore" />
 
-    <Button
+    <!-- sign-in button -->
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign In"
-        android:id="@+id/signIn"
-        android:onClick="signInClicked"
-        android:layout_above="@+id/instructions"
-        android:layout_alignStart="@+id/instructions"/>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
+    <!-- sign-out button -->
     <Button
+        android:id="@+id/sign_out_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Out"
-        android:id="@+id/signOut"
-        android:onClick="signOutClicked"
-        android:layout_above="@+id/instructions"
-        android:layout_alignEnd="@+id/instructions"/>
+        android:visibility="gone" />
 
 </RelativeLayout>

@@ -60,22 +60,19 @@ public class MainActivity extends FragmentActivity implements
 	 */
 	protected Audio noise;
 
-	private Button signInButton;
-	private Button signOutButton;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		findViewById(R.id.sign_in_button).setOnClickListener(this);
+		findViewById(R.id.sign_out_button).setOnClickListener(this);
 
         /*
 			This code relates to instantiating our audio.
          */
 		noise = new Audio(MainActivity.this);
 		noise.menuBGM();
-
-		signInButton = (Button)findViewById(R.id.signIn);
-		signOutButton = (Button)findViewById(R.id.signOut);
 
 
 		/**
@@ -102,6 +99,7 @@ public class MainActivity extends FragmentActivity implements
 				.addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
 				.addApi(Games.API).addScope(Games.SCOPE_GAMES)
 				.build();
+
 	}
 
 	/** Called when the user clicks the Send button */
@@ -172,14 +170,10 @@ public class MainActivity extends FragmentActivity implements
 	//What occurs when the player is signed in and connected to Google Play services
 	@Override
 	public void onConnected(Bundle bundle) {
-		Player player = Games.Players.getCurrentPlayer(googleApiClient);
-		String playerName;
-		if (player == null) {
-			playerName = "???";
-		} else {
-			playerName = player.getDisplayName();
-		}
-		signInButton.setText("Hello " + playerName);
+
+		// show sign-out button, hide the sign-in button
+		findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+		findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
 	}
 
 	//Attempt to reconnect
@@ -208,7 +202,8 @@ public class MainActivity extends FragmentActivity implements
 				resolvingConnectionFailure = false;
 			}
 		}
-		//Put code here to display the sign-in button??????????? (according to google dev website)
+		findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+		findViewById(R.id.sign_out_button).setVisibility(View.GONE);
 	}
 
 
@@ -219,65 +214,39 @@ public class MainActivity extends FragmentActivity implements
 			if (resultCode == RESULT_OK) {
 				googleApiClient.connect();
 			} else {
-				// Bring up an error dialog to alert the user that sign-in
-				// failed. The R.string.signin_failure should reference an error
-				// string in your strings.xml file that tells the user they
-				// could not be signed in, such as "Unable to sign in."
+				// Bring up an error dialog to alert the user that sign-in failed.
 				BaseGameUtils.showActivityResultError(this,
 						requestCode, resultCode, R.string.signin_error);
 			}
 		}
 	}
 
-	//Call when the sign-in button is clicked
-	private void signInClicked() {
-		signInClicked = true;
-		googleApiClient.connect();
-	}
-
-	//Call when the sign-out button is clicked
-	private void signOutClicked() {
-		signInClicked = false;
-		Games.signOut(googleApiClient);
-	}
-
-//	public void onSignInButtonClicked(View view) {
-//		signInClicked = true;
-//		googleApiClient.connect();
-//	}
-//
-//	public void onSignOutButtonClicked() {
-//		signInClicked = false;
-//		Games.signOut(googleApiClient);
-//		if (googleApiClient.isConnected()) {
-//			googleApiClient.disconnect();
-//		}
-//
-//		mMainMenuFragment.setGreeting(getString(R.string.signed_out_greeting));
-//		mMainMenuFragment.setShowSignInButton(true);
-//		mWinFragment.setShowSignInButton(true);
-//	}
-
 	private boolean isSignedIn() {
+
 		return (googleApiClient != null && googleApiClient.isConnected());
 	}
 
+
+
 	@Override
 	public void onClick(View view) {
-		if (view.getId() == signInButton.getId()) {
+		if (view.getId() == R.id.sign_in_button) {
 			signInClicked = true;
 			googleApiClient.connect();
+
 			TextView txtGameInstructions = (TextView) findViewById(R.id.instructions);
 			txtGameInstructions.setText("Connecting");
-		} else if (view.getId() == signOutButton.getId()) {
+		} else if (view.getId() == R.id.sign_out_button) {
 			signInClicked = false;
+
+			// show sign-in button, hide the sign-out button
+			findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+			findViewById(R.id.sign_out_button).setVisibility(View.GONE);
+
 			Games.signOut(googleApiClient);
 			if (googleApiClient.isConnected()) {
 				googleApiClient.disconnect();
 			}
-//			mMainMenuFragment.setGreeting(getString(R.string.signed_out_greeting));
-//			mMainMenuFragment.setShowSignInButton(true);
-//			mWinFragment.setShowSignInButton(true);
 		}
 	}
 }
