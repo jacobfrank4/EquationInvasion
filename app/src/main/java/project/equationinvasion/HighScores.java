@@ -25,22 +25,22 @@ import android.view.View;
 
 public class HighScores extends AppCompatActivity {
 
+    Audio noise;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_scores);
+        noise = new Audio(HighScores.this);
     }
 
     //Called when player clicks the Go To Main button
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        btnNoise();
+        noise.close();
+        noise.setSoundState(0);
+        noise.buttonNoise();
+
     }
-    //the method to be called for sound effects when a button is clicked.
-    private void btnNoise()
-    {
-        MediaPlayer SE = MediaPlayer.create(HighScores.this, R.raw.btn1sound);
-        SE.start();
-    }
+
 }
