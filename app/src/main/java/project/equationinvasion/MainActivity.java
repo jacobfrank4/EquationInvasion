@@ -25,7 +25,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
+import com.google.android.gms.*;
+import com.google.example.games.basegameutils.BaseGameUtils;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
@@ -40,6 +41,8 @@ public class MainActivity extends FragmentActivity
 	public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
 
 	private GoogleApiClient googleApiClient;
+
+	private static int RC_SIGN_IN = 9001;
 
 	// Are we currently resolving a connection failure?
 	private boolean resolvingConnectionFailure = false;
@@ -153,6 +156,18 @@ public class MainActivity extends FragmentActivity
 	}
 
 	@Override
+	protected void onStart() {
+		super.onStart();
+		googleApiClient.connect();
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		googleApiClient.disconnect();
+	}
+
+	@Override
 	public void onConnected(Bundle bundle) {
 		Player player = Games.Players.getCurrentPlayer(googleApiClient);
 		String playername;
@@ -175,15 +190,33 @@ public class MainActivity extends FragmentActivity
 		if (resolvingConnectionFailure) {
 			return;
 		}
-
 		if (signInClicked || autoStartSignInFlow) {
 			autoStartSignInFlow = false;
 			signInClicked = false;
 			resolvingConnectionFailure = true;
-//			if (!BaseGameUtils.resolveConnectionFailure(this, googleApiClient, connectionResult,
-//					RC_SIGN_IN, getString(R.string.signin_other_error))) {
-//				resolvingConnectionFailure = false;
-//			}
+			if (!BaseGameUtils.resolveConnectionFailure(this, googleApiClient, connectionResult,
+					//Replace the following string with a generic error message in Strings.xml
+					RC_SIGN_IN, "There was an error connecting")) {
+				resolvingConnectionFailure = false;
+			}
+		}
+	}
+
+	protected void onActivityResult(int requestCode, int resultCode,
+									Intent intent) {
+		if (requestCode == RC_SIGN_IN) {
+			signInClicked = false;
+			resolvingConnectionFailure = false;
+			if (resultCode == RESULT_OK) {
+				googleApiClient.connect();
+			} else {
+				// Bring up an error dialog to alert the user that sign-in
+				// failed. The R.string.signin_failure should reference an error
+				// string in your strings.xml file that tells the user they
+				// could not be signed in, such as "Unable to sign in."
+				BaseGameUtils.showActivityResultError(this,
+						requestCode, resultCode, R.string.hello_world);
+			}
 		}
 	}
 
