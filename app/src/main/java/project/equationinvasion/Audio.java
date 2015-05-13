@@ -18,6 +18,7 @@ package project.equationinvasion;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 
 /**
  * Built to streamline the audio production process.
@@ -30,6 +31,7 @@ public class Audio {
      */
     private  MediaPlayer BGM;
     private  MediaPlayer SE;
+
 
     //The boolean that keeps track of when the user has muted the audio.
     //-Matt
@@ -87,14 +89,18 @@ public class Audio {
      *  It works by setting the muted variable to the opposite
      *  state of what it is currently. It uses != true instead of
      *  == false, because the boolean is not actually initialized
-     *  until this is called once, to avoid accidental resets between
+     *  until this is called once,to avoid accidental resets between
      *  activities.
      */
     public void toggleMute(){
         if (!muted) {
             muted = true;
+            stopMusic();
         } else {
             muted = false;
+            menuBGM();
+            setSoundState(3);
+            buttonNoise();
         }
 
     }
@@ -102,8 +108,9 @@ public class Audio {
     //This method exists for when the home key is pushed.
     public void pauseMusic()
     {
-
-        BGM.pause();
+        if (BGM != null) {
+            BGM.pause();
+        }
     }
 
     // this lets the music resume from where it was,
@@ -111,7 +118,7 @@ public class Audio {
     // it.
     public void resumeMusic()
     {
-        if (BGM != null) {
+        if (BGM != null && !muted) {
             BGM.start();
         }
     }
@@ -127,19 +134,37 @@ public class Audio {
 
     //This method exists to free up resources when the user navigates away from the screen.
     public void close() {
-        BGM.stop();
-        BGM.reset();
-        BGM.release();
+        if (BGM != null){
+            BGM.stop();
+            BGM.reset();
+            BGM.release();
+        }
 
     }
+
+    /*
+        This lets us close the sound effects on another page,
+        after we've already closed the BGM
+     */
+    OnCompletionListener done = new OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            if (mp == SE) {
+                SE.reset();
+                SE.release();
+            }
+        }
+    };
+
 
 
 
     /*
         Case definitions:
-        0: default button sound
+        0: transition button sound
         1: right Answer sound
         2: wrong answer sound
+        3: mute noise
 
         This method exists to change which sound
         plays when a button is pushed.
@@ -156,6 +181,7 @@ public class Audio {
                         SE.release();
                     }
                     SE = MediaPlayer.create(context,R.raw.btn1sound);
+                    SE.setOnCompletionListener(done);
                     break;
 
             case 1:
@@ -173,6 +199,16 @@ public class Audio {
                 }
                 SE = MediaPlayer.create(context,R.raw.wrong);
                 break;
+            case 3:
+                if (SE != null){
+                    SE.reset();
+                    SE.release();
+                }
+                SE = MediaPlayer.create(context,R.raw.mute);
+                break;
         }
     }
+
 }
+
+
