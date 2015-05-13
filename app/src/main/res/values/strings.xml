@@ -33,5 +33,6 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
 
     <string name="signin_error">There was an error connecting</string>
+    <string name="app_id">445312696187</string>
 
 </resources>

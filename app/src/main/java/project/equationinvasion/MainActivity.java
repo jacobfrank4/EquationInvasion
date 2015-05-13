@@ -174,6 +174,14 @@ public class MainActivity extends FragmentActivity implements
 		// show sign-out button, hide the sign-in button
 		findViewById(R.id.sign_in_button).setVisibility(View.GONE);
 		findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
+//		Player player = Games.Players.getCurrentPlayer(googleApiClient);
+//		String playerName;
+//		if (player == null) {
+//			playerName = "???";
+//		} else {
+//			playerName = player.getDisplayName();
+//		}
+//		signInButton.setText("Hello " + playerName);
 	}
 
 	//Attempt to reconnect
@@ -221,12 +229,42 @@ public class MainActivity extends FragmentActivity implements
 		}
 	}
 
-	private boolean isSignedIn() {
 
-		return (googleApiClient != null && googleApiClient.isConnected());
+	//Call when the sign-in button is clicked
+	public void signInClicked(View view) {
+		signInClicked = true;
+		googleApiClient.connect();
 	}
 
+	//Call when the sign-out button is clicked
+	public void signOutClicked(View view) {
+		signInClicked = false;
+		Games.signOut(googleApiClient);
+		if (googleApiClient.isConnected()) {
+			googleApiClient.disconnect();
+		}
+	}
 
+//	public void onSignInButtonClicked(View view) {
+//		signInClicked = true;
+//		googleApiClient.connect();
+//	}
+//
+//	public void onSignOutButtonClicked() {
+//		signInClicked = false;
+//		Games.signOut(googleApiClient);
+//		if (googleApiClient.isConnected()) {
+//			googleApiClient.disconnect();
+//		}
+//
+//		mMainMenuFragment.setGreeting(getString(R.string.signed_out_greeting));
+//		mMainMenuFragment.setShowSignInButton(true);
+//		mWinFragment.setShowSignInButton(true);
+//	}
+
+	private boolean isSignedIn() {
+		return (googleApiClient != null && googleApiClient.isConnected());
+	}
 
 	@Override
 	public void onClick(View view) {
