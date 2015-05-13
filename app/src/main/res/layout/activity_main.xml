@@ -97,10 +97,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign In"
-        android:id="@+id/button"
-        android:layout_below="@+id/gameTitle"
-        android:layout_alignStart="@+id/play"
+        android:id="@+id/signIn"
         android:layout_above="@+id/instructions"
-        android:layout_alignEnd="@+id/play"/>
+        android:layout_alignStart="@+id/instructions"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Out"
+        android:id="@+id/signOut"
+        android:layout_above="@+id/instructions"
+        android:layout_alignEnd="@+id/instructions"/>
 
 </RelativeLayout>
