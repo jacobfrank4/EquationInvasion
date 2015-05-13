@@ -90,7 +90,8 @@ public class Audio {
      *  state of what it is currently. It uses != true instead of
      *  == false, because the boolean is not actually initialized
      *  until this is called once,to avoid accidental resets between
-     *  activities.
+     *  activities.It also calls menu music as that's the only place it can
+     *  be toggled.
      */
     public void toggleMute(){
         if (!muted) {
@@ -99,8 +100,6 @@ public class Audio {
         } else {
             muted = false;
             menuBGM();
-            setSoundState(3);
-            buttonNoise();
         }
 
     }
@@ -198,13 +197,6 @@ public class Audio {
                     SE.release();
                 }
                 SE = MediaPlayer.create(context,R.raw.wrong);
-                break;
-            case 3:
-                if (SE != null){
-                    SE.reset();
-                    SE.release();
-                }
-                SE = MediaPlayer.create(context,R.raw.mute);
                 break;
         }
     }
