@@ -101,6 +101,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private int score = 0;
     private TextView scoreDisplay;
+    private int scoreIncrement;
 
 	/**
 	 * Audio variable for this page.
@@ -185,6 +186,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
          * Adding score
          */
         scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
+        scoreIncrement = 100;
 
         /**
          * True and False buttons
@@ -353,7 +355,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     private void levelChanger() {
             if (currentLevel < 6) {
                 currentLevel++;
-                failStreak = 0;
             }
             levelView.setText("Level: " + currentLevel);
 
@@ -363,7 +364,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * Increments the score.
      */
     private void scoreCounter() {
-        int scoreIncrement = 100;
         score += (scoreIncrement * currentLevel);
         scoreDisplay.setText("Score: " + score);
     }
@@ -404,6 +404,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         invisibleTimer.cancel();
         if(mathGen.getAnswer() == mathGen.getEquation()) {
             feedback.setImageResource(R.drawable.checkmark);
+            failStreak = 0;
             scoreCounter();
             pipChanger();
             noise.setSoundState(1);
@@ -411,10 +412,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
             failStreak++;
-            if (failStreak == 3 && currentLevel > 1) {
-                currentLevel--;
+            if (failStreak == 3) {
+                if(score > 0) {
+                    score -= (scoreIncrement * currentLevel);
+                    scoreDisplay.setText("Score: " + score);
+                }
+                if(currentLevel > 1) {
+                    currentLevel--;
+                    levelView.setText("Level: " + currentLevel);
+                }
                 failStreak = 0;
-                levelView.setText("Level: " + currentLevel);
             }
             pipChanger();
             noise.setSoundState(2);
@@ -441,6 +448,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         invisibleTimer.cancel();
         if(mathGen.getAnswer() != mathGen.getEquation()) {
             feedback.setImageResource(R.drawable.checkmark);
+            failStreak = 0;
             scoreCounter();
             pipChanger();
             noise.setSoundState(1);
@@ -448,10 +456,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
             failStreak++;
-            if (failStreak == 3 && currentLevel > 1) {
-                currentLevel--;
+            if (failStreak == 3) {
+                if(score > 0) {
+                    score -= (scoreIncrement * currentLevel);
+                    scoreDisplay.setText("Score: " + score);
+                }
+                if(currentLevel > 1) {
+                    currentLevel--;
+                    levelView.setText("Level: " + currentLevel);
+                }
                 failStreak = 0;
-                levelView.setText("Level: " + currentLevel);
             }
             pipChanger();
             noise.setSoundState(2);

@@ -14,7 +14,7 @@ import android.os.Handler;
 public class SplashScreen extends ActionBarActivity {
 
     /**Duration until main screen is shown */
-    private final int SPLASH_DISPLAY_LENGTH = 4000;
+    private final int SPLASH_DISPLAY_LENGTH = 3000;
 
     /**
      *
