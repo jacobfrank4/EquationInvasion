@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 public class Credits extends AppCompatActivity {
 
+    Audio noise;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,18 +54,16 @@ public class Credits extends AppCompatActivity {
         txtContributorHeader.setTypeface(chalkboardFont);
         txtContributors.setTypeface(chalkboardFont);
 
+        noise = new Audio(Credits.this);
     }
 
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        btnNoise();
+        noise.close();
+        noise.setSoundState(0);
+        noise.buttonNoise();
     }
-    //the method to be called for sound effects when a button is clicked.
-    private void btnNoise()
-    {
-        MediaPlayer SE = MediaPlayer.create(Credits.this, R.raw.btn1sound);
-        SE.start();
-    }
+
 
 }
