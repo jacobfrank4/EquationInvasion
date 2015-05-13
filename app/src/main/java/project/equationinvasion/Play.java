@@ -301,9 +301,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private void subtractTime() {
         int secondsToSubtract;
-        if (running && currentMilli > 10000) {
+        if (running && currentMilli > 5000) {
             timer.cancel();
-            secondsToSubtract = 10;
+            secondsToSubtract = 5;
             timer = new MyTimer(currentMilli - (secondsToSubtract * 1000));
             timer.start();
         } else {

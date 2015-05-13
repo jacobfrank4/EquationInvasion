@@ -31,12 +31,10 @@ public class GameOver extends ActionBarActivity {
         startActivity(intent);
     }
 
-    //Called when player clicks the credits button
-    public void goToCredits(View view) {
-        Intent intent = new Intent(this, Credits.class);
+    public void goToMain(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
