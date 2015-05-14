@@ -175,10 +175,7 @@ public class Audio {
         switch (i)
         {
             case 0:
-                    if (SE != null){
-                        SE.reset();
-                        SE.release();
-                    }
+
                     SE = MediaPlayer.create(context,R.raw.btn1sound);
                     SE.setOnCompletionListener(done);
                     break;

@@ -41,7 +41,7 @@ public class MainActivity extends FragmentActivity implements
 
 	public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
 
-	private GoogleApiClient googleApiClient;
+	private static GoogleApiClient googleApiClient;
 
 	private static int RC_SIGN_IN = 9001;
 
@@ -266,6 +266,10 @@ public class MainActivity extends FragmentActivity implements
 				googleApiClient.disconnect();
 			}
 		}
+	}
+
+	public static GoogleApiClient getGoogleApiClient() {
+		return googleApiClient;
 	}
 }
 
