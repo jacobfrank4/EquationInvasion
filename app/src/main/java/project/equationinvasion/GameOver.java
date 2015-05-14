@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,14 +42,16 @@ public class GameOver extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
-
-        // Create the google Api Client with access to the play Game services
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .build();
+
+        googleApiClient.connect();
+        // Create the google Api Client with access to the play Game services
+        //updateLeaderboard();
     }
 
 
@@ -91,9 +94,31 @@ public class GameOver extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        googleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        googleApiClient.disconnect();
+    }
+
     //What occurs when the player is signed in and connected to Google Play services
     @Override
     public void onConnected(Bundle bundle) {
+        Log.d("fuck", "CgkI-_7R9foMEAIQAA");
+        if (isSignedIn()) {
+            Log.d("fuck", "If Statement runs");
+            Games.Leaderboards.submitScore(googleApiClient,
+                    "CgkI-_7R9foMEAIQAA",
+                    getIntent().getIntExtra("Score", 0));
+
+            startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
+                    "CgkI-_7R9foMEAIQAA"), 1337);
+        }
     }
 
     //Attempt to reconnect
@@ -123,12 +148,28 @@ public class GameOver extends AppCompatActivity implements
         }
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == RC_SIGN_IN) {
+            signInClicked = false;
+            resolvingConnectionFailure = false;
+            if (resultCode == RESULT_OK) {
+                googleApiClient.connect();
+            } else {
+                // Bring up an error dialog to alert the user that sign-in failed.
+                BaseGameUtils.showActivityResultError(this,
+                        requestCode, resultCode, R.string.signin_error);
+            }
+        }
+    }
+
     private boolean isSignedIn() {
         return (googleApiClient != null && googleApiClient.isConnected());
     }
 
     private void updateLeaderboard() {
+        Log.d("fuck", String.valueOf(googleApiClient.isConnected()));
         if (isSignedIn()) {
+            Log.d("fuck", "If Statement runs");
             Games.Leaderboards.submitScore(googleApiClient,
                     String.valueOf(R.string.leaderboard_id),
                     getIntent().getIntExtra("Score", 0));
