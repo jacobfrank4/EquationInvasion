@@ -267,6 +267,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             time.setText("Game Over");
             Intent intent = new Intent(getApplicationContext(), GameOver.class);
             intent.putExtra("Score", score);
+            noise.stopMusic();
             startActivity(intent);
             finish();
         }
@@ -361,11 +362,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         streak %= 6;
     }
 
-    //the method to be called for sound effects when a button is clicked.
-    private void btnNoise() {
-        MediaPlayer SE = MediaPlayer.create(Play.this, R.raw.btn1sound);
-        SE.start();
-    }
 
     /**
      *
