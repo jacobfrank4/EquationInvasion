@@ -131,7 +131,7 @@ public class MainActivity extends FragmentActivity implements
 		startActivity(intent);
 	}
 
-	public void muteToggle() {
+	public void muteToggle(View view) {
 		noise.toggleMute();
 	}
 
