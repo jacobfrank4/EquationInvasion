@@ -12,10 +12,12 @@ import android.widget.TextView;
 
 public class GameOver extends ActionBarActivity {
 
+    Audio noise;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
+        noise = new Audio(GameOver.this);
     }
 
 
@@ -23,12 +25,16 @@ public class GameOver extends ActionBarActivity {
     public void goToPlay(View view) {
         Intent intent = new Intent(this, Play.class);
         startActivity(intent);
+        noise.setSoundState(0);
+        noise.buttonNoise();
     }
 
     //Called when player clicks the High Scores button
     public void goToHighScores(View view) {
         Intent intent = new Intent(this, HighScores.class);
         startActivity(intent);
+        noise.setSoundState(0);
+        noise.buttonNoise();
     }
 
     public void goToMain(View view) {
