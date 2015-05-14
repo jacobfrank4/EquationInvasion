@@ -175,7 +175,14 @@ public class Audio {
         switch (i)
         {
             case 0:
+<<<<<<< HEAD
 
+=======
+                    if (SE != null){
+                        SE.reset();
+                        SE.release();
+                    }
+>>>>>>> parent of b8bcd9d... fixed the transition bug, added audio to Game Over Page
                     SE = MediaPlayer.create(context,R.raw.btn1sound);
                     SE.setOnCompletionListener(done);
                     break;
