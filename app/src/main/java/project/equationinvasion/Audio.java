@@ -176,12 +176,18 @@ public class Audio {
         {
             case 0:
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> parent of b8bcd9d... fixed the transition bug, added audio to Game Over Page
                     if (SE != null){
                         SE.reset();
                         SE.release();
                     }
+<<<<<<< HEAD
+>>>>>>> parent of b8bcd9d... fixed the transition bug, added audio to Game Over Page
+=======
 >>>>>>> parent of b8bcd9d... fixed the transition bug, added audio to Game Over Page
                     SE = MediaPlayer.create(context,R.raw.btn1sound);
                     SE.setOnCompletionListener(done);

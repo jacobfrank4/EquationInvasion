@@ -40,6 +40,7 @@ public class GameOver extends AppCompatActivity implements GoogleApiClient.Conne
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
 <<<<<<< HEAD
+<<<<<<< HEAD
         //googleApiClient = MainActivity.getGoogleApiClient();
 
         googleApiClient = new GoogleApiClient.Builder(this)
@@ -50,6 +51,8 @@ public class GameOver extends AppCompatActivity implements GoogleApiClient.Conne
                 .build();
 
         updateLeaderboard();
+=======
+>>>>>>> parent of b8bcd9d... fixed the transition bug, added audio to Game Over Page
 =======
 >>>>>>> parent of b8bcd9d... fixed the transition bug, added audio to Game Over Page
     }
