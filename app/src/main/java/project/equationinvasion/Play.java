@@ -266,6 +266,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         public void onFinish() {
             time.setText("Game Over");
             Intent intent = new Intent(getApplicationContext(), GameOver.class);
+            intent.putExtra("Score", score);
             startActivity(intent);
             finish();
         }
