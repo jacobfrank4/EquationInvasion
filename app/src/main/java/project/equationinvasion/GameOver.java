@@ -2,20 +2,53 @@ package project.equationinvasion;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.*;
+import com.google.example.games.basegameutils.BaseGameUtils;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
+import com.google.android.gms.games.Player;
+import com.google.android.gms.plus.Plus;
 
-public class GameOver extends ActionBarActivity {
+
+public class GameOver extends AppCompatActivity implements
+        GoogleApiClient.OnConnectionFailedListener,
+        GoogleApiClient.ConnectionCallbacks {
+
+    private GoogleApiClient googleApiClient;
+
+    private static int RC_SIGN_IN = 9001;
+
+    // Are we currently resolving a connection failure?
+    private boolean resolvingConnectionFailure = false;
+
+    // Has the user clicked the sign-in button?
+    private boolean signInClicked = false;
+
+    // Automatically start the sign-in flow when the Activity starts
+    private boolean autoStartSignInFlow = true;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
+
+        // Create the google Api Client with access to the play Game services
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                .build();
     }
 
 
@@ -56,5 +89,49 @@ public class GameOver extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //What occurs when the player is signed in and connected to Google Play services
+    @Override
+    public void onConnected(Bundle bundle) {
+    }
+
+    //Attempt to reconnect
+    @Override
+    public void onConnectionSuspended(int i) {
+        googleApiClient.connect();
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        if (resolvingConnectionFailure) {
+            return;
+        }
+        //If the sign-in button was clicked or if auto sign-in is enabled,
+        //launch the sign-in flow
+        if (signInClicked || autoStartSignInFlow) {
+            autoStartSignInFlow = false;
+            signInClicked = false;
+            resolvingConnectionFailure = true;
+
+            // Attempt to resolve the connection failure using BaseGameUtils.
+            if (!BaseGameUtils.resolveConnectionFailure(this, googleApiClient, connectionResult,
+                    //Replace the following string with a generic error message in Strings.xml
+                    RC_SIGN_IN, getResources().getString(R.string.signin_error))) {
+                resolvingConnectionFailure = false;
+            }
+        }
+    }
+
+    private boolean isSignedIn() {
+        return (googleApiClient != null && googleApiClient.isConnected());
+    }
+
+    private void updateLeaderboard() {
+        if (isSignedIn()) {
+            Games.Leaderboards.submitScore(googleApiClient,
+                    String.valueOf(R.string.leaderboard_id),
+                    getIntent().getIntExtra("Score", 0));
+        }
     }
 }
