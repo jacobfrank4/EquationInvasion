@@ -245,23 +245,6 @@ public class MainActivity extends FragmentActivity implements
 		}
 	}
 
-//	public void onSignInButtonClicked(View view) {
-//		signInClicked = true;
-//		googleApiClient.connect();
-//	}
-//
-//	public void onSignOutButtonClicked() {
-//		signInClicked = false;
-//		Games.signOut(googleApiClient);
-//		if (googleApiClient.isConnected()) {
-//			googleApiClient.disconnect();
-//		}
-//
-//		mMainMenuFragment.setGreeting(getString(R.string.signed_out_greeting));
-//		mMainMenuFragment.setShowSignInButton(true);
-//		mWinFragment.setShowSignInButton(true);
-//	}
-
 	private boolean isSignedIn() {
 		return (googleApiClient != null && googleApiClient.isConnected());
 	}
@@ -271,9 +254,6 @@ public class MainActivity extends FragmentActivity implements
 		if (view.getId() == R.id.sign_in_button) {
 			signInClicked = true;
 			googleApiClient.connect();
-
-			TextView txtGameInstructions = (TextView) findViewById(R.id.instructions);
-			txtGameInstructions.setText("Connecting");
 		} else if (view.getId() == R.id.sign_out_button) {
 			signInClicked = false;
 
