@@ -68,7 +68,17 @@ public class Audio {
      */
     public void playBGM() {
         if (!muted) {
+            BGM = MediaPlayer.create(context, R.raw.bgm2);
+            BGM.setLooping(true);
+            BGM.start();
+        }
+    }
 
+    public void overBGM() {
+        if (!muted) {
+            BGM = MediaPlayer.create(context, R.raw.bgm3);
+            BGM.setLooping(true);
+            BGM.start();
         }
     }
 
@@ -163,7 +173,6 @@ public class Audio {
         0: transition button sound
         1: right Answer sound
         2: wrong answer sound
-        3: mute noise
 
         This method exists to change which sound
         plays when a button is pushed.

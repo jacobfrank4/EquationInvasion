@@ -35,6 +35,12 @@ public class GameOver extends AppCompatActivity implements
     // Automatically start the sign-in flow when the Activity starts
     private boolean autoStartSignInFlow = true;
 
+    /**
+     * Declarations for audio functionality
+     * -Matt
+     */
+    protected Audio noise;
+
 
 
     @Override
@@ -49,6 +55,10 @@ public class GameOver extends AppCompatActivity implements
                 .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .build();
+
+        //Standard audio instantiation
+        noise = new Audio(GameOver.this);
+        noise.overBGM();
     }
 
 
@@ -56,17 +66,20 @@ public class GameOver extends AppCompatActivity implements
     public void goToPlay(View view) {
         Intent intent = new Intent(this, Play.class);
         startActivity(intent);
+        noise.close();
     }
 
     //Called when player clicks the High Scores button
     public void goToHighScores(View view) {
         Intent intent = new Intent(this, HighScores.class);
         startActivity(intent);
+        noise.close();
     }
 
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        noise.close();
     }
 
     @Override
@@ -100,6 +113,15 @@ public class GameOver extends AppCompatActivity implements
     @Override
     public void onConnectionSuspended(int i) {
         googleApiClient.connect();
+    }
+
+    //Simplifying leave sound efects
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        noise.pauseMusic();
+        noise.setSoundState(0);
+        noise.buttonNoise();
     }
 
     @Override
