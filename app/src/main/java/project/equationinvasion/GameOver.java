@@ -69,20 +69,20 @@ public class GameOver extends AppCompatActivity implements
     public void goToPlay(View view) {
         Intent intent = new Intent(this, Play.class);
         startActivity(intent);
-        noise.close();
+
     }
 
     //Called when player clicks the High Scores button
     public void goToHighScores(View view) {
         Intent intent = new Intent(this, HighScores.class);
         startActivity(intent);
-        noise.close();
+
     }
 
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        noise.close();
+
     }
 
     @Override

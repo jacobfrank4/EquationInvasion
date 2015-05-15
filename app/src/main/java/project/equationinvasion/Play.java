@@ -31,7 +31,86 @@ import java.text.DecimalFormat;
 
 public class Play extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     * Milliseconds in Seconds
+     */
     private static final int MILLI_IN_SECOND = 1000;
+
+    /**
+     * Start Score on this value
+     */
+    private static final int STARTING_SCORE = 0;
+
+    /**
+     * Base time for disappearing timers except validation
+     */
+    private static final int BASE_TIME = 1000;
+
+    /**
+     * Base tick for all timers
+     */
+    private static final int BASE_TICK = 1000;
+
+    /**
+     * Initial time for the game
+     */
+    private static final int START_TIME = 45;
+
+    /**
+     * Timer for the validation images
+     */
+    private static final int INV_TIMER = 250;
+
+    /**
+     * Start level at this value
+     */
+    private static final int LEVEL_START = 1;
+
+    /**
+     * How much the score will increment for each right answer
+     */
+    private static final int INCREMENT_SCORE = 100;
+
+    /**
+     * Seconds in a minute
+     */
+    private static final int SECOND_IN_MINUTE = 60;
+
+    /**
+     * Milliseconds in a minute
+     */
+    private static final int MILLI_IN_MINUTE = 60000;
+
+    /**
+     * How much time will be added every full streak bar
+     */
+    private static final int INCREMENT_TIME = 10;
+
+    /**
+     * If the timer is less than this (5 seconds * MILLI_IN_SECOND), do not decrement time,
+     * set time to 0
+     */
+    private static final int MIN_TIME_DECREMENT = 5000;
+
+    /**
+     * Base amount of seconds to subtract from every full fail streak
+     */
+    private static final int DECREMENT_TIME = 5;
+
+    /**
+     * Maximum streak before it resets + 1
+     */
+    private static final int STREAK_LIMIT = 6;
+
+    /**
+     * Maximum level count
+     */
+    private static final int MAX_LEVEL = 6;
+
+    /**
+     * Maximum times you can fail a question in a row before we penalize the player
+     */
+    private static final int MAX_FAIL_STREAK = 3;
 
     /**
      * Declaration for the textView that displays the equation.
@@ -99,7 +178,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     /**
      * Score tracking
      */
-    private int score = 0;
+    private int score = STARTING_SCORE;
     private TextView scoreDisplay;
     private int scoreIncrement;
 
@@ -127,7 +206,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         /**
          * Timer to display 5 pips for a second before resetting it
          */
-        pipTimer = new CountDownTimer(1000, 1000) {
+        pipTimer = new CountDownTimer(BASE_TIME, BASE_TICK) {
             @Override
             public void onTick(long millisUntilFinished) {}
 
@@ -145,14 +224,14 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
          * Instantiating what I need for the timer
          */
         time = (TextView) findViewById(R.id.time);
-        timer = new MyTimer(45 * MILLI_IN_SECOND);
+        timer = new MyTimer(START_TIME * MILLI_IN_SECOND);
         timer.start();
         running = true;
 
         /**
          * Instantiating the validation timer.
          */
-        invisibleTimer = new CountDownTimer(250, 1000) {
+        invisibleTimer = new CountDownTimer(INV_TIMER, BASE_TICK) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -164,7 +243,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             }
         };
 
-        addTimeTimer = new CountDownTimer(1000, 1000) {
+        addTimeTimer = new CountDownTimer(BASE_TIME, BASE_TICK) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -180,13 +259,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
          * Level System
          */
         levelView = (TextView) findViewById(R.id.levelView);
-        currentLevel = 1;
+        currentLevel = LEVEL_START;
 
         /**
          * Adding score
          */
         scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
-        scoreIncrement = 100;
+        scoreIncrement = INCREMENT_SCORE;
 
         /**
          * True and False buttons
@@ -279,8 +358,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             long minute;
             long second;
 
-            second = (currentTime / 1000) % 60;
-            minute = currentTime / 60000;
+            second = (currentTime / MILLI_IN_SECOND) % SECOND_IN_MINUTE;
+            minute = currentTime / MILLI_IN_MINUTE;
             return minute + ":" + fmt.format(second);
         }
     }
@@ -292,8 +371,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         int secondsToAdd;
         if (running) {
             timer.cancel();
-            secondsToAdd = 10;
-            timer = new MyTimer(currentMilli + (secondsToAdd * 1000));
+            secondsToAdd = INCREMENT_TIME;
+            timer = new MyTimer(currentMilli + (secondsToAdd * MILLI_IN_SECOND));
             timer.start();
         }
     }
@@ -303,10 +382,10 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      */
     private void subtractTime() {
         int secondsToSubtract;
-        if (running && currentMilli > 5000) {
+        if (running && currentMilli > MIN_TIME_DECREMENT) {
             timer.cancel();
-            secondsToSubtract = 5;
-            timer = new MyTimer(currentMilli - (secondsToSubtract * 1000));
+            secondsToSubtract = DECREMENT_TIME;
+            timer = new MyTimer(currentMilli - (secondsToSubtract * MILLI_IN_SECOND));
             timer.start();
         } else {
             timer.cancel();
@@ -359,7 +438,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
                 fifth.setImageResource(R.drawable.streakpipoff);
         }
         streak++;
-        streak %= 6;
+        streak %= STREAK_LIMIT;
     }
 
 
@@ -368,7 +447,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      method to change level on method call
      */
     private void levelChanger() {
-            if (currentLevel < 6) {
+            if (currentLevel < MAX_LEVEL) {
                 currentLevel++;
             }
             levelView.setText("Level: " + currentLevel);
@@ -427,9 +506,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
             failStreak++;
-            if (failStreak == 3) {
+            if (failStreak == MAX_FAIL_STREAK) {
                 subtractTime();
-                if(currentLevel > 1) {
+                if(currentLevel > LEVEL_START) {
                     currentLevel--;
                     levelView.setText("Level: " + currentLevel);
                 }
@@ -470,7 +549,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             failStreak++;
             if (failStreak == 3) {
                 subtractTime();
-                if(currentLevel > 1) {
+                if(currentLevel > LEVEL_START) {
                     currentLevel--;
                     levelView.setText("Level: " + currentLevel);
                 }
