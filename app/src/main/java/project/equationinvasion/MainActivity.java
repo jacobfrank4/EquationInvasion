@@ -121,8 +121,12 @@ public class MainActivity extends FragmentActivity implements
 
 	//Called when player clicks the High Scores button
 	public void goToHighScores(View view) {
-		Intent intent = new Intent(this, HighScores.class);
-		startActivity(intent);
+//		Intent intent = new Intent(this, HighScores.class);
+//		startActivity(intent);
+
+		startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
+				"CgkI-_7R9foMEAIQAA"), 1337);
+
 	}
 
 	//Called when player clicks the credits button
