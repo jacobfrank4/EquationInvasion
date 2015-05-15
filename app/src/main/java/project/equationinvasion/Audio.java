@@ -153,7 +153,7 @@ public class Audio {
 
     /*
         This lets us close the sound effects on another page,
-        after we've already closed the BGM
+        as well as the BGM
      */
     OnCompletionListener done = new OnCompletionListener() {
         @Override
@@ -161,6 +161,7 @@ public class Audio {
             if (mp == SE) {
                 SE.reset();
                 SE.release();
+
             }
         }
     };
