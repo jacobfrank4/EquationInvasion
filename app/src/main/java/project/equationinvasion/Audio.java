@@ -19,12 +19,11 @@ package project.equationinvasion;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
-import android.widget.Button;
 
 /**
  * Built to streamline the audio production process.
  */
-public class Audio {
+class Audio {
 
     /*
         The two media players that will be used for the entirety of the program.
@@ -41,7 +40,7 @@ public class Audio {
     /*
         A receiver for the current context that this class is being called in.
      */
-    private Context context;
+    private final Context context;
 
     /*
         Constructor for this class
@@ -156,7 +155,7 @@ public class Audio {
         This lets us close the sound effects on another page,
         as well as the BGM
      */
-    OnCompletionListener done = new OnCompletionListener() {
+    private final OnCompletionListener done = new OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mp) {
             if (mp == SE) {

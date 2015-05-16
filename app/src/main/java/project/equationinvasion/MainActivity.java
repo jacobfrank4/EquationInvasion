@@ -18,20 +18,16 @@ package project.equationinvasion;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.*;
-import com.google.example.games.basegameutils.BaseGameUtils;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
-import com.google.android.gms.games.Player;
 import com.google.android.gms.plus.Plus;
+import com.google.example.games.basegameutils.BaseGameUtils;
 
 
 public class MainActivity extends FragmentActivity implements
@@ -43,7 +39,7 @@ public class MainActivity extends FragmentActivity implements
 
 	private GoogleApiClient googleApiClient;
 
-	private static int RC_SIGN_IN = 9001;
+	private static final int RC_SIGN_IN = 9001;
 
 	// Are we currently resolving a connection failure?
 	private boolean resolvingConnectionFailure = false;
@@ -58,7 +54,7 @@ public class MainActivity extends FragmentActivity implements
 	 * Declarations for audio functionality
 	 * -Matt
 	 */
-	protected Audio noise;
+	private Audio noise;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

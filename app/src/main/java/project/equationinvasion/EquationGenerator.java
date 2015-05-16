@@ -1916,8 +1916,6 @@ class EquationGenerator {
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
 	
-	private boolean correctAnswerShown;
-	
 	/**
 	 * Random Answer Generator.
 	 *
