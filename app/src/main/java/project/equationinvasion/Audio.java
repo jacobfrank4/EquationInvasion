@@ -19,6 +19,7 @@ package project.equationinvasion;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.widget.Button;
 
 /**
  * Built to streamline the audio production process.
