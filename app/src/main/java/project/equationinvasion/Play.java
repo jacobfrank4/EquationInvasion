@@ -27,13 +27,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.plus.Plus;
 
 import java.text.DecimalFormat;
 
-public class Play extends AppCompatActivity implements View.OnClickListener {
+public class Play extends AppCompatActivity implements View.OnClickListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
 
     // The Google API client
     private GoogleApiClient googleApiClient;
@@ -194,10 +197,15 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 	 */
 	private Audio noise;
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+
         /**
          * Instantiating everything for streak counter
          * -John
@@ -210,6 +218,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         fourth = (ImageView) findViewById(R.id.imageView4);
         fifth = (ImageView) findViewById(R.id.imageView5);
         pipChanger();
+
+        // Create the google Api Client with access to the play Game services
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                .build();
+
+
         /**
          * Timer to display 5 pips for a second before resetting it
          */
@@ -329,6 +347,21 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             mathGen.generate(currentLevel);
             noise.buttonNoise();
         }
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        googleApiClient.connect();
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
     }
 
 
