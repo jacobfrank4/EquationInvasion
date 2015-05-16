@@ -18,7 +18,6 @@ package project.equationinvasion;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +29,6 @@ import android.widget.TextView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
-import com.google.android.gms.plus.Plus;
 
 import java.text.DecimalFormat;
 
@@ -313,7 +311,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 
         //text view label
         TextView txtEquals = (TextView) findViewById(R.id.equals);
-        TextView level = (TextView) findViewById(R.id.levelView);
 
         //Load Font Face
         Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
@@ -324,7 +321,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         scoreDisplay.setTypeface(chalkboardFont);
         answer.setTypeface(chalkboardFont);
         txtEquals.setTypeface(chalkboardFont);
-        level.setTypeface(chalkboardFont);
+        levelView.setTypeface(chalkboardFont);
 
         //generating first equation
         mathGen.generate(currentLevel);
@@ -411,11 +408,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
      * Moved on button click of add time to a method to call
      */
     private void addTime() {
-        int secondsToAdd;
         if (running) {
             timer.cancel();
-            secondsToAdd = INCREMENT_TIME;
-            timer = new MyTimer(currentMilli + (secondsToAdd * MILLI_IN_SECOND));
+            timer = new MyTimer(currentMilli + (INCREMENT_TIME * MILLI_IN_SECOND));
             timer.start();
         }
     }
@@ -424,11 +419,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
      * Subtract time method
      */
     private void subtractTime() {
-        int secondsToSubtract;
         if (running && currentMilli > MIN_TIME_DECREMENT) {
             timer.cancel();
-            secondsToSubtract = DECREMENT_TIME;
-            timer = new MyTimer(currentMilli - (secondsToSubtract * MILLI_IN_SECOND));
+            timer = new MyTimer(currentMilli - (DECREMENT_TIME * MILLI_IN_SECOND));
             timer.start();
         } else {
             timer.cancel();
@@ -492,20 +485,22 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private void levelChanger() {
             if (currentLevel < MAX_LEVEL) {
                 currentLevel++;
-  //              if(currentLevel == 2) {
- //                   Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBg");
- //               }
-//                if(currentLevel == 3) {
-//                    Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBw");
- //               }
- //               if(currentLevel == 4) {
- //                   Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCA");
-//                }
-//                if(currentLevel == 5) {
- //                   Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCQ");
- //               }
- //               if(currentLevel == 6) {
-//                    Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCg");
+//                switch(currentLevel) {
+//                    case 2:
+//                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBg");
+//                        break;
+//                    case 3:
+//                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBw");
+//                        break;
+//                    case 4:
+//                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCA");
+//                        break;
+//                    case 5:
+//                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCQ");
+//                        break;
+//                    case 6:
+//                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCg");
+//                        break;
 //                }
             }
             levelView.setText("Level: " + currentLevel);
