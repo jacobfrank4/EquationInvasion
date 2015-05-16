@@ -83,16 +83,17 @@
         android:layout_marginRight="20dp"
         android:gravity="center"/>
 
+    <!-- Audio button -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Toggle Sound"
         android:id="@+id/mute"
+        android:background="@drawable/audiobutton"
         android:onClick="muteToggle"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/highScore"
-        android:layout_below="@+id/highScore" />
+        android:layout_below="@+id/highScore"
+        android:layout_alignEnd="@+id/instructions"
+        android:layout_toEndOf="@+id/highScore" />
 
     <!-- sign-in button -->
     <com.google.android.gms.common.SignInButton
@@ -109,5 +110,6 @@
         android:layout_height="wrap_content"
         android:text="Sign Out"
         android:visibility="gone" />
+
 
 </RelativeLayout>

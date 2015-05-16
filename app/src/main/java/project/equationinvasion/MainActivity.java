@@ -249,6 +249,7 @@ public class MainActivity extends FragmentActivity implements
 		}
 	}
 
+
 	private boolean isSignedIn() {
 		return (googleApiClient != null && googleApiClient.isConnected());
 	}
