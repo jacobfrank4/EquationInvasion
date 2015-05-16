@@ -59,12 +59,13 @@
         android:layout_toStartOf="@+id/imageView2" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/current_equation"
-        android:textSize="25sp"
+        android:textSize="40sp"
         android:id="@+id/leftEquation"
         android:textColor="#ffffffff"
+        android:gravity="center"
         android:layout_marginTop="82dp"
         android:layout_below="@+id/levelView"
         android:layout_centerHorizontal="true" />
@@ -74,7 +75,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/equals_sign"
-        android:textSize="40sp"
+        android:textSize="50sp"
         android:id="@+id/equals"
         android:textColor="#ffffff"
         android:layout_below="@+id/leftEquation"
@@ -84,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/equation_answer"
-        android:textSize="30sp"
+        android:textSize="40sp"
         android:id="@+id/solution"
         android:layout_below="@+id/equals"
         android:layout_centerHorizontal="true"
@@ -109,7 +110,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Level 1"
+        android:text="Level: 1"
         android:id="@+id/levelView"
         android:textColor="#ffffff"
         android:layout_alignTop="@+id/imageView"

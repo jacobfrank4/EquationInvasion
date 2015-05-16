@@ -61,7 +61,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     /**
      * Initial time for the game
      */
-    private static final int START_TIME = 45;
+    private static final int START_TIME = 60;
 
     /**
      * Timer for the validation images
@@ -295,6 +295,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 
         //text view label
         TextView txtEquals = (TextView) findViewById(R.id.equals);
+        TextView level = (TextView) findViewById(R.id.levelView);
 
         //Load Font Face
         Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
@@ -305,6 +306,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         scoreDisplay.setTypeface(chalkboardFont);
         answer.setTypeface(chalkboardFont);
         txtEquals.setTypeface(chalkboardFont);
+        level.setTypeface(chalkboardFont);
 
         //generating first equation
         mathGen.generate(currentLevel);
@@ -457,21 +459,21 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     private void levelChanger() {
             if (currentLevel < MAX_LEVEL) {
                 currentLevel++;
-                if(currentLevel == 2) {
-                    Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBg");
-                }
-                if(currentLevel == 3) {
-                    Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBw");
-                }
-                if(currentLevel == 4) {
-                    Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCA");
-                }
-                if(currentLevel == 5) {
-                    Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCQ");
-                }
-                if(currentLevel == 6) {
-                    Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCg");
-                }
+  //              if(currentLevel == 2) {
+ //                   Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBg");
+ //               }
+//                if(currentLevel == 3) {
+//                    Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBw");
+ //               }
+ //               if(currentLevel == 4) {
+ //                   Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCA");
+//                }
+//                if(currentLevel == 5) {
+ //                   Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCQ");
+ //               }
+ //               if(currentLevel == 6) {
+//                    Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCg");
+//                }
             }
             levelView.setText("Level: " + currentLevel);
 
