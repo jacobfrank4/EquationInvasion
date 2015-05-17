@@ -21,6 +21,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -231,6 +232,8 @@ public class MainActivity extends AppCompatActivity implements
 	private boolean isSignedIn() {
 		return (googleApiClient != null && googleApiClient.isConnected());
 	}
+
+
 
 	@Override
 	public void onClick(View view) {
