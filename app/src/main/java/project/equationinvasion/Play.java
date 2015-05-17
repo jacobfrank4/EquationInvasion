@@ -622,6 +622,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
             if (failStreak == MAX_FAIL_STREAK) {
                 subtractTime();
                 addTime.setImageResource(R.drawable.minusfive);
+                addTime.setVisibility(View.VISIBLE);
                 if(currentLevel > LEVEL_START) {
                     currentLevel--;
                     levelView.setText("Level: " + currentLevel);
@@ -664,6 +665,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
             if (failStreak == 3) {
                 subtractTime();
                 addTime.setImageResource(R.drawable.minusfive);
+                addTime.setVisibility(View.VISIBLE);
                 if(currentLevel > LEVEL_START) {
                     currentLevel--;
                     levelView.setText("Level: " + currentLevel);
