@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -39,8 +38,6 @@ public class GameOver extends AppCompatActivity implements
      * -Matt
      */
     private Audio noise;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,9 +106,7 @@ public class GameOver extends AppCompatActivity implements
     //What occurs when the player is signed in and connected to Google Play services
     @Override
     public void onConnected(Bundle bundle) {
-        Log.d("fuck", "CgkI-_7R9foMEAIQAA");
         if (isSignedIn()) {
-            Log.d("fuck", "If Statement runs");
             Games.Leaderboards.submitScore(googleApiClient,
                     "CgkI-_7R9foMEAIQAA",
                     getIntent().getIntExtra("Score", 0));
@@ -173,15 +168,5 @@ public class GameOver extends AppCompatActivity implements
 
     private boolean isSignedIn() {
         return (googleApiClient != null && googleApiClient.isConnected());
-    }
-
-    private void updateLeaderboard() {
-        Log.d("fuck", String.valueOf(googleApiClient.isConnected()));
-        if (isSignedIn()) {
-            Log.d("fuck", "If Statement runs");
-            Games.Leaderboards.submitScore(googleApiClient,
-                    String.valueOf(R.string.leaderboard_id),
-                    getIntent().getIntExtra("Score", 0));
-        }
     }
 }
