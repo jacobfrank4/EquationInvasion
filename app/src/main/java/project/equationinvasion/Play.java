@@ -21,6 +21,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.plus.Plus;
+import com.google.example.games.basegameutils.BaseGameUtils;
 
 import java.text.DecimalFormat;
 
@@ -39,6 +41,17 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 
     // The Google API client
     private GoogleApiClient googleApiClient;
+
+    // Are we currently resolving a connection failure?
+    private boolean resolvingConnectionFailure = false;
+
+    // Has the user clicked the sign-in button?
+    private boolean signInClicked = false;
+
+    // Automatically start the sign-in flow when the Activity starts
+    private boolean autoStartSignInFlow = true;
+
+    private static final int RC_SIGN_IN = 9001;
 
     /**
      * Milliseconds in Seconds
@@ -359,7 +372,53 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
+        if (resolvingConnectionFailure) {
+            return;
+        }
+        //If the sign-in button was clicked or if auto sign-in is enabled,
+        //launch the sign-in flow
+        if (signInClicked || autoStartSignInFlow) {
+            autoStartSignInFlow = false;
+            signInClicked = false;
+            resolvingConnectionFailure = true;
 
+            // Attempt to resolve the connection failure using BaseGameUtils.
+            if (!BaseGameUtils.resolveConnectionFailure(this, googleApiClient, connectionResult,
+                    //Replace the following string with a generic error message in Strings.xml
+                    RC_SIGN_IN, getResources().getString(R.string.signin_error))) {
+                resolvingConnectionFailure = false;
+            }
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == RC_SIGN_IN) {
+            signInClicked = false;
+            resolvingConnectionFailure = false;
+            if (resultCode == RESULT_OK) {
+                googleApiClient.connect();
+            } else {
+                // Bring up an error dialog to alert the user that sign-in failed.
+                BaseGameUtils.showActivityResultError(this,
+                        requestCode, resultCode, R.string.signin_error);
+            }
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        googleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        googleApiClient.disconnect();
+    }
+
+    private boolean isSignedIn() {
+        return (googleApiClient != null && googleApiClient.isConnected());
     }
 
 
@@ -484,27 +543,29 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
      method to change level on method call
      */
     private void levelChanger() {
-            if (currentLevel < MAX_LEVEL) {
-                currentLevel++;
-//                switch(currentLevel) {
-//                    case 2:
-//                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBg");
-//                        break;
-//                    case 3:
-//                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBw");
-//                        break;
-//                    case 4:
-//                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCA");
-//                        break;
-//                    case 5:
-//                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCQ");
-//                        break;
-//                    case 6:
-//                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCg");
-//                        break;
-//                }
+        if (currentLevel < MAX_LEVEL) {
+            currentLevel++;
+            if (isSignedIn()) {
+                switch(currentLevel) {
+                    case 2:
+                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBg");
+                        break;
+                    case 3:
+                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBw");
+                        break;
+                    case 4:
+                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCA");
+                        break;
+                    case 5:
+                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCQ");
+                        break;
+                    case 6:
+                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCg");
+                        break;
+                }
             }
-            levelView.setText("Level: " + currentLevel);
+        }
+        levelView.setText("Level: " + currentLevel);
 
     }
 
@@ -528,7 +589,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
      * Getter for the current level so as to generate correct equation
      * @return currentLevel
      *          The current level of the game
-     *
      */
     public static int getCurrentLevel() {
         return currentLevel;
@@ -556,7 +616,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
             scoreCounter();
             pipChanger();
             noise.setSoundState(1);
-        }else {
+        } else {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
             failStreak++;
@@ -597,7 +657,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
             scoreCounter();
             pipChanger();
             noise.setSoundState(1);
-        }else {
+        } else {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
             failStreak++;
