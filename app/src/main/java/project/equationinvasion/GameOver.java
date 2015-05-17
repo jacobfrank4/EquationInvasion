@@ -1,16 +1,20 @@
 package project.equationinvasion;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.plus.Plus;
 import com.google.example.games.basegameutils.BaseGameUtils;
+
+import org.w3c.dom.Text;
 
 
 public class GameOver extends AppCompatActivity implements
@@ -52,6 +56,21 @@ public class GameOver extends AppCompatActivity implements
         //Standard audio instantiation
         noise = new Audio(GameOver.this);
         noise.overBGM();
+
+
+        TextView scoreDisplay = (TextView) findViewById(R.id.finalScore);
+
+        //Font path
+        String chalkboardFontPath = "fonts/Chalkboard.ttf";
+
+        //Load Font Face
+        Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
+
+        //Applying font
+        scoreDisplay.setTypeface(chalkboardFont);
+
+        scoreDisplay.setText("Great Job!\n you scored\n\n\n" +
+                String.valueOf(getIntent().getIntExtra("Score", 0)) + " points");
     }
 
 
