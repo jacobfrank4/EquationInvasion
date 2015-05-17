@@ -37,6 +37,8 @@ public class MainActivity extends FragmentActivity implements
 
 	public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
 
+	public final static int REQUEST_ACHIEVEMENTS = 1337;
+
 	private GoogleApiClient googleApiClient;
 
 	private static final int RC_SIGN_IN = 9001;
@@ -117,12 +119,16 @@ public class MainActivity extends FragmentActivity implements
 
 	//Called when player clicks the High Scores button
 	public void goToHighScores(View view) {
-//		Intent intent = new Intent(this, HighScores.class);
-//		startActivity(intent);
 
 		startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
 				"CgkI-_7R9foMEAIQAA"), 1337);
+	}
 
+	//Called when player clicks the Achievements button
+	public void viewAchievements(View view) {
+
+		startActivityForResult(Games.Achievements.getAchievementsIntent(googleApiClient),
+				REQUEST_ACHIEVEMENTS);
 	}
 
 	//Called when player clicks the credits button
