@@ -21,7 +21,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements
 
 	public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
 
-	public final static int REQUEST_ACHIEVEMENTS = 1337;
+	private final static int REQUEST_ACHIEVEMENTS = 1337;
 
 	private GoogleApiClient googleApiClient;
 
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements
 		noise = new Audio(MainActivity.this);
 		noise.menuBGM();
 
-
 		/**
 		 * Setting font style
 		 */
@@ -98,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements
 				.addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
 				.addApi(Games.API).addScope(Games.SCOPE_GAMES)
 				.build();
-
 	}
 
 	/** Called when the user clicks the Send button */
@@ -120,14 +117,12 @@ public class MainActivity extends AppCompatActivity implements
 
 	//Called when player clicks the High Scores button
 	public void goToHighScores(View view) {
-
 		startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
 				"CgkI-_7R9foMEAIQAA"), 1337);
 	}
 
 	//Called when player clicks the Achievements button
 	public void viewAchievements(View view) {
-
 		startActivityForResult(Games.Achievements.getAchievementsIntent(googleApiClient),
 				REQUEST_ACHIEVEMENTS);
 	}
@@ -177,7 +172,6 @@ public class MainActivity extends AppCompatActivity implements
 	//What occurs when the player is signed in and connected to Google Play services
 	@Override
 	public void onConnected(Bundle bundle) {
-
 		// show sign-out button, hide the sign-in button
 		findViewById(R.id.sign_in_button).setVisibility(View.GONE);
 		findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
@@ -204,7 +198,6 @@ public class MainActivity extends AppCompatActivity implements
 
 			// Attempt to resolve the connection failure using BaseGameUtils.
 			if (!BaseGameUtils.resolveConnectionFailure(this, googleApiClient, connectionResult,
-					//Replace the following string with a generic error message in Strings.xml
 					RC_SIGN_IN, getResources().getString(R.string.signin_error))) {
 				resolvingConnectionFailure = false;
 			}
@@ -212,7 +205,6 @@ public class MainActivity extends AppCompatActivity implements
 		findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
 		findViewById(R.id.sign_out_button).setVisibility(View.GONE);
 	}
-
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		if (requestCode == RC_SIGN_IN) {
@@ -228,12 +220,9 @@ public class MainActivity extends AppCompatActivity implements
 		}
 	}
 
-
 	private boolean isSignedIn() {
 		return (googleApiClient != null && googleApiClient.isConnected());
 	}
-
-
 
 	@Override
 	public void onClick(View view) {
