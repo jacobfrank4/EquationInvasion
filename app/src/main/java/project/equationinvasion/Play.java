@@ -628,6 +628,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                     levelView.setText("Level: " + currentLevel);
                 }
                 failStreak = 0;
+                addTimeTimer.start();
             }
             pipChanger();
             noise.setSoundState(2);
@@ -671,6 +672,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                     levelView.setText("Level: " + currentLevel);
                 }
                 failStreak = 0;
+                addTimeTimer.start();
             }
             pipChanger();
             noise.setSoundState(2);
