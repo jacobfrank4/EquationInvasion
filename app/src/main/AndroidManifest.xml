@@ -58,16 +58,6 @@
                 android:value="project.equationinvasion.MainActivity" />
         </activity>
         <activity
-            android:name=".HighScores"
-            android:configChanges="orientation"
-            android:label="@string/title_activity_high_scores"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="project.equationinvasion.MainActivity" />
-        </activity>
-        <activity
             android:name=".GameOver"
             android:configChanges="orientation"
             android:label="@string/title_activity_game_over"

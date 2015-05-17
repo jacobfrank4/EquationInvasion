@@ -64,8 +64,8 @@ public class GameOver extends AppCompatActivity implements
 
     //Called when player clicks the High Scores button
     public void goToHighScores(View view) {
-        Intent intent = new Intent(this, HighScores.class);
-        startActivity(intent);
+        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
+                "CgkI-_7R9foMEAIQAA"), 1337);
 
     }
 
