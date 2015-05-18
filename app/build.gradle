@@ -1,14 +1,5 @@
 apply plugin: 'com.android.application'
-
 android {
-    signingConfigs {
-        config {
-            keyAlias 'EquationInvasionKey'
-            keyPassword 'IWant100%InTheCourse'
-            storeFile file('C:/Users/frank_000/keystores/android.jks')
-            storePassword 'IWant100%InTheCourse'
-        }
-    }
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
     defaultConfig {
@@ -21,16 +12,13 @@ android {
     buildTypes {
         debug {
             debuggable true
-            signingConfig signingConfigs.config
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
         }
     }
 }
-
 dependencies {
     compile project(':BaseGameUtils')
     compile fileTree(dir: 'libs', include: ['*.jar'])
