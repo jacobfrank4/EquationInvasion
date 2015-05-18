@@ -445,6 +445,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
             time.setText("Game Over");
             Intent intent = new Intent(getApplicationContext(), GameOver.class);
             intent.putExtra("Score", score);
+
             noise.stopMusic();
             startActivity(intent);
             finish();

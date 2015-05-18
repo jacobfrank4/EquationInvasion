@@ -105,8 +105,8 @@ class Audio {
      */
     public void toggleMute(){
         if (!muted) {
-            muted = true;
             stopMusic();
+            muted = true;
         } else {
             muted = false;
             menuBGM();
@@ -136,8 +136,10 @@ class Audio {
         This is meant to enable stopping of music.(used in muting)
      */
     public void stopMusic() {
-            BGM.stop();
-            BGM.reset();
+           if (!muted){
+                BGM.stop();
+                BGM.reset();
+           }
     }
 
 
