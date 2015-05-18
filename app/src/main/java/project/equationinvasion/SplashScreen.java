@@ -1,20 +1,12 @@
 package project.equationinvasion;
 
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 
 
-
-public class SplashScreen extends ActionBarActivity {
-
-    /**Duration until main screen is shown */
-    private final int SPLASH_DISPLAY_LENGTH = 3000;
+public class SplashScreen extends AppCompatActivity {
 
     /**
      *
@@ -30,6 +22,8 @@ public class SplashScreen extends ActionBarActivity {
          * Handler that starts the Main activity
          * and closes the Splash-Screen
          */
+        /*Duration until main screen is shown */
+        int SPLASH_DISPLAY_LENGTH = 3000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

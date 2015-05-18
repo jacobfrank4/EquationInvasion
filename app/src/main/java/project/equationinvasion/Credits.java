@@ -18,7 +18,6 @@ package project.equationinvasion;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -27,7 +26,7 @@ import android.widget.TextView;
 
 public class Credits extends AppCompatActivity {
 
-    Audio noise;
+    private Audio noise;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

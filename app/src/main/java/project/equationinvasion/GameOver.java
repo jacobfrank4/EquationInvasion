@@ -4,19 +4,16 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.*;
-import com.google.example.games.basegameutils.BaseGameUtils;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
-import com.google.android.gms.games.Player;
 import com.google.android.gms.plus.Plus;
+import com.google.example.games.basegameutils.BaseGameUtils;
+
+import org.w3c.dom.Text;
 
 
 public class GameOver extends AppCompatActivity implements
@@ -25,7 +22,7 @@ public class GameOver extends AppCompatActivity implements
 
     private GoogleApiClient googleApiClient;
 
-    private static int RC_SIGN_IN = 9001;
+    private static final int RC_SIGN_IN = 9001;
 
     // Are we currently resolving a connection failure?
     private boolean resolvingConnectionFailure = false;
@@ -40,9 +37,7 @@ public class GameOver extends AppCompatActivity implements
      * Declarations for audio functionality
      * -Matt
      */
-    protected Audio noise;
-
-
+    private Audio noise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +50,24 @@ public class GameOver extends AppCompatActivity implements
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .build();
 
-        googleApiClient.connect();
-        // Create the google Api Client with access to the play Game services
-        //updateLeaderboard();
-
         //Standard audio instantiation
         noise = new Audio(GameOver.this);
         noise.overBGM();
+
+
+        TextView scoreDisplay = (TextView) findViewById(R.id.finalScore);
+
+        //Font path
+        String chalkboardFontPath = "fonts/Chalkboard.ttf";
+
+        //Load Font Face
+        Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
+
+        //Applying font
+        scoreDisplay.setTypeface(chalkboardFont);
+
+        scoreDisplay.setText("Great Job!\n you scored\n\n\n" +
+                String.valueOf(getIntent().getIntExtra("Score", 0)) + " points");
     }
 
 
@@ -74,8 +80,8 @@ public class GameOver extends AppCompatActivity implements
 
     //Called when player clicks the High Scores button
     public void goToHighScores(View view) {
-        Intent intent = new Intent(this, HighScores.class);
-        startActivity(intent);
+        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
+                "CgkI-_7R9foMEAIQAA"), 1337);
 
     }
 
@@ -83,28 +89,6 @@ public class GameOver extends AppCompatActivity implements
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_game_over, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -122,9 +106,7 @@ public class GameOver extends AppCompatActivity implements
     //What occurs when the player is signed in and connected to Google Play services
     @Override
     public void onConnected(Bundle bundle) {
-        Log.d("fuck", "CgkI-_7R9foMEAIQAA");
         if (isSignedIn()) {
-            Log.d("fuck", "If Statement runs");
             Games.Leaderboards.submitScore(googleApiClient,
                     "CgkI-_7R9foMEAIQAA",
                     getIntent().getIntExtra("Score", 0));
@@ -140,7 +122,7 @@ public class GameOver extends AppCompatActivity implements
         googleApiClient.connect();
     }
 
-    //Simplifying leave sound efects
+    //Simplifying leave sound effects
     @Override
     protected void onUserLeaveHint() {
         super.onUserLeaveHint();
@@ -186,15 +168,5 @@ public class GameOver extends AppCompatActivity implements
 
     private boolean isSignedIn() {
         return (googleApiClient != null && googleApiClient.isConnected());
-    }
-
-    private void updateLeaderboard() {
-        Log.d("fuck", String.valueOf(googleApiClient.isConnected()));
-        if (isSignedIn()) {
-            Log.d("fuck", "If Statement runs");
-            Games.Leaderboards.submitScore(googleApiClient,
-                    String.valueOf(R.string.leaderboard_id),
-                    getIntent().getIntExtra("Score", 0));
-        }
     }
 }

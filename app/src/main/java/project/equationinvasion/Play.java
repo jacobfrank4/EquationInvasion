@@ -18,7 +18,6 @@ package project.equationinvasion;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -27,9 +26,31 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
+import com.google.android.gms.plus.Plus;
+import com.google.example.games.basegameutils.BaseGameUtils;
+
 import java.text.DecimalFormat;
 
-public class Play extends AppCompatActivity implements View.OnClickListener {
+public class Play extends AppCompatActivity implements View.OnClickListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
+
+    // The Google API client
+    private GoogleApiClient googleApiClient;
+
+    // Are we currently resolving a connection failure?
+    private boolean resolvingConnectionFailure = false;
+
+    // Has the user clicked the sign-in button?
+    private boolean signInClicked = false;
+
+    // Automatically start the sign-in flow when the Activity starts
+    private boolean autoStartSignInFlow = true;
+
+    private static final int RC_SIGN_IN = 9001;
 
     /**
      * Milliseconds in Seconds
@@ -54,7 +75,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
     /**
      * Initial time for the game
      */
-    private static final int START_TIME = 45;
+    private static final int START_TIME = 60;
 
     /**
      * Timer for the validation images
@@ -187,10 +208,15 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 	 */
 	private Audio noise;
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+
         /**
          * Instantiating everything for streak counter
          * -John
@@ -203,6 +229,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         fourth = (ImageView) findViewById(R.id.imageView4);
         fifth = (ImageView) findViewById(R.id.imageView5);
         pipChanger();
+
+        // Create the google Api Client with access to the play Game services
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                .build();
+
+
         /**
          * Timer to display 5 pips for a second before resetting it
          */
@@ -298,6 +334,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
         scoreDisplay.setTypeface(chalkboardFont);
         answer.setTypeface(chalkboardFont);
         txtEquals.setTypeface(chalkboardFont);
+        levelView.setTypeface(chalkboardFont);
 
         //generating first equation
         mathGen.generate(currentLevel);
@@ -305,6 +342,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
 		//Starting up audio functionality
 		noise = new Audio(Play.this);
         noise.playBGM();
+
     }
 
 
@@ -319,6 +357,67 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             mathGen.generate(currentLevel);
             noise.buttonNoise();
         }
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        googleApiClient.connect();
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        if (resolvingConnectionFailure) {
+            return;
+        }
+        //If the sign-in button was clicked or if auto sign-in is enabled,
+        //launch the sign-in flow
+        if (signInClicked || autoStartSignInFlow) {
+            autoStartSignInFlow = false;
+            signInClicked = false;
+            resolvingConnectionFailure = true;
+
+            // Attempt to resolve the connection failure using BaseGameUtils.
+            if (!BaseGameUtils.resolveConnectionFailure(this, googleApiClient, connectionResult,
+                    //Replace the following string with a generic error message in Strings.xml
+                    RC_SIGN_IN, getResources().getString(R.string.signin_error))) {
+                resolvingConnectionFailure = false;
+            }
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == RC_SIGN_IN) {
+            signInClicked = false;
+            resolvingConnectionFailure = false;
+            if (resultCode == RESULT_OK) {
+                googleApiClient.connect();
+            } else {
+                // Bring up an error dialog to alert the user that sign-in failed.
+                BaseGameUtils.showActivityResultError(this,
+                        requestCode, resultCode, R.string.signin_error);
+            }
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        googleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        googleApiClient.disconnect();
+    }
+
+    private boolean isSignedIn() {
+        return (googleApiClient != null && googleApiClient.isConnected());
     }
 
 
@@ -346,6 +445,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             time.setText("Game Over");
             Intent intent = new Intent(getApplicationContext(), GameOver.class);
             intent.putExtra("Score", score);
+
             noise.stopMusic();
             startActivity(intent);
             finish();
@@ -368,11 +468,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * Moved on button click of add time to a method to call
      */
     private void addTime() {
-        int secondsToAdd;
         if (running) {
             timer.cancel();
-            secondsToAdd = INCREMENT_TIME;
-            timer = new MyTimer(currentMilli + (secondsToAdd * MILLI_IN_SECOND));
+            timer = new MyTimer(currentMilli + (INCREMENT_TIME * MILLI_IN_SECOND));
             timer.start();
         }
     }
@@ -381,11 +479,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * Subtract time method
      */
     private void subtractTime() {
-        int secondsToSubtract;
         if (running && currentMilli > MIN_TIME_DECREMENT) {
             timer.cancel();
-            secondsToSubtract = DECREMENT_TIME;
-            timer = new MyTimer(currentMilli - (secondsToSubtract * MILLI_IN_SECOND));
+            timer = new MyTimer(currentMilli - (DECREMENT_TIME * MILLI_IN_SECOND));
             timer.start();
         } else {
             timer.cancel();
@@ -447,10 +543,29 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      method to change level on method call
      */
     private void levelChanger() {
-            if (currentLevel < MAX_LEVEL) {
-                currentLevel++;
+        if (currentLevel < MAX_LEVEL) {
+            currentLevel++;
+            if (isSignedIn()) {
+                switch(currentLevel) {
+                    case 2:
+                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBg");
+                        break;
+                    case 3:
+                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQBw");
+                        break;
+                    case 4:
+                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCA");
+                        break;
+                    case 5:
+                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCQ");
+                        break;
+                    case 6:
+                        Games.Achievements.unlock(googleApiClient, "CgkI-_7R9foMEAIQCg");
+                        break;
+                }
             }
-            levelView.setText("Level: " + currentLevel);
+        }
+        levelView.setText("Level: " + currentLevel);
 
     }
 
@@ -474,7 +589,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
      * Getter for the current level so as to generate correct equation
      * @return currentLevel
      *          The current level of the game
-     *
      */
     public static int getCurrentLevel() {
         return currentLevel;
@@ -502,17 +616,20 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             scoreCounter();
             pipChanger();
             noise.setSoundState(1);
-        }else {
+        } else {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
             failStreak++;
             if (failStreak == MAX_FAIL_STREAK) {
                 subtractTime();
+                addTime.setImageResource(R.drawable.minusfive);
+                addTime.setVisibility(View.VISIBLE);
                 if(currentLevel > LEVEL_START) {
                     currentLevel--;
                     levelView.setText("Level: " + currentLevel);
                 }
                 failStreak = 0;
+                addTimeTimer.start();
             }
             pipChanger();
             noise.setSoundState(2);
@@ -543,17 +660,20 @@ public class Play extends AppCompatActivity implements View.OnClickListener {
             scoreCounter();
             pipChanger();
             noise.setSoundState(1);
-        }else {
+        } else {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
             failStreak++;
             if (failStreak == 3) {
                 subtractTime();
+                addTime.setImageResource(R.drawable.minusfive);
+                addTime.setVisibility(View.VISIBLE);
                 if(currentLevel > LEVEL_START) {
                     currentLevel--;
                     levelView.setText("Level: " + currentLevel);
                 }
                 failStreak = 0;
+                addTimeTimer.start();
             }
             pipChanger();
             noise.setSoundState(2);

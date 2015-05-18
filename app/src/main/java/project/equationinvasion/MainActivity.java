@@ -18,32 +18,30 @@ package project.equationinvasion;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.*;
-import com.google.example.games.basegameutils.BaseGameUtils;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
-import com.google.android.gms.games.Player;
 import com.google.android.gms.plus.Plus;
+import com.google.example.games.basegameutils.BaseGameUtils;
 
 
-public class MainActivity extends FragmentActivity implements
+public class MainActivity extends AppCompatActivity implements
 		GoogleApiClient.ConnectionCallbacks,
 		GoogleApiClient.OnConnectionFailedListener,
 		View.OnClickListener {
 
 	public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
 
+	private final static int REQUEST_ACHIEVEMENTS = 1337;
+
 	private GoogleApiClient googleApiClient;
 
-	private static int RC_SIGN_IN = 9001;
+	private static final int RC_SIGN_IN = 9001;
 
 	// Are we currently resolving a connection failure?
 	private boolean resolvingConnectionFailure = false;
@@ -58,7 +56,7 @@ public class MainActivity extends FragmentActivity implements
 	 * Declarations for audio functionality
 	 * -Matt
 	 */
-	protected Audio noise;
+	private Audio noise;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +71,6 @@ public class MainActivity extends FragmentActivity implements
          */
 		noise = new Audio(MainActivity.this);
 		noise.menuBGM();
-
 
 		/**
 		 * Setting font style
@@ -99,19 +96,7 @@ public class MainActivity extends FragmentActivity implements
 				.addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
 				.addApi(Games.API).addScope(Games.SCOPE_GAMES)
 				.build();
-
 	}
-
-	/** Called when the user clicks the Send button */
-	/**
-	 * public void sendMessage(View view) {
-	 * Intent intent = new Intent(this, DisplayMessageActivity.class);
-	 * EditText editText = (EditText) findViewById(R.id.edit_message);
-	 * String message = editText.getText().toString();
-	 * intent.putExtra(EXTRA_MESSAGE, message);
-	 * startActivity(intent);
-	 * }
-	 */
 
 	//Called when player clicks the Play button
 	public void goToPlay(View view) {
@@ -121,12 +106,14 @@ public class MainActivity extends FragmentActivity implements
 
 	//Called when player clicks the High Scores button
 	public void goToHighScores(View view) {
-//		Intent intent = new Intent(this, HighScores.class);
-//		startActivity(intent);
-
 		startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
 				"CgkI-_7R9foMEAIQAA"), 1337);
+	}
 
+	//Called when player clicks the Achievements button
+	public void viewAchievements(View view) {
+		startActivityForResult(Games.Achievements.getAchievementsIntent(googleApiClient),
+				REQUEST_ACHIEVEMENTS);
 	}
 
 	//Called when player clicks the credits button
@@ -174,18 +161,9 @@ public class MainActivity extends FragmentActivity implements
 	//What occurs when the player is signed in and connected to Google Play services
 	@Override
 	public void onConnected(Bundle bundle) {
-
 		// show sign-out button, hide the sign-in button
 		findViewById(R.id.sign_in_button).setVisibility(View.GONE);
 		findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
-//		Player player = Games.Players.getCurrentPlayer(googleApiClient);
-//		String playerName;
-//		if (player == null) {
-//			playerName = "???";
-//		} else {
-//			playerName = player.getDisplayName();
-//		}
-//		signInButton.setText("Hello " + playerName);
 	}
 
 	//Attempt to reconnect
@@ -209,7 +187,6 @@ public class MainActivity extends FragmentActivity implements
 
 			// Attempt to resolve the connection failure using BaseGameUtils.
 			if (!BaseGameUtils.resolveConnectionFailure(this, googleApiClient, connectionResult,
-					//Replace the following string with a generic error message in Strings.xml
 					RC_SIGN_IN, getResources().getString(R.string.signin_error))) {
 				resolvingConnectionFailure = false;
 			}
@@ -217,7 +194,6 @@ public class MainActivity extends FragmentActivity implements
 		findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
 		findViewById(R.id.sign_out_button).setVisibility(View.GONE);
 	}
-
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		if (requestCode == RC_SIGN_IN) {
@@ -230,22 +206,6 @@ public class MainActivity extends FragmentActivity implements
 				BaseGameUtils.showActivityResultError(this,
 						requestCode, resultCode, R.string.signin_error);
 			}
-		}
-	}
-
-
-	//Call when the sign-in button is clicked
-	public void signInClicked(View view) {
-		signInClicked = true;
-		googleApiClient.connect();
-	}
-
-	//Call when the sign-out button is clicked
-	public void signOutClicked(View view) {
-		signInClicked = false;
-		Games.signOut(googleApiClient);
-		if (googleApiClient.isConnected()) {
-			googleApiClient.disconnect();
 		}
 	}
 
