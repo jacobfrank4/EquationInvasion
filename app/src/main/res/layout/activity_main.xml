@@ -33,18 +33,18 @@
         android:layout_height="70dp"
         android:id="@+id/play"
         android:onClick="goToPlay"
+        android:background="@drawable/playbutton"
         android:layout_above="@+id/highScore"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/playbutton"/>
+        android:layout_alignStart="@+id/highScore" />
 
     <Button
         android:layout_width="200dp"
         android:layout_height="70dp"
         android:id="@+id/highScore"
         android:onClick="goToHighScores"
+        android:background="@drawable/highscorebutton"
         android:layout_above="@+id/credits"
-        android:layout_alignStart="@+id/play"
-        android:background="@drawable/highscorebutton"/>
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -90,25 +90,26 @@
         android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@+id/credits"
         android:layout_centerHorizontal="true" />
 
     <!-- sign-out button -->
     <Button
         android:id="@+id/sign_out_button"
+        android:background="@drawable/signoutbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Out"
         android:visibility="gone" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Achievements"
+        android:background="@drawable/achievementbutton"
         android:id="@+id/button"
         android:onClick="viewAchievements"
         android:layout_below="@+id/gameTitle"
-        android:layout_alignStart="@+id/instructions" />
+        android:layout_alignStart="@+id/highScore"
+        android:layout_above="@+id/instructions" />
 
     <!-- Audio button -->
     <ToggleButton

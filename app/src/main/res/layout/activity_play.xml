@@ -61,7 +61,6 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/current_equation"
         android:textSize="40sp"
         android:id="@+id/leftEquation"
         android:textColor="#ffffffff"
@@ -84,7 +83,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/equation_answer"
         android:textSize="40sp"
         android:id="@+id/solution"
         android:layout_below="@+id/equals"
