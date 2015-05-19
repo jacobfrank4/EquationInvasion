@@ -62,7 +62,15 @@ public class Credits extends AppCompatActivity {
         noise.close();
         noise.setSoundState(0);
         noise.buttonNoise();
+        finish();
     }
 
-
+    //Returns you to the extras screen when back is oushed, and close this activity.
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), Extras.class);
+        startActivity(intent);
+        finish();
+    }
 }

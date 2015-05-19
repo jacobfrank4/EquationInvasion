@@ -142,8 +142,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private TextView scoreDisplay;
     private int scoreIncrement;
 
-	// Audio variable for this page.
+	// Audio variables for this page.
 	private Audio noise;
+    private boolean finished = false;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -649,5 +650,40 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
             timer.cancel();
         }
     }
+
+    //This gets called when the back button is pressed, and closes the activity. It also boots you to main menu.
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finished=true;
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        noise.stopMusic();
+        noise.close();
+        startActivity(intent);
+        finish();
+    }
+
+    //Gets called when home key is pressed,
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        if (!finished){
+            noise.stopMusic();
+            noise.close();
+    }
+        finished = true;
+    }
+
+
+    //Called when user returns from outside of app.
+    @Override
+    protected void onRestart() {
+        super.onResume();
+        Intent intent = new Intent(getApplicationContext(), GameOver.class);
+        intent.putExtra("Score", score);
+        startActivity(intent);
+        finish();
+    }
+
 }
 

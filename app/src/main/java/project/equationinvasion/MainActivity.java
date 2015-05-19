@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements
 	public void goToPlay(View view) {
 		Intent intent = new Intent(this, Play.class);
 		startActivity(intent);
+		finish();
 	}
 
 	//Called when player clicks the High Scores button
@@ -120,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements
 	public void goToCredits(View view) {
 		Intent intent = new Intent(this, Credits.class);
 		startActivity(intent);
+		finish();
 	}
 
 	//Called when player clicks the credits button
