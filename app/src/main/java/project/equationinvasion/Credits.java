@@ -56,8 +56,8 @@ public class Credits extends AppCompatActivity {
         noise = new Audio(Credits.this);
     }
 
-    public void goToMain(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+    public void goBack(View view) {
+        Intent intent = new Intent(this, Extras.class);
         startActivity(intent);
         noise.close();
         noise.setSoundState(0);

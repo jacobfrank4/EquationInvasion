@@ -1,9 +1,11 @@
 package project.equationinvasion;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -46,6 +48,17 @@ public class Extras extends AppCompatActivity implements
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .build();
 
+        TextView extrasTitle = (TextView) findViewById(R.id.extrasTitle);
+
+        //Font path
+        String chalkboardFontPath = "fonts/Chalkboard.ttf";
+
+        //Load Font Face
+        Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
+
+        //Applying font
+        extrasTitle.setTypeface(chalkboardFont);
+
     }
 
 
@@ -67,10 +80,16 @@ public class Extras extends AppCompatActivity implements
         startActivity(intent);
     }
 
+    //Called when player clicks the go to main button
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
 
+    //Called when player clicks the instructions button
+    public void goToInstructions(View view) {
+ //       Intent intent = new Intent(this, Instructions.class);
+//        startActivity(intent);
     }
 
     @Override

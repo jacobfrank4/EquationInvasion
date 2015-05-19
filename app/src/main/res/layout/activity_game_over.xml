@@ -8,8 +8,8 @@
     android:background="@drawable/background">
 
     <Button
-        android:layout_width="200dp"
-        android:layout_height="80dp"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
         android:id="@+id/play"
         android:onClick="goToPlay"
         android:background="@drawable/playagainbutton"
@@ -17,20 +17,22 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="160dp"
-        android:layout_height="80dp"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
         android:id="@+id/highScore"
         android:onClick="goToHighScores"
         android:background="@drawable/highscorebutton"
+        android:layout_marginTop="20dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true" />
 
     <Button
-        android:layout_width="160dp"
-        android:layout_height="80dp"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
         android:id="@+id/main"
         android:onClick="goToMain"
         android:background="@drawable/gotomainbutton"
+        android:layout_marginTop="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"/>
 

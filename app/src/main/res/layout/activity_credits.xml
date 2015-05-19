@@ -8,11 +8,11 @@
     android:background="@drawable/background">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
         android:id="@+id/main"
-        android:onClick="goToMain"
-        android:background="@drawable/gotomainbutton"
+        android:onClick="goBack"
+        android:background="@drawable/gobackbutton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -30,7 +30,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="John Agapeyev    Jacob Frank            Matt Goerwell      Derek Larson           Chun-Yip Tang "
+        android:text="John Agapeyev&#10;Jacob Frank&#10;Matt Goerwell&#10;Derek Larson&#10;Chun-Yip Tang "
         android:id="@+id/devList"
         android:textSize="25sp"
         android:textColor="#ffffffff"

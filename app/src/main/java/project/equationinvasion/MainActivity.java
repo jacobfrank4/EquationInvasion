@@ -35,10 +35,6 @@ public class MainActivity extends AppCompatActivity implements
 		GoogleApiClient.OnConnectionFailedListener,
 		View.OnClickListener {
 
-	private final static int REQUEST_ACHIEVEMENTS = 1337;
-
-	private final static int REQUEST_HIGHSCORE = 1337;
-
 	private GoogleApiClient googleApiClient;
 
 	private static final int RC_SIGN_IN = 9001;
@@ -101,24 +97,6 @@ public class MainActivity extends AppCompatActivity implements
 	//Called when player clicks the Play button
 	public void goToPlay(View view) {
 		Intent intent = new Intent(this, Play.class);
-		startActivity(intent);
-	}
-
-	//Called when player clicks the High Scores button
-	public void goToHighScores(View view) {
-		startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
-				"CgkIsIanxbIGEAIQBg"), REQUEST_HIGHSCORE);
-	}
-
-	//Called when player clicks the Achievements button
-	public void viewAchievements(View view) {
-		startActivityForResult(Games.Achievements.getAchievementsIntent(googleApiClient),
-				REQUEST_ACHIEVEMENTS);
-	}
-
-	//Called when player clicks the credits button
-	public void goToCredits(View view) {
-		Intent intent = new Intent(this, Credits.class);
 		startActivity(intent);
 	}
 
