@@ -128,7 +128,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private TextView time;
 
     //Array of feedBackTimers, one for every element that needs one
-    private final feedBackTimer[] feedBackDelay = new feedBackTimer[3];
+    private final feedBackTimer[] feedBackDelay = new feedBackTimer[4];
 
     // Level Changer
     private TextView levelView;
@@ -226,6 +226,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         feedBackDelay[0] = new feedBackTimer(pips);
         feedBackDelay[1] = new feedBackTimer(feedback);
         feedBackDelay[2] = new feedBackTimer(addTime);
+        feedBackDelay[3] = new feedBackTimer(answer);
 
     }
 
@@ -554,16 +555,26 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private class feedBackTimer {
         private final int duration;
         private final CountDownTimer timer;
+        private boolean isStartCountDown;
 
         public feedBackTimer(final View view) {
             if (view.getId() == feedback.getId()) {
                 duration = 250;
+                isStartCountDown = false;
+            } else if (false /** replace with checking if the view is equal to the countdown textview */ ) {
+                duration = 3500;
+                isStartCountDown = true;
             } else {
                 duration = 1000;
+                isStartCountDown = false;
             }
             timer = new CountDownTimer(duration, 1000L) {
                 @Override
-                public void onTick(long l) {}
+                public void onTick(long l) {
+                    if (isStartCountDown) {
+                        answer.setText(String.valueOf(l/1000));
+                    }
+                }
 
                 @Override
                 public void onFinish() {
@@ -581,15 +592,31 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 @Override
                 public void onFinish() {
                     if (view instanceof ImageView[]) {
-                        for (ImageView item : (ImageView[])view)
+                        for (ImageView item : (ImageView[]) view)
                             item.setImageResource(R.drawable.streakpipoff);
                     } else {
-                        for (View item : view)
+                        for (View item : Play.pips)
                             item.setVisibility(View.INVISIBLE);
                     }
                 }
             };
         }
+
+//        public feedBackTimer(Play.startCountdown) {
+//            duration = 3500;
+//            timer = new CountDownTimer(duration, 1000L) {
+//                @Override
+//                public void onTick(long l) {
+//                    Play.startCountdown.setText(String.valueOf(l/1000));
+//                }
+//
+//                @Override
+//                public void onFinish() {
+//                    Play.startCountdown.setVisibility(View.INVISIBLE);
+//                    startGame();
+//                }
+//            };
+//        }
 
         public void start() {
             timer.start();
