@@ -19,6 +19,8 @@ public class GameOver extends AppCompatActivity implements
 
     private GoogleApiClient googleApiClient;
 
+    private final static int REQUEST_HIGHSCORE = 1337;
+
     private static final int RC_SIGN_IN = 9001;
 
     // Are we currently resolving a connection failure?
@@ -78,7 +80,7 @@ public class GameOver extends AppCompatActivity implements
     //Called when player clicks the High Scores button
     public void goToHighScores(View view) {
         startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
-                "CgkI-_7R9foMEAIQAA"), 1337);
+                "CgkIsIanxbIGEAIQBg"), REQUEST_HIGHSCORE);
 
     }
 
@@ -105,11 +107,11 @@ public class GameOver extends AppCompatActivity implements
     public void onConnected(Bundle bundle) {
         if (isSignedIn()) {
             Games.Leaderboards.submitScore(googleApiClient,
-                    "CgkI-_7R9foMEAIQAA",
+                    "CgkIsIanxbIGEAIQBg",
                     getIntent().getIntExtra("Score", 0));
 
             startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
-                    "CgkI-_7R9foMEAIQAA"), 1337);
+                    "CgkIsIanxbIGEAIQBg"), 1337);
         }
     }
 
