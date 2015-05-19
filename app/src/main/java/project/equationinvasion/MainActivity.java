@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity implements
 		GoogleApiClient.OnConnectionFailedListener,
 		View.OnClickListener {
 
-	public final static String EXTRA_MESSAGE = "project.equationinvasion.MESSAGE";
-
 	private final static int REQUEST_ACHIEVEMENTS = 1337;
 
 	private final static int REQUEST_HIGHSCORE = 1337;
@@ -121,6 +119,12 @@ public class MainActivity extends AppCompatActivity implements
 	//Called when player clicks the credits button
 	public void goToCredits(View view) {
 		Intent intent = new Intent(this, Credits.class);
+		startActivity(intent);
+	}
+
+	//Called when player clicks the credits button
+	public void goToExtras(View view) {
+		Intent intent = new Intent(this, Extras.class);
 		startActivity(intent);
 	}
 

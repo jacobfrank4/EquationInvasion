@@ -1,11 +1,9 @@
 package project.equationinvasion;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -13,13 +11,16 @@ import com.google.android.gms.games.Games;
 import com.google.android.gms.plus.Plus;
 import com.google.example.games.basegameutils.BaseGameUtils;
 
-public class GameOver extends AppCompatActivity implements
+
+public class Extras extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         GoogleApiClient.ConnectionCallbacks {
 
-    private GoogleApiClient googleApiClient;
+    private final static int REQUEST_ACHIEVEMENTS = 1337;
 
     private final static int REQUEST_HIGHSCORE = 1337;
+
+    private GoogleApiClient googleApiClient;
 
     private static final int RC_SIGN_IN = 9001;
 
@@ -32,13 +33,12 @@ public class GameOver extends AppCompatActivity implements
     // Automatically start the sign-in flow when the Activity starts
     private boolean autoStartSignInFlow = true;
 
-    //Declarations for audio functionality
-    private Audio noise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_over);
+        setContentView(R.layout.activity_extras);
+
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -46,55 +46,31 @@ public class GameOver extends AppCompatActivity implements
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .build();
 
-        //Standard audio instantiation
-        noise = new Audio(GameOver.this);
-        noise.overBGM();
-
-
-        TextView scoreDisplay = (TextView) findViewById(R.id.finalScore);
-
-        //Font path
-        String chalkboardFontPath = "fonts/Chalkboard.ttf";
-
-        //Load Font Face
-        Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
-
-        //Applying font
-        scoreDisplay.setTypeface(chalkboardFont);
-
-        scoreDisplay.setText("Great Job!\n you scored\n\n\n" +
-                String.valueOf(getIntent().getIntExtra("Score", 0)) + " points");
     }
 
-
-    //Called when player clicks the Play button
-    public void goToPlay(View view) {
-        Intent intent = new Intent(this, Play.class);
-        startActivity(intent);
-
-    }
 
     //Called when player clicks the High Scores button
     public void goToHighScores(View view) {
         startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
                 "CgkIsIanxbIGEAIQBg"), REQUEST_HIGHSCORE);
+    }
 
+    //Called when player clicks the Achievements button
+    public void viewAchievements(View view) {
+        startActivityForResult(Games.Achievements.getAchievementsIntent(googleApiClient),
+                REQUEST_ACHIEVEMENTS);
+    }
+
+    //Called when player clicks the credits button
+    public void goToCredits(View view) {
+        Intent intent = new Intent(this, Credits.class);
+        startActivity(intent);
     }
 
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
-    }
-
-
-    //Simplifying leave sound effects
-    @Override
-    protected void onUserLeaveHint() {
-        super.onUserLeaveHint();
-        noise.pauseMusic();
-        noise.setSoundState(0);
-        noise.buttonNoise();
     }
 
     @Override
@@ -112,11 +88,7 @@ public class GameOver extends AppCompatActivity implements
     //What occurs when the player is signed in and connected to Google Play services
     @Override
     public void onConnected(Bundle bundle) {
-        if (isSignedIn()) {
-            Games.Leaderboards.submitScore(googleApiClient,
-                    "CgkIsIanxbIGEAIQBg",
-                    getIntent().getIntExtra("Score", 0));
-        }
+        if (isSignedIn()) { }
     }
 
     //Attempt to reconnect

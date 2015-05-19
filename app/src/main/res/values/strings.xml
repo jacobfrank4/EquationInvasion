@@ -4,9 +4,6 @@
     <string name="game_title">Equation Invasion</string>
     <string name="play_instructions">Practice your mathematical skills by determining if the provided answer is correct</string>
 
-    <string name="edit_message">Enter a message</string>
-    <string name="button_send">Send</string>
-
     <string name="action_settings">Settings</string>
     <string name="title_activity_credits">Credits</string>
     <string name="title_activity_display_message">My Message</string>
@@ -26,7 +23,6 @@
     <string name="pip_switcher">Pip Switcher</string>
 
 
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_play">Play</string>
     <string name="title_activity_high_scores">HighScores</string>
     <string name="title_activity_game_over">GameOver</string>
@@ -35,5 +31,6 @@
     <string name="signin_error">There was an error connecting</string>
     <string name="app_id">219725546288</string>
     <string name="leaderboard_id">CgkIsIanxbIGEAIQBg</string>
+    <string name="title_activity_extras">Extras</string>
 
 </resources>

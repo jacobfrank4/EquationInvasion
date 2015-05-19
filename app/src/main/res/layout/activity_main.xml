@@ -7,6 +7,7 @@
 
 
 
+    <!-- Play button -->
     <Button
         android:layout_width="200dp"
         android:layout_height="70dp"
@@ -16,6 +17,7 @@
         android:layout_above="@+id/highScore"
         android:layout_alignStart="@+id/highScore" />
 
+    <!-- High Scores button -->
     <Button
         android:layout_width="200dp"
         android:layout_height="70dp"
@@ -25,6 +27,7 @@
         android:layout_above="@+id/credits"
         android:layout_centerHorizontal="true" />
 
+    <!-- Credits button -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,6 +87,7 @@
         android:layout_alignStart="@+id/sign_in_button"
         android:visibility="gone" />
 
+    <!-- Achievements button -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -107,6 +111,15 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/highScore"
         android:layout_toEndOf="@+id/highScore" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EXTRAS"
+        android:id="@+id/extras"
+        android:onClick="goToExtras"
+        android:layout_above="@+id/play"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
