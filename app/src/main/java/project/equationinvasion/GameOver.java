@@ -66,12 +66,23 @@ public class GameOver extends AppCompatActivity implements
                 String.valueOf(getIntent().getIntExtra("Score", 0)) + " points");
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        noise.stopMusic();
+        noise.close();
+        startActivity(intent);
+        finish();
+    }
 
     //Called when player clicks the Play button
     public void goToPlay(View view) {
         Intent intent = new Intent(this, Play.class);
         startActivity(intent);
-
+        noise.stopMusic();
+        noise.close();
+        finish();
     }
 
     //Called when player clicks the High Scores button
@@ -84,7 +95,9 @@ public class GameOver extends AppCompatActivity implements
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
+        noise.stopMusic();
+        noise.close();
+        finish();
     }
 
 

@@ -98,7 +98,9 @@ public class MainActivity extends AppCompatActivity implements
 	public void goToPlay(View view) {
 		Intent intent = new Intent(this, Play.class);
 		startActivity(intent);
+		finish();
 	}
+
 
 	//Called when player clicks the credits button
 	public void goToExtras(View view) {

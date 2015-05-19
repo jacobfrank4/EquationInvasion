@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -100,6 +101,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     // Declaration for the textView that displays the possible answer
     private static TextView answer;
 
+    private static TextView startGameTime;
+
     //Declaration for the display that either shows a check mark or X after answering
     private ImageView feedback;
 
@@ -128,7 +131,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private TextView time;
 
     //Array of feedBackTimers, one for every element that needs one
-    private final feedBackTimer[] feedBackDelay = new feedBackTimer[3];
+    private final feedBackTimer[] feedBackDelay = new feedBackTimer[4];
 
     // Level Changer
     private TextView levelView;
@@ -139,8 +142,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private TextView scoreDisplay;
     private int scoreIncrement;
 
-	// Audio variable for this page.
+	// Audio variables for this page.
 	private Audio noise;
+    private boolean finished = false;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,7 +161,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         pips[4] = (ImageView) findViewById(R.id.imageView5);
         pipChanger();
 
-        // Instatiating level streak counter
+        // Instantiating level streak counter
         levelStreak = 0;
 
         // Create the google Api Client with access to the play Game services
@@ -171,8 +175,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         // Instantiating what I need for the timer
         time = (TextView) findViewById(R.id.time);
         timer = new MyTimer(START_TIME * MILLI_IN_SECOND);
-        timer.start();
-        running = true;
+
+        startGameTime = (TextView)findViewById(R.id.countDown);
 
         // Level System
         levelView = (TextView) findViewById(R.id.levelView);
@@ -226,7 +230,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         feedBackDelay[0] = new feedBackTimer(pips);
         feedBackDelay[1] = new feedBackTimer(feedback);
         feedBackDelay[2] = new feedBackTimer(addTime);
+        feedBackDelay[3] = new feedBackTimer();
 
+        startGame(startGameTime);
     }
 
     @Override
@@ -416,6 +422,10 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         return currentLevel;
     }
 
+    private static TextView getStartCountDown() {
+        return startGameTime;
+    }
+
     /**
      * validation for the truth button
      *      Sets the visibility of the picture to visible
@@ -432,6 +442,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private void truthChecker() {
         feedback.setVisibility(View.VISIBLE);
         feedBackDelay[1].cancel();
+        feedBackDelay[3].start();
         if(mathGen.getAnswer() == mathGen.getEquation()) {
             feedback.setImageResource(R.drawable.checkmark);
             failStreak = 0;
@@ -477,6 +488,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private void falseChecker() {
         feedback.setVisibility(View.VISIBLE);
         feedBackDelay[1].cancel();
+        feedBackDelay[3].start();
         if(mathGen.getAnswer() != mathGen.getEquation()) {
             feedback.setImageResource(R.drawable.checkmark);
             failStreak = 0;
@@ -503,6 +515,29 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
             noise.setSoundState(2);
         }
         feedBackDelay[1].start();
+    }
+
+    private void playGame(View view) {
+        //Iterates through all the views on the activity
+        ViewGroup allViews = (ViewGroup)view.getParent();
+        for (int i = 0; i < allViews.getChildCount(); i++) {
+            allViews.getChildAt(i).setVisibility(View.VISIBLE);
+        }
+        //This is startGameTime, the countdown before the game starts, don't want to show it on game start
+        view.setVisibility(View.INVISIBLE);
+
+        //Starting the timer
+        timer.start();
+        running = true;
+    }
+
+    private void startGame(View view) {
+        ViewGroup allViews = (ViewGroup)view.getParent();
+        for (int i = 0; i < allViews.getChildCount(); i++) {
+            allViews.getChildAt(i).setVisibility(View.INVISIBLE);
+        }
+        view.setVisibility(View.VISIBLE);
+        feedBackDelay[3].start();
     }
 
     // The main timer class for the game
@@ -580,12 +615,29 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 @Override
                 public void onFinish() {
                     if (view instanceof ImageView[]) {
-                        for (ImageView item : (ImageView[])view)
+                        for (ImageView item : (ImageView[]) view)
                             item.setImageResource(R.drawable.streakpipoff);
                     } else {
                         for (View item : view)
                             item.setVisibility(View.INVISIBLE);
                     }
+                }
+            };
+        }
+
+        public feedBackTimer() {
+            final TextView readySetGo = Play.getStartCountDown();
+            duration = 3500;
+            timer = new CountDownTimer(duration, 1000L) {
+                @Override
+                public void onTick(long l) {
+                    readySetGo.setText(String.valueOf(l / 1000));
+                }
+
+                @Override
+                public void onFinish() {
+                    readySetGo.setVisibility(View.INVISIBLE);
+                    playGame(readySetGo);
                 }
             };
         }
@@ -598,5 +650,40 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
             timer.cancel();
         }
     }
+
+    //This gets called when the back button is pressed, and closes the activity. It also boots you to main menu.
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finished=true;
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        noise.stopMusic();
+        noise.close();
+        startActivity(intent);
+        finish();
+    }
+
+    //Gets called when home key is pressed,
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        if (!finished){
+            noise.stopMusic();
+            noise.close();
+    }
+        finished = true;
+    }
+
+
+    //Called when user returns from outside of app.
+    @Override
+    protected void onRestart() {
+        super.onResume();
+        Intent intent = new Intent(getApplicationContext(), GameOver.class);
+        intent.putExtra("Score", score);
+        startActivity(intent);
+        finish();
+    }
+
 }
 

@@ -140,11 +140,14 @@
         android:layout_toEndOf="@+id/imageView2" />
 
     <TextView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text=""
         android:id="@+id/countDown"
-        android:layout_below="@+id/equals"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:textAlignment="center"
+        android:textSize="288sp"
+        android:gravity="center"/>
 </RelativeLayout>
