@@ -80,8 +80,6 @@ public class GameOver extends AppCompatActivity implements
     public void goToPlay(View view) {
         Intent intent = new Intent(this, Play.class);
         startActivity(intent);
-        noise.stopMusic();
-        noise.close();
         finish();
     }
 
@@ -95,8 +93,6 @@ public class GameOver extends AppCompatActivity implements
     public void goToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        noise.stopMusic();
-        noise.close();
         finish();
     }
 

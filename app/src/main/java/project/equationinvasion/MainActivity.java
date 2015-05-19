@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements
 	 * -Matt
 	 */
 	private Audio noise;
+	private static boolean muted;
+	ToggleButton tb;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +67,14 @@ public class MainActivity extends AppCompatActivity implements
 
         /*
 			This code relates to instantiating our audio.
+			and ensuring proper mute button state.
          */
 		noise = new Audio(MainActivity.this);
 		noise.menuBGM();
+		tb = (ToggleButton) findViewById(R.id.toggleButton);
+		if (muted){
+			tb.setChecked(true);
+		}
 
 		/**
 		 * Setting font style
@@ -108,8 +116,14 @@ public class MainActivity extends AppCompatActivity implements
 		startActivity(intent);
 	}
 
+	//mute button toggle method..
 	public void muteToggle(View view) {
 		noise.toggleMute();
+		if (!muted){
+			muted = true;
+		} else {
+			muted = false;
+		}
 	}
 
 	@Override
