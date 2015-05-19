@@ -63,24 +63,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private static final int STARTING_SCORE = 0;
 
     /**
-     * Base time for disappearing timers except validation
-     */
-    private static final int BASE_TIME = 1000;
-
-    /**
-     * Base tick for all timers
-     */
-    private static final int BASE_TICK = 1000;
-
-    /**
      * Initial time for the game
      */
     private static final int START_TIME = 60;
-
-    /**
-     * Timer for the validation images
-     */
-    private static final int INV_TIMER = 250;
 
     /**
      * Start level at this value
@@ -108,15 +93,15 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private static final int INCREMENT_TIME = 10;
 
     /**
-     * If the timer is less than this (5 seconds * MILLI_IN_SECOND), do not decrement time,
-     * set time to 0
-     */
-    private static final int MIN_TIME_DECREMENT = 5000;
-
-    /**
      * Base amount of seconds to subtract from every full fail streak
      */
     private static final int DECREMENT_TIME = 5;
+
+    /**
+     * If the timer is less than this (5 seconds * MILLI_IN_SECOND), do not decrement time,
+     * set time to 0
+     */
+    private static final int MIN_TIME_DECREMENT = DECREMENT_TIME * MILLI_IN_SECOND;
 
     /**
      * Maximum streak before it resets + 1
@@ -161,7 +146,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
      * My declarations for the streak counter
      * -John
      */
-    private ImageView first, second, third, fourth, fifth;
+    private static final ImageView[] pips = new ImageView[5];
     private int streak;
     private int failStreak;
 
@@ -174,21 +159,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private CountDownTimer timer;
     private TextView time;
 
-    /**
-     * Declaration for validation text Timer.
-     */
-    private CountDownTimer invisibleTimer;
-
-    /**
-     * Declaration for pip changer Timer
-     * When it hits 5 streak, it will briefly show then disappear
-     */
-    private CountDownTimer pipTimer;
-
-    /**
-     * Timer for +10 visual.
-     */
-    private CountDownTimer addTimeTimer;
+    private final feedBackTimer[] feedBackDelay = new feedBackTimer[3];
 
     /**
      * Level Changer
@@ -209,9 +180,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 	private Audio noise;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -223,11 +191,11 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
          */
         streak = 0;
         failStreak = 0;
-        first = (ImageView) findViewById(R.id.imageView);
-        second = (ImageView) findViewById(R.id.imageView2);
-        third = (ImageView) findViewById(R.id.imageView3);
-        fourth = (ImageView) findViewById(R.id.imageView4);
-        fifth = (ImageView) findViewById(R.id.imageView5);
+        pips[0] = (ImageView) findViewById(R.id.imageView);
+        pips[1] = (ImageView) findViewById(R.id.imageView2);
+        pips[2] = (ImageView) findViewById(R.id.imageView3);
+        pips[3] = (ImageView) findViewById(R.id.imageView4);
+        pips[4] = (ImageView) findViewById(R.id.imageView5);
         pipChanger();
 
         // Create the google Api Client with access to the play Game services
@@ -238,24 +206,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .build();
 
-
-        /**
-         * Timer to display 5 pips for a second before resetting it
-         */
-        pipTimer = new CountDownTimer(BASE_TIME, BASE_TICK) {
-            @Override
-            public void onTick(long millisUntilFinished) {}
-
-            @Override
-            public void onFinish() {
-                first.setImageResource(R.drawable.streakpipoff);
-                second.setImageResource(R.drawable.streakpipoff);
-                third.setImageResource(R.drawable.streakpipoff);
-                fourth.setImageResource(R.drawable.streakpipoff);
-                fifth.setImageResource(R.drawable.streakpipoff);
-                pipTimer.cancel();
-            }
-        };
         /**
          * Instantiating what I need for the timer
          */
@@ -263,33 +213,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         timer = new MyTimer(START_TIME * MILLI_IN_SECOND);
         timer.start();
         running = true;
-
-        /**
-         * Instantiating the validation timer.
-         */
-        invisibleTimer = new CountDownTimer(INV_TIMER, BASE_TICK) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                feedback.setVisibility(View.INVISIBLE);
-            }
-        };
-
-        addTimeTimer = new CountDownTimer(BASE_TIME, BASE_TICK) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                addTime.setVisibility(View.INVISIBLE);
-            }
-        };
 
         /**
          * Level System
@@ -343,8 +266,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 		noise = new Audio(Play.this);
         noise.playBGM();
 
-    }
+        /**
+         * 0 - Pip Timer
+         * 1 - Feedback Timer
+         * 2 - AddTime Timer
+         */
+        feedBackDelay[0] = new feedBackTimer(pips);
+        feedBackDelay[1] = new feedBackTimer(feedback);
+        feedBackDelay[2] = new feedBackTimer(addTime);
 
+    }
 
     @Override
     public void onClick(View view) {
@@ -420,50 +351,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         return (googleApiClient != null && googleApiClient.isConnected());
     }
 
-
-    private class MyTimer extends CountDownTimer {
-        public MyTimer(long duration) {
-            super(duration, 1000L);
-        }
-
-        /**
-         * Ticks every second and changes the text of the TextView to represent that change
-         *
-         * @param millisUntilFinished The amount of time left on the timer. THIS IS THE ONLY WAY IT CAN BE VIEWED OR ACCESSED.
-         */
-        @Override
-        public void onTick(long millisUntilFinished) {
-            time.setText(formatTime(millisUntilFinished));
-            currentMilli = millisUntilFinished;
-        }
-
-        /**
-         * Method called when the time reaches zero
-         */
-        @Override
-        public void onFinish() {
-            time.setText("Game Over");
-            Intent intent = new Intent(getApplicationContext(), GameOver.class);
-            intent.putExtra("Score", score);
-
-            noise.stopMusic();
-            startActivity(intent);
-            finish();
-        }
-
-        /**
-         * My method to format the time from milliseconds to a string that is used for the textview
-         */
-        private String formatTime(long currentTime) {
-            long minute;
-            long second;
-
-            second = (currentTime / MILLI_IN_SECOND) % SECOND_IN_MINUTE;
-            minute = currentTime / MILLI_IN_MINUTE;
-            return minute + ":" + fmt.format(second);
-        }
-    }
-
     /**
      * Moved on button click of add time to a method to call
      */
@@ -481,7 +368,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private void subtractTime() {
         if (running && currentMilli > MIN_TIME_DECREMENT) {
             timer.cancel();
-            timer = new MyTimer(currentMilli - (DECREMENT_TIME * MILLI_IN_SECOND));
+            timer = new MyTimer(currentMilli - (MIN_TIME_DECREMENT));
             timer.start();
         } else {
             timer.cancel();
@@ -509,29 +396,27 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         switch (streak) {
             case 5:
                 addTime.setVisibility(View.VISIBLE);
-                addTimeTimer.cancel();
-                fifth.setImageResource(R.drawable.streakpipon);
-                pipTimer.start();
+                feedBackDelay[2].cancel();
+                pips[4].setImageResource(R.drawable.streakpipon);
+                feedBackDelay[0].start();
                 addTime.setImageResource(R.drawable.plusten);
                 addTime();
                 levelChanger();
                 streak = 0;
-                addTimeTimer.start();
+                feedBackDelay[2].start();
             case 4:
-                fourth.setImageResource(R.drawable.streakpipon);
+                pips[3].setImageResource(R.drawable.streakpipon);
             case 3:
-                third.setImageResource(R.drawable.streakpipon);
+                pips[2].setImageResource(R.drawable.streakpipon);
             case 2:
-                second.setImageResource(R.drawable.streakpipon);
+                pips[1].setImageResource(R.drawable.streakpipon);
             case 1:
-                first.setImageResource(R.drawable.streakpipon);
+                pips[0].setImageResource(R.drawable.streakpipon);
                 break;
             default:
-                first.setImageResource(R.drawable.streakpipoff);
-                second.setImageResource(R.drawable.streakpipoff);
-                third.setImageResource(R.drawable.streakpipoff);
-                fourth.setImageResource(R.drawable.streakpipoff);
-                fifth.setImageResource(R.drawable.streakpipoff);
+                for (ImageView pip : pips) {
+                    pip.setImageResource(R.drawable.streakpipoff);
+                }
         }
         streak++;
         streak %= STREAK_LIMIT;
@@ -609,7 +494,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
      */
     private void truthChecker() {
         feedback.setVisibility(View.VISIBLE);
-        invisibleTimer.cancel();
+        feedBackDelay[1].cancel();
         if(mathGen.getAnswer() == mathGen.getEquation()) {
             feedback.setImageResource(R.drawable.checkmark);
             failStreak = 0;
@@ -629,12 +514,12 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                     levelView.setText("Level: " + currentLevel);
                 }
                 failStreak = 0;
-                addTimeTimer.start();
+                feedBackDelay[2].start();
             }
             pipChanger();
             noise.setSoundState(2);
         }
-        invisibleTimer.start();
+        feedBackDelay[1].start();
     }
 
     /**
@@ -653,7 +538,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
      */
     private void falseChecker() {
         feedback.setVisibility(View.VISIBLE);
-        invisibleTimer.cancel();
+        feedBackDelay[1].cancel();
         if(mathGen.getAnswer() != mathGen.getEquation()) {
             feedback.setImageResource(R.drawable.checkmark);
             failStreak = 0;
@@ -673,12 +558,104 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                     levelView.setText("Level: " + currentLevel);
                 }
                 failStreak = 0;
-                addTimeTimer.start();
+                feedBackDelay[2].start();
             }
             pipChanger();
             noise.setSoundState(2);
         }
-        invisibleTimer.start();
+        feedBackDelay[1].start();
+    }
+
+    private class MyTimer extends CountDownTimer {
+        public MyTimer(long duration) {
+            super(duration, 1000L);
+        }
+
+        /**
+         * Ticks every second and changes the text of the TextView to represent that change
+         *
+         * @param millisUntilFinished The amount of time left on the timer. THIS IS THE ONLY WAY IT CAN BE VIEWED OR ACCESSED.
+         */
+        @Override
+        public void onTick(long millisUntilFinished) {
+            time.setText(formatTime(millisUntilFinished));
+            currentMilli = millisUntilFinished;
+        }
+
+        /**
+         * Method called when the time reaches zero
+         */
+        @Override
+        public void onFinish() {
+            time.setText("Game Over");
+            Intent intent = new Intent(getApplicationContext(), GameOver.class);
+            intent.putExtra("Score", score);
+
+            noise.stopMusic();
+            startActivity(intent);
+            finish();
+        }
+
+        /**
+         * My method to format the time from milliseconds to a string that is used for the textview
+         */
+        private String formatTime(long currentTime) {
+            long minute;
+            long second;
+
+            second = (currentTime / MILLI_IN_SECOND) % SECOND_IN_MINUTE;
+            minute = currentTime / MILLI_IN_MINUTE;
+            return minute + ":" + fmt.format(second);
+        }
+    }
+
+    private class feedBackTimer {
+        private final int duration;
+        private final CountDownTimer timer;
+
+        public feedBackTimer(final View view) {
+            if (view.getId() == feedback.getId()) {
+                duration = 250;
+            } else {
+                duration = 1000;
+            }
+            timer = new CountDownTimer(duration, 1000L) {
+                @Override
+                public void onTick(long l) {}
+
+                @Override
+                public void onFinish() {
+                    view.setVisibility(View.INVISIBLE);
+                }
+            };
+        }
+
+        public feedBackTimer(final View[] view) {
+            duration = 1000;
+            timer = new CountDownTimer(duration, 1000L) {
+                @Override
+                public void onTick(long l) {}
+
+                @Override
+                public void onFinish() {
+                    if (view instanceof ImageView[]) {
+                        for (ImageView item : (ImageView[])view)
+                            item.setImageResource(R.drawable.streakpipoff);
+                    } else {
+                        for (View item : view)
+                            item.setVisibility(View.INVISIBLE);
+                    }
+                }
+            };
+        }
+
+        public void start() {
+            timer.start();
+        }
+
+        public void cancel() {
+            timer.cancel();
+        }
     }
 }
 
