@@ -88,14 +88,7 @@ public class Extras extends AppCompatActivity implements
     //What occurs when the player is signed in and connected to Google Play services
     @Override
     public void onConnected(Bundle bundle) {
-        if (isSignedIn()) {
-            Games.Leaderboards.submitScore(googleApiClient,
-                    "CgkIsIanxbIGEAIQBg",
-                    getIntent().getIntExtra("Score", 0));
-
-            startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
-                    "CgkIsIanxbIGEAIQBg"), 1337);
-        }
+        if (isSignedIn()) { }
     }
 
     //Attempt to reconnect
