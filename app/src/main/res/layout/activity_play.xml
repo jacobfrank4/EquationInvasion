@@ -138,4 +138,13 @@
         android:id="@+id/addTime"
         android:layout_below="@+id/imageView5"
         android:layout_toEndOf="@+id/imageView2" />
+
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/countDown"
+        android:layout_below="@+id/equals"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
