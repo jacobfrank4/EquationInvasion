@@ -191,6 +191,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         final Button FALSE = (Button) findViewById(R.id.falseBtn);
         TRUE.setOnClickListener(this);
         FALSE.setOnClickListener(this);
+
         equation = (TextView) findViewById(R.id.leftEquation);
         answer = (TextView) findViewById(R.id.solution);
         mathGen = new EquationGenerator();
@@ -214,6 +215,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         answer.setTypeface(chalkboardFont);
         txtEquals.setTypeface(chalkboardFont);
         levelView.setTypeface(chalkboardFont);
+        startGameTime.setTypeface(chalkboardFont);
 
         //generating first equation
         mathGen.generate(currentLevel);
