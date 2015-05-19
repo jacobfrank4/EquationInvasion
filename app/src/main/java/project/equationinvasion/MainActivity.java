@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements
 
 	private final static int REQUEST_ACHIEVEMENTS = 1337;
 
+	private final static int REQUEST_HIGHSCORE = 1337;
+
 	private GoogleApiClient googleApiClient;
 
 	private static final int RC_SIGN_IN = 9001;
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements
 	//Called when player clicks the High Scores button
 	public void goToHighScores(View view) {
 		startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
-				"CgkI-_7R9foMEAIQAA"), 1337);
+				"CgkIsIanxbIGEAIQBg"), REQUEST_HIGHSCORE);
 	}
 
 	//Called when player clicks the Achievements button
