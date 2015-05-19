@@ -157,7 +157,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         pips[4] = (ImageView) findViewById(R.id.imageView5);
         pipChanger();
 
-        // Instatiating level streak counter
+        // Instantiating level streak counter
         levelStreak = 0;
 
         // Create the google Api Client with access to the play Game services
