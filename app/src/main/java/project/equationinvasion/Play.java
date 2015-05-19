@@ -523,7 +523,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         for (int i = 0; i < allViews.getChildCount(); i++) {
             allViews.getChildAt(i).setVisibility(View.VISIBLE);
         }
-        //This is sartGameTime, the countdown before the game starts, don't want to show it on game start
+        //This is startGameTime, the countdown before the game starts, don't want to show it on game start
         view.setVisibility(View.INVISIBLE);
 
         //Starting the timer
