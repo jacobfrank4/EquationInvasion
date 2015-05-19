@@ -79,7 +79,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     //Base amount of seconds to subtract from every full fail streak
     private static final int DECREMENT_TIME = 5;
 
-    /**
+    /*
      * If the timer is less than this (5 seconds * MILLI_IN_SECOND), do not decrement time,
      * set time to 0
      */

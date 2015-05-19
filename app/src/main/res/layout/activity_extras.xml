@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="project.equationinvasion.Extras"
+    android:background="#ff1b3d1c">
+
+    <!-- High Score Button -->
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:background="@drawable/highscorebutton"
+        android:id="@+id/highScore"
+        android:onClick="goToHighScores"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/achievements" />
+
+    <!-- Achievements Button -->
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:background="@drawable/achievementbutton"
+        android:onClick="viewAchievements"
+        android:id="@+id/achievements"
+        android:layout_below="@+id/highScore"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp" />
+
+    <!-- Credits Button -->
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:background="@drawable/creditsbutton"
+        android:id="@+id/credits"
+        android:onClick="goToCredits"
+        android:layout_below="@+id/achievements"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp" />
+
+    <!-- Go to Main Button -->
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:background="@drawable/gotomainbutton"
+        android:id="@+id/goToMain"
+        android:onClick="goToMain"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
