@@ -421,7 +421,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         return currentLevel;
     }
 
-    public static TextView getStartCountDown() {
+    private static TextView getStartCountDown() {
         return startGameTime;
     }
 
@@ -516,7 +516,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         feedBackDelay[1].start();
     }
 
-    public void playGame(View view) {
+    private void playGame(View view) {
         //Iterates through all the views on the activity
         ViewGroup allViews = (ViewGroup)view.getParent();
         for (int i = 0; i < allViews.getChildCount(); i++) {
@@ -530,7 +530,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         running = true;
     }
 
-    public void startGame(View view) {
+    private void startGame(View view) {
         ViewGroup allViews = (ViewGroup)view.getParent();
         for (int i = 0; i < allViews.getChildCount(); i++) {
             allViews.getChildAt(i).setVisibility(View.INVISIBLE);
