@@ -32,5 +32,8 @@
     <string name="app_id">219725546288</string>
     <string name="leaderboard_id">CgkIsIanxbIGEAIQBg</string>
     <string name="title_activity_extras">Extras</string>
+    <string name="title_activity_instructions">instructions</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>
