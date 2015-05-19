@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="#ff1b3d1c">
+    android:background="@drawable/background">
 
     <!-- Button and Edit text example to be used as guide and deleted later
     <Button
