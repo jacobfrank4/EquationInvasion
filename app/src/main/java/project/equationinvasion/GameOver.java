@@ -116,9 +116,6 @@ public class GameOver extends AppCompatActivity implements
             Games.Leaderboards.submitScore(googleApiClient,
                     "CgkIsIanxbIGEAIQBg",
                     getIntent().getIntExtra("Score", 0));
-
-            startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
-                    "CgkIsIanxbIGEAIQBg"), 1337);
         }
     }
 
