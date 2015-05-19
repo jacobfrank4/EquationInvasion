@@ -226,7 +226,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         feedBackDelay[0] = new feedBackTimer(pips);
         feedBackDelay[1] = new feedBackTimer(feedback);
         feedBackDelay[2] = new feedBackTimer(addTime);
-        feedBackDelay[3] = new feedBackTimer(answer);
+        feedBackDelay[3] = new feedBackTimer();
 
     }
 
@@ -433,6 +433,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private void truthChecker() {
         feedback.setVisibility(View.VISIBLE);
         feedBackDelay[1].cancel();
+        feedBackDelay[3].start();
         if(mathGen.getAnswer() == mathGen.getEquation()) {
             feedback.setImageResource(R.drawable.checkmark);
             failStreak = 0;
@@ -478,6 +479,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private void falseChecker() {
         feedback.setVisibility(View.VISIBLE);
         feedBackDelay[1].cancel();
+        feedBackDelay[3].start();
         if(mathGen.getAnswer() != mathGen.getEquation()) {
             feedback.setImageResource(R.drawable.checkmark);
             failStreak = 0;
@@ -554,26 +556,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private class feedBackTimer {
         private final int duration;
         private final CountDownTimer timer;
-        private boolean isStartCountDown;
 
         public feedBackTimer(final View view) {
             if (view.getId() == feedback.getId()) {
                 duration = 250;
-                isStartCountDown = false;
-            } else if (false /** replace with checking if the view is equal to the countdown textview */ ) {
-                duration = 3500;
-                isStartCountDown = true;
             } else {
                 duration = 1000;
-                isStartCountDown = false;
             }
             timer = new CountDownTimer(duration, 1000L) {
                 @Override
-                public void onTick(long l) {
-                    if (isStartCountDown) {
-                        answer.setText(String.valueOf(l/1000));
-                    }
-                }
+                public void onTick(long l) {}
 
                 @Override
                 public void onFinish() {
@@ -594,28 +586,29 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                         for (ImageView item : (ImageView[]) view)
                             item.setImageResource(R.drawable.streakpipoff);
                     } else {
-                        for (View item : Play.pips)
+                        for (View item : view)
                             item.setVisibility(View.INVISIBLE);
                     }
                 }
             };
         }
 
-//        public feedBackTimer(Play.startCountdown) {
-//            duration = 3500;
-//            timer = new CountDownTimer(duration, 1000L) {
-//                @Override
-//                public void onTick(long l) {
-//                    Play.startCountdown.setText(String.valueOf(l/1000));
-//                }
-//
-//                @Override
-//                public void onFinish() {
-//                    Play.startCountdown.setVisibility(View.INVISIBLE);
-//                    startGame();
-//                }
-//            };
-//        }
+        public feedBackTimer() {
+            final TextView readySetGo = (TextView)findViewById(R.id.countDown);
+            duration = 3500;
+            timer = new CountDownTimer(duration, 1000L) {
+                @Override
+                public void onTick(long l) {
+                    readySetGo.setText(String.valueOf(l/1000));
+                }
+
+                @Override
+                public void onFinish() {
+                    readySetGo.setVisibility(View.INVISIBLE);
+                    //startGame();
+                }
+            };
+        }
 
         public void start() {
             timer.start();
