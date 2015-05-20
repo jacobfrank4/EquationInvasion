@@ -86,10 +86,6 @@ public class GameOver extends AppCompatActivity implements
 
     public void goToMain(View view) {
         onBackPressed();
-        finished = true;
-        noise.stopMusic();
-        noise.menuBGM();
-        finish();
     }
 
 
@@ -102,6 +98,17 @@ public class GameOver extends AppCompatActivity implements
         }
         noise.setSoundState(0);
         noise.buttonNoise();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        noise.stopMusic();
+        noise.setSoundState(0);
+        noise.buttonNoise();
+        finished = true;
+        noise.menuBGM();
+        finish();
     }
 
     @Override

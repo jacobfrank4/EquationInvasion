@@ -89,23 +89,18 @@ public class Extras extends AppCompatActivity implements
         Intent intent = new Intent(this, Credits.class);
         finished = true;
         startActivity(intent);
-
     }
 
     //Called when player clicks the go to main button
     public void goToMain(View view) {
         onBackPressed();
-        finished = true;
-        finish();
     }
 
     //Called when player clicks the instructions button
-//    public void goToInstructions(View view) {
-//        noise.close();
-//        finished = true;
-//        Intent intent = new Intent(this, Instructions.class);
-//        startActivity(intent);
-//    }
+    public void goToInstructions(View view) {
+        Intent intent = new Intent(this, instructions.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onStart() {
@@ -182,5 +177,13 @@ public class Extras extends AppCompatActivity implements
     protected void onResume() {
         super.onResume();
         noise.resumeMusic();
+        finished = false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finished=true;
+        finish();
     }
 }
