@@ -17,11 +17,11 @@ package project.equationinvasion;
  */
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -96,12 +96,19 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     // Maximum times you can fail a question in a row before we penalize the player
     private static final int MAX_FAIL_STREAK = 3;
 
+    //The color red
+    private static final int RED = Color.rgb(255,0,0);
+
+    //Ten seconds in milliseconds
+    private static final int TEN_SECONDS = 10000;
+
     // Declaration for the textView that displays the equation.
     private static TextView equation;
 
     // Declaration for the textView that displays the possible answer
     private static TextView answer;
 
+    // The textView that contains the countdown before game start
     private static TextView startGameTime;
 
     //Declaration for the display that either shows a check mark or X after answering
@@ -141,7 +148,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     // Score tracking
     private int score = STARTING_SCORE;
     private TextView scoreDisplay;
-    private int scoreIncrement;
 
 	// Audio variables for this page.
 	private Audio noise;
@@ -185,7 +191,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 
         // Adding score
         scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
-        scoreIncrement = INCREMENT_SCORE;
 
         // True and False buttons
         final Button TRUE = (Button) findViewById(R.id.trueBtn);
@@ -348,8 +353,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 feedBackDelay[0].start();
                 addTime.setImageResource(R.drawable.plusten);
                 addTime();
-                streak = 0;
-                if(levelStreak == (LEVEL_STREAK_LIMIT)) {
+                if(levelStreak == LEVEL_STREAK_LIMIT) {
                     levelChanger();
                 }
                 feedBackDelay[2].start();
@@ -394,7 +398,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                         break;
                     case 6:
                         Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQBA");
-                        break;
                 }
             }
         }
@@ -404,7 +407,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 
     // Increments the score.
     private void scoreCounter() {
-        score += (scoreIncrement * currentLevel);
+        score += (INCREMENT_SCORE * currentLevel);
         scoreDisplay.setText("Score: " + score);
     }
 
@@ -554,6 +557,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
          */
         @Override
         public void onTick(long millisUntilFinished) {
+            if(millisUntilFinished <= TEN_SECONDS) {
+                time.setTextColor(RED);
+            }
             time.setText(formatTime(millisUntilFinished));
             currentMilli = millisUntilFinished;
         }
@@ -562,12 +568,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         @Override
         public void onFinish() {
             time.setText("Game Over");
-            Intent intent = new Intent(getApplicationContext(), GameOver.class);
-            intent.putExtra("Score", score);
-
-            noise.stopMusic();
-            startActivity(intent);
-            finish();
+            if (!finished) {
+                Intent intent = new Intent(getApplicationContext(), GameOver.class);
+                intent.putExtra("Score", score);
+                noise.stopMusic();
+                startActivity(intent);
+                finish();
+            }
         }
 
         // My method to format the time from milliseconds to a string that is used for the textview
@@ -657,10 +664,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     public void onBackPressed() {
         super.onBackPressed();
         finished=true;
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         noise.stopMusic();
-        noise.close();
-        startActivity(intent);
+        noise.menuBGM();
         finish();
     }
 
@@ -670,7 +675,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         super.onUserLeaveHint();
         if (!finished){
             noise.stopMusic();
-            noise.close();
     }
         finished = true;
     }
@@ -680,6 +684,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     @Override
     protected void onRestart() {
         super.onResume();
+        timer.onFinish();
         Intent intent = new Intent(getApplicationContext(), GameOver.class);
         intent.putExtra("Score", score);
         startActivity(intent);

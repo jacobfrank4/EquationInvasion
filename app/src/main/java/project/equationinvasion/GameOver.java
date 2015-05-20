@@ -34,6 +34,7 @@ public class GameOver extends AppCompatActivity implements
 
     //Declarations for audio functionality
     private Audio noise;
+    private boolean finished;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,20 +67,12 @@ public class GameOver extends AppCompatActivity implements
                 String.valueOf(getIntent().getIntExtra("Score", 0)) + " points");
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        noise.stopMusic();
-        noise.close();
-        startActivity(intent);
-        finish();
-    }
-
     //Called when player clicks the Play button
     public void goToPlay(View view) {
         Intent intent = new Intent(this, Play.class);
+        noise.stopMusic();
         startActivity(intent);
+        finished=true;
         finish();
     }
 
@@ -91,9 +84,7 @@ public class GameOver extends AppCompatActivity implements
     }
 
     public void goToMain(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        onBackPressed();
     }
 
 
@@ -101,9 +92,28 @@ public class GameOver extends AppCompatActivity implements
     @Override
     protected void onUserLeaveHint() {
         super.onUserLeaveHint();
-        noise.pauseMusic();
+        if (!finished) {
+            noise.pauseMusic();
+        }
         noise.setSoundState(0);
         noise.buttonNoise();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        noise.stopMusic();
+        noise.setSoundState(0);
+        noise.buttonNoise();
+        finished = true;
+        noise.menuBGM();
+        finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        noise.resumeMusic();
     }
 
     @Override

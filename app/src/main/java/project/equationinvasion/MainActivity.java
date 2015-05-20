@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements
 	 */
 	private Audio noise;
 	private static boolean muted;
-	ToggleButton tb;
+	private boolean finished = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements
          */
 		noise = new Audio(MainActivity.this);
 		noise.menuBGM();
-		tb = (ToggleButton) findViewById(R.id.toggleButton);
+		ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton);
 		if (muted){
 			tb.setChecked(true);
 		}
@@ -106,7 +106,9 @@ public class MainActivity extends AppCompatActivity implements
 	public void goToPlay(View view) {
 		Intent intent = new Intent(this, Play.class);
 		startActivity(intent);
-		finish();
+		finished = true;
+		noise.stopMusic();
+
 	}
 
 
@@ -114,16 +116,13 @@ public class MainActivity extends AppCompatActivity implements
 	public void goToExtras(View view) {
 		Intent intent = new Intent(this, Extras.class);
 		startActivity(intent);
+		finished = true;
 	}
 
 	//mute button toggle method..
 	public void muteToggle(View view) {
 		noise.toggleMute();
-		if (!muted){
-			muted = true;
-		} else {
-			muted = false;
-		}
+		muted = !muted;
 	}
 
 	@Override
@@ -131,20 +130,18 @@ public class MainActivity extends AppCompatActivity implements
 		super.onUserLeaveHint();
 		noise.setSoundState(0);
 		noise.buttonNoise();
-		noise.pauseMusic();
+		if (!finished){
+			noise.pauseMusic();
+		}
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		noise.resumeMusic();
+		finished = false;
 	}
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		noise.close();
-	}
 
 	@Override
 	protected void onStart() {

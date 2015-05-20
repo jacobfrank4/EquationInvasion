@@ -16,7 +16,6 @@ package project.equationinvasion;
  * limitations under the License.
  */
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +25,10 @@ import android.widget.TextView;
 
 public class Credits extends AppCompatActivity {
 
+    //Audio declarations
     private Audio noise;
+    private boolean finished;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,20 +59,31 @@ public class Credits extends AppCompatActivity {
     }
 
     public void goBack(View view) {
-        Intent intent = new Intent(this, Extras.class);
-        startActivity(intent);
-        noise.close();
-        noise.setSoundState(0);
-        noise.buttonNoise();
-        finish();
+        onBackPressed();
     }
 
-    //Returns you to the extras screen when back is oushed, and close this activity.
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        noise.setSoundState(0);
+        noise.buttonNoise();
+        if (!finished){
+            noise.pauseMusic();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        noise.resumeMusic();
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(getApplicationContext(), Extras.class);
-        startActivity(intent);
+        noise.setSoundState(0);
+        noise.buttonNoise();
+        finished = true;
         finish();
     }
 }

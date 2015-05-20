@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +17,7 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher.ViewFactory;
 
 
-public class instructions extends Activity {
+public class instructions extends AppCompatActivity {
 
     private Audio noise;
 
@@ -81,7 +82,6 @@ public class instructions extends Activity {
     public void goBack(View view) {
         Intent intent = new Intent(this, Extras.class);
         startActivity(intent);
-        noise.close();
         noise.setSoundState(0);
         noise.buttonNoise();
         finish();
