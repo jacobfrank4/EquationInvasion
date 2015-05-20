@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements
 	private Audio noise;
 	private static boolean muted;
 	private boolean finished = false;
-	private ToggleButton tb;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements
          */
 		noise = new Audio(MainActivity.this);
 		noise.menuBGM();
-		tb = (ToggleButton) findViewById(R.id.toggleButton);
+		ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton);
 		if (muted){
 			tb.setChecked(true);
 		}
