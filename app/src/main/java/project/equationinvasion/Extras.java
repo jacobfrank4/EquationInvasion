@@ -70,14 +70,18 @@ public class Extras extends AppCompatActivity implements
 
     //Called when player clicks the High Scores button
     public void goToHighScores(View view) {
-        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
-                "CgkIsIanxbIGEAIQBg"), REQUEST_HIGHSCORE);
+        if (isSignedIn()) {
+            startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
+                    "CgkIsIanxbIGEAIQBg"), REQUEST_HIGHSCORE);
+        }
     }
 
     //Called when player clicks the Achievements button
     public void viewAchievements(View view) {
-        startActivityForResult(Games.Achievements.getAchievementsIntent(googleApiClient),
-                REQUEST_ACHIEVEMENTS);
+        if (isSignedIn()) {
+            startActivityForResult(Games.Achievements.getAchievementsIntent(googleApiClient),
+                    REQUEST_ACHIEVEMENTS);
+        }
     }
 
     //Called when player clicks the credits button
@@ -112,9 +116,7 @@ public class Extras extends AppCompatActivity implements
 
     //What occurs when the player is signed in and connected to Google Play services
     @Override
-    public void onConnected(Bundle bundle) {
-        //if (isSignedIn()) { }
-    }
+    public void onConnected(Bundle bundle) {}
 
     //Attempt to reconnect
     @Override
