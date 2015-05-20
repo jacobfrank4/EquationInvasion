@@ -30,32 +30,21 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 
-/**
- * Built to streamline the audio production process.
- */
+// Built to streamline the audio production process.
 class Audio {
 
-    /*
-        The two media players that will be used for the entirety of the program.
-        -Matt
-     */
+    // The two media players that will be used for the entirety of the program.
     private static  MediaPlayer BGM;
     private  MediaPlayer SE;
 
-
     //The boolean that keeps track of when the user has muted the audio.
-    //-Matt
     private static boolean muted;
 
-    /*
-        A receiver for the current context that this class is being called in.
-     */
+    // A receiver for the current context that this class is being called in.
     private final Context context;
 
-    /*
-        Constructor for this class
-        c is a variable passed in by the host activity to define initial context.
-     */
+    // Constructor for this class
+    // c is a variable passed in by the host activity to define initial context.
     public Audio(Context c) {
         context = c;
     }
@@ -73,9 +62,7 @@ class Audio {
         }
     }
 
-    /*
-        This should perform the same task as above, but for the play screen.
-     */
+    // This should perform the same task as above, but for the play screen.
     public void playBGM() {
         if (!muted) {
             BGM = MediaPlayer.create(context, R.raw.bgm2);
@@ -92,17 +79,16 @@ class Audio {
         }
     }
 
-    /*
-        This method simply makes a noise when a button is clicked.
-        The specific noise is defined elsewhere, in the setSoundState
-        method. This should reduce the number of instances we need.
+    /**
+     * This method simply makes a noise when a button is clicked.
+     * The specific noise is defined elsewhere, in the setSoundState
+     * method. This should reduce the number of instances we need.
      */
     public void buttonNoise() {
         if (!muted) {
             SE.start();
         }
     }
-
 
     /*
      *  This is meant to enable the user to turn all sound off.
@@ -125,50 +111,39 @@ class Audio {
     }
 
     //This method exists for when the home key is pushed.
-    public void pauseMusic()
-    {
+    public void pauseMusic() {
         if (BGM != null) {
             BGM.pause();
         }
     }
 
-    // this lets the music resume from where it was,
+    // This lets the music resume from where it was,
     // if the user leaves the app and comes back without closing
     // it.
-    public void resumeMusic()
-    {
+    public void resumeMusic() {
         if (BGM != null && !muted && !BGM.isPlaying()) {
             BGM.start();
         }
     }
 
-    /*
-        This is meant to enable stopping of music.(used in muting)
-     */
+    // This is meant to enable stopping of music.(used in muting)
     public void stopMusic() {
-           if (!muted){
-                BGM.stop();
-                BGM.reset();
-           }
+       if (!muted){
+            BGM.stop();
+            BGM.reset();
+       }
     }
 
-    /*
-        This lets us close the sound effects on another page,
-        as well as the BGM
-     */
+    // This lets us close the sound effects on another page, as well as the BGM
     private final OnCompletionListener done = new OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mp) {
             if (mp == SE) {
                 SE.reset();
                 SE.release();
-
             }
         }
     };
-
-
-
 
     /*
         Case definitions:
@@ -182,14 +157,11 @@ class Audio {
         corresponding to one of the cases above.
      */
     public void setSoundState(int i) {
-
-        switch (i)
-        {
+        switch (i) {
             case 0:
-                    SE = MediaPlayer.create(context,R.raw.btn1sound);
-                    SE.setOnCompletionListener(done);
-                    break;
-
+                SE = MediaPlayer.create(context,R.raw.btn1sound);
+                SE.setOnCompletionListener(done);
+                break;
             case 1:
                 if (SE != null){
                     SE.reset();
@@ -197,17 +169,14 @@ class Audio {
                 }
                 SE = MediaPlayer.create(context,R.raw.right);
                 break;
-
             case 2:
                 if (SE != null){
                     SE.reset();
                     SE.release();
                 }
                 SE = MediaPlayer.create(context,R.raw.wrong);
-                break;
         }
     }
-
 }
 
 

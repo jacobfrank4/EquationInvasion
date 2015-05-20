@@ -99,7 +99,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     //The color red
     private static final int RED = Color.rgb(255,0,0);
 
-    //Twenty seconds in milliseconds
+    //Ten seconds in milliseconds
     private static final int TEN_SECONDS = 10000;
 
     // Declaration for the textView that displays the equation.
@@ -108,6 +108,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     // Declaration for the textView that displays the possible answer
     private static TextView answer;
 
+    // The textView that contains the countdown before game start
     private static TextView startGameTime;
 
     //Declaration for the display that either shows a check mark or X after answering
@@ -147,7 +148,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     // Score tracking
     private int score = STARTING_SCORE;
     private TextView scoreDisplay;
-    private int scoreIncrement;
 
 	// Audio variables for this page.
 	private Audio noise;
@@ -191,7 +191,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 
         // Adding score
         scoreDisplay = (TextView) findViewById(R.id.scoreDisplay);
-        scoreIncrement = INCREMENT_SCORE;
 
         // True and False buttons
         final Button TRUE = (Button) findViewById(R.id.trueBtn);
@@ -399,7 +398,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                         break;
                     case 6:
                         Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQBA");
-                        break;
                 }
             }
         }
@@ -409,7 +407,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 
     // Increments the score.
     private void scoreCounter() {
-        score += (scoreIncrement * currentLevel);
+        score += (INCREMENT_SCORE * currentLevel);
         scoreDisplay.setText("Score: " + score);
     }
 
@@ -686,8 +684,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     @Override
     protected void onRestart() {
         super.onResume();
-        currentMilli = MIN_TIME_DECREMENT -1;
-        subtractTime();
+        timer.onFinish();
         Intent intent = new Intent(getApplicationContext(), GameOver.class);
         intent.putExtra("Score", score);
         startActivity(intent);
