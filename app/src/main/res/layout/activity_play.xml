@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView5"
-        android:src="@drawable/streakpipon"
+        android:src="@drawable/streakpipoff"
         android:layout_below="@+id/scoreDisplay"
         android:layout_alignEnd="@+id/falseBtn" />
 
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView4"
-        android:src="@drawable/streakpipon"
+        android:src="@drawable/streakpipoff"
         android:layout_alignTop="@+id/imageView5"
         android:layout_toStartOf="@+id/imageView5" />
 
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView3"
-        android:src="@drawable/streakpipon"
+        android:src="@drawable/streakpipoff"
         android:layout_alignTop="@+id/imageView4"
         android:layout_toStartOf="@+id/imageView4" />
 
@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView2"
-        android:src="@drawable/streakpipon"
+        android:src="@drawable/streakpipoff"
         android:layout_below="@+id/scoreDisplay"
         android:layout_toStartOf="@+id/imageView3" />
 
@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:src="@drawable/streakpipon"
+        android:src="@drawable/streakpipoff"
         android:layout_alignTop="@+id/imageView2"
         android:layout_toStartOf="@+id/imageView2" />
 

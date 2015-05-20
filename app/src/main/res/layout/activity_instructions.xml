@@ -7,6 +7,34 @@
     tools:context="project.equationinvasion.instructions"
     android:background="@drawable/background">
 
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:id="@+id/main"
+        android:onClick="goBack"
+        android:background="@drawable/gobackbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
+    <ImageSwitcher
+        android:id="@+id/imageSwitcher"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    </ImageSwitcher>
+
+    <TextSwitcher
+        android:id="@+id/textSwitcher"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+    </TextSwitcher>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:onClick="onSwitch"
+        android:text=">"/>
 
 </RelativeLayout>

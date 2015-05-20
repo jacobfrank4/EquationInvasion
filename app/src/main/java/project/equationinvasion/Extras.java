@@ -70,14 +70,18 @@ public class Extras extends AppCompatActivity implements
 
     //Called when player clicks the High Scores button
     public void goToHighScores(View view) {
-        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
-                "CgkIsIanxbIGEAIQBg"), REQUEST_HIGHSCORE);
+        if (isSignedIn()) {
+            startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
+                    "CgkIsIanxbIGEAIQBg"), REQUEST_HIGHSCORE);
+        }
     }
 
     //Called when player clicks the Achievements button
     public void viewAchievements(View view) {
-        startActivityForResult(Games.Achievements.getAchievementsIntent(googleApiClient),
-                REQUEST_ACHIEVEMENTS);
+        if (isSignedIn()) {
+            startActivityForResult(Games.Achievements.getAchievementsIntent(googleApiClient),
+                    REQUEST_ACHIEVEMENTS);
+        }
     }
 
     //Called when player clicks the credits button
@@ -85,7 +89,6 @@ public class Extras extends AppCompatActivity implements
         Intent intent = new Intent(this, Credits.class);
         finished = true;
         startActivity(intent);
-
     }
 
     //Called when player clicks the go to main button
@@ -94,12 +97,10 @@ public class Extras extends AppCompatActivity implements
     }
 
     //Called when player clicks the instructions button
-//    public void goToInstructions(View view) {
-//        noise.close();
-//        finished = true;
-//        Intent intent = new Intent(this, Instructions.class);
-//        startActivity(intent);
-//    }
+    public void goToInstructions(View view) {
+        Intent intent = new Intent(this, instructions.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onStart() {
@@ -115,9 +116,7 @@ public class Extras extends AppCompatActivity implements
 
     //What occurs when the player is signed in and connected to Google Play services
     @Override
-    public void onConnected(Bundle bundle) {
-        //if (isSignedIn()) { }
-    }
+    public void onConnected(Bundle bundle) {}
 
     //Attempt to reconnect
     @Override
