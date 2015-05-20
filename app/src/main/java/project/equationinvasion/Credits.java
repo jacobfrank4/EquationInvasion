@@ -16,7 +16,6 @@ package project.equationinvasion;
  * limitations under the License.
  */
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

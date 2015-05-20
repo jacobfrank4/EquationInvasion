@@ -96,12 +96,12 @@ public class Extras extends AppCompatActivity implements
     }
 
     //Called when player clicks the instructions button
-    public void goToInstructions(View view) {
-        //noise.close();
-        //finished = true;
- //       Intent intent = new Intent(this, Instructions.class);
+//    public void goToInstructions(View view) {
+//        noise.close();
+//        finished = true;
+//        Intent intent = new Intent(this, Instructions.class);
 //        startActivity(intent);
-    }
+//    }
 
     @Override
     protected void onStart() {
@@ -118,7 +118,7 @@ public class Extras extends AppCompatActivity implements
     //What occurs when the player is signed in and connected to Google Play services
     @Override
     public void onConnected(Bundle bundle) {
-        if (isSignedIn()) { }
+        //if (isSignedIn()) { }
     }
 
     //Attempt to reconnect
