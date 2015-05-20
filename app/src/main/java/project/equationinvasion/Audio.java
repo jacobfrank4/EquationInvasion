@@ -29,7 +29,7 @@ class Audio {
         The two media players that will be used for the entirety of the program.
         -Matt
      */
-    private  MediaPlayer BGM;
+    private static  MediaPlayer BGM;
     private  MediaPlayer SE;
 
 
@@ -127,7 +127,7 @@ class Audio {
     // it.
     public void resumeMusic()
     {
-        if (BGM != null && !muted) {
+        if (BGM != null && !muted && !BGM.isPlaying()) {
             BGM.start();
         }
     }
@@ -140,17 +140,6 @@ class Audio {
                 BGM.stop();
                 BGM.reset();
            }
-    }
-
-
-    //This method exists to free up resources when the user navigates away from the screen.
-    public void close() {
-        if (BGM != null){
-            BGM.stop();
-            BGM.reset();
-            BGM.release();
-        }
-
     }
 
     /*
