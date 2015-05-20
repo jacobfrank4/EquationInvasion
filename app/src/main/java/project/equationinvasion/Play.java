@@ -99,6 +99,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     //The color red
     private static final int RED = Color.rgb(255,0,0);
 
+    //The color White
+    private static final int WHITE = Color.rgb(255,255,255);
+
     //Ten seconds in milliseconds
     private static final int TEN_SECONDS = 10000;
 
@@ -562,6 +565,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         public void onTick(long millisUntilFinished) {
             if(millisUntilFinished <= TEN_SECONDS) {
                 time.setTextColor(RED);
+            } else {
+                time.setTextColor(WHITE);
             }
             time.setText(formatTime(millisUntilFinished));
             currentMilli = millisUntilFinished;
