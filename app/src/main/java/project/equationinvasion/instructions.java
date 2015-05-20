@@ -80,11 +80,7 @@ public class instructions extends AppCompatActivity {
     }
 
     public void goBack(View view) {
-        Intent intent = new Intent(this, Extras.class);
-        startActivity(intent);
-        noise.setSoundState(0);
-        noise.buttonNoise();
-        finish();
+        onBackPressed();
     }
 
     //Returns you to the extras screen when back is oushed, and close this activity.
