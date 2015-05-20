@@ -348,8 +348,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 feedBackDelay[0].start();
                 addTime.setImageResource(R.drawable.plusten);
                 addTime();
-                streak = 0;
-                if(levelStreak == (LEVEL_STREAK_LIMIT)) {
+                if(levelStreak == LEVEL_STREAK_LIMIT) {
                     levelChanger();
                 }
                 feedBackDelay[2].start();
