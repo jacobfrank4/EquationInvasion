@@ -22,8 +22,8 @@ public class instructions extends AppCompatActivity {
     private Audio noise;
     private boolean finished = false;
 
-    private static final String[] TEXTS = {"Image 1", "Image 2", "Image 3", "Image 4", "Image 5"};
-    private static final int[] IMAGES = {R.drawable.audio_off, R.drawable.audio_on, R.drawable.checkmark, R.drawable.x, R.drawable.plusten};
+    private static final String[] TEXTS = {"How to play", "Streak/Add Time", "Level Up", "lose time/level Down", "BEDMAS"};
+    private static final int[] IMAGES = {R.drawable.instructions1, R.drawable.instructions2, R.drawable.instructions3, R.drawable.instructions4, R.drawable.instructions5};
     private int mPosition = 0;
     private TextSwitcher mTextSwitcher;
     private ImageSwitcher mImageSwitcher;
@@ -57,8 +57,8 @@ public class instructions extends AppCompatActivity {
         mImageSwitcher.setInAnimation(this, android.R.anim.slide_in_left);
         mImageSwitcher.setOutAnimation(this, android.R.anim.slide_out_right);
 
-        switchRight(null);
-        switchLeft(null);
+        switchNext(null);
+//        switchLeft(null);
 
        //audio set up
         noise = new Audio(instructions.this);
@@ -75,17 +75,17 @@ public class instructions extends AppCompatActivity {
     }
 
     // switch for the slides
-    public void switchRight(View view) {
+    public void switchNext(View view) {
         mTextSwitcher.setText(TEXTS[mPosition]);
         mImageSwitcher.setBackgroundResource(IMAGES[mPosition]);
         mPosition = (mPosition + 1) % TEXTS.length;
     }
 
-    public void switchLeft(View view) {
-        mTextSwitcher.setText(TEXTS[mPosition]);
-        mImageSwitcher.setBackgroundResource(IMAGES[mPosition]);
-        mPosition = (mPosition - 1) % TEXTS.length;
-    }
+//    public void switchLeft(View view) {
+//        mTextSwitcher.setText(TEXTS[mPosition]);
+//        mImageSwitcher.setBackgroundResource(IMAGES[mPosition]);
+//        mPosition = (mPosition - 1) % TEXTS.length;
+//    }
 
 
     public void goBack(View view) {

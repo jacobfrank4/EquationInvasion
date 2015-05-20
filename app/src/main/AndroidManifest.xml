@@ -30,9 +30,9 @@
         </activity>
         <activity
             android:name=".Credits"
-            android:configChanges="orientation"
             android:label="@string/title_activity_credits"
             android:parentActivityName=".MainActivity"
+            android:configChanges="orientation"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -61,14 +61,21 @@
         <activity
             android:name=".Extras"
             android:label="@string/title_activity_extras"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="project.equationinvasion.MainActivity" />
         </activity>
         <activity
             android:name=".instructions"
-            android:label="@string/title_activity_instructions" >
+            android:label="@string/title_activity_instructions"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="project.equationinvasion.Extras" />
         </activity>
     </application>
 
