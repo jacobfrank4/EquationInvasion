@@ -56,7 +56,8 @@ public class instructions extends AppCompatActivity {
         mImageSwitcher.setInAnimation(this, android.R.anim.slide_in_left);
         mImageSwitcher.setOutAnimation(this, android.R.anim.slide_out_right);
 
-        onSwitch(null);
+        switchRight(null);
+        switchLeft(null);
 
 //        //audio set up
 //        noise = new Audio(instructions.this);
@@ -73,11 +74,18 @@ public class instructions extends AppCompatActivity {
     }
 
     // switch for the slides
-    public void onSwitch(View view) {
+    public void switchRight(View view) {
         mTextSwitcher.setText(TEXTS[mPosition]);
         mImageSwitcher.setBackgroundResource(IMAGES[mPosition]);
         mPosition = (mPosition + 1) % TEXTS.length;
     }
+
+    public void switchLeft(View view) {
+        mTextSwitcher.setText(TEXTS[mPosition]);
+        mImageSwitcher.setBackgroundResource(IMAGES[mPosition]);
+        mPosition = (mPosition - 1) % TEXTS.length;
+    }
+
 
     public void goBack(View view) {
         onBackPressed();

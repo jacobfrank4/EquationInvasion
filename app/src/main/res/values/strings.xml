@@ -35,5 +35,7 @@
     <string name="title_activity_instructions">instructions</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
 
 </resources>
