@@ -35,6 +35,9 @@ public class Extras extends AppCompatActivity implements
     // Automatically start the sign-in flow when the Activity starts
     private boolean autoStartSignInFlow = true;
 
+    // Audio for button noises... nothing to see here....
+    private Audio noise;
+    private boolean finished = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,9 @@ public class Extras extends AppCompatActivity implements
         //Applying font
         extrasTitle.setTypeface(chalkboardFont);
 
+        noise = new Audio(Extras.this);
+        noise.resumeMusic();
+
     }
 
 
@@ -77,17 +83,22 @@ public class Extras extends AppCompatActivity implements
     //Called when player clicks the credits button
     public void goToCredits(View view) {
         Intent intent = new Intent(this, Credits.class);
+        finished = true;
         startActivity(intent);
+
     }
 
     //Called when player clicks the go to main button
     public void goToMain(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        onBackPressed();
+        finished = true;
+        finish();
     }
 
     //Called when player clicks the instructions button
     public void goToInstructions(View view) {
+        //noise.close();
+        //finished = true;
  //       Intent intent = new Intent(this, Instructions.class);
 //        startActivity(intent);
     }
@@ -153,5 +164,21 @@ public class Extras extends AppCompatActivity implements
 
     private boolean isSignedIn() {
         return (googleApiClient != null && googleApiClient.isConnected());
+    }
+
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        noise.setSoundState(0);
+        noise.buttonNoise();
+        if (!finished) {
+            noise.pauseMusic();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        noise.resumeMusic();
     }
 }

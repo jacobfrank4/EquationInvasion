@@ -562,12 +562,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         @Override
         public void onFinish() {
             time.setText("Game Over");
-            Intent intent = new Intent(getApplicationContext(), GameOver.class);
-            intent.putExtra("Score", score);
-
-            noise.stopMusic();
-            startActivity(intent);
-            finish();
+            if (!finished) {
+                Intent intent = new Intent(getApplicationContext(), GameOver.class);
+                intent.putExtra("Score", score);
+                noise.stopMusic();
+                startActivity(intent);
+                finish();
+            }
         }
 
         // My method to format the time from milliseconds to a string that is used for the textview
@@ -657,10 +658,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     public void onBackPressed() {
         super.onBackPressed();
         finished=true;
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         noise.stopMusic();
-        noise.close();
-        startActivity(intent);
+        noise.menuBGM();
         finish();
     }
 
@@ -670,7 +669,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         super.onUserLeaveHint();
         if (!finished){
             noise.stopMusic();
-            noise.close();
     }
         finished = true;
     }
@@ -680,6 +678,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     @Override
     protected void onRestart() {
         super.onResume();
+        currentMilli = MIN_TIME_DECREMENT -1;
+        subtractTime();
         Intent intent = new Intent(getApplicationContext(), GameOver.class);
         intent.putExtra("Score", score);
         startActivity(intent);
