@@ -58,11 +58,14 @@
 
     <!-- sign-out button -->
     <Button
-        android:id="@+id/sign_out_button"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:visibility="gone"
         android:background="@drawable/signoutbutton"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:visibility="gone" />
+        android:text=""
+        android:id="@+id/sign_out_button"
+        android:layout_below="@+id/extras"
+        android:layout_centerHorizontal="true" />
 
     <!-- Audio button -->
     <ToggleButton
@@ -87,6 +90,8 @@
         android:onClick="goToExtras"
         android:layout_above="@+id/toggleButton"
         android:layout_centerHorizontal="true" />
+
+
 
 
 </RelativeLayout>
