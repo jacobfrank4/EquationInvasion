@@ -17,6 +17,7 @@ package project.equationinvasion;
  */
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -95,6 +96,12 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 
     // Maximum times you can fail a question in a row before we penalize the player
     private static final int MAX_FAIL_STREAK = 3;
+
+    //The color red
+    private static final int RED = Color.rgb(255,0,0);
+
+    //Twenty seconds in milliseconds
+    private static final int TEN_SECONDS = 10000;
 
     // Declaration for the textView that displays the equation.
     private static TextView equation;
@@ -553,6 +560,9 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
          */
         @Override
         public void onTick(long millisUntilFinished) {
+            if(millisUntilFinished <= TEN_SECONDS) {
+                time.setTextColor(RED);
+            }
             time.setText(formatTime(millisUntilFinished));
             currentMilli = millisUntilFinished;
         }
