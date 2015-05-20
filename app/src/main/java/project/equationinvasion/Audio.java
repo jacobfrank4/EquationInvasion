@@ -14,6 +14,16 @@ package project.equationinvasion;
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Menu Music: Jazz Comedy - Bensound.com
+ * Play Screen Music: Jazzy Frenchy - Bensound.com
+ * Game Over Music: The Lounge - Bensound.com
+ * Transition noise: ooweep-Intermed-594 - Flashkit.com
+ * Right answer noise: Plopp-jh-8598 - Flashkit.com
+ * Wrong answer noise: Plopp-jh-8598 - Flashkit.com Local edit.
+ *
+ * All sounds liscenced under the Creative Commons Licence Agreement.
+ * Full agreement may be read at: http://creativecommons.org/licenses/by-nd/3.0/legalcode
  */
 
 import android.content.Context;

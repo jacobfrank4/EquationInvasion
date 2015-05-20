@@ -91,8 +91,6 @@ public class Extras extends AppCompatActivity implements
     //Called when player clicks the go to main button
     public void goToMain(View view) {
         onBackPressed();
-        finished = true;
-        finish();
     }
 
     //Called when player clicks the instructions button
@@ -180,5 +178,13 @@ public class Extras extends AppCompatActivity implements
     protected void onResume() {
         super.onResume();
         noise.resumeMusic();
+        finished = false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finished=true;
+        finish();
     }
 }

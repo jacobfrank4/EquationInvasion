@@ -60,10 +60,6 @@ public class Credits extends AppCompatActivity {
 
     public void goBack(View view) {
         onBackPressed();
-        noise.setSoundState(0);
-        noise.buttonNoise();
-        finished = true;
-        finish();
     }
 
     @Override
@@ -80,5 +76,14 @@ public class Credits extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         noise.resumeMusic();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        noise.setSoundState(0);
+        noise.buttonNoise();
+        finished = true;
+        finish();
     }
 }
