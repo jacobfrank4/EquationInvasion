@@ -21,6 +21,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -444,7 +445,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private void truthChecker() {
         feedback.setVisibility(View.VISIBLE);
         feedBackDelay[1].cancel();
-        feedBackDelay[3].start();
         if(mathGen.getAnswer() == mathGen.getEquation()) {
             feedback.setImageResource(R.drawable.checkmark);
             failStreak = 0;
@@ -490,7 +490,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private void falseChecker() {
         feedback.setVisibility(View.VISIBLE);
         feedBackDelay[1].cancel();
-        feedBackDelay[3].start();
         if(mathGen.getAnswer() != mathGen.getEquation()) {
             feedback.setImageResource(R.drawable.checkmark);
             failStreak = 0;
