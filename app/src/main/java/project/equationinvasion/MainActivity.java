@@ -119,6 +119,13 @@ public class MainActivity extends AppCompatActivity implements
 		finished = true;
 	}
 
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		noise.stopMusic();
+		finish();
+	}
+
 	//mute button toggle method..
 	public void muteToggle(View view) {
 		noise.toggleMute();
