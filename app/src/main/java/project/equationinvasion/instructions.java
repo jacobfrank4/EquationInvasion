@@ -20,6 +20,7 @@ import android.widget.ViewSwitcher.ViewFactory;
 public class instructions extends AppCompatActivity {
 
     private Audio noise;
+    private boolean finished = false;
 
     private static final String[] TEXTS = {"How to play", "Streak/Add Time", "Level Up", "lose time/level Down", "BEDMAS"};
     private static final int[] IMAGES = {R.drawable.instructions1, R.drawable.instructions2, R.drawable.instructions3, R.drawable.instructions4, R.drawable.instructions5};
@@ -59,8 +60,8 @@ public class instructions extends AppCompatActivity {
         switchNext(null);
 //        switchLeft(null);
 
-//        //audio set up
-//        noise = new Audio(instructions.this);
+       //audio set up
+        noise = new Audio(instructions.this);
 //
 //        //Font path
 //        String chalkboardFontPath = "fonts/Chalkboard.ttf";
@@ -95,8 +96,27 @@ public class instructions extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(getApplicationContext(), Extras.class);
-        startActivity(intent);
+        noise.setSoundState(0);
+        noise.buttonNoise();
+        finished = true;
         finish();
+    }
+
+    //This method is called when user leaves screen.
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        noise.setSoundState(0);
+        noise.buttonNoise();
+        if (!finished){
+            noise.pauseMusic();
+        }
+    }
+
+    //called upon return from home button pressed.
+    @Override
+    protected void onResume() {
+        super.onResume();
+        noise.resumeMusic();
     }
 }

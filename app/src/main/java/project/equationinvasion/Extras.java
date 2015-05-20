@@ -99,6 +99,7 @@ public class Extras extends AppCompatActivity implements
     //Called when player clicks the instructions button
     public void goToInstructions(View view) {
         Intent intent = new Intent(this, instructions.class);
+        finished = true;
         startActivity(intent);
     }
 
