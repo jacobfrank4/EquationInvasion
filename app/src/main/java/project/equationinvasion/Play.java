@@ -166,7 +166,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         pips[2] = (ImageView) findViewById(R.id.imageView3);
         pips[3] = (ImageView) findViewById(R.id.imageView4);
         pips[4] = (ImageView) findViewById(R.id.imageView5);
-        pipChanger();
 
         // Instantiating level streak counter
         levelStreak = 0;
@@ -346,6 +345,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
      * of streak. There's a break to prevent it falling into the default case.
      */
     private void pipChanger() {
+
+
         switch (streak) {
             case 5:
                 addTime.setVisibility(View.VISIBLE);
@@ -353,10 +354,10 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 pips[4].setImageResource(R.drawable.streakpipon);
                 feedBackDelay[0].start();
                 addTime.setImageResource(R.drawable.plusten);
-                addTime();
                 if(levelStreak == LEVEL_STREAK_LIMIT) {
                     levelChanger();
                 }
+                addTime();
                 feedBackDelay[2].start();
             case 4:
                 pips[3].setImageResource(R.drawable.streakpipon);
@@ -373,9 +374,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 }
         }
         streak %= STREAK_LIMIT;
-        streak++;
         levelStreak %= LEVEL_STREAK_LIMIT;
-        levelStreak++;
     }
 
 
@@ -453,6 +452,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         if(mathGen.getAnswer() == mathGen.getEquation()) {
             feedback.setImageResource(R.drawable.checkmark);
             failStreak = 0;
+            streak++;
+            levelStreak++;
             scoreCounter();
             pipChanger();
             noise.setSoundState(1);
@@ -498,6 +499,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         if(mathGen.getAnswer() != mathGen.getEquation()) {
             feedback.setImageResource(R.drawable.checkmark);
             failStreak = 0;
+            streak++;
+            levelStreak++;
             scoreCounter();
             pipChanger();
             noise.setSoundState(1);
