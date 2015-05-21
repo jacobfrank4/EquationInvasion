@@ -18,6 +18,9 @@ public class instructions extends AppCompatActivity {
     private static Audio noise;
     private static boolean finished = false;
 
+    //Text color for instructions
+    private static final int YELLOW = Color.rgb(255, 201, 14);
+
     //instruction texts for the slides
     private static final String One = "You must determine whether the given solution is true or false by tapping the corresponding button";
     private static final String Two = "Correctly answer five equations in a row, and 10 seconds will be added to your time.";
@@ -32,6 +35,7 @@ public class instructions extends AppCompatActivity {
     // Text and Image switcher objects
     private static TextSwitcher mTextSwitcher;
     private static ImageSwitcher mImageSwitcher;
+    
     // position for the array
     private static int Position = 0;
 
@@ -54,7 +58,7 @@ public class instructions extends AppCompatActivity {
                 final TextView textView = new TextView(instructions.this);
                 textView.setGravity(Gravity.CENTER);
                 textView.setTypeface(chalkboardFont);
-                textView.setTextColor(Color.rgb(255, 201, 14));
+                textView.setTextColor(YELLOW);
                 return textView;
             }
         });
