@@ -492,6 +492,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 if(currentLevel > LEVEL_START) {
                     currentLevel--;
                     levelView.setText("Level: " + currentLevel);
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDw");
                 }
                 failStreak = 0;
                 feedBackDelay[2].start();
@@ -539,6 +540,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 if(currentLevel > LEVEL_START) {
                     currentLevel--;
                     levelView.setText("Level: " + currentLevel);
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDw");
                 }
                 failStreak = 0;
                 feedBackDelay[2].start();
