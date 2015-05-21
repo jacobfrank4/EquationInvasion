@@ -69,7 +69,7 @@
                 android:value="project.equationinvasion.MainActivity" />
         </activity>
         <activity
-            android:name=".instructions"
+            android:name=".Instructions"
             android:label="@string/title_activity_instructions"
             android:configChanges="orientation"
             android:screenOrientation="portrait" >
