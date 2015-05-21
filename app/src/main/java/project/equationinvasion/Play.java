@@ -379,6 +379,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private void levelChanger() {
         if (currentLevel < MAX_LEVEL) {
             currentLevel++;
+            // Level Achievements
             if (isSignedIn()) {
                 switch(currentLevel) {
                     case 2:
@@ -395,6 +396,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                         break;
                     case 6:
                         Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQBA");
+                        break;
                 }
             }
         }
@@ -406,6 +408,26 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private void scoreCounter() {
         score += (INCREMENT_SCORE * currentLevel);
         scoreDisplay.setText("Score: " + score);
+        // Score Achievements
+        if (isSignedIn()) {
+            switch(score) {
+                case 5000:
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQCg");
+                    break;
+                case 10000:
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQCw");
+                    break;
+                case 15000:
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDA");
+                    break;
+                case 20000:
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDQ");
+                    break;
+                case 35000:
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDg");
+                    break;
+            }
+        }
     }
 
     public static TextView getEquationTextView() {
