@@ -96,20 +96,24 @@ public class GameOver extends AppCompatActivity implements
         if (!finished) {
             noise.pauseMusic();
         }
-        noise.setSoundState(0);
-        noise.buttonNoise();
+        noise.transitionNoise();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         noise.stopMusic();
-        noise.setSoundState(0);
-        noise.buttonNoise();
+        noise.transitionNoise();
         finished = true;
         noise.menuBGM();
         finish();
     }
+
+    protected void onPause() {
+        super.onPause();
+        noise.pauseMusic();
+    }
+
 
     @Override
     protected void onResume() {

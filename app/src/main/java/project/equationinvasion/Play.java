@@ -254,7 +254,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 falseChecker();
             }
             mathGen.generate(currentLevel);
-            noise.buttonNoise();
+
         }
     }
 
@@ -479,7 +479,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
             levelStreak++;
             scoreCounter();
             pipChanger();
-            noise.setSoundState(1);
+            noise.rightNoise();
         } else {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
@@ -497,7 +497,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 feedBackDelay[2].start();
             }
             pipChanger();
-            noise.setSoundState(2);
+            noise.wrongNoise();
         }
         feedBackDelay[1].start();
     }
@@ -526,7 +526,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
             levelStreak++;
             scoreCounter();
             pipChanger();
-            noise.setSoundState(1);
+            noise.rightNoise();
         } else {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
@@ -544,7 +544,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 feedBackDelay[2].start();
             }
             pipChanger();
-            noise.setSoundState(2);
+            noise.wrongNoise();
         }
         feedBackDelay[1].start();
     }
@@ -698,6 +698,14 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         noise.menuBGM();
         finish();
     }
+
+    protected void onPause() {
+        if (!finished){
+            noise.stopMusic();
+        }
+        finished = true;
+    }
+
 
     //Gets called when home key is pressed,
     @Override

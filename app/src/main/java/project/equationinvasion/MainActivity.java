@@ -135,8 +135,7 @@ public class MainActivity extends AppCompatActivity implements
 	@Override
 	protected void onUserLeaveHint() {
 		super.onUserLeaveHint();
-		noise.setSoundState(0);
-		noise.buttonNoise();
+		noise.transitionNoise();
 		if (!finished){
 			noise.pauseMusic();
 		}

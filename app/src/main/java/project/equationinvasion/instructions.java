@@ -109,8 +109,7 @@ public class instructions extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        noise.setSoundState(0);
-        noise.buttonNoise();
+        noise.transitionNoise();
         finished = true;
         finish();
     }
@@ -121,13 +120,17 @@ public class instructions extends AppCompatActivity {
     @Override
     protected void onUserLeaveHint() {
         super.onUserLeaveHint();
-        noise.setSoundState(0);
-        noise.buttonNoise();
+        noise.transitionNoise();
         if (!finished){
             noise.pauseMusic();
         }
     }
 
+
+    protected void onPause() {
+        super.onPause();
+        noise.pauseMusic();
+    }
 
 
     //called upon return from home button pressed.
