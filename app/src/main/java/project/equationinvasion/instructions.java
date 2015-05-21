@@ -35,7 +35,7 @@ public class instructions extends AppCompatActivity {
     // Text and Image switcher objects
     private static TextSwitcher mTextSwitcher;
     private static ImageSwitcher mImageSwitcher;
-    
+
     // position for the array
     private static int Position = 0;
 
