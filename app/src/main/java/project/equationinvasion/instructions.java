@@ -2,6 +2,7 @@ package project.equationinvasion;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -21,9 +22,14 @@ public class instructions extends AppCompatActivity {
 
     private Audio noise;
     private boolean finished = false;
+    private static final String One = "You must determine whether the given solution is true or false by tapping the corresponding button";
+    private static final String Two = "Correctly answer five equations in a row, and 10 seconds will be added to your time.";
+    private static final String Three = "Correctly answer ten equations in a row, and you will go up a level. The difficulty increases with each level.";
+    private static final String Four = "If you answer an equation incorrectly the streak resets. If you answer three equations in a row incorrectly, you lose 5 seconds and go down one level.";
+    private static final String Five = "BEDMAS";
 
-    private static final String[] TEXTS = {"How to play", "Streak/Add Time", "Level Up", "lose time/level Down", "BEDMAS"};
-    private static final int[] IMAGES = {R.drawable.instructions1, R.drawable.instructions2, R.drawable.instructions3, R.drawable.instructions4, R.drawable.instructions5};
+    private static final String[] TEXTS = {Five, One, Two, Three, Four,};
+    private static final int[] IMAGES = {R.drawable.instructions5, R.drawable.instructions1, R.drawable.instructions2, R.drawable.instructions3, R.drawable.instructions4};
     private int mPosition = 0;
     private TextSwitcher mTextSwitcher;
     private ImageSwitcher mImageSwitcher;
@@ -33,6 +39,12 @@ public class instructions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
 
+        //Font path
+        String chalkboardFontPath = "fonts/Chalkboard.ttf";
+
+        //Load Font Face
+        final Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
+
         // slide set up
         mTextSwitcher = (TextSwitcher) findViewById(R.id.textSwitcher);
         mTextSwitcher.setFactory(new ViewFactory() {
@@ -40,6 +52,8 @@ public class instructions extends AppCompatActivity {
             public View makeView() {
                 TextView textView = new TextView(instructions.this);
                 textView.setGravity(Gravity.CENTER);
+                textView.setTypeface(chalkboardFont);
+                textView.setTextColor(Color.rgb(255, 201, 14));
                 return textView;
             }
         });
@@ -58,35 +72,32 @@ public class instructions extends AppCompatActivity {
         mImageSwitcher.setOutAnimation(this, android.R.anim.slide_out_right);
 
         switchNext(null);
-//        switchLeft(null);
 
        //audio set up
         noise = new Audio(instructions.this);
-//
-//        //Font path
-//        String chalkboardFontPath = "fonts/Chalkboard.ttf";
-//
-//        //Load Font Face
-//        Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
-//
-//        TextView instructions = (TextView) findViewById(R.id.instructions);
-//
-//        instructions.setTypeface(chalkboardFont);
     }
+
+    private int Position = 0;
 
     // switch for the slides
     public void switchNext(View view) {
-        mTextSwitcher.setText(TEXTS[mPosition]);
-        mImageSwitcher.setBackgroundResource(IMAGES[mPosition]);
-        mPosition = (mPosition + 1) % TEXTS.length;
+        Position++;
+        if (Position == 5) {
+            Position = 0;
+        }
+        mTextSwitcher.setText(TEXTS[Position]);
+        mImageSwitcher.setBackgroundResource(IMAGES[Position]);
+
     }
 
-//    public void switchLeft(View view) {
-//        mTextSwitcher.setText(TEXTS[mPosition]);
-//        mImageSwitcher.setBackgroundResource(IMAGES[mPosition]);
-//        mPosition = (mPosition - 1) % TEXTS.length;
-//    }
-
+    public void switchPrevious(View view) {
+        Position--;
+        if (Position == -1) {
+            Position = 4;
+        }
+        mTextSwitcher.setText(TEXTS[Position]);
+        mImageSwitcher.setBackgroundResource(IMAGES[Position]);
+    }
 
     public void goBack(View view) {
         onBackPressed();
