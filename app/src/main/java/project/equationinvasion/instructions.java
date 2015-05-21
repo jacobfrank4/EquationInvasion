@@ -1,6 +1,5 @@
 package project.equationinvasion;
 
-
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -16,8 +15,8 @@ import android.widget.ViewSwitcher.ViewFactory;
 
 public class instructions extends AppCompatActivity {
 
-    private Audio noise;
-    private boolean finished = false;
+    private static Audio noise;
+    private static boolean finished = false;
 
     //instruction texts for the slides
     private static final String One = "You must determine whether the given solution is true or false by tapping the corresponding button";
@@ -31,8 +30,10 @@ public class instructions extends AppCompatActivity {
     private static final int[] IMAGES = {R.drawable.instructions5, R.drawable.instructions1, R.drawable.instructions2, R.drawable.instructions3, R.drawable.instructions4};
 
     // Text and Image switcher objects
-    private TextSwitcher mTextSwitcher;
-    private ImageSwitcher mImageSwitcher;
+    private static TextSwitcher mTextSwitcher;
+    private static ImageSwitcher mImageSwitcher;
+    // position for the array
+    private static int Position = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class instructions extends AppCompatActivity {
         setContentView(R.layout.activity_instructions);
 
         //Font path
-        String chalkboardFontPath = "fonts/Chalkboard.ttf";
+        final String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
         //Load Font Face
         final Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
@@ -50,7 +51,7 @@ public class instructions extends AppCompatActivity {
         mTextSwitcher.setFactory(new ViewFactory() {
             @Override
             public View makeView() {
-                TextView textView = new TextView(instructions.this);
+                final TextView textView = new TextView(instructions.this);
                 textView.setGravity(Gravity.CENTER);
                 textView.setTypeface(chalkboardFont);
                 textView.setTextColor(Color.rgb(255, 201, 14));
@@ -65,8 +66,7 @@ public class instructions extends AppCompatActivity {
         mImageSwitcher.setFactory(new ViewFactory() {
             @Override
             public View makeView() {
-                ImageView imageView = new ImageView(instructions.this);
-                return imageView;
+                return new ImageView(instructions.this);
             }
         });
         mImageSwitcher.setInAnimation(this, android.R.anim.slide_in_left);
@@ -77,20 +77,16 @@ public class instructions extends AppCompatActivity {
        //audio set up
         noise = new Audio(instructions.this);
     }
-
-    // position for the array
-    private int Position = 0;
-
-    // goes to the next slide
+    
+    // switch for the slides
     public void switchNext(View view) {
         Position++;
-        if (Position == 5) {
-            Position = 0;
-        }
+        Position %= 5;
         mTextSwitcher.setText(TEXTS[Position]);
         mImageSwitcher.setBackgroundResource(IMAGES[Position]);
 
     }
+    
     // Goes to the previous slide
     public void switchPrevious(View view) {
         Position--;
@@ -114,9 +110,7 @@ public class instructions extends AppCompatActivity {
         finished = true;
         finish();
     }
-
-
-
+    
     //This method is called when user leaves screen.
     @Override
     protected void onUserLeaveHint() {
@@ -127,8 +121,6 @@ public class instructions extends AppCompatActivity {
             noise.pauseMusic();
         }
     }
-
-
 
     //called upon return from home button pressed.
     @Override
