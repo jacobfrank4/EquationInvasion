@@ -36,26 +36,26 @@ public class MainActivity extends AppCompatActivity implements
 		GoogleApiClient.OnConnectionFailedListener,
 		View.OnClickListener {
 
-	private GoogleApiClient googleApiClient;
+	private static GoogleApiClient googleApiClient;
 
 	private static final int RC_SIGN_IN = 9001;
 
 	// Are we currently resolving a connection failure?
-	private boolean resolvingConnectionFailure = false;
+	private static boolean resolvingConnectionFailure = false;
 
 	// Has the user clicked the sign-in button?
-	private boolean signInClicked = false;
+	private static boolean signInClicked = false;
 
 	// Automatically start the sign-in flow when the Activity starts
-	private boolean autoStartSignInFlow = true;
+	private static boolean autoStartSignInFlow = true;
 
 	/**
 	 * Declarations for audio functionality
 	 * -Matt
 	 */
-	private Audio noise;
+	private static Audio noise;
 	private static boolean muted;
-	private boolean finished = false;
+	private static boolean finished = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements
          */
 		noise = new Audio(MainActivity.this);
 		noise.menuBGM();
-		ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton);
+		final ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton);
 		if (muted){
 			tb.setChecked(true);
 		}
@@ -80,14 +80,14 @@ public class MainActivity extends AppCompatActivity implements
 		 * Setting font style
 		 */
 		//Font path
-		String chalkboardFontPath = "fonts/Chalkboard.ttf";
+		final String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
 		//text view label
-		TextView txtGameTitle = (TextView) findViewById(R.id.gameTitle);
-		TextView txtGameInstructions = (TextView) findViewById(R.id.instructions);
+		final TextView txtGameTitle = (TextView) findViewById(R.id.gameTitle);
+		final TextView txtGameInstructions = (TextView) findViewById(R.id.instructions);
 
 		//Load Font Face
-		Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
+		final Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
 
 		//Applying font
 		txtGameTitle.setTypeface(chalkboardFont);
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements
 
 	//Called when player clicks the Play button
 	public void goToPlay(View view) {
-		Intent intent = new Intent(this, Play.class);
+		final Intent intent = new Intent(this, Play.class);
 		startActivity(intent);
 		finished = true;
 		noise.stopMusic();
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements
 
 	//Called when player clicks the credits button
 	public void goToExtras(View view) {
-		Intent intent = new Intent(this, Extras.class);
+		final Intent intent = new Intent(this, Extras.class);
 		startActivity(intent);
 		finished = true;
 	}
@@ -135,8 +135,7 @@ public class MainActivity extends AppCompatActivity implements
 	@Override
 	protected void onUserLeaveHint() {
 		super.onUserLeaveHint();
-		noise.setSoundState(0);
-		noise.buttonNoise();
+		noise.transitionNoise();
 		if (!finished){
 			noise.pauseMusic();
 		}
@@ -155,6 +154,14 @@ public class MainActivity extends AppCompatActivity implements
 		super.onStart();
 		googleApiClient.connect();
 	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		noise.pauseMusic();
+	}
+
+
 
 	@Override
 	protected void onStop() {
@@ -211,10 +218,6 @@ public class MainActivity extends AppCompatActivity implements
 						requestCode, resultCode, R.string.signin_error);
 			}
 		}
-	}
-
-	private boolean isSignedIn() {
-		return (googleApiClient != null && googleApiClient.isConnected());
 	}
 
 	@Override

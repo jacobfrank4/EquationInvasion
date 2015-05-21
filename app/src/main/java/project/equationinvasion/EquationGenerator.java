@@ -35,7 +35,7 @@ class EquationGenerator {
 
 	private final TextView equation;
 	private final TextView answer;
-	private int currentLevel;
+	private static int currentLevel;
 	private final Equation[] equationGen;
 
 
@@ -481,7 +481,7 @@ class EquationGenerator {
 	 * Method for single operation: X + Y.
 	 */
 	private void add() {
-		int a, b;
+		final int a, b;
 		if (currentLevel == 3) {
 			a = rand.nextInt(addSubBase);
 			b = rand.nextInt(addSubBase);
@@ -818,7 +818,7 @@ class EquationGenerator {
 	 * Method for single operation: X - Y
 	 */
 	private void subtract() {
-		int a, b;
+		final int a, b;
 		if (currentLevel == 3) {
 			a = rand.nextInt(addSubBase);
 			b = rand.nextInt(addSubBase);
@@ -1235,9 +1235,9 @@ class EquationGenerator {
 	 * Method for two operations: X / Y / Z 
 	 */
 	private void divideDivide() {
-		int a = rand.nextInt(9) + 1;
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(9) + 1;
 		if (b != 0 && c != 0) {
 			if (a % b == 0 && (a / b) % c == 0) {
 				expected = a / b / c;
@@ -1925,13 +1925,14 @@ class EquationGenerator {
 	 * @param answer from equation
 	 * @return displayed
 	 */
-	private int answerGen(int answer) {
-		int wrong;
-		boolean correctAnswerShown = rand.nextBoolean();  // True or False Decision
+	private int answerGen(final int answer) {
+		final int wrong;
+		final int variable;
+		final boolean correctAnswerShown = rand.nextBoolean();  // True or False Decision
 
 		if (answer >= -10 && answer <= 10) {
 			if (!correctAnswerShown) {
-				int variable = 1;
+				variable = 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
 				} else {
@@ -2021,7 +2022,6 @@ class EquationGenerator {
 			default:
 				//0-1
 				index = rand.nextInt(2);
-				break;
 		}
 		equationGen[index].create();
 	}

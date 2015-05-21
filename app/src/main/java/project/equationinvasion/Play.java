@@ -41,16 +41,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         GoogleApiClient.OnConnectionFailedListener {
 
     // The Google API client
-    private GoogleApiClient googleApiClient;
+    private static GoogleApiClient googleApiClient;
 
     // Are we currently resolving a connection failure?
-    private boolean resolvingConnectionFailure = false;
+    private static boolean resolvingConnectionFailure = false;
 
     // Has the user clicked the sign-in button?
-    private boolean signInClicked = false;
+    private static boolean signInClicked = false;
 
     // Automatically start the sign-in flow when the Activity starts
-    private boolean autoStartSignInFlow = true;
+    private static boolean autoStartSignInFlow = true;
 
     private static final int RC_SIGN_IN = 9001;
 
@@ -115,46 +115,46 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private static TextView startGameTime;
 
     //Declaration for the display that either shows a check mark or X after answering
-    private ImageView feedback;
+    private static ImageView feedback;
 
     // Declaration for the display that lets the user know 10 seconds have been added to the time
-    private ImageView addTime;
+    private static ImageView addTime;
 
     // Declaration for the generator in EquationGenerator class
     private static EquationGenerator mathGen;
 
     // Declarations for the streak counter
     private static final ImageView[] pips = new ImageView[5];
-    private int streak;
-    private int failStreak;
+    private static int streak;
+    private static int failStreak;
 
     //Level increase streak
-    private int levelStreak;
+    private static int levelStreak;
 
     // Maximum level streak before it resets
     private static final int LEVEL_STREAK_LIMIT = 10;
 
     // Declarations for the countdown Timer
-    private final DecimalFormat fmt = new DecimalFormat("00");
-    private boolean running = false;
-    private long currentMilli = 0;
-    private CountDownTimer timer;
-    private TextView time;
+    private static final DecimalFormat fmt = new DecimalFormat("00");
+    private static boolean running = false;
+    private static long currentMilli = 0;
+    private static CountDownTimer timer;
+    private static TextView time;
 
     //Array of feedBackTimers, one for every element that needs one
-    private final feedBackTimer[] feedBackDelay = new feedBackTimer[4];
+    private static final feedBackTimer[] feedBackDelay = new feedBackTimer[4];
 
     // Level Changer
-    private TextView levelView;
+    private static TextView levelView;
     private static int currentLevel;
 
     // Score tracking
-    private int score = STARTING_SCORE;
-    private TextView scoreDisplay;
+    private static int score = STARTING_SCORE;
+    private static TextView scoreDisplay;
 
 	// Audio variables for this page.
-	private Audio noise;
-    private boolean finished = false;
+	private static Audio noise;
+    private static boolean finished = false;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -254,14 +254,12 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 falseChecker();
             }
             mathGen.generate(currentLevel);
-            noise.buttonNoise();
+
         }
     }
 
     @Override
-    public void onConnected(Bundle bundle) {
-
-    }
+    public void onConnected(Bundle bundle) {}
 
     @Override
     public void onConnectionSuspended(int i) {
@@ -347,8 +345,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
      * of streak. There's a break to prevent it falling into the default case.
      */
     private void pipChanger() {
-
-
         switch (streak) {
             case 5:
                 addTime.setVisibility(View.VISIBLE);
@@ -379,11 +375,11 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         levelStreak %= LEVEL_STREAK_LIMIT;
     }
 
-
     // method to change level on method call
     private void levelChanger() {
         if (currentLevel < MAX_LEVEL) {
             currentLevel++;
+            // Level Achievements
             if (isSignedIn()) {
                 switch(currentLevel) {
                     case 2:
@@ -400,6 +396,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                         break;
                     case 6:
                         Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQBA");
+                        break;
                 }
             }
         }
@@ -411,6 +408,26 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     private void scoreCounter() {
         score += (INCREMENT_SCORE * currentLevel);
         scoreDisplay.setText("Score: " + score);
+        // Score Achievements
+        if (isSignedIn()) {
+            switch(score) {
+                case 5000:
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQCg");
+                    break;
+                case 10000:
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQCw");
+                    break;
+                case 15000:
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDA");
+                    break;
+                case 20000:
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDQ");
+                    break;
+                case 35000:
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDg");
+                    break;
+            }
+        }
     }
 
     public static TextView getEquationTextView() {
@@ -457,7 +474,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
             levelStreak++;
             scoreCounter();
             pipChanger();
-            noise.setSoundState(1);
+            noise.rightNoise();
         } else {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
@@ -470,12 +487,13 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 if(currentLevel > LEVEL_START) {
                     currentLevel--;
                     levelView.setText("Level: " + currentLevel);
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDw");
                 }
                 failStreak = 0;
                 feedBackDelay[2].start();
             }
             pipChanger();
-            noise.setSoundState(2);
+            noise.wrongNoise();
         }
         feedBackDelay[1].start();
     }
@@ -504,7 +522,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
             levelStreak++;
             scoreCounter();
             pipChanger();
-            noise.setSoundState(1);
+            noise.rightNoise();
         } else {
             feedback.setImageResource(R.drawable.x);
             streak = 0;
@@ -517,19 +535,20 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                 if(currentLevel > LEVEL_START) {
                     currentLevel--;
                     levelView.setText("Level: " + currentLevel);
+                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDw");
                 }
                 failStreak = 0;
                 feedBackDelay[2].start();
             }
             pipChanger();
-            noise.setSoundState(2);
+            noise.wrongNoise();
         }
         feedBackDelay[1].start();
     }
 
     private void playGame(View view) {
         //Iterates through all the views on the activity
-        ViewGroup allViews = (ViewGroup)view.getParent();
+        final ViewGroup allViews = (ViewGroup)view.getParent();
         for (int i = 0; i < allViews.getChildCount(); i++) {
             allViews.getChildAt(i).setVisibility(View.VISIBLE);
         }
@@ -542,7 +561,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     }
 
     private void startGame(View view) {
-        ViewGroup allViews = (ViewGroup)view.getParent();
+        final ViewGroup allViews = (ViewGroup)view.getParent();
         for (int i = 0; i < allViews.getChildCount(); i++) {
             allViews.getChildAt(i).setVisibility(View.INVISIBLE);
         }
@@ -587,8 +606,8 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 
         // My method to format the time from milliseconds to a string that is used for the textview
         private String formatTime(long currentTime) {
-            long minute;
-            long second;
+            final long minute;
+            final long second;
 
             second = (currentTime / MILLI_IN_SECOND) % SECOND_IN_MINUTE;
             minute = currentTime / MILLI_IN_MINUTE;
@@ -677,6 +696,14 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         finish();
     }
 
+    protected void onPause() {
+        if (!finished){
+            noise.stopMusic();
+        }
+        finished = true;
+    }
+
+
     //Gets called when home key is pressed,
     @Override
     protected void onUserLeaveHint() {
@@ -687,17 +714,15 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         finished = true;
     }
 
-
     //Called when user returns from outside of app.
     @Override
     protected void onRestart() {
         super.onResume();
         timer.onFinish();
-        Intent intent = new Intent(getApplicationContext(), GameOver.class);
+        final Intent intent = new Intent(getApplicationContext(), GameOver.class);
         intent.putExtra("Score", score);
         startActivity(intent);
         finish();
     }
-
 }
 

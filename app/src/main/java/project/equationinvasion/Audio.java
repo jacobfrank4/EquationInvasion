@@ -35,7 +35,7 @@ class Audio {
 
     // The two media players that will be used for the entirety of the program.
     private static  MediaPlayer BGM;
-    private  MediaPlayer SE;
+    private static MediaPlayer SE;
 
     //The boolean that keeps track of when the user has muted the audio.
     private static boolean muted;
@@ -79,16 +79,7 @@ class Audio {
         }
     }
 
-    /**
-     * This method simply makes a noise when a button is clicked.
-     * The specific noise is defined elsewhere, in the setSoundState
-     * method. This should reduce the number of instances we need.
-     */
-    public void buttonNoise() {
-        if (!muted) {
-            SE.start();
-        }
-    }
+
 
     /*
      *  This is meant to enable the user to turn all sound off.
@@ -145,37 +136,31 @@ class Audio {
         }
     };
 
-    /*
-        Case definitions:
-        0: transition button sound
-        1: right Answer sound
-        2: wrong answer sound
 
-        This method exists to change which sound
-        plays when a button is pushed.
-        Buttons will need to pass in an integer
-        corresponding to one of the cases above.
-     */
-    public void setSoundState(int i) {
-        switch (i) {
-            case 0:
-                SE = MediaPlayer.create(context,R.raw.btn1sound);
-                SE.setOnCompletionListener(done);
-                break;
-            case 1:
-                if (SE != null){
-                    SE.reset();
-                    SE.release();
-                }
-                SE = MediaPlayer.create(context,R.raw.right);
-                break;
-            case 2:
-                if (SE != null){
-                    SE.reset();
-                    SE.release();
-                }
-                SE = MediaPlayer.create(context,R.raw.wrong);
+    public void transitionNoise() {
+        if(!muted) {
+            SE = MediaPlayer.create(context,R.raw.btn1sound);
+            SE.setOnCompletionListener(done);
+            SE.start();
         }
+    }
+
+    public void rightNoise(){
+        if (SE != null){
+            SE.reset();
+            SE.release();
+        }
+        SE = MediaPlayer.create(context,R.raw.right);
+        SE.start();
+    }
+
+    public void wrongNoise() {
+        if (SE != null){
+            SE.reset();
+            SE.release();
+        }
+        SE = MediaPlayer.create(context,R.raw.wrong);
+        SE.start();
     }
 }
 
