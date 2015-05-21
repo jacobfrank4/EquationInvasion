@@ -1,15 +1,10 @@
 package project.equationinvasion;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
@@ -20,8 +15,8 @@ import android.widget.ViewSwitcher.ViewFactory;
 
 public class instructions extends AppCompatActivity {
 
-    private Audio noise;
-    private boolean finished = false;
+    private static Audio noise;
+    private static boolean finished = false;
     private static final String One = "You must determine whether the given solution is true or false by tapping the corresponding button";
     private static final String Two = "Correctly answer five equations in a row, and 10 seconds will be added to your time.";
     private static final String Three = "Correctly answer ten equations in a row, and you will go up a level. The difficulty increases with each level.";
@@ -29,10 +24,11 @@ public class instructions extends AppCompatActivity {
     private static final String Five = "BEDMAS";
 
     private static final String[] TEXTS = {Five, One, Two, Three, Four,};
-    private static final int[] IMAGES = {R.drawable.instructions5, R.drawable.instructions1, R.drawable.instructions2, R.drawable.instructions3, R.drawable.instructions4};
-    private int mPosition = 0;
-    private TextSwitcher mTextSwitcher;
-    private ImageSwitcher mImageSwitcher;
+    private static final int[] IMAGES = {R.drawable.instructions5, R.drawable.instructions1,
+            R.drawable.instructions2, R.drawable.instructions3, R.drawable.instructions4};
+    private static TextSwitcher mTextSwitcher;
+    private static ImageSwitcher mImageSwitcher;
+    private static int Position = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +36,7 @@ public class instructions extends AppCompatActivity {
         setContentView(R.layout.activity_instructions);
 
         //Font path
-        String chalkboardFontPath = "fonts/Chalkboard.ttf";
+        final String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
         //Load Font Face
         final Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
@@ -50,7 +46,7 @@ public class instructions extends AppCompatActivity {
         mTextSwitcher.setFactory(new ViewFactory() {
             @Override
             public View makeView() {
-                TextView textView = new TextView(instructions.this);
+                final TextView textView = new TextView(instructions.this);
                 textView.setGravity(Gravity.CENTER);
                 textView.setTypeface(chalkboardFont);
                 textView.setTextColor(Color.rgb(255, 201, 14));
@@ -64,8 +60,7 @@ public class instructions extends AppCompatActivity {
         mImageSwitcher.setFactory(new ViewFactory() {
             @Override
             public View makeView() {
-                ImageView imageView = new ImageView(instructions.this);
-                return imageView;
+                return new ImageView(instructions.this);
             }
         });
         mImageSwitcher.setInAnimation(this, android.R.anim.slide_in_left);
@@ -77,14 +72,10 @@ public class instructions extends AppCompatActivity {
         noise = new Audio(instructions.this);
     }
 
-    private int Position = 0;
-
     // switch for the slides
     public void switchNext(View view) {
         Position++;
-        if (Position == 5) {
-            Position = 0;
-        }
+        Position %= 5;
         mTextSwitcher.setText(TEXTS[Position]);
         mImageSwitcher.setBackgroundResource(IMAGES[Position]);
 
