@@ -498,9 +498,9 @@ class EquationGenerator {
 	 * Method for two operations: X + Y + Z
 	 */
 	private void addAdd() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(addSubBase);
 		expected = a + b + c;
 		equation.setText(a + " + " + b + " + " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -510,9 +510,9 @@ class EquationGenerator {
 	 * Method for two operations: X + Y - Z
 	 */
 	private void addSubtract() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(addSubBase);
 		expected = a + b - c;
 		equation.setText(a + " + " + b + " - " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -522,9 +522,9 @@ class EquationGenerator {
 	 * Method for two operations: X + Y * Z
 	 */
 	private void addMultiply() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
 		expected = a + b * c;
 		equation.setText(a + " + " + b + " * " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -534,9 +534,9 @@ class EquationGenerator {
 	 * Method for two operations: X + Y / Z
 	 */
 	private void addDivide() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
 		if (c != 0) {
 			if (b % c == 0) {
 				expected = a + b / c;
@@ -554,10 +554,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X + Y + Z
 	 */
 	private void addAddAdd() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a + b + c + d;
 		equation.setText(a + " + " + b + " + " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -567,10 +567,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X + Y - Z
 	 */
 	private void addAddSubtract() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a + b + c - d;
 		equation.setText(a + " + " + b + " + " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -580,10 +580,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X + Y / Z
 	 */
 	private void addAddDivide() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(9) + 1;
 		if (c != 0) {
 			if (c % d == 0) {
 				expected = a + b + c / d;
@@ -601,10 +601,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X + Y * Z
 	 */
 	private void addAddMultiply() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(multDivBase);
 		expected = a + b + c * d;
 		equation.setText(a + " + " + b + " + " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -614,10 +614,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X - Y + Z
 	 */
 	private void addSubtractAdd() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a + b - c + d;
 		equation.setText(a + " + " + b + " - " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -627,10 +627,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X - Y - Z
 	 */
 	private void addSubtractSubtract() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a + b - c - d;
 		equation.setText(a + " + " + b + " - " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -640,10 +640,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X - Y / Z
 	 */
 	private void addSubtractDivide() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if (c % d == 0) {
 				expected = a + b - c / d;
@@ -661,10 +661,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X - Y * Z
 	 */
 	private void addSubtractMultiply() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(multDivBase);
 		expected = a + b - c * d;
 		equation.setText(a + " + " + b + " - " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -674,10 +674,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X / Y + Z
 	 */
 	private void addDivideAdd() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(addSubBase);
 		if (c != 0) {
 			if (b % c == 0) {
 				expected = a + b / c + d;
@@ -695,10 +695,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X / Y - Z
 	 */
 	private void addDivideSubtract() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(addSubBase);
 		if (c != 0) {
 			if (b % c == 0) {
 				expected = a + b / c - d;
@@ -716,10 +716,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X / Y / Z
 	 */
 	private void addDivideDivide() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(9) + 1;
 		if (c != 0 && d != 0) {
 			if (b % c == 0 && (b / c) % d == 0) {
 				expected = a + b / c / d;
@@ -737,10 +737,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X / Y * Z
 	 */
 	private void addDivideMultiply() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(multDivBase);
 		if (c != 0) {
 			if (b % c == 0) {
 				expected = a + b / c * d;
@@ -758,10 +758,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X * Y + Z
 	 */
 	private void addMultiplyAdd() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a + b * c + d;
 		equation.setText(a + " + " + b + " * " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -771,10 +771,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X * Y - Z
 	 */
 	private void addMultiplySubtract() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a + b * c - d;
 		equation.setText(a + " + " + b + " * " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -784,10 +784,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X * Y / Z
 	 */
 	private void addMultiplyDivide() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if ((b * c) % d == 0) {
 				expected = a + b * c / d;
@@ -805,10 +805,10 @@ class EquationGenerator {
 	 * Method for three operations: W + X * Y * Z
 	 */
 	private void addMultiplyMultiply() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(multDivBase);
 		expected = a + b * c * d;
 		equation.setText(a + " + " + b + " * " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -835,9 +835,9 @@ class EquationGenerator {
 	 * Method for two operations: X - Y + Z
 	 */
 	private void subtractAdd() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(addSubBase);
 		expected = a - b + c;
 		equation.setText(a + " - " + b + " + " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -847,9 +847,9 @@ class EquationGenerator {
 	 * Method for two operations: X - Y - Z
 	 */
 	private void subtractSubtract() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(addSubBase);
 		expected = a - b - c;
 		equation.setText(a + " - " + b + " - " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -859,9 +859,9 @@ class EquationGenerator {
 	 * Method for two operations: X - Y * Z
 	 */
 	private void subtractMultiply() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
 		expected = a - b * c;
 		equation.setText(a + " - " + b + " * " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -871,9 +871,9 @@ class EquationGenerator {
 	 * Method for two operations: X - Y / Z
 	 */
 	private void subtractDivide() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
 		if (c != 0) {
 			if (b % c == 0) {
 				expected = a - b / c;
@@ -891,10 +891,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X + Y + Z
 	 */
 	private void subtractAddAdd() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a - b + c + d;
 		equation.setText(a + " - " + b + " + " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -904,10 +904,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X + Y - Z
 	 */
 	private void subtractAddSubtract() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a - b + c - d;
 		equation.setText(a + " - " + b + " + " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -917,10 +917,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X + Y / Z
 	 */
 	private void subtractAddDivide() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(9) + 1;
 		if (c != 0) {
 			if (c % d == 0) {
 				expected = a - b + c / d;
@@ -938,10 +938,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X + Y * Z
 	 */
 	private void subtractAddMultiply() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(multDivBase);
 		expected = a - b + c * d;
 		equation.setText(a + " - " + b + " + " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -951,10 +951,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X - Y + Z
 	 */
 	private void subtractSubtractAdd() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(multDivBase);
 		expected = a - b - c + d;
 		equation.setText(a + " - " + b + " - " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -964,10 +964,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X - Y - Z
 	 */
 	private void subtractSubtractSubtract() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a - b - c - d;
 		equation.setText(a + " - " + b + " - " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -977,10 +977,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X - Y / Z
 	 */
 	private void subtractSubtractDivide() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if (c % d == 0) {
 				expected = a - b - c / d;
@@ -998,10 +998,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X - Y * Z
 	 */
 	private void subtractSubtractMultiply() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(addSubBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(addSubBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(multDivBase);
 		expected = a - b - c * d;
 		equation.setText(a + " - " + b + " - " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1011,10 +1011,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X / Y + Z 
 	 */
 	private void subtractDivideAdd() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(addSubBase);
 		if (c != 0) {
 			if (b % c == 0) {
 				expected = a - b / c + d;
@@ -1032,10 +1032,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X / Y - Z 
 	 */
 	private void subtractDivideSubtract() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(addSubBase);
 		if (c != 0) {
 			if (b % c == 0) {
 				expected = a - b / c - d;
@@ -1053,10 +1053,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X / Y / Z 
 	 */
 	private void subtractDivideDivide() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(9) + 1;
 		if (c != 0 && d != 0) {
 			if (b % c == 0 && (b / c) % d == 0) {
 				expected = a - b / c / d;
@@ -1074,10 +1074,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X / Y * Z 
 	 */
 	private void subtractDivideMultiply() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(multDivBase);
 		if (c != 0) {
 			if (b % c == 0) {
 				expected = a - b / c * d;
@@ -1095,10 +1095,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X * Y + Z 
 	 */
 	private void subtractMultiplyAdd() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a - b * c + d;
 		equation.setText(a + " - " + b + " * " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1108,10 +1108,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X * Y - Z 
 	 */
 	private void subtractMultiplySubtract() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a - b * c - d;
 		equation.setText(a + " - " + b + " * " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1121,10 +1121,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X * Y / Z 
 	 */
 	private void subtractMultiplyDivide() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if ((b * c) % d == 0) {
 				expected = a - b * c / d;
@@ -1142,10 +1142,10 @@ class EquationGenerator {
 	 * Method for three operations: W - X * Y * Z 
 	 */
 	private void subtractMultiplyMultiply() {
-		int a = rand.nextInt(addSubBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(addSubBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(multDivBase);
 		expected = a - b * c * d;
 		equation.setText(a + " - " + b + " * " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1155,8 +1155,8 @@ class EquationGenerator {
 	 * Method for two operations: X / Y
 	 */
 	private void divide() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b;
@@ -1174,9 +1174,9 @@ class EquationGenerator {
 	 * Method for two operations: X / Y + Z 
 	 */
 	private void divideAdd() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(addSubBase);
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b + c;
@@ -1195,9 +1195,9 @@ class EquationGenerator {
 	 * Method for two operations: X / Y - Z 
 	 */
 	private void divideSubtract() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(addSubBase);
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b - c;
@@ -1215,9 +1215,9 @@ class EquationGenerator {
 	 * Method for two operations: X / Y * Z 
 	 */
 	private void divideMultiply() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(multDivBase);
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b * c;
@@ -1255,10 +1255,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X + Y + Z 
 	 */
 	private void divideAddAdd() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b + c + d;
@@ -1276,10 +1276,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X + Y - Z 
 	 */
 	private void divideAddSubtract() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b + c - d;
@@ -1297,10 +1297,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X + Y / Z 
 	 */
 	private void divideAddDivide() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(9) + 1;
 		if (b != 0 && d != 0) {
 			if (a % b == 0 && c % d == 0) {
 				expected = a / b + c / d;
@@ -1318,10 +1318,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X + Y * Z 
 	 */
 	private void divideAddMultiply() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(multDivBase);
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b + c * d;
@@ -1339,10 +1339,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X - Y + Z 
 	 */
 	private void divideSubtractAdd() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b - c + d;
@@ -1360,10 +1360,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X - Y - Z 
 	 */
 	private void divideSubtractSubtract() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b - c - d;
@@ -1382,10 +1382,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X - Y / Z 
 	 */
 	private void divideSubtractDivide() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(9) + 1;
 		if (b != 0 && d != 0) {
 			if (a % b == 0 && c % d == 0) {
 				expected = a / b - c / d;
@@ -1403,10 +1403,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X - Y * Z 
 	 */
 	private void divideSubtractMultiply() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(multDivBase);
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b - c * d;
@@ -1424,10 +1424,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X / Y + Z 
 	 */
 	private void divideDivideAdd() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(addSubBase);
 		if (b != 0 && c != 0) {
 			if (a % b == 0 && (a / b) % c == 0) {
 				expected = a / b / c + d;
@@ -1445,10 +1445,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X / Y - Z 
 	 */
 	private void divideDivideSubtract() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(addSubBase);
 		if (b != 0 && c != 0) {
 			if (a % b == 0 && (a / b) % c == 0) {
 				expected = a / b / c - d;
@@ -1466,10 +1466,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X / Y / Z 
 	 */
 	private void divideDivideDivide() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(9) + 1;
 		if (b != 0 && c != 0 && d != 0) {
 			if (a % b == 0 && (a / b) % c == 0 && (a / b / c) % d == 0) {
 				expected = a / b / c / d;
@@ -1487,10 +1487,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X / Y * Z 
 	 */
 	private void divideDivideMultiply() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(multDivBase);
 		if (b != 0 && c != 0) {
 			if (a % b == 0 && (a / b) % c == 0) {
 				expected = a / b / c * d;
@@ -1508,10 +1508,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X * Y + Z 
 	 */
 	private void divideMultiplyAdd() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(addSubBase);
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b * c + d;
@@ -1529,10 +1529,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X * Y - Z 
 	 */
 	private void divideMultiplySubtract() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(addSubBase);
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b * c - d;
@@ -1550,10 +1550,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X * Y / Z 
 	 */
 	private void divideMultiplyDivide() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(9) + 1;
 		if (b != 0 && d != 0) {
 			if (a % b == 0 && (a / b * c) % d == 0) {
 				expected = a / b * c / d;
@@ -1571,10 +1571,10 @@ class EquationGenerator {
 	 * Method for three operations: W / X * Y * Z 
 	 */
 	private void divideMultiplyMultiply() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(9) + 1;
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(multDivBase);
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b * c * d;
@@ -1592,8 +1592,8 @@ class EquationGenerator {
 	 * Method for single operations: X * Y
 	 */
 	private void multiply() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
 		expected = a * b;
 		equation.setText(a + " * " + b);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1603,9 +1603,9 @@ class EquationGenerator {
 	 * Method for two operations: X * Y + Z
 	 */
 	private void multiplyAdd() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(addSubBase);
 		expected = a * b + c;
 		equation.setText(a + " * " + b + " + " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1615,9 +1615,9 @@ class EquationGenerator {
 	 * Method for two operations: X * Y - Z
 	 */
 	private void multiplySubtract() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(addSubBase);
 		expected = a * b - c;
 		equation.setText(a + " * " + b + " - " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1627,9 +1627,9 @@ class EquationGenerator {
 	 * Method for two operations: X * Y / Z
 	 */
 	private void multiplyDivide() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(9) + 1;
 		if (c != 0) {
 			if ((a * b) % c == 0) {
 				expected = a * b / c;
@@ -1647,9 +1647,9 @@ class EquationGenerator {
 	 * Method for two operations: X * Y * Z
 	 */
 	private void multiplyMultiply() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
 		expected = a * b * c;
 		equation.setText(a + " * " + b + " * " + c);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1659,10 +1659,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X + Y + Z
 	 */
 	private void multiplyAddAdd() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a * b + c + d;
 		equation.setText(a + " * " + b + " + " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1672,10 +1672,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X + Y - Z
 	 */
 	private void multiplyAddSubtract() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a * b + c - d;
 		equation.setText(a + " * " + b + " + " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1685,10 +1685,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X + Y / Z
 	 */
 	private void multiplyAddDivide() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if (c % d == 0) {
 				expected = a * b + c / d;
@@ -1706,10 +1706,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X + Y * Z
 	 */
 	private void multiplyAddMultiply() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(multDivBase);
 		expected = a * b + c * d;
 		equation.setText(a + " * " + b + " + " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1719,10 +1719,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X - Y + Z
 	 */
 	private void multiplySubtractAdd() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a * b - c + d;
 		equation.setText(a + " * " + b + " - " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1732,10 +1732,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X - Y - Z
 	 */
 	private void multiplySubtractSubtract() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(addSubBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(addSubBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a * b - c - d;
 		equation.setText(a + " * " + b + " - " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1745,10 +1745,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X - Y / Z
 	 */
 	private void multiplySubtractDivide() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if (c % d == 0) {
 				expected = a * b - c / d;
@@ -1766,10 +1766,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X - Y * Z
 	 */
 	private void multiplySubtractMultiply() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(multDivBase);
 		expected = a * b - c * d;
 		equation.setText(a + " * " + b + " - " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1779,10 +1779,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X / Y + Z
 	 */
 	private void multiplyDivideAdd() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(addSubBase);
 		if (c != 0) {
 			if ((a * b) % c == 0) {
 				expected = a * b / c + d;
@@ -1800,10 +1800,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X / Y - Z
 	 */
 	private void multiplyDivideSubtract() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(addSubBase);
 		if (c != 0) {
 			if ((a * b) % c == 0) {
 				expected = a * b / c - d;
@@ -1821,10 +1821,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X / Y / Z
 	 */
 	private void multiplyDivideDivide() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(9) + 1;
 		if (c != 0 && d != 0) {
 			if ((a * b) % c == 0 && (a * b / c) % d == 0) {
 				expected = a * b / c / d;
@@ -1842,10 +1842,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X / Y * Z
 	 */
 	private void multiplyDivideMultiply() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(9) + 1;
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(multDivBase);
 		if (c != 0) {
 			if ((a * b) % c == 0) {
 				expected = a * b / c * d;
@@ -1863,10 +1863,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X * Y + Z
 	 */
 	private void multiplyMultiplyAdd() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a * b * c + d;
 		equation.setText(a + " * " + b + " * " + c + " + " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1876,10 +1876,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X * Y - Z
 	 */
 	private void multiplyMultiplySubtract() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(addSubBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(addSubBase);
 		expected = a * b * c - d;
 		equation.setText(a + " * " + b + " * " + c + " - " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1889,10 +1889,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X * Y / Z
 	 */
 	private void multiplyMultiplyDivide() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(9) + 1;
 		if (d != 0) {
 			if ((a * b * c) % d == 0) {
 				expected = a * b * c / d;
@@ -1910,10 +1910,10 @@ class EquationGenerator {
 	 * Method for three operations: W * X * Y * Z
 	 */
 	private void multiplyMultiplyMultiply() {
-		int a = rand.nextInt(multDivBase);
-		int b = rand.nextInt(multDivBase);
-		int c = rand.nextInt(multDivBase);
-		int d = rand.nextInt(multDivBase);
+		final int a = rand.nextInt(multDivBase);
+		final int b = rand.nextInt(multDivBase);
+		final int c = rand.nextInt(multDivBase);
+		final int d = rand.nextInt(multDivBase);
 		expected = a * b * c * d;
 		equation.setText(a + " * " + b + " * " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
@@ -1925,7 +1925,7 @@ class EquationGenerator {
 	 * @param answer from equation
 	 * @return displayed
 	 */
-	private int answerGen(final int answer) {
+	private final int answerGen(final int answer) {
 		final int wrong;
 		final int variable;
 		final boolean correctAnswerShown = rand.nextBoolean();  // True or False Decision
@@ -1944,7 +1944,7 @@ class EquationGenerator {
 			}
 		} else if (answer >= -20 && answer <= 20) {
 			if (!correctAnswerShown) {
-				int variable = rand.nextInt(2) + 1;
+				variable = rand.nextInt(2) + 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
 				} else {
@@ -1956,7 +1956,7 @@ class EquationGenerator {
 			}
 		} else if (answer >= -40 && answer <= 40) {
 			if (!correctAnswerShown) {
-				int variable = rand.nextInt(3) + 1;
+				variable = rand.nextInt(3) + 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
 				} else {
@@ -1968,7 +1968,7 @@ class EquationGenerator {
 			}
 		} else if (answer >= -60 && answer <= 60) {
 			if (!correctAnswerShown) {
-				int variable = rand.nextInt(4) + 1;
+				variable = rand.nextInt(4) + 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
 				} else {
@@ -1980,7 +1980,7 @@ class EquationGenerator {
 			}
 		} else {
 			if (!correctAnswerShown) {
-				int variable = rand.nextInt(5) + 1;
+				variable = rand.nextInt(5) + 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
 				} else {
@@ -1994,7 +1994,7 @@ class EquationGenerator {
 		return displayed;
 	}
 
-	public void generate(int currentLevel) {
+	public void generate(final int currentLevel) {
 		this.currentLevel = currentLevel;
 		int index;
 		switch(currentLevel) {
