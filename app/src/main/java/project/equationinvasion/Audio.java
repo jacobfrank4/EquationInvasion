@@ -79,8 +79,6 @@ class Audio {
         }
     }
 
-
-
     /*
      *  This is meant to enable the user to turn all sound off.
      *  It works by setting the muted variable to the opposite
@@ -98,7 +96,6 @@ class Audio {
             muted = false;
             menuBGM();
         }
-
     }
 
     //This method exists for when the home key is pushed.

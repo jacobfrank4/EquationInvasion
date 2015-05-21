@@ -396,7 +396,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                         break;
                     case 6:
                         Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQBA");
-                        break;
                 }
             }
         }
@@ -425,7 +424,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
                     break;
                 case 35000:
                     Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDg");
-                    break;
             }
         }
     }
