@@ -2019,7 +2019,6 @@ class EquationGenerator {
 			default:
 				//0-1
 				index = rand.nextInt(2);
-				break;
 		}
 		equationGen[index].create();
 	}
