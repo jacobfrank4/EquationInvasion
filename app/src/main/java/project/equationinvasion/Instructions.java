@@ -86,7 +86,6 @@ public class Instructions extends AppCompatActivity {
 		Position %= 5;
 		mTextSwitcher.setText(TEXTS[Position]);
 		mImageSwitcher.setBackgroundResource(IMAGES[Position]);
-
 	}
 
 	// Goes to the previous slide

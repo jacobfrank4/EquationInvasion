@@ -22,7 +22,7 @@ package project.equationinvasion;
  * Right answer noise: Plopp-jh-8598 - Flashkit.com
  * Wrong answer noise: Plopp-jh-8598 - Flashkit.com Local edit.
  *
- * All sounds liscenced under the Creative Commons Licence Agreement.
+ * All sounds licensed under the Creative Commons Licence Agreement.
  * Full agreement may be read at: http://creativecommons.org/licenses/by-nd/3.0/legalcode
  */
 
@@ -34,7 +34,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 class Audio {
 
     // The two media players that will be used for the entirety of the program.
-    private static  MediaPlayer BGM;
+    private static MediaPlayer BGM;
     private MediaPlayer SE;
 
     //The boolean that keeps track of when the user has muted the audio.
