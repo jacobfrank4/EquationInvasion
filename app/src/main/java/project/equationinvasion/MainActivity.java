@@ -108,9 +108,7 @@ public class MainActivity extends AppCompatActivity implements
 		startActivity(intent);
 		finished = true;
 		noise.stopMusic();
-
 	}
-
 
 	//Called when player clicks the credits button
 	public void goToExtras(View view) {
@@ -148,7 +146,6 @@ public class MainActivity extends AppCompatActivity implements
 		finished = false;
 	}
 
-
 	@Override
 	protected void onStart() {
 		super.onStart();
@@ -160,8 +157,6 @@ public class MainActivity extends AppCompatActivity implements
 		super.onPause();
 		noise.pauseMusic();
 	}
-
-
 
 	@Override
 	protected void onStop() {

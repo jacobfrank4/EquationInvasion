@@ -28,6 +28,7 @@ class EquationGenerator {
 	private static int addSubBase = 100;
 	private static int multDivBase = 10;
 	private static int levelOneAddSub = 10;
+	private static int nonZeroDivisor = 9;
 
 	interface Equation {
 		void create();
@@ -583,7 +584,7 @@ class EquationGenerator {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(addSubBase);
 		final int c = rand.nextInt(multDivBase);
-		final int d = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (c != 0) {
 			if (c % d == 0) {
 				expected = a + b + c / d;
@@ -643,7 +644,7 @@ class EquationGenerator {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(addSubBase);
 		final int c = rand.nextInt(multDivBase);
-		final int d = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (d != 0) {
 			if (c % d == 0) {
 				expected = a + b - c / d;
@@ -676,7 +677,7 @@ class EquationGenerator {
 	private void addDivideAdd() {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(multDivBase);
-		final int c = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		final int d = rand.nextInt(addSubBase);
 		if (c != 0) {
 			if (b % c == 0) {
@@ -697,7 +698,7 @@ class EquationGenerator {
 	private void addDivideSubtract() {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(multDivBase);
-		final int c = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		final int d = rand.nextInt(addSubBase);
 		if (c != 0) {
 			if (b % c == 0) {
@@ -718,8 +719,8 @@ class EquationGenerator {
 	private void addDivideDivide() {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(multDivBase);
-		final int c = rand.nextInt(9) + 1;
-		final int d = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (c != 0 && d != 0) {
 			if (b % c == 0 && (b / c) % d == 0) {
 				expected = a + b / c / d;
@@ -739,7 +740,7 @@ class EquationGenerator {
 	private void addDivideMultiply() {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(multDivBase);
-		final int c = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		final int d = rand.nextInt(multDivBase);
 		if (c != 0) {
 			if (b % c == 0) {
@@ -787,7 +788,7 @@ class EquationGenerator {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(multDivBase);
 		final int c = rand.nextInt(multDivBase);
-		final int d = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (d != 0) {
 			if ((b * c) % d == 0) {
 				expected = a + b * c / d;
@@ -919,8 +920,8 @@ class EquationGenerator {
 	private void subtractAddDivide() {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(addSubBase);
-		final int c = rand.nextInt(9) + 1;
-		final int d = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (c != 0) {
 			if (c % d == 0) {
 				expected = a - b + c / d;
@@ -980,7 +981,7 @@ class EquationGenerator {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(addSubBase);
 		final int c = rand.nextInt(multDivBase);
-		final int d = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (d != 0) {
 			if (c % d == 0) {
 				expected = a - b - c / d;
@@ -1013,7 +1014,7 @@ class EquationGenerator {
 	private void subtractDivideAdd() {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(multDivBase);
-		final int c = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		final int d = rand.nextInt(addSubBase);
 		if (c != 0) {
 			if (b % c == 0) {
@@ -1034,7 +1035,7 @@ class EquationGenerator {
 	private void subtractDivideSubtract() {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(multDivBase);
-		final int c = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		final int d = rand.nextInt(addSubBase);
 		if (c != 0) {
 			if (b % c == 0) {
@@ -1055,8 +1056,8 @@ class EquationGenerator {
 	private void subtractDivideDivide() {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(multDivBase);
-		final int c = rand.nextInt(9) + 1;
-		final int d = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (c != 0 && d != 0) {
 			if (b % c == 0 && (b / c) % d == 0) {
 				expected = a - b / c / d;
@@ -1076,7 +1077,7 @@ class EquationGenerator {
 	private void subtractDivideMultiply() {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(multDivBase);
-		final int c = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		final int d = rand.nextInt(multDivBase);
 		if (c != 0) {
 			if (b % c == 0) {
@@ -1124,7 +1125,7 @@ class EquationGenerator {
 		final int a = rand.nextInt(addSubBase);
 		final int b = rand.nextInt(multDivBase);
 		final int c = rand.nextInt(multDivBase);
-		final int d = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (d != 0) {
 			if ((b * c) % d == 0) {
 				expected = a - b * c / d;
@@ -1156,7 +1157,7 @@ class EquationGenerator {
 	 */
 	private void divide() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		if (b != 0) {
 			if (a % b == 0) {
 				expected = a / b;
@@ -1175,7 +1176,7 @@ class EquationGenerator {
 	 */
 	private void divideAdd() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(addSubBase);
 		if (b != 0) {
 			if (a % b == 0) {
@@ -1216,7 +1217,7 @@ class EquationGenerator {
 	 */
 	private void divideMultiply() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(multDivBase);
 		if (b != 0) {
 			if (a % b == 0) {
@@ -1235,9 +1236,9 @@ class EquationGenerator {
 	 * Method for two operations: X / Y / Z 
 	 */
 	private void divideDivide() {
-		final int a = rand.nextInt(9) + 1;
-		final int b = rand.nextInt(9) + 1;
-		final int c = rand.nextInt(9) + 1;
+		final int a = rand.nextInt(nonZeroDivisor) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		if (b != 0 && c != 0) {
 			if (a % b == 0 && (a / b) % c == 0) {
 				expected = a / b / c;
@@ -1256,7 +1257,7 @@ class EquationGenerator {
 	 */
 	private void divideAddAdd() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(addSubBase);
 		final int d = rand.nextInt(addSubBase);
 		if (b != 0) {
@@ -1277,7 +1278,7 @@ class EquationGenerator {
 	 */
 	private void divideAddSubtract() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(addSubBase);
 		final int d = rand.nextInt(addSubBase);
 		if (b != 0) {
@@ -1298,9 +1299,9 @@ class EquationGenerator {
 	 */
 	private void divideAddDivide() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(multDivBase);
-		final int d = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (b != 0 && d != 0) {
 			if (a % b == 0 && c % d == 0) {
 				expected = a / b + c / d;
@@ -1319,7 +1320,7 @@ class EquationGenerator {
 	 */
 	private void divideAddMultiply() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(multDivBase);
 		final int d = rand.nextInt(multDivBase);
 		if (b != 0) {
@@ -1340,7 +1341,7 @@ class EquationGenerator {
 	 */
 	private void divideSubtractAdd() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(addSubBase);
 		final int d = rand.nextInt(addSubBase);
 		if (b != 0) {
@@ -1361,7 +1362,7 @@ class EquationGenerator {
 	 */
 	private void divideSubtractSubtract() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(addSubBase);
 		final int d = rand.nextInt(addSubBase);
 		if (b != 0) {
@@ -1383,9 +1384,9 @@ class EquationGenerator {
 	 */
 	private void divideSubtractDivide() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(multDivBase);
-		final int d = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (b != 0 && d != 0) {
 			if (a % b == 0 && c % d == 0) {
 				expected = a / b - c / d;
@@ -1404,7 +1405,7 @@ class EquationGenerator {
 	 */
 	private void divideSubtractMultiply() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(multDivBase);
 		final int d = rand.nextInt(multDivBase);
 		if (b != 0) {
@@ -1425,8 +1426,8 @@ class EquationGenerator {
 	 */
 	private void divideDivideAdd() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
-		final int c = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		final int d = rand.nextInt(addSubBase);
 		if (b != 0 && c != 0) {
 			if (a % b == 0 && (a / b) % c == 0) {
@@ -1446,8 +1447,8 @@ class EquationGenerator {
 	 */
 	private void divideDivideSubtract() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
-		final int c = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		final int d = rand.nextInt(addSubBase);
 		if (b != 0 && c != 0) {
 			if (a % b == 0 && (a / b) % c == 0) {
@@ -1467,9 +1468,9 @@ class EquationGenerator {
 	 */
 	private void divideDivideDivide() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
-		final int c = rand.nextInt(9) + 1;
-		final int d = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (b != 0 && c != 0 && d != 0) {
 			if (a % b == 0 && (a / b) % c == 0 && (a / b / c) % d == 0) {
 				expected = a / b / c / d;
@@ -1488,8 +1489,8 @@ class EquationGenerator {
 	 */
 	private void divideDivideMultiply() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
-		final int c = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		final int d = rand.nextInt(multDivBase);
 		if (b != 0 && c != 0) {
 			if (a % b == 0 && (a / b) % c == 0) {
@@ -1509,7 +1510,7 @@ class EquationGenerator {
 	 */
 	private void divideMultiplyAdd() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(multDivBase);
 		final int d = rand.nextInt(addSubBase);
 		if (b != 0) {
@@ -1530,7 +1531,7 @@ class EquationGenerator {
 	 */
 	private void divideMultiplySubtract() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(multDivBase);
 		final int d = rand.nextInt(addSubBase);
 		if (b != 0) {
@@ -1551,9 +1552,9 @@ class EquationGenerator {
 	 */
 	private void divideMultiplyDivide() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(multDivBase);
-		final int d = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (b != 0 && d != 0) {
 			if (a % b == 0 && (a / b * c) % d == 0) {
 				expected = a / b * c / d;
@@ -1572,7 +1573,7 @@ class EquationGenerator {
 	 */
 	private void divideMultiplyMultiply() {
 		final int a = rand.nextInt(multDivBase);
-		final int b = rand.nextInt(9) + 1;
+		final int b = rand.nextInt(nonZeroDivisor) + 1;
 		final int c = rand.nextInt(multDivBase);
 		final int d = rand.nextInt(multDivBase);
 		if (b != 0) {
@@ -1629,7 +1630,7 @@ class EquationGenerator {
 	private void multiplyDivide() {
 		final int a = rand.nextInt(multDivBase);
 		final int b = rand.nextInt(multDivBase);
-		final int c = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		if (c != 0) {
 			if ((a * b) % c == 0) {
 				expected = a * b / c;
@@ -1688,7 +1689,7 @@ class EquationGenerator {
 		final int a = rand.nextInt(multDivBase);
 		final int b = rand.nextInt(multDivBase);
 		final int c = rand.nextInt(multDivBase);
-		final int d = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (d != 0) {
 			if (c % d == 0) {
 				expected = a * b + c / d;
@@ -1748,7 +1749,7 @@ class EquationGenerator {
 		final int a = rand.nextInt(multDivBase);
 		final int b = rand.nextInt(multDivBase);
 		final int c = rand.nextInt(multDivBase);
-		final int d = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (d != 0) {
 			if (c % d == 0) {
 				expected = a * b - c / d;
@@ -1781,7 +1782,7 @@ class EquationGenerator {
 	private void multiplyDivideAdd() {
 		final int a = rand.nextInt(multDivBase);
 		final int b = rand.nextInt(multDivBase);
-		final int c = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		final int d = rand.nextInt(addSubBase);
 		if (c != 0) {
 			if ((a * b) % c == 0) {
@@ -1802,7 +1803,7 @@ class EquationGenerator {
 	private void multiplyDivideSubtract() {
 		final int a = rand.nextInt(multDivBase);
 		final int b = rand.nextInt(multDivBase);
-		final int c = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		final int d = rand.nextInt(addSubBase);
 		if (c != 0) {
 			if ((a * b) % c == 0) {
@@ -1823,8 +1824,8 @@ class EquationGenerator {
 	private void multiplyDivideDivide() {
 		final int a = rand.nextInt(multDivBase);
 		final int b = rand.nextInt(multDivBase);
-		final int c = rand.nextInt(9) + 1;
-		final int d = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (c != 0 && d != 0) {
 			if ((a * b) % c == 0 && (a * b / c) % d == 0) {
 				expected = a * b / c / d;
@@ -1844,7 +1845,7 @@ class EquationGenerator {
 	private void multiplyDivideMultiply() {
 		final int a = rand.nextInt(multDivBase);
 		final int b = rand.nextInt(multDivBase);
-		final int c = rand.nextInt(9) + 1;
+		final int c = rand.nextInt(nonZeroDivisor) + 1;
 		final int d = rand.nextInt(multDivBase);
 		if (c != 0) {
 			if ((a * b) % c == 0) {
@@ -1892,7 +1893,7 @@ class EquationGenerator {
 		final int a = rand.nextInt(multDivBase);
 		final int b = rand.nextInt(multDivBase);
 		final int c = rand.nextInt(multDivBase);
-		final int d = rand.nextInt(9) + 1;
+		final int d = rand.nextInt(nonZeroDivisor) + 1;
 		if (d != 0) {
 			if ((a * b * c) % d == 0) {
 				expected = a * b * c / d;
