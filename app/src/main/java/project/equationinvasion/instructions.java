@@ -115,6 +115,8 @@ public class instructions extends AppCompatActivity {
         finish();
     }
 
+
+
     //This method is called when user leaves screen.
     @Override
     protected void onUserLeaveHint() {
@@ -125,6 +127,8 @@ public class instructions extends AppCompatActivity {
             noise.pauseMusic();
         }
     }
+
+
 
     //called upon return from home button pressed.
     @Override
