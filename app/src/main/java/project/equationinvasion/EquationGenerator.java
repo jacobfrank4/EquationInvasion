@@ -25,10 +25,10 @@ class EquationGenerator {
 	private static final Random rand = new Random();
 	private int expected;
 	private int displayed;
-	private static int addSubBase = 100;
-	private static int multDivBase = 10;
-	private static int levelOneAddSub = 10;
-	private static int nonZeroDivisor = 9;
+	private static final int addSubBase = 100;
+	private static final int multDivBase = 10;
+	private static final int levelOneAddSub = 10;
+	private static final int nonZeroDivisor = 9;
 
 	interface Equation {
 		void create();
@@ -1926,7 +1926,7 @@ class EquationGenerator {
 	 * @param answer from equation
 	 * @return displayed
 	 */
-	private final int answerGen(final int answer) {
+	private int answerGen(final int answer) {
 		final int wrong;
 		final int variable;
 		final boolean correctAnswerShown = rand.nextBoolean();  // True or False Decision
@@ -1996,7 +1996,7 @@ class EquationGenerator {
 	}
 
 	public void generate(final int currentLevel) {
-		this.currentLevel = currentLevel;
+		EquationGenerator.currentLevel = currentLevel;
 		int index;
 		switch(currentLevel) {
 			case 1:
