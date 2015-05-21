@@ -695,6 +695,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 		finish();
 	}
 
+	//Defines what happens when the user pauses the app via lock/home button.
 	protected void onPause() {
 		super.onPause();
 		if (!finished) {
@@ -703,7 +704,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 		finished = true;
 	}
 
-	//Gets called when home key is pressed,
+	//defines what happens when the user navigates away from activity
 	@Override
 	protected void onUserLeaveHint() {
 		super.onUserLeaveHint();
@@ -713,15 +714,17 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 		finished = true;
 	}
 
-	//Called when user returns from outside of app.
+	//defines what happens when user returns to the activity from else where
 	@Override
-	protected void onRestart() {
+	protected void onResume() {
 		super.onResume();
-		timer.onFinish();
-		final Intent intent = new Intent(getApplicationContext(), GameOver.class);
-		intent.putExtra("Score", score);
-		startActivity(intent);
-		finish();
+		if (finished){
+			timer.onFinish();
+			final Intent intent = new Intent(getApplicationContext(), GameOver.class);
+			intent.putExtra("Score", score);
+			startActivity(intent);
+			finish();
+		}
 	}
 }
 

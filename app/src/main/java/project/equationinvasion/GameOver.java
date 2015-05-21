@@ -94,6 +94,7 @@ public class GameOver extends AppCompatActivity implements
 		noise.stopMusic();
 		startActivity(intent);
 		finished = true;
+		noise.transitionNoise();
 		finish();
 	}
 
@@ -110,16 +111,14 @@ public class GameOver extends AppCompatActivity implements
 	}
 
 
-	//Simplifying leave sound effects
+	//defines what happens when the user navigates away from activity
 	@Override
 	protected void onUserLeaveHint() {
 		super.onUserLeaveHint();
-		if (!finished) {
-			noise.pauseMusic();
-		}
-		noise.transitionNoise();
+
 	}
 
+	//Defines what happens when the phone's back button is pushed
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
@@ -130,11 +129,15 @@ public class GameOver extends AppCompatActivity implements
 		finish();
 	}
 
+	//Defines what happens when the user pauses the app via lock/home button.
 	protected void onPause() {
 		super.onPause();
-		noise.pauseMusic();
+		if (!finished) {
+			noise.pauseMusic();
+		}
 	}
 
+	//defines what happens when user returns to the activity from else where
 	@Override
 	protected void onResume() {
 		super.onResume();

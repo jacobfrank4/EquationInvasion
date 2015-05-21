@@ -52,7 +52,7 @@ class Audio {
 	/**
 	 * This method generates the music to be played on the main menu.
 	 * It should be called only when a new instance of the main activity
-	 * is created. This will not create time displaced copies.
+	 * is created, or when it is unmuted. This will not create time displaced copies.
 	 */
 	public void menuBGM() {
 		if (!muted) {
@@ -62,7 +62,7 @@ class Audio {
 		}
 	}
 
-	// This should perform the same task as above, but for the play screen.
+	// This plays the background music for the play screen.
 	public void playBGM() {
 		if (!muted) {
 			BGM = MediaPlayer.create(context, R.raw.bgm2);
@@ -71,6 +71,7 @@ class Audio {
 		}
 	}
 
+	//This plays the background music for the game over screen
 	public void overBGM() {
 		if (!muted) {
 			BGM = MediaPlayer.create(context, R.raw.bgm3);
@@ -98,7 +99,7 @@ class Audio {
 		}
 	}
 
-	//This method exists for when the home key is pushed.
+	//This method exists for when the home or lock keys are pushed.
 	public void pauseMusic() {
 		if (BGM != null) {
 			BGM.pause();
@@ -106,8 +107,7 @@ class Audio {
 	}
 
 	// This lets the music resume from where it was,
-	// if the user leaves the app and comes back without closing
-	// it.
+	// if the user leaves the app and comes back without closing it.
 	public void resumeMusic() {
 		if (BGM != null && !muted && !BGM.isPlaying()) {
 			BGM.start();
@@ -122,7 +122,7 @@ class Audio {
 		}
 	}
 
-	// This lets us close the sound effects on another page, as well as the BGM
+	// This lets us close the sound effects on another page,
 	private final OnCompletionListener done = new OnCompletionListener() {
 		@Override
 		public void onCompletion(MediaPlayer mp) {
@@ -133,6 +133,7 @@ class Audio {
 		}
 	};
 
+	//The sound effect played when the user navigates away from the activity
 	public void transitionNoise() {
 		if (!muted) {
 			SE = MediaPlayer.create(context, R.raw.btn1sound);
@@ -141,6 +142,7 @@ class Audio {
 		}
 	}
 
+	//The sound effect played when the user gets a right answer
 	public void rightNoise() {
 		if (SE != null) {
 			SE.reset();
@@ -150,6 +152,7 @@ class Audio {
 		SE.start();
 	}
 
+	//The sound effect played when the user gets a wrong answer.
 	public void wrongNoise() {
 		if (SE != null) {
 			SE.reset();

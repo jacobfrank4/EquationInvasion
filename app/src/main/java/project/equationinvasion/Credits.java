@@ -62,31 +62,34 @@ public class Credits extends AppCompatActivity {
 		onBackPressed();
 	}
 
+	//defines what happens when the user navigates away from activity
 	@Override
 	protected void onUserLeaveHint() {
 		super.onUserLeaveHint();
 		noise.transitionNoise();
+	}
+
+	//Defines what happens when the user pauses the app via lock/home button.
+	protected void onPause() {
+		super.onPause();
 		if (!finished) {
 			noise.pauseMusic();
 		}
 	}
 
-	protected void onPause() {
-		super.onPause();
-		noise.pauseMusic();
-	}
-
+	//defines what happens when user returns to the activity from else where
 	@Override
 	protected void onResume() {
 		super.onResume();
 		noise.resumeMusic();
 	}
 
+	//Defines what happens when the phone's back button is pushed
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		noise.transitionNoise();
 		finished = true;
+		noise.transitionNoise();
 		finish();
 	}
 }

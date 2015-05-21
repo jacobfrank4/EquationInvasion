@@ -116,17 +116,17 @@ public class Instructions extends AppCompatActivity {
 	protected void onUserLeaveHint() {
 		super.onUserLeaveHint();
 		noise.transitionNoise();
+	}
+
+	//Defines what happens when the user pauses the app via lock/home button.
+	protected void onPause() {
+		super.onPause();
 		if (!finished) {
 			noise.pauseMusic();
 		}
 	}
 
-	protected void onPause() {
-		super.onPause();
-		noise.pauseMusic();
-	}
-
-	//called upon return from home button pressed.
+	//defines what happens when user returns to the activity from else where
 	@Override
 	protected void onResume() {
 		super.onResume();
