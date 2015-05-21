@@ -1922,13 +1922,14 @@ class EquationGenerator {
 	 * @param answer from equation
 	 * @return displayed
 	 */
-	private final int answerGen(final int answer) {
-		int wrong;
-		boolean correctAnswerShown = rand.nextBoolean();  // True or False Decision
+	private int answerGen(final int answer) {
+		final int wrong;
+		final int variable;
+		final boolean correctAnswerShown = rand.nextBoolean();  // True or False Decision
 
 		if (answer >= -10 && answer <= 10) {
 			if (!correctAnswerShown) {
-				int variable = 1;
+				variable = 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
 				} else {
@@ -1940,7 +1941,7 @@ class EquationGenerator {
 			}
 		} else if (answer >= -20 && answer <= 20) {
 			if (!correctAnswerShown) {
-				int variable = rand.nextInt(2) + 1;
+				variable = rand.nextInt(2) + 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
 				} else {
@@ -1952,7 +1953,7 @@ class EquationGenerator {
 			}
 		} else if (answer >= -40 && answer <= 40) {
 			if (!correctAnswerShown) {
-				int variable = rand.nextInt(3) + 1;
+				variable = rand.nextInt(3) + 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
 				} else {
@@ -1964,7 +1965,7 @@ class EquationGenerator {
 			}
 		} else if (answer >= -60 && answer <= 60) {
 			if (!correctAnswerShown) {
-				int variable = rand.nextInt(4) + 1;
+				variable = rand.nextInt(4) + 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
 				} else {
@@ -1976,7 +1977,7 @@ class EquationGenerator {
 			}
 		} else {
 			if (!correctAnswerShown) {
-				int variable = rand.nextInt(5) + 1;
+				variable = rand.nextInt(5) + 1;
 				if (rand.nextBoolean()) {
 					wrong = answer + variable;
 				} else {
@@ -1991,8 +1992,8 @@ class EquationGenerator {
 	}
 
 	public void generate(final int currentLevel) {
-		this.currentLevel = currentLevel;
-		int index;
+		EquationGenerator.currentLevel = currentLevel;
+		final int index;
 		switch(currentLevel) {
 			case 1:
 			case 3:
