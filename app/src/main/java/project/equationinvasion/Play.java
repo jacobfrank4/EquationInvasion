@@ -695,6 +695,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
     }
 
     protected void onPause() {
+        super.onPause();
         if (!finished){
             noise.stopMusic();
         }
