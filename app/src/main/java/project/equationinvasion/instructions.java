@@ -22,15 +22,19 @@ public class instructions extends AppCompatActivity {
 
     private Audio noise;
     private boolean finished = false;
+
+    //instruction texts for the slides
     private static final String One = "You must determine whether the given solution is true or false by tapping the corresponding button";
     private static final String Two = "Correctly answer five equations in a row, and 10 seconds will be added to your time.";
     private static final String Three = "Correctly answer ten equations in a row, and you will go up a level. The difficulty increases with each level.";
     private static final String Four = "If you answer an equation incorrectly the streak resets. If you answer three equations in a row incorrectly, you lose 5 seconds and go down one level.";
     private static final String Five = "BEDMAS";
 
+    // arrrays for the instructions
     private static final String[] TEXTS = {Five, One, Two, Three, Four,};
     private static final int[] IMAGES = {R.drawable.instructions5, R.drawable.instructions1, R.drawable.instructions2, R.drawable.instructions3, R.drawable.instructions4};
-    private int mPosition = 0;
+
+    // Text and Image switcher objects
     private TextSwitcher mTextSwitcher;
     private ImageSwitcher mImageSwitcher;
 
@@ -45,7 +49,7 @@ public class instructions extends AppCompatActivity {
         //Load Font Face
         final Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
 
-        // slide set up
+        // Sets up the text for the slides
         mTextSwitcher = (TextSwitcher) findViewById(R.id.textSwitcher);
         mTextSwitcher.setFactory(new ViewFactory() {
             @Override
@@ -60,6 +64,7 @@ public class instructions extends AppCompatActivity {
         mTextSwitcher.setInAnimation(this, android.R.anim.fade_in);
         mTextSwitcher.setOutAnimation(this, android.R.anim.fade_out);
 
+        //sets up the Images for the slide
         mImageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher);
         mImageSwitcher.setFactory(new ViewFactory() {
             @Override
@@ -77,9 +82,10 @@ public class instructions extends AppCompatActivity {
         noise = new Audio(instructions.this);
     }
 
+    // position for the array
     private int Position = 0;
 
-    // switch for the slides
+    // goes to the next slide
     public void switchNext(View view) {
         Position++;
         if (Position == 5) {
@@ -89,7 +95,7 @@ public class instructions extends AppCompatActivity {
         mImageSwitcher.setBackgroundResource(IMAGES[Position]);
 
     }
-
+    // Goes to the previous slide
     public void switchPrevious(View view) {
         Position--;
         if (Position == -1) {
