@@ -26,8 +26,8 @@ import android.widget.TextView;
 public class Credits extends AppCompatActivity {
 
     //Audio declarations
-    private Audio noise;
-    private boolean finished;
+    private static Audio noise;
+    private static boolean finished;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +38,16 @@ public class Credits extends AppCompatActivity {
          * Setting font style
          */
         //Font path
-        String chalkboardFontPath = "fonts/Chalkboard.ttf";
+        final String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
         //text view label
-        TextView txtCreditsHeader = (TextView) findViewById(R.id.creditsHeader);
-        TextView txtDevList = (TextView) findViewById(R.id.devList);
-        TextView txtContributorHeader = (TextView) findViewById(R.id.contributorHeader);
-        TextView txtContributors = (TextView) findViewById(R.id.contributors);
+        final TextView txtCreditsHeader = (TextView) findViewById(R.id.creditsHeader);
+        final TextView txtDevList = (TextView) findViewById(R.id.devList);
+        final TextView txtContributorHeader = (TextView) findViewById(R.id.contributorHeader);
+        final TextView txtContributors = (TextView) findViewById(R.id.contributors);
 
         //Load Font Face
-        Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
+        final Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
 
         //Applying font
         txtCreditsHeader.setTypeface(chalkboardFont);

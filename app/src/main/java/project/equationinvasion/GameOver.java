@@ -17,24 +17,27 @@ public class GameOver extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         GoogleApiClient.ConnectionCallbacks {
 
-    private GoogleApiClient googleApiClient;
+    private static GoogleApiClient googleApiClient;
 
-    private final static int REQUEST_HIGHSCORE = 1337;
+    private static final int RC_HIGH_SCORE = 1337;
 
     private static final int RC_SIGN_IN = 9001;
 
     // Are we currently resolving a connection failure?
-    private boolean resolvingConnectionFailure = false;
+    private static boolean resolvingConnectionFailure = false;
 
     // Has the user clicked the sign-in button?
-    private boolean signInClicked = false;
+    private static boolean signInClicked = false;
 
     // Automatically start the sign-in flow when the Activity starts
-    private boolean autoStartSignInFlow = true;
+    private static boolean autoStartSignInFlow = true;
+
+    // The score the user got while playing
+    private static int score;
 
     //Declarations for audio functionality
-    private Audio noise;
-    private boolean finished;
+    private static Audio noise;
+    private static boolean finished;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,25 +54,27 @@ public class GameOver extends AppCompatActivity implements
         noise = new Audio(GameOver.this);
         noise.overBGM();
 
-
-        TextView scoreDisplay = (TextView) findViewById(R.id.finalScore);
+        final TextView scoreDisplay = (TextView) findViewById(R.id.finalScore);
 
         //Font path
-        String chalkboardFontPath = "fonts/Chalkboard.ttf";
+        final String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
         //Load Font Face
-        Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
+        final Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
+
+        // Retrieving the score
+        score = getIntent().getIntExtra("Score", 0);
 
         //Applying font
         scoreDisplay.setTypeface(chalkboardFont);
 
         scoreDisplay.setText("Great Job!\n you scored\n\n\n" +
-                String.valueOf(getIntent().getIntExtra("Score", 0)) + " points");
+                String.valueOf(score) + " points");
     }
 
     //Called when player clicks the Play button
     public void goToPlay(View view) {
-        Intent intent = new Intent(this, Play.class);
+        final Intent intent = new Intent(this, Play.class);
         noise.stopMusic();
         startActivity(intent);
         finished=true;
@@ -80,7 +85,7 @@ public class GameOver extends AppCompatActivity implements
     public void goToHighScores(View view) {
         if(isSignedIn()) {
             startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
-                    "CgkIsIanxbIGEAIQBg"), REQUEST_HIGHSCORE);
+                    "CgkIsIanxbIGEAIQBg"), RC_HIGH_SCORE);
         }
     }
 
@@ -138,8 +143,7 @@ public class GameOver extends AppCompatActivity implements
     public void onConnected(Bundle bundle) {
         if (isSignedIn()) {
             Games.Leaderboards.submitScore(googleApiClient,
-                    "CgkIsIanxbIGEAIQBg",
-                    getIntent().getIntExtra("Score", 0));
+                    "CgkIsIanxbIGEAIQBg", score);
         }
     }
 

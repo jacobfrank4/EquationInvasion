@@ -35,7 +35,7 @@ class Audio {
 
     // The two media players that will be used for the entirety of the program.
     private static  MediaPlayer BGM;
-    private  MediaPlayer SE;
+    private static MediaPlayer SE;
 
     //The boolean that keeps track of when the user has muted the audio.
     private static boolean muted;

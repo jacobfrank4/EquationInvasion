@@ -22,22 +22,22 @@ public class Extras extends AppCompatActivity implements
 
     private final static int REQUEST_HIGHSCORE = 1337;
 
-    private GoogleApiClient googleApiClient;
+    private static GoogleApiClient googleApiClient;
 
     private static final int RC_SIGN_IN = 9001;
 
     // Are we currently resolving a connection failure?
-    private boolean resolvingConnectionFailure = false;
+    private static boolean resolvingConnectionFailure = false;
 
     // Has the user clicked the sign-in button?
-    private boolean signInClicked = false;
+    private static boolean signInClicked = false;
 
     // Automatically start the sign-in flow when the Activity starts
-    private boolean autoStartSignInFlow = true;
+    private static boolean autoStartSignInFlow = true;
 
     // Audio for button noises... nothing to see here....
-    private Audio noise;
-    private boolean finished = false;
+    private static Audio noise;
+    private static boolean finished = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +51,13 @@ public class Extras extends AppCompatActivity implements
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .build();
 
-        TextView extrasTitle = (TextView) findViewById(R.id.extrasTitle);
+        final TextView extrasTitle = (TextView) findViewById(R.id.extrasTitle);
 
         //Font path
-        String chalkboardFontPath = "fonts/Chalkboard.ttf";
+        final String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
         //Load Font Face
-        Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
+        final Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
 
         //Applying font
         extrasTitle.setTypeface(chalkboardFont);
@@ -86,7 +86,7 @@ public class Extras extends AppCompatActivity implements
 
     //Called when player clicks the credits button
     public void goToCredits(View view) {
-        Intent intent = new Intent(this, Credits.class);
+        final Intent intent = new Intent(this, Credits.class);
         finished = true;
         startActivity(intent);
     }
@@ -98,7 +98,7 @@ public class Extras extends AppCompatActivity implements
 
     //Called when player clicks the instructions button
     public void goToInstructions(View view) {
-        Intent intent = new Intent(this, instructions.class);
+        final Intent intent = new Intent(this, instructions.class);
         finished = true;
         startActivity(intent);
     }
