@@ -44,7 +44,7 @@ class EquationGenerator {
 		equation = Play.getEquationTextView();
 		answer = Play.getAnswerTextView();
 		currentLevel = Play.getCurrentLevel();
-		equationGen = new Equation[] {
+		equationGen = new Equation[]{
 				/**
 				 * DO NOT DELETE
 				 * Level 1: 0-1
@@ -1919,7 +1919,7 @@ class EquationGenerator {
 		equation.setText(a + " * " + b + " * " + c + " * " + d);
 		answer.setText(String.valueOf(answerGen(expected)));
 	}
-	
+
 	/**
 	 * Random Answer Generator.
 	 *
@@ -1998,7 +1998,7 @@ class EquationGenerator {
 	public void generate(final int currentLevel) {
 		EquationGenerator.currentLevel = currentLevel;
 		int index;
-		switch(currentLevel) {
+		switch (currentLevel) {
 			case 1:
 			case 3:
 				//0-1

@@ -46,7 +46,7 @@ public class Instructions extends AppCompatActivity {
 		final String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
 		//Load Font Face
-		final Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
+		final Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
 
 		// Sets up the text for the slides
 		mTextSwitcher = (TextSwitcher) findViewById(R.id.textSwitcher);
@@ -116,7 +116,7 @@ public class Instructions extends AppCompatActivity {
 	protected void onUserLeaveHint() {
 		super.onUserLeaveHint();
 		noise.transitionNoise();
-		if (!finished){
+		if (!finished) {
 			noise.pauseMusic();
 		}
 	}

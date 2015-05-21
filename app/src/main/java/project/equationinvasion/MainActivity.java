@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements
 		noise = new Audio(MainActivity.this);
 		noise.menuBGM();
 		final ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton);
-		if (muted){
+		if (muted) {
 			tb.setChecked(true);
 		}
 
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements
 	protected void onUserLeaveHint() {
 		super.onUserLeaveHint();
 		noise.transitionNoise();
-		if (!finished){
+		if (!finished) {
 			noise.pauseMusic();
 		}
 	}
