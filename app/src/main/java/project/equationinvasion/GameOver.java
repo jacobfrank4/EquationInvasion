@@ -119,7 +119,6 @@ public class GameOver extends AppCompatActivity implements
         noise.pauseMusic();
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();

@@ -400,7 +400,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
             }
         }
         levelView.setText("Level: " + currentLevel);
-
     }
 
     // Increments the score.
@@ -701,7 +700,6 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         }
         finished = true;
     }
-
 
     //Gets called when home key is pressed,
     @Override
