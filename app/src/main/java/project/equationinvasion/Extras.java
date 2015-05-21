@@ -167,12 +167,17 @@ public class Extras extends AppCompatActivity implements
     @Override
     protected void onUserLeaveHint() {
         super.onUserLeaveHint();
-        noise.setSoundState(0);
-        noise.buttonNoise();
+        noise.transitionNoise();
         if (!finished) {
             noise.pauseMusic();
         }
     }
+
+    protected void onPause() {
+        super.onPause();
+        noise.pauseMusic();
+    }
+
 
     @Override
     protected void onResume() {
@@ -185,6 +190,7 @@ public class Extras extends AppCompatActivity implements
     public void onBackPressed() {
         super.onBackPressed();
         finished=true;
+        noise.transitionNoise();
         finish();
     }
 }
