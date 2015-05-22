@@ -149,7 +149,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 	private static int currentLevel;
 
 	// Score tracking
-	private static int score = STARTING_SCORE;
+	private int score = STARTING_SCORE;
 	private static TextView scoreDisplay;
 
 	// Audio variables for this page.
