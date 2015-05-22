@@ -154,7 +154,7 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
 
 	// Audio variables for this page.
 	private static Audio noise;
-	private static boolean finished = false;
+	private boolean finished = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

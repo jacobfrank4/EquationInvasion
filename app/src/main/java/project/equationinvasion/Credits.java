@@ -27,7 +27,7 @@ public class Credits extends AppCompatActivity {
 
 	//Audio declarations
 	private static Audio noise;
-	private static boolean finished;
+	private boolean finished;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -53,7 +53,7 @@ public class Extras extends AppCompatActivity implements
 
 	// Audio for button noises... nothing to see here....
 	private static Audio noise;
-	private static boolean finished = false;
+	private boolean finished = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

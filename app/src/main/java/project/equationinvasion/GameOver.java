@@ -53,7 +53,7 @@ public class GameOver extends AppCompatActivity implements
 
 	//Declarations for audio functionality
 	private static Audio noise;
-	private static boolean finished;
+	private boolean finished;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +94,6 @@ public class GameOver extends AppCompatActivity implements
 		noise.stopMusic();
 		startActivity(intent);
 		finished = true;
-		noise.transitionNoise();
 		finish();
 	}
 
@@ -115,7 +114,7 @@ public class GameOver extends AppCompatActivity implements
 	@Override
 	protected void onUserLeaveHint() {
 		super.onUserLeaveHint();
-
+		noise.transitionNoise();
 	}
 
 	//Defines what happens when the phone's back button is pushed

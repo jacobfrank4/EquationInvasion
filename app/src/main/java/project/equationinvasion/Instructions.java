@@ -16,7 +16,7 @@ import android.widget.ViewSwitcher.ViewFactory;
 public class Instructions extends AppCompatActivity {
 
 	private static Audio noise;
-	private static boolean finished = false;
+	private boolean finished = false;
 
 	//instruction texts for the slides
 	private static final String One = "You must determine whether the given solution is true or false by tapping the corresponding button";
