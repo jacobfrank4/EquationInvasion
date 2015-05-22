@@ -144,22 +144,27 @@ class Audio {
 
 	//The sound effect played when the user gets a right answer
 	public void rightNoise() {
-		if (SE != null) {
-			SE.reset();
-			SE.release();
+		if (!muted) {
+			if (SE != null) {
+				SE.reset();
+				SE.release();
+			}
+			SE = MediaPlayer.create(context, R.raw.right);
+			SE.start();
 		}
-		SE = MediaPlayer.create(context, R.raw.right);
-		SE.start();
 	}
 
 	//The sound effect played when the user gets a wrong answer.
 	public void wrongNoise() {
-		if (SE != null) {
-			SE.reset();
-			SE.release();
+		if (!muted) {
+			if (SE != null) {
+				SE.reset();
+				SE.release();
+			}
+			SE = MediaPlayer.create(context, R.raw.wrong);
+			SE.start();
 		}
-		SE = MediaPlayer.create(context, R.raw.wrong);
-		SE.start();
+
 	}
 }
 
