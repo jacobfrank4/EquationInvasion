@@ -16,7 +16,7 @@ import android.widget.ViewSwitcher.ViewFactory;
 public class Instructions extends AppCompatActivity {
 
 	private static Audio noise;
-	private static boolean finished = false;
+	private boolean finished = false;
 
 	//instruction texts for the slides
 	private static final String One = "You must determine whether the given solution is true or false by tapping the corresponding button";
@@ -46,7 +46,7 @@ public class Instructions extends AppCompatActivity {
 		final String chalkboardFontPath = "fonts/Chalkboard.ttf";
 
 		//Load Font Face
-		final Typeface chalkboardFont = Typeface.createFromAsset(getAssets(),chalkboardFontPath);
+		final Typeface chalkboardFont = Typeface.createFromAsset(getAssets(), chalkboardFontPath);
 
 		// Sets up the text for the slides
 		mTextSwitcher = (TextSwitcher) findViewById(R.id.textSwitcher);
@@ -116,17 +116,17 @@ public class Instructions extends AppCompatActivity {
 	protected void onUserLeaveHint() {
 		super.onUserLeaveHint();
 		noise.transitionNoise();
-		if (!finished){
+	}
+
+	//Defines what happens when the user pauses the app via lock/home button.
+	protected void onPause() {
+		super.onPause();
+		if (!finished) {
 			noise.pauseMusic();
 		}
 	}
 
-	protected void onPause() {
-		super.onPause();
-		noise.pauseMusic();
-	}
-
-	//called upon return from home button pressed.
+	//defines what happens when user returns to the activity from else where
 	@Override
 	protected void onResume() {
 		super.onResume();

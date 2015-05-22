@@ -33,132 +33,134 @@ import android.media.MediaPlayer.OnCompletionListener;
 // Built to streamline the audio production process.
 class Audio {
 
-    // The two media players that will be used for the entirety of the program.
-    private static MediaPlayer BGM;
-    private MediaPlayer SE;
+	// The two media players that will be used for the entirety of the program.
+	private static MediaPlayer BGM;
+	private MediaPlayer SE;
 
-    //The boolean that keeps track of when the user has muted the audio.
-    private static boolean muted;
+	//The boolean that keeps track of when the user has muted the audio.
+	private static boolean muted;
 
-    // A receiver for the current context that this class is being called in.
-    private final Context context;
+	// A receiver for the current context that this class is being called in.
+	private final Context context;
 
-    // Constructor for this class
-    // c is a variable passed in by the host activity to define initial context.
-    public Audio(Context c) {
-        context = c;
-    }
+	// Constructor for this class
+	// c is a variable passed in by the host activity to define initial context.
+	public Audio(Context c) {
+		context = c;
+	}
 
-    /**
-     * This method generates the music to be played on the main menu.
-     * It should be called only when a new instance of the main activity
-     * is created. This will not create time displaced copies.
-     */
-    public void menuBGM() {
-        if (!muted){
-            BGM = MediaPlayer.create(context, R.raw.bgm1);
-            BGM.setLooping(true);
-            BGM.start();
-        }
-    }
+	/**
+	 * This method generates the music to be played on the main menu.
+	 * It should be called only when a new instance of the main activity
+	 * is created, or when it is unmuted. This will not create time displaced copies.
+	 */
+	public void menuBGM() {
+		if (!muted) {
+			BGM = MediaPlayer.create(context, R.raw.bgm1);
+			BGM.setLooping(true);
+			BGM.start();
+		}
+	}
 
-    // This should perform the same task as above, but for the play screen.
-    public void playBGM() {
-        if (!muted) {
-            BGM = MediaPlayer.create(context, R.raw.bgm2);
-            BGM.setLooping(true);
-            BGM.start();
-        }
-    }
+	// This plays the background music for the play screen.
+	public void playBGM() {
+		if (!muted) {
+			BGM = MediaPlayer.create(context, R.raw.bgm2);
+			BGM.setLooping(true);
+			BGM.start();
+		}
+	}
 
-    public void overBGM() {
-        if (!muted) {
-            BGM = MediaPlayer.create(context, R.raw.bgm3);
-            BGM.setLooping(true);
-            BGM.start();
-        }
-    }
+	//This plays the background music for the game over screen
+	public void overBGM() {
+		if (!muted) {
+			BGM = MediaPlayer.create(context, R.raw.bgm3);
+			BGM.setLooping(true);
+			BGM.start();
+		}
+	}
 
-    /*
-     *  This is meant to enable the user to turn all sound off.
-     *  It works by setting the muted variable to the opposite
-     *  state of what it is currently. It uses != true instead of
-     *  == false, because the boolean is not actually initialized
-     *  until this is called once,to avoid accidental resets between
-     *  activities.It also calls menu music as that's the only place it can
-     *  be toggled.
-     */
-    public void toggleMute(){
-        if (!muted) {
-            stopMusic();
-            muted = true;
-        } else {
-            muted = false;
-            menuBGM();
-        }
-    }
+	/*
+	 *  This is meant to enable the user to turn all sound off.
+	 *  It works by setting the muted variable to the opposite
+	 *  state of what it is currently. It uses != true instead of
+	 *  == false, because the boolean is not actually initialized
+	 *  until this is called once,to avoid accidental resets between
+	 *  activities.It also calls menu music as that's the only place it can
+	 *  be toggled.
+	 */
+	public void toggleMute() {
+		if (!muted) {
+			stopMusic();
+			muted = true;
+		} else {
+			muted = false;
+			menuBGM();
+		}
+	}
 
-    //This method exists for when the home key is pushed.
-    public void pauseMusic() {
-        if (BGM != null) {
-            BGM.pause();
-        }
-    }
+	//This method exists for when the home or lock keys are pushed.
+	public void pauseMusic() {
+		if (BGM != null) {
+			BGM.pause();
+		}
+	}
 
-    // This lets the music resume from where it was,
-    // if the user leaves the app and comes back without closing
-    // it.
-    public void resumeMusic() {
-        if (BGM != null && !muted && !BGM.isPlaying()) {
-            BGM.start();
-        }
-    }
+	// This lets the music resume from where it was,
+	// if the user leaves the app and comes back without closing it.
+	public void resumeMusic() {
+		if (BGM != null && !muted && !BGM.isPlaying()) {
+			BGM.start();
+		}
+	}
 
-    // This is meant to enable stopping of music.(used in muting)
-    public void stopMusic() {
-       if (!muted){
-            BGM.stop();
-            BGM.reset();
-       }
-    }
+	// This is meant to enable stopping of music.(used in muting)
+	public void stopMusic() {
+		if (!muted) {
+			BGM.stop();
+			BGM.reset();
+		}
+	}
 
-    // This lets us close the sound effects on another page, as well as the BGM
-    private final OnCompletionListener done = new OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mp) {
-            if (mp == SE) {
-                SE.reset();
-                SE.release();
-            }
-        }
-    };
+	// This lets us close the sound effects on another page,
+	private final OnCompletionListener done = new OnCompletionListener() {
+		@Override
+		public void onCompletion(MediaPlayer mp) {
+			if (mp == SE) {
+				SE.reset();
+				SE.release();
+			}
+		}
+	};
 
+	//The sound effect played when the user navigates away from the activity
+	public void transitionNoise() {
+		if (!muted) {
+			SE = MediaPlayer.create(context, R.raw.btn1sound);
+			SE.setOnCompletionListener(done);
+			SE.start();
+		}
+	}
 
-    public void transitionNoise() {
-        if(!muted) {
-            SE = MediaPlayer.create(context,R.raw.btn1sound);
-            SE.setOnCompletionListener(done);
-            SE.start();
-        }
-    }
+	//The sound effect played when the user gets a right answer
+	public void rightNoise() {
+		if (SE != null) {
+			SE.reset();
+			SE.release();
+		}
+		SE = MediaPlayer.create(context, R.raw.right);
+		SE.start();
+	}
 
-    public void rightNoise(){
-        if (SE != null){
-            SE.reset();
-            SE.release();
-        }
-        SE = MediaPlayer.create(context,R.raw.right);
-        SE.start();
-    }
-
-    public void wrongNoise() {
-        if (SE != null){
-            SE.reset();
-            SE.release();
-        }
-        SE = MediaPlayer.create(context,R.raw.wrong);
-        SE.start();
-    }
+	//The sound effect played when the user gets a wrong answer.
+	public void wrongNoise() {
+		if (SE != null) {
+			SE.reset();
+			SE.release();
+		}
+		SE = MediaPlayer.create(context, R.raw.wrong);
+		SE.start();
+	}
 }
 
 

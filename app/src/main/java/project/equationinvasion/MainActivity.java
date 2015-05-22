@@ -51,7 +51,11 @@ public class MainActivity extends AppCompatActivity implements
 
 	/**
 	 * Declarations for audio functionality
-	 * -Matt
+	 *
+	 * noise: the variable by which audio functionality is accessed
+	 * muted: used to ensure the audio button displays correctly
+	 * finished: lets the app know when the user has gone to another in
+	 * app activity, so that it doesn't interrupt music.
 	 */
 	private static Audio noise;
 	private static boolean muted;
@@ -72,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements
 		noise = new Audio(MainActivity.this);
 		noise.menuBGM();
 		final ToggleButton tb = (ToggleButton) findViewById(R.id.toggleButton);
-		if (muted){
+		if (muted) {
 			tb.setChecked(true);
 		}
 
@@ -117,10 +121,12 @@ public class MainActivity extends AppCompatActivity implements
 		finished = true;
 	}
 
+	//Defines what happens when the phone's back button is pushed
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
 		noise.stopMusic();
+		noise.transitionNoise();
 		finish();
 	}
 
@@ -130,15 +136,14 @@ public class MainActivity extends AppCompatActivity implements
 		muted = !muted;
 	}
 
+	//defines what happens when the user navigates away from activity
 	@Override
 	protected void onUserLeaveHint() {
 		super.onUserLeaveHint();
 		noise.transitionNoise();
-		if (!finished){
-			noise.pauseMusic();
-		}
 	}
 
+	//defines what happens when user returns to the activity from else where
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -152,10 +157,13 @@ public class MainActivity extends AppCompatActivity implements
 		googleApiClient.connect();
 	}
 
+	//Defines what happens when the user pauses the app via lock/home button.
 	@Override
 	protected void onPause() {
 		super.onPause();
-		noise.pauseMusic();
+		if (!finished) {
+			noise.pauseMusic();
+		}
 	}
 
 	@Override
