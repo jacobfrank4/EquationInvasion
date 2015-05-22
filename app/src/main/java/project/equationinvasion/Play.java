@@ -408,21 +408,16 @@ public class Play extends AppCompatActivity implements View.OnClickListener,
         scoreDisplay.setText("Score: " + score);
         // Score Achievements
         if (isSignedIn()) {
-            switch(score) {
-                case 5000:
-                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQCg");
-                    break;
-                case 10000:
-                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQCw");
-                    break;
-                case 15000:
-                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDA");
-                    break;
-                case 20000:
-                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDQ");
-                    break;
-                case 35000:
-                    Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDg");
+            if (score >= 5000) {
+                Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQCg");
+            } else if (score >= 10000) {
+                Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQCw");
+            } else if (score >= 15000) {
+                Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDA");
+            } else if (score >= 20000) {
+                Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDQ");
+            } else if (score >= 35000) {
+                Games.Achievements.unlock(googleApiClient, "CgkIsIanxbIGEAIQDg");
             }
         }
     }
