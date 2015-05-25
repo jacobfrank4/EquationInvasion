@@ -100,6 +100,7 @@ public class GameOver extends AppCompatActivity implements
 	//Called when player clicks the High Scores button
 	public void goToHighScores(View view) {
 		if (isSignedIn()) {
+			finished = true;
 			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
 					"CgkIsIanxbIGEAIQBg"), RC_HIGH_SCORE);
 		}
@@ -141,6 +142,7 @@ public class GameOver extends AppCompatActivity implements
 	protected void onResume() {
 		super.onResume();
 		noise.resumeMusic();
+		finished=false;
 	}
 
 	@Override

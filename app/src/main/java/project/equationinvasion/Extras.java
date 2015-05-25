@@ -87,6 +87,7 @@ public class Extras extends AppCompatActivity implements
 	//Called when player clicks the High Scores button
 	public void goToHighScores(View view) {
 		if (isSignedIn()) {
+			finished = true;
 			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(googleApiClient,
 					"CgkIsIanxbIGEAIQBg"), REQUEST_HIGHSCORE);
 		}
@@ -95,6 +96,7 @@ public class Extras extends AppCompatActivity implements
 	//Called when player clicks the Achievements button
 	public void viewAchievements(View view) {
 		if (isSignedIn()) {
+			finished = true;
 			startActivityForResult(Games.Achievements.getAchievementsIntent(googleApiClient),
 					REQUEST_ACHIEVEMENTS);
 		}
